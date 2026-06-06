@@ -1,0 +1,133 @@
+---
+layout: base
+title: Articles
+description: "The full Ahvantir lore index — browse all articles by category and tag."
+permalink: /articles/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Articles</h1>
+    <p class="page-lead">{{ collections.allArticles.length }} articles across {{ meta.categories.length }} subjects.</p>
+  </div>
+</div>
+
+<div class="container articles-page">
+
+  <div class="articles-controls">
+    <input
+      type="search"
+      id="article-filter"
+      class="filter-input"
+      placeholder="Filter by title or tag…"
+      aria-label="Filter articles"
+    >
+    <div class="filter-tags" role="group" aria-label="Filter by category">
+      <button class="filter-btn active" data-filter="all">All</button>
+      {% for cat in meta.categories %}
+      <button class="filter-btn" data-filter="{{ cat.slug }}">{{ cat.label }}</button>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% for cat in meta.categories %}
+  {% set catArticles = [] %}
+  {% for article in collections.allArticles %}
+    {% if article.data.category == cat.slug %}
+      {% set catArticles = catArticles.concat([article]) %}
+    {% endif %}
+  {% endfor %}
+  {% if catArticles.length %}
+  <section class="articles-section" id="{{ cat.slug }}" data-category="{{ cat.slug }}">
+    <h2 class="articles-section__title">
+      <span aria-hidden="true">{{ cat.icon }}</span> {{ cat.label }}
+    </h2>
+    <div class="article-grid">
+      {% for article in catArticles %}
+      <a href="{{ article.url }}"
+         class="article-card"
+         data-category="{{ article.data.category }}"
+         data-tags="{{ article.data.tags | join(' ') }}"
+         data-title="{{ article.data.title | lower }}">
+        <h3 class="article-card__title">{{ article.data.title }}</h3>
+        {% if article.data.description %}
+        <p class="article-card__desc">{{ article.data.description }}</p>
+        {% endif %}
+        {% if article.data.tags and article.data.tags.length %}
+        <div class="article-card__tags">
+          {% for tag in article.data.tags %}
+          <span class="tag tag--sm">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+
+  {% set uncategorized = [] %}
+  {% for article in collections.allArticles %}
+    {% if not article.data.category %}
+      {% set uncategorized = uncategorized.concat([article]) %}
+    {% endif %}
+  {% endfor %}
+  {% if uncategorized.length %}
+  <section class="articles-section" id="uncategorized" data-category="uncategorized">
+    <h2 class="articles-section__title">Uncategorized</h2>
+    <div class="article-grid">
+      {% for article in uncategorized %}
+      <a href="{{ article.url }}" class="article-card" data-title="{{ article.data.title | lower }}">
+        <h3 class="article-card__title">{{ article.data.title }}</h3>
+        {% if article.data.description %}
+        <p class="article-card__desc">{{ article.data.description }}</p>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+
+<script>
+(function () {
+  const input = document.getElementById('article-filter');
+  const cards = document.querySelectorAll('.article-card');
+  const sections = document.querySelectorAll('.articles-section');
+  const btns = document.querySelectorAll('.filter-btn');
+  let activeCategory = 'all';
+
+  function applyFilters() {
+    const q = input.value.toLowerCase();
+    sections.forEach(sec => {
+      let visible = 0;
+      const cat = sec.dataset.category;
+      if (activeCategory !== 'all' && cat !== activeCategory) {
+        sec.style.display = 'none';
+        return;
+      }
+      sec.querySelectorAll('.article-card').forEach(card => {
+        const titleMatch = (card.dataset.title || '').includes(q);
+        const tagMatch = (card.dataset.tags || '').includes(q);
+        const show = !q || titleMatch || tagMatch;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      sec.style.display = visible ? '' : 'none';
+    });
+  }
+
+  input.addEventListener('input', applyFilters);
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+})();
+</script>

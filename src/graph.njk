@@ -1,0 +1,55 @@
+---
+layout: base
+title: Relationship Graph
+description: "A visual map of how Ahvantir's articles connect to each other."
+permalink: /graph/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Relationship Graph</h1>
+    <p class="page-lead">How the articles of Ahvantir connect. Nodes are articles; edges are wikilinks.</p>
+  </div>
+</div>
+
+<div class="graph-page">
+  <div class="graph-controls">
+    <label class="graph-label" for="graph-filter">Filter by category:</label>
+    <select id="graph-filter" class="graph-select">
+      <option value="all">All categories</option>
+      {% for cat in meta.categories %}
+      <option value="{{ cat.slug }}">{{ cat.label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div id="graph-container" class="graph-container" aria-label="Relationship graph">
+    <div class="graph-placeholder">
+      <span aria-hidden="true">◎</span>
+      <p>Loading graph&hellip;</p>
+    </div>
+  </div>
+
+  <div id="graph-tooltip" class="graph-tooltip" role="tooltip" aria-live="polite"></div>
+</div>
+
+<script>
+  window.__GRAPH_DATA__ = {
+    nodes: [
+      {% for article in collections.allArticles %}
+      {
+        id: "{{ article.fileSlug }}",
+        title: {{ article.data.title | dump | safe }},
+        url: "{{ article.url }}",
+        category: "{{ article.data.category or 'uncategorized' }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ],
+    links: []
+  };
+</script>
+
+{% block scripts %}
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="/assets/js/graph.js"></script>
+{% endblock %}

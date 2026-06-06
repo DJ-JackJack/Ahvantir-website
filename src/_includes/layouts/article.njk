@@ -1,0 +1,99 @@
+---
+layout: base
+---
+<article class="article" data-pagefind-body data-pagefind-meta="title:{{ title }}">
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="/articles/">Articles</a>
+    {% if category %}
+    <span aria-hidden="true">›</span>
+    <a href="/articles/#{{ category }}">{{ category | capitalize }}</a>
+    {% endif %}
+  </nav>
+
+  <header class="article-header">
+    {% if dm_only %}
+    <div class="dm-only-banner" aria-label="DM only content">
+      <span>🔒</span> This article contains DM-only information
+    </div>
+    {% endif %}
+
+    <h1 class="article-title">{{ title }}</h1>
+
+    {% if description %}
+    <p class="article-lead">{{ description }}</p>
+    {% endif %}
+
+    <div class="article-meta">
+      {% if category %}
+      <a href="/articles/#{{ category }}" class="category-badge">{{ category | capitalize }}</a>
+      {% endif %}
+      {% if timeline_date %}
+      <span class="meta-date">
+        <span aria-hidden="true">📅</span> {{ timeline_date }}
+      </span>
+      {% endif %}
+      {% if tags and tags.length %}
+      <div class="article-tags" aria-label="Tags">
+        {% for tag in tags %}
+        <a href="/articles/#tag-{{ tag | toSlug }}" class="tag" data-tag="{{ tag | toSlug }}">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="article-layout">
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+
+    <aside class="article-sidebar" aria-label="Article sidebar">
+
+      {% if tags and tags.length %}
+      <section class="sidebar-section">
+        <h3 class="sidebar-title">Tags</h3>
+        <div class="sidebar-tags">
+          {% for tag in tags %}
+          <a href="/articles/#tag-{{ tag | toSlug }}" class="tag">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if backlinks and backlinks.length %}
+      <section class="sidebar-section">
+        <h3 class="sidebar-title">Mentioned In</h3>
+        <ul class="backlinks-list" role="list">
+          {% for link in backlinks %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if related and related.length %}
+      <section class="sidebar-section">
+        <h3 class="sidebar-title">Related</h3>
+        <ul class="related-list" role="list">
+          {% for rel in related %}
+          <li><a href="{{ rel | articleUrl }}">{{ rel }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+    </aside>
+  </div>
+
+  <div class="ornament" aria-hidden="true">
+    <span class="ornament__symbol">✦</span>
+  </div>
+
+  <a href="/articles/" class="back-link">
+    <span aria-hidden="true">←</span> All Articles
+  </a>
+
+</article>

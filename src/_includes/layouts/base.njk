@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} — {% endif %}{{ meta.site.title }}</title>
+  <meta name="description" content="{{ description or meta.site.description }}">
+  <meta name="generator" content="Eleventy">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="/" class="nav__home" aria-label="Ahvantir home">
+        <span class="nav__sigil" aria-hidden="true">⚜</span>
+        <span class="nav__title">{{ meta.site.title }}</span>
+      </a>
+
+      <button class="nav__burger" aria-label="Toggle navigation" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__links" role="list">
+        <li><a href="/articles/">Articles</a></li>
+        <li><a href="/timeline/">Timeline</a></li>
+        <li><a href="/map/">World Map</a></li>
+        <li><a href="/graph/">Relations</a></li>
+        <li><a href="/search/" class="nav__search-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search
+        </a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="ornament" aria-hidden="true">
+      <span class="ornament__symbol">✦</span>
+    </div>
+    <p class="site-footer__tagline">
+      These records were compiled in the city of <em>Aru'Mas</em>,<br>
+      in the Third Era of the world called Ahvantir.
+    </p>
+    <p class="site-footer__credits">
+      A homebrew D&amp;D setting by <strong>Krys</strong> &mdash; M4st3r_0f_G4m3s
+    </p>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

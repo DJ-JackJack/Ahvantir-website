@@ -1,0 +1,26 @@
+---
+layout: base
+title: Search
+description: "Search all Ahvantir lore articles."
+permalink: /search/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Search the Records</h1>
+    <p class="page-lead">Search across all {{ collections.allArticles.length }} articles.</p>
+  </div>
+</div>
+
+<div class="container search-page">
+  <div id="search" class="pagefind-search"></div>
+  <noscript>
+    <p class="search-noscript">Search requires JavaScript. Please enable it to use this feature.</p>
+  </noscript>
+</div>
+
+{% block scripts %}
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<script src="/assets/js/search.js"></script>
+{% endblock %}

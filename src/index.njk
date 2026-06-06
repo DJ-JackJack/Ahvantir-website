@@ -1,0 +1,79 @@
+---
+layout: base
+title: "A Living World"
+description: "The living lore encyclopedia for Ahvantir — the great city of Aru'Mas and the world beyond."
+---
+
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">The Lore Encyclopedia of</p>
+    <h1 class="hero__title">Ahvantir</h1>
+    <p class="hero__subtitle">A world shaped by ancient pacts, layered histories,<br>and the city that never sleeps — <em>Aru'Mas</em>.</p>
+    <div class="hero__actions">
+      <a href="/articles/" class="btn btn--primary">Browse Articles</a>
+      <a href="/search/" class="btn btn--ghost">Search the Records</a>
+    </div>
+  </div>
+  <div class="hero__deckle" aria-hidden="true"></div>
+</section>
+
+<section class="home-intro">
+  <div class="container">
+    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
+    <div class="home-intro__text">
+      <p>
+        These records belong to the Aru'Mas Historical Society — compiled from guild archives,
+        temple manuscripts, noble house memoirs, and accounts recovered from the ruins of older ages.
+        What follows is not a complete history. It is what survived.
+      </p>
+      <p>
+        Ahvantir is a world of deliberate complexity: heroic founders who committed atrocities,
+        gods who may be tyrants, and a city where every district keeps its own secrets.
+        Read carefully. Not all sources agree.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="home-categories">
+  <div class="container">
+    <h2 class="section-title">Browse by Subject</h2>
+    <div class="category-grid">
+      {% for cat in meta.categories %}
+      <a href="/articles/#{{ cat.slug }}" class="category-card">
+        <span class="category-card__icon" aria-hidden="true">{{ cat.icon }}</span>
+        <h3 class="category-card__title">{{ cat.label }}</h3>
+        <p class="category-card__desc">{{ cat.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if collections.allArticles.length %}
+<section class="home-recent">
+  <div class="container">
+    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
+    <h2 class="section-title">Recent Articles</h2>
+    <div class="article-grid">
+      {% set recentArticles = collections.allArticles | reverse %}
+      {% for article in recentArticles %}
+      {% if loop.index <= 6 %}
+      <a href="{{ article.url }}" class="article-card">
+        {% if article.data.category %}
+        <span class="article-card__cat">{{ article.data.category | capitalize }}</span>
+        {% endif %}
+        <h3 class="article-card__title">{{ article.data.title }}</h3>
+        {% if article.data.description %}
+        <p class="article-card__desc">{{ article.data.description }}</p>
+        {% endif %}
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="home-recent__more">
+      <a href="/articles/" class="btn btn--ghost">View All Articles</a>
+    </div>
+  </div>
+</section>
+{% endif %}

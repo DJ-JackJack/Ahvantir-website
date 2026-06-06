@@ -1,0 +1,45 @@
+---
+layout: base
+title: Timeline
+description: "A chronological record of Ahvantir's history."
+permalink: /timeline/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">The Historical Record</h1>
+    <p class="page-lead">Events from the founding era to the present day.</p>
+  </div>
+</div>
+
+<div class="container timeline-page">
+
+  {% if collections.timeline.length %}
+  <div class="timeline" id="timeline" aria-label="Historical timeline">
+    {% for article in collections.timeline %}
+    <div class="timeline-entry" data-year="{{ article.data.timeline_year }}">
+      <div class="timeline-entry__marker" aria-hidden="true"></div>
+      <div class="timeline-entry__content">
+        <span class="timeline-entry__date">{{ article.data.timeline_date or article.data.timeline_year }}</span>
+        <h3 class="timeline-entry__title">
+          <a href="{{ article.url }}">{{ article.data.title }}</a>
+        </h3>
+        {% if article.data.description %}
+        <p class="timeline-entry__desc">{{ article.data.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
+    <p>No timeline entries yet. Add <code>timeline_year</code> to article frontmatter to populate this page.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+{% block scripts %}
+<script src="/assets/js/timeline.js"></script>
+{% endblock %}

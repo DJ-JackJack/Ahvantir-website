@@ -1,0 +1,49 @@
+---
+layout: base
+title: World Map
+description: "An interactive map of Ahvantir and the city of Aru'Mas."
+permalink: /map/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">World Map</h1>
+    <p class="page-lead">The known territories of Ahvantir. Click a location to read its lore.</p>
+  </div>
+</div>
+
+<div class="map-page">
+  <div class="map-container" id="map-container" aria-label="Interactive world map">
+    <div class="map-placeholder">
+      <div class="map-placeholder__inner">
+        <span class="map-placeholder__icon" aria-hidden="true">🗺</span>
+        <p class="map-placeholder__title">Map Coming Soon</p>
+        <p class="map-placeholder__text">
+          The cartographers are still at work. Upload a world map image to
+          <code>src/assets/img/world-map.jpg</code> and configure location
+          pins in <code>src/assets/js/map.js</code>.
+        </p>
+      </div>
+    </div>
+    <div id="map-pins" class="map-pins" aria-label="Map locations"></div>
+  </div>
+
+  <aside class="map-sidebar">
+    <h2 class="sidebar-title">Locations</h2>
+    <ul class="map-location-list" role="list">
+      {% for article in collections.allArticles %}
+      {% if article.data.category == 'locations' %}
+      <li>
+        <a href="{{ article.url }}" class="map-location-link">
+          {{ article.data.title }}
+        </a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </aside>
+</div>
+
+{% block scripts %}
+<script src="/assets/js/map.js"></script>
+{% endblock %}
