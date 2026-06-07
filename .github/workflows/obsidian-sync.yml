@@ -30,105 +30,56 @@ jobs:
           OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
 
-      - name: Commit converted articles
-        id: commit
+      - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
         run: |
           git config user.name "Ahvantir Sync Bot"
           git config user.email "actions@github.com"
-          git add src/articles/
-          if git diff --staged --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "sha=" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "chore: sync articles from Obsidian vault [skip ci]"
-            git push
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          fi
 
-      - name: Build email summary
-        id: summary
-        if: always()
-        run: |
-          # Stats from converter log
+          # Stage article changes first so we can inspect the diff for the log
+          git add src/articles/
+          ARTICLE_DIFF=$(git diff --staged --name-status -- src/articles/)
+
+          # Stats line from converter output
           STATS=$(grep -E "^(Updated|Would update)" sync.log 2>/dev/null | tail -1 \
                   || echo "Sync did not run — OBSIDIAN_VAULT_PATH may not be configured.")
 
-          # Subject line
-          if [ "$CHANGED" = "true" ]; then
-            SUBJECT="Ahvantir Sync ✓ — ${STATS}"
-          else
-            SUBJECT="Ahvantir Sync — no changes — ${STATS}"
-          fi
-          echo "subject=${SUBJECT}" >> "$GITHUB_OUTPUT"
-
-          # Run type label
-          if [ "$EVENT" = "workflow_dispatch" ]; then
-            RUN_TYPE="Manual trigger"
-          else
-            RUN_TYPE="Scheduled (weekly)"
-          fi
-
-          # Build email body
+          # Write the dated markdown log file
+          mkdir -p sync-logs
+          LOG_PATH="sync-logs/$(date -u '+%Y-%m-%d').md"
           {
-            echo "AHVANTIR VAULT SYNC REPORT"
-            echo "=========================="
-            echo "Date:      $(date -u '+%Y-%m-%d %H:%M UTC')"
-            echo "Run type:  ${RUN_TYPE}"
-            echo "Dry run:   ${DRY_RUN}"
+            echo "# Ahvantir Vault Sync — $(date -u '+%Y-%m-%d %H:%M UTC')"
             echo ""
-            echo "RESULT SUMMARY"
-            echo "--------------"
+            echo "**Run:** [Actions #${GITHUB_RUN_NUMBER}](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+            echo ""
+            echo "## Summary"
+            echo ""
             echo "${STATS}"
             echo ""
 
-            if [ "$CHANGED" = "true" ] && [ -n "$SHA" ]; then
-              echo "CHANGED ARTICLES"
-              echo "----------------"
-              git show --name-status --format="" "$SHA" \
-                | grep "src/articles/" \
-                | sed \
-                    -e 's|^A\tsrc/articles/|  + ADDED:    |' \
-                    -e 's|^M\tsrc/articles/|  ~ UPDATED:  |' \
-                    -e 's|^D\tsrc/articles/|  - REMOVED:  |'
+            if [ -n "${ARTICLE_DIFF}" ]; then
+              echo "## Article Changes"
               echo ""
-            elif [ "$DRY_RUN" = "true" ]; then
-              echo "(Dry run — no files committed)"
+              echo "${ARTICLE_DIFF}" \
+                | sed \
+                    -e 's|^A\t.*/\(.*\)|- **Added:**   `\1`|' \
+                    -e 's|^M\t.*/\(.*\)|- **Updated:** `\1`|' \
+                    -e 's|^D\t.*/\(.*\)|- **Removed:** `\1`|'
               echo ""
             else
-              echo "No article files were changed this run."
+              echo "_No article files changed this run._"
               echo ""
             fi
 
-            echo "FULL CONVERTER LOG"
-            echo "------------------"
-            cat sync.log 2>/dev/null || echo "(log unavailable)"
+            echo "## Full Converter Log"
             echo ""
-            echo "---"
-            echo "View run: ${SERVER}/${REPO}/actions/runs/${RUN_ID}"
-          } > email_body.txt
+            echo '```'
+            cat sync.log 2>/dev/null || echo "(log unavailable)"
+            echo '```'
+          } > "${LOG_PATH}"
 
-          echo "Email body: $(wc -l < email_body.txt) lines."
-        env:
-          CHANGED: ${{ steps.commit.outputs.changed || 'false' }}
-          SHA:     ${{ steps.commit.outputs.sha || '' }}
-          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
-          EVENT:   ${{ github.event_name }}
-          RUN_ID:  ${{ github.run_id }}
-          REPO:    ${{ github.repository }}
-          SERVER:  ${{ github.server_url }}
-
-      - name: Send sync summary email
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ${{ steps.summary.outputs.subject }}
-          to: dreadxfenris@gmail.com
-          from: Ahvantir Sync Bot <${{ secrets.MAIL_USERNAME }}>
-          body: file://email_body.txt
+          # Stage log alongside articles and commit everything in one shot
+          git add sync-logs/
+          git diff --staged --quiet \
+            || git commit -m "chore: sync $(date -u '+%Y-%m-%d') [skip ci]"
+          git push
