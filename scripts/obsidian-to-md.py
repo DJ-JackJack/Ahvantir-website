@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 """
-Obsidian → Eleventy markdown converter.
+Obsidian → Eleventy markdown converter for Ahvantir Lore.
 
-Reads .md files from OBSIDIAN_VAULT_PATH (env var), converts them,
+Reads .md files from OBSIDIAN_VAULT_PATH, converts them,
 and writes to src/articles/.
 
 Transformations:
-  - Strips Dataview blocks (```dataview ... ```)
-  - Strips Dataview inline queries (= ... )
-  - Converts Obsidian callouts > [!type] to blockquotes
-  - Preserves [[wikilinks]] (handled by Eleventy transform)
+  - Maps Obsidian category values to the 8 website category slugs
+  - [!warning] callouts → {% dmonly %}...{% enddmonly %} shortcode blocks
+  - [!summary] callouts → description frontmatter field (removed from body)
+  - [!note] callouts → styled blockquotes
+  - Strips Dataview blocks and inline queries
   - Strips #tags from body text (they live in frontmatter)
-  - Ensures title is set in frontmatter
-
-Set OBSIDIAN_VAULT_PATH in repo secrets or .env to connect the vault.
+  - Strips Templater syntax (<% tp... %>)
+  - Skips _Templates, _Meta, .obsidian, Ahvantir V.2 folders
+  - Skips articles with status: stub
 """
 
 import os
@@ -25,6 +26,55 @@ VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "")
 OUTPUT_DIR = Path(__file__).parent.parent / "src" / "articles"
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
+SKIP_DIRS = {"_Templates", "_Meta", ".obsidian", "Ahvantir V.2"}
+
+CATEGORY_MAP = {
+    "article":           "history",
+    "cosmology":         "cosmology",
+    "creature":          "culture",
+    "culture":           "culture",
+    "deity":             "religion",
+    "document":          "history",
+    "faction":           "factions",
+    "historical-figure": "characters",
+    "history":           "history",
+    "location":          "locations",
+    "magic-arcane":      "magic",
+    "material":          "magic",
+    "npc":               "characters",
+    "plane":             "cosmology",
+    "species":           "culture",
+    "spirit":            "cosmology",
+}
+
+
+def slugify(title: str) -> str:
+    slug = title.lower()
+    slug = re.sub(r"['''’]", "", slug)
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    return slug.strip("-")
+
+
+def parse_frontmatter(content: str) -> tuple:
+    """Split YAML frontmatter from body. Returns (fm_dict, body_str)."""
+    m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n?(.*)", content, re.DOTALL)
+    if not m:
+        return {}, content
+    fm_raw, body = m.group(1), m.group(2)
+    fm: dict = {}
+    for line in fm_raw.splitlines():
+        if ":" not in line:
+            continue
+        key, _, val = line.partition(":")
+        key = key.strip()
+        val = val.strip()
+        if val.startswith("[") and val.endswith("]"):
+            inner = val[1:-1].strip()
+            fm[key] = [v.strip().strip("\"'") for v in inner.split(",") if v.strip()] if inner else []
+        else:
+            fm[key] = val.strip("\"'")
+    return fm, body
+
 
 def strip_dataview(content: str) -> str:
     content = re.sub(r"```dataview\n.*?```", "", content, flags=re.DOTALL)
@@ -32,39 +82,142 @@ def strip_dataview(content: str) -> str:
     return content
 
 
-def convert_callouts(content: str) -> str:
-    def replace_callout(m):
-        kind = m.group(1).lower()
-        title = m.group(2).strip() if m.group(2) else kind.title()
-        body = m.group(3).strip()
-        body_lines = "\n".join("> " + line for line in body.splitlines())
-        return f"> **{title}**\n{body_lines}"
-
-    return re.sub(
-        r"> \[!(\w+)\][^\n]*\n((?:> .*\n?)*)",
-        lambda m: replace_callout(m),
-        content,
-    )
-
-
 def strip_inline_tags(content: str) -> str:
     return re.sub(r"(?<!\[)#([a-zA-Z][\w/-]*)", "", content)
 
 
-def slugify(title: str) -> str:
-    slug = title.lower()
-    slug = re.sub(r"[''']", "", slug)
-    slug = re.sub(r"[^a-z0-9]+", "-", slug)
-    return slug.strip("-")
+def strip_templater(content: str) -> str:
+    return re.sub(r"<%[^%>]*%>", "", content)
 
 
-def process_file(src: Path) -> tuple[str, str]:
+def _strip_blockquote_prefix(raw: str) -> str:
+    """Remove leading '> ' from blockquote body lines."""
+    lines = []
+    for line in raw.splitlines():
+        if line.startswith("> "):
+            lines.append(line[2:])
+        elif line == ">":
+            lines.append("")
+        else:
+            lines.append(line)
+    return "\n".join(lines)
+
+
+def extract_summary(body: str) -> tuple:
+    """Extract [!summary] callout as description. Returns (description, cleaned_body)."""
+    description = ""
+
+    def replacer(m):
+        nonlocal description
+        raw_body = m.group(1)
+        text = _strip_blockquote_prefix(raw_body).strip()
+        # Collapse to single line for description field
+        description = re.sub(r"\s+", " ", text).strip()
+        return ""
+
+    cleaned = re.sub(
+        r"^> \[!summary\][^\n]*\n((?:> ?[^\n]*\n?)*)",
+        replacer,
+        body,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+    return description, cleaned
+
+
+def convert_warning_callouts(body: str) -> str:
+    """Convert [!warning] callouts to {% dmonly %} shortcode blocks."""
+    def replacer(m):
+        raw_body = m.group(1)
+        inner = _strip_blockquote_prefix(raw_body).strip()
+        if not inner:
+            return ""
+        return "{{% dmonly %}}\n{inner}\n{{% enddmonly %}}".format(inner=inner)
+
+    return re.sub(
+        r"^> \[!warning\][^\n]*\n((?:> ?[^\n]*\n?)*)",
+        replacer,
+        body,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+
+
+def convert_note_callouts(body: str) -> str:
+    """Convert [!note] callouts to styled blockquotes."""
+    def replacer(m):
+        title = m.group(1).strip()
+        raw_body = m.group(2)
+        inner_lines = _strip_blockquote_prefix(raw_body).strip()
+        # Re-prefix stripped lines as blockquote
+        bq_lines = "\n".join(
+            "> " + line for line in inner_lines.splitlines() if line.strip()
+        )
+        if title and bq_lines:
+            return f"> **{title}**\n{bq_lines}"
+        elif title:
+            return f"> **{title}**"
+        else:
+            return bq_lines
+
+    return re.sub(
+        r"^> \[!note\] ?([^\n]*)\n((?:> ?[^\n]*\n?)*)",
+        replacer,
+        body,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+
+
+def build_frontmatter(fm: dict, description: str) -> str:
+    title = fm.get("title", "")
+    category_raw = fm.get("category", "")
+    category = CATEGORY_MAP.get(category_raw, category_raw)
+    tags = fm.get("tags", [])
+    aliases = fm.get("aliases", [])
+
+    lines = ["---"]
+    safe_title = title.replace('"', '\\"')
+    lines.append(f'title: "{safe_title}"')
+    if description:
+        safe_desc = description.replace('"', '\\"')
+        lines.append(f'description: "{safe_desc}"')
+    if category:
+        lines.append(f"category: {category}")
+    if tags:
+        lines.append(f"tags: [{', '.join(tags)}]")
+    else:
+        lines.append("tags: []")
+    if aliases:
+        alias_str = ", ".join(f'"{a}"' for a in aliases)
+        lines.append(f"aliases: [{alias_str}]")
+    lines.append("---")
+    return "\n".join(lines)
+
+
+def process_file(src: Path):
+    """Returns (slug, output_content) or None if file should be skipped."""
     raw = src.read_text(encoding="utf-8")
-    raw = strip_dataview(raw)
-    raw = convert_callouts(raw)
-    raw = strip_inline_tags(raw)
-    slug = slugify(src.stem)
-    return slug, raw
+
+    fm, body = parse_frontmatter(raw)
+
+    # Skip stubs and template files
+    if fm.get("status") == "stub":
+        return None
+    title = fm.get("title", src.stem)
+    if "<%" in str(title):
+        return None
+
+    body = strip_templater(body)
+    body = strip_dataview(body)
+    description, body = extract_summary(body)
+    body = convert_warning_callouts(body)
+    body = convert_note_callouts(body)
+    body = strip_inline_tags(body)
+    body = re.sub(r"\n{3,}", "\n\n", body).strip()
+
+    fm_out = build_frontmatter(fm, description)
+    output = f"{fm_out}\n\n{body}\n"
+
+    slug = slugify(str(title) or src.stem)
+    return slug, output
 
 
 def main():
@@ -77,24 +230,44 @@ def main():
         print(f"Vault path does not exist: {vault}", file=sys.stderr)
         sys.exit(1)
 
-    md_files = list(vault.rglob("*.md"))
-    print(f"Found {len(md_files)} markdown files in vault.")
+    md_files = [
+        f for f in vault.rglob("*.md")
+        if not any(skip in f.parts for skip in SKIP_DIRS)
+    ]
+    print(f"Found {len(md_files)} markdown files (after folder exclusions).")
 
-    changed = 0
-    for src in md_files:
-        slug, content = process_file(src)
+    changed = skipped = errors = 0
+
+    for src in sorted(md_files):
+        try:
+            result = process_file(src)
+        except Exception as e:
+            print(f"ERROR processing {src.name}: {e}", file=sys.stderr)
+            errors += 1
+            continue
+
+        if result is None:
+            skipped += 1
+            continue
+
+        slug, content = result
         dest = OUTPUT_DIR / f"{slug}.md"
+
         if dest.exists() and dest.read_text(encoding="utf-8") == content:
             continue
+
         if DRY_RUN:
-            print(f"[DRY RUN] Would write: {dest}")
+            print(f"[DRY RUN] Would write: {dest.name}")
         else:
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(content, encoding="utf-8")
-            print(f"Written: {dest}")
+            print(f"Written: {dest.name}")
         changed += 1
 
-    print(f"{'Would update' if DRY_RUN else 'Updated'} {changed} files.")
+    print(
+        f"{'Would update' if DRY_RUN else 'Updated'} {changed} files. "
+        f"Skipped {skipped} stubs. {errors} errors."
+    )
 
 
 if __name__ == "__main__":
