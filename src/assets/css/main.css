@@ -301,12 +301,12 @@ hr {
   padding: clamp(4rem, 10vw, 7rem) 0 0;
   text-align: center;
   overflow: hidden;
-  background-color: #1e1008;
+  background-color: #12090a;
   background-image:
-    linear-gradient(to bottom, rgba(15,8,3,0.45) 0%, rgba(10,5,2,0.28) 50%, rgba(10,5,2,0.65) 100%),
-    url('/assets/img/hero.jpg');
-  background-size: cover;
-  background-position: center 35%;
+    radial-gradient(ellipse at 20% 80%, rgba(59,172,196,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 60%, rgba(200,152,64,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 90%, rgba(74,122,42,0.10) 0%, transparent 45%),
+    linear-gradient(170deg, #1a0a05 0%, #2a1508 35%, #1c1010 65%, #0e0c14 100%);
 }
 
 .hero__inner {
