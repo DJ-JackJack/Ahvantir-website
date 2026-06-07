@@ -2,6 +2,9 @@
 title: "Shattered Strand"
 category: cosmology
 tags: [plane, cosmology]
+timeline_year: 200
+timeline_date: "~Year 200 MC"
+
 ---
 
 # Shattered Strand

@@ -2,6 +2,9 @@
 title: "Massacre of Cascading Leaves"
 category: history
 tags: [history, event, landing-war, primordem]
+timeline_year: -7
+timeline_date: "~Year -7 MC"
+
 ---
 
 # Massacre of Cascading Leaves

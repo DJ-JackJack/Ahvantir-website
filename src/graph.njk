@@ -38,14 +38,17 @@ permalink: /graph/
     nodes: [
       {% for article in collections.allArticles %}
       {
-        id: "{{ article.fileSlug }}",
+        id: "{{ article.url }}",
         title: {{ article.data.title | dump | safe }},
         url: "{{ article.url }}",
         category: "{{ article.data.category or 'uncategorized' }}"
       }{% if not loop.last %},{% endif %}
       {% endfor %}
     ],
-    links: []
+    links: [
+      {% for article in collections.withBacklinks %}{% for bl in article.data.backlinks %}{ source: "{{ bl.url }}", target: "{{ article.url }}" },
+      {% endfor %}{% endfor %}
+    ]
   };
 </script>
 

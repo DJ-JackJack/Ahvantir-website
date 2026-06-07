@@ -2,6 +2,9 @@
 title: "Marducian Calendar"
 category: culture
 tags: [culture, law]
+timeline_year: 0
+timeline_date: "Year 0 MC"
+
 ---
 
 # Marducian Calendar

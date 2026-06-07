@@ -2,6 +2,9 @@
 title: "Arielle"
 category: characters
 tags: []
+timeline_year: 200
+timeline_date: "~Year 200 MC"
+
 ---
 
 # Arielle
