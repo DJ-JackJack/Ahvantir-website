@@ -25,17 +25,17 @@
   --burg-mid:  #9e3347;
   --burg-pale: #d4909d;
 
-  /* Fantasy palette — city concept art */
-  --teal:        #3bacc4;
-  --teal-dark:   #2a8fa8;
-  --teal-pale:   #a8dce8;
-  --gold:        #c89840;
-  --gold-dark:   #a07828;
-  --gold-pale:   #e8d08a;
-  --terra:       #b85535;
-  --terra-dark:  #8a3818;
-  --forest:      #4a7a2a;
-  --forest-dark: #2e5018;
+  /* Fantasy palette — city concept art (vivid cyan water, orange rooftops, golden sand, bright green hills) */
+  --teal:        #3dcee0;
+  --teal-dark:   #1eaabf;
+  --teal-pale:   #c0eef6;
+  --gold:        #d4aa40;
+  --gold-dark:   #a88020;
+  --gold-pale:   #f0d878;
+  --terra:       #e06030;
+  --terra-dark:  #b84520;
+  --forest:      #5aaa28;
+  --forest-dark: #3a8010;
 
   /* Border / structural */
   --br-dark:   #6b4c28;
@@ -301,12 +301,12 @@ hr {
   padding: clamp(4rem, 10vw, 7rem) 0 0;
   text-align: center;
   overflow: hidden;
-  background-color: #12090a;
+  background-color: #1a1008;
   background-image:
-    radial-gradient(ellipse at 20% 80%, rgba(59,172,196,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 60%, rgba(200,152,64,0.14) 0%, transparent 50%),
-    radial-gradient(ellipse at 55% 90%, rgba(74,122,42,0.10) 0%, transparent 45%),
-    linear-gradient(170deg, #1a0a05 0%, #2a1508 35%, #1c1010 65%, #0e0c14 100%);
+    linear-gradient(to bottom, rgba(10,6,2,0.55) 0%, rgba(8,5,2,0.22) 45%, rgba(10,5,2,0.68) 100%),
+    url('/assets/img/hero.jpg');
+  background-size: cover;
+  background-position: center 35%;
 }
 
 .hero__inner {
@@ -397,14 +397,14 @@ hr {
 }
 
 .btn--primary {
-  background: var(--burg);
+  background: var(--teal-dark);
   color: var(--p-100);
   box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
-  background: var(--burg-dark);
-  color: var(--p-100);
+  background: var(--teal);
+  color: var(--ink);
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
@@ -482,7 +482,7 @@ hr {
   display: block;
   width: 3rem;
   height: 2px;
-  background: var(--burg);
+  background: var(--gold);
   margin: 0.5rem auto 0;
 }
 
@@ -607,17 +607,17 @@ hr {
   font-size: 0.78rem;
   font-family: var(--font-display);
   letter-spacing: 0.04em;
-  background: rgba(123,29,42,0.08);
-  color: var(--burg);
-  border: 1px solid rgba(123,29,42,0.2);
+  background: rgba(30,170,191,0.1);
+  color: var(--teal-dark);
+  border: 1px solid rgba(30,170,191,0.28);
   border-radius: 2px;
   text-decoration: none;
   transition: background 0.12s;
 }
 
 .tag:hover {
-  background: rgba(123,29,42,0.15);
-  color: var(--burg-dark);
+  background: rgba(30,170,191,0.2);
+  color: var(--teal-dark);
 }
 
 .tag--sm { font-size: 0.68rem; padding: 0.15em 0.5em; }
@@ -953,8 +953,8 @@ hr {
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: var(--burg);
-  border-color: var(--burg);
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
   color: var(--p-100);
 }
 
