@@ -40,7 +40,7 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
     <h2 class="section-title">Browse by Subject</h2>
     <div class="category-grid">
       {% for cat in meta.categories %}
-      <a href="/articles/#{{ cat.slug }}" class="category-card">
+      <a href="/articles/#{{ cat.slug }}" class="category-card" style="border-top-color: {{ cat.color }}">
         <span class="category-card__icon" aria-hidden="true">{{ cat.icon }}</span>
         <h3 class="category-card__title">{{ cat.label }}</h3>
         <p class="category-card__desc">{{ cat.description }}</p>

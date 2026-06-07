@@ -8,7 +8,7 @@ permalink: /articles/
 <div class="page-header">
   <div class="container">
     <h1 class="page-title">Articles</h1>
-    <p class="page-lead">{{ collections.allArticles.length }} articles across {{ meta.categories.length }} subjects.</p>
+    <p class="page-lead">{{ collections.allArticles.length }} {{ "article" if collections.allArticles.length == 1 else "articles" }} across {{ meta.categories.length }} subjects.</p>
   </div>
 </div>
 

@@ -25,6 +25,18 @@
   --burg-mid:  #9e3347;
   --burg-pale: #d4909d;
 
+  /* Fantasy palette — city concept art */
+  --teal:        #3bacc4;
+  --teal-dark:   #2a8fa8;
+  --teal-pale:   #a8dce8;
+  --gold:        #c89840;
+  --gold-dark:   #a07828;
+  --gold-pale:   #e8d08a;
+  --terra:       #b85535;
+  --terra-dark:  #8a3818;
+  --forest:      #4a7a2a;
+  --forest-dark: #2e5018;
+
   /* Border / structural */
   --br-dark:   #6b4c28;
   --br-mid:    #9a7a50;
@@ -180,8 +192,8 @@ hr {
 .ornament__symbol {
   font-family: serif;
   font-size: 1rem;
-  color: var(--burg);
-  opacity: 0.75;
+  color: var(--gold);
+  opacity: 0.9;
   flex-shrink: 0;
 }
 
@@ -289,7 +301,12 @@ hr {
   padding: clamp(4rem, 10vw, 7rem) 0 0;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--p-100) 0%, var(--p-300) 100%);
+  background-color: #1e1008;
+  background-image:
+    linear-gradient(to bottom, rgba(15,8,3,0.45) 0%, rgba(10,5,2,0.28) 50%, rgba(10,5,2,0.65) 100%),
+    url('/assets/img/hero.jpg');
+  background-size: cover;
+  background-position: center 35%;
 }
 
 .hero__inner {
@@ -304,8 +321,9 @@ hr {
   font-size: 0.78rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--burg);
+  color: var(--gold);
   margin-bottom: 0.75rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero__title {
@@ -313,20 +331,21 @@ hr {
   font-size: clamp(3.5rem, 10vw, 7rem);
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--ink);
-  text-shadow: 2px 3px 0 var(--p-400), 3px 5px 12px rgba(45,20,5,0.15);
+  color: var(--p-100);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 4px 28px rgba(0,0,0,0.45);
   line-height: 1;
   margin-bottom: 1.25rem;
 }
 
 .hero__subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--ink-faded);
+  color: rgba(253,248,237,0.82);
   font-style: italic;
   line-height: 1.6;
   max-width: 38rem;
   margin-inline: auto;
   margin-bottom: 2.5rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero__actions {
@@ -401,6 +420,26 @@ hr {
   color: var(--burg-dark);
   border-color: var(--burg-dark);
   transform: translateY(-1px);
+}
+
+.hero .btn--primary {
+  background: var(--teal-dark);
+}
+
+.hero .btn--primary:hover {
+  background: var(--teal);
+  color: var(--p-100);
+}
+
+.hero .btn--ghost {
+  color: var(--p-200);
+  border-color: rgba(253,248,237,0.45);
+}
+
+.hero .btn--ghost:hover {
+  background: rgba(253,248,237,0.1);
+  color: var(--p-100);
+  border-color: rgba(253,248,237,0.8);
 }
 
 /* ── Homepage sections ──────────────────────────────────────────── */
@@ -736,14 +775,14 @@ hr {
 
 /* Wikilinks */
 .wikilink {
-  color: var(--burg);
+  color: var(--teal-dark);
   text-decoration: underline dotted;
   text-underline-offset: 0.15em;
 }
 
 .wikilink:hover {
   text-decoration: underline solid;
-  color: var(--burg-dark);
+  color: var(--teal);
 }
 
 /* ── Sidebar ────────────────────────────────────────────────────── */
