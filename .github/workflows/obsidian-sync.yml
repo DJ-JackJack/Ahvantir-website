@@ -2,7 +2,7 @@ name: Obsidian Sync
 
 on:
   schedule:
-    - cron: '0 4 * * 1'   # Every Monday at 4am UTC
+    - cron: '0 0 * * 1'   # Sunday 8 PM ET / 5 PM PT (Monday 00:00 UTC)
   workflow_dispatch:
     inputs:
       dry_run:
