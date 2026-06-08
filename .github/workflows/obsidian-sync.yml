@@ -12,21 +12,15 @@ on:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    runs-on: [self-hosted, Windows, X64]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
       - name: Run Obsidian converter
+        shell: bash
         run: python scripts/obsidian-to-md.py 2>&1 | tee sync.log
         env:
           OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
@@ -34,6 +28,7 @@ jobs:
 
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
+        shell: bash
         run: |
           git config user.name "Ahvantir Sync Bot"
           git config user.email "actions@github.com"
@@ -81,7 +76,13 @@ jobs:
           } > "${LOG_PATH}"
 
           # Stage log alongside articles and commit everything in one shot
+          # Omit [skip ci] when articles changed so the deploy workflow rebuilds the site
           git add sync-logs/
-          git diff --staged --quiet \
-            || git commit -m "chore: sync $(date -u '+%Y-%m-%d') [skip ci]"
+          if [ -n "${ARTICLE_DIFF}" ]; then
+            git diff --staged --quiet \
+              || git commit -m "chore: sync $(date -u '+%Y-%m-%d')"
+          else
+            git diff --staged --quiet \
+              || git commit -m "chore: sync $(date -u '+%Y-%m-%d') [skip ci]"
+          fi
           git push
