@@ -631,7 +631,58 @@
 
     if (d.name) document.title = d.name + ' — Ahvantir';
 
-    msg.textContent = '✓ Imported! AC was set to 10 — adjust it manually then click Save.';
+    msg.textContent = '✓ Imported successfully.';
+    showImportModal(d);
+  }
+
+  function showImportModal(d) {
+    var existing = document.querySelector('.ddb-modal-overlay');
+    if (existing) existing.remove();
+
+    var multiclass = '';
+    // d.class_name only carries the primary class — warn if there might be more
+    var overlay = document.createElement('div');
+    overlay.className = 'ddb-modal-overlay';
+    overlay.innerHTML =
+      '<div class="ddb-modal" role="dialog" aria-modal="true" aria-labelledby="ddb-modal-title">' +
+        '<h3 class="ddb-modal__title" id="ddb-modal-title">Import Complete</h3>' +
+        '<p class="ddb-modal__intro">The following fields were filled in from D&amp;D Beyond. Review each section before saving.</p>' +
+
+        '<div class="ddb-modal__section ddb-modal__section--ok">' +
+          '<h4 class="ddb-modal__section-label">✓ Auto-filled</h4>' +
+          '<ul>' +
+            '<li>Name, race, class, subclass, level</li>' +
+            '<li>Background &amp; alignment</li>' +
+            '<li>All 6 ability scores (modifiers recalculated)</li>' +
+            '<li>HP (max / current / temp) &amp; speed</li>' +
+            '<li>Proficiency bonus</li>' +
+            '<li>Backstory, appearance, traits, ideals, bonds, flaws</li>' +
+          '</ul>' +
+        '</div>' +
+
+        '<div class="ddb-modal__section ddb-modal__section--warn">' +
+          '<h4 class="ddb-modal__section-label">⚠ Needs manual input</h4>' +
+          '<ul>' +
+            '<li><strong>AC</strong> — set to 10 by default. Enter your actual AC based on your armor, DEX modifier, and any class features (e.g. Unarmored Defense).</li>' +
+            '<li><strong>Multiclassing</strong> — only your primary class was imported. If you have levels in multiple classes, update the Class field and Level manually.</li>' +
+            '<li><strong>Lore links</strong> — not stored on D&amp;D Beyond. Add links to relevant Ahvantir articles yourself.</li>' +
+            '<li><strong>Hidden background</strong> — fill this in separately in the Hidden Background section below the sheet.</li>' +
+          '</ul>' +
+        '</div>' +
+
+        '<p class="ddb-modal__footer">Click <strong>Save</strong> at the top of the sheet when you\'re happy with everything.</p>' +
+        '<button class="btn btn--primary ddb-modal__close" type="button">Got it</button>' +
+      '</div>';
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) overlay.remove();
+    });
+    overlay.querySelector('.ddb-modal__close').addEventListener('click', function () {
+      overlay.remove();
+    });
+
+    document.body.appendChild(overlay);
+    overlay.querySelector('.ddb-modal__close').focus();
   }
 
   function fillField(id, value) {
