@@ -567,8 +567,8 @@
     document.body.appendChild(lb);
   }
 
-  /* ── DDB import stub ─────────────────────────────────────── */
-  function ddbImport() {
+  /* ── DDB import ──────────────────────────────────────────── */
+  async function ddbImport() {
     var urlInput = qs('#ddb-url');
     var msg = qs('#ddb-msg');
     var url = urlInput ? urlInput.value.trim() : '';
@@ -578,7 +578,67 @@
       msg.textContent = 'Please enter a valid D&D Beyond character URL (e.g. https://www.dndbeyond.com/characters/12345678).';
       return;
     }
-    msg.textContent = 'D&D Beyond import is coming soon — the fetch endpoint is being configured. Fill in your character details manually for now.';
+
+    msg.textContent = 'Fetching from D&D Beyond…';
+
+    var session = (await db.auth.getSession()).data.session;
+    var resp = await fetch('https://fbfqeijisvckwmkqzjtd.supabase.co/functions/v1/ddb-import', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + (session ? session.access_token : '')
+      },
+      body: JSON.stringify({ characterId: match[1] })
+    });
+
+    var result = await resp.json();
+
+    if (result.error) {
+      msg.textContent = '⚠ ' + result.error;
+      return;
+    }
+
+    var d = result.data;
+
+    // Pre-fill all form fields
+    fillField('f-name',       d.name);
+    fillField('f-race',       d.race);
+    fillField('f-class',      d.class_name);
+    fillField('f-subclass',   d.subclass);
+    fillField('f-level',      d.level);
+    fillField('f-background', d.background);
+    fillField('f-alignment',  d.alignment);
+    fillField('f-str',        d.ability_scores.str);
+    fillField('f-dex',        d.ability_scores.dex);
+    fillField('f-con',        d.ability_scores.con);
+    fillField('f-int',        d.ability_scores.int);
+    fillField('f-wis',        d.ability_scores.wis);
+    fillField('f-cha',        d.ability_scores.cha);
+    fillField('f-hp-max',     d.hp.max);
+    fillField('f-hp-cur',     d.hp.current);
+    fillField('f-hp-tmp',     d.hp.temp);
+    fillField('f-ac',         d.ac);
+    fillField('f-speed',      d.speed);
+    fillField('f-prof',       d.proficiency_bonus);
+    fillField('f-backstory',  d.backstory);
+    fillField('f-appearance', d.appearance);
+    fillField('f-traits',     d.traits);
+    fillField('f-ideals',     d.ideals);
+    fillField('f-bonds',      d.bonds);
+    fillField('f-flaws',      d.flaws);
+
+    updateModifiers();
+
+    if (d.name) document.title = d.name + ' — Ahvantir';
+
+    msg.textContent = '✓ Imported! AC was set to 10 — adjust it manually then click Save.';
+  }
+
+  function fillField(id, value) {
+    var el = qs('#' + id);
+    if (el && value !== undefined && value !== null && value !== '') {
+      el.value = value;
+    }
   }
 
   function setStatus(msg, type) {
