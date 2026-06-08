@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Obsidian converter
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
         run: |
           & python scripts/obsidian-to-md.py 2>&1 | Tee-Object -FilePath sync.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
@@ -32,7 +32,7 @@ jobs:
 
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
         run: |
           git config user.name "Ahvantir Sync Bot"
           git config user.email "actions@github.com"
