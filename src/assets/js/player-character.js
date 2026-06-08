@@ -78,8 +78,11 @@
       return;
     }
     currentChar = result.data;
+    var isOwner = currentChar.player_id === currentProfile.id;
+    var isDM = !!currentProfile.is_dm;
     render(currentChar);
     loadSecret(id);
+    loadGallery(id, isOwner, isDM);
   }
 
   /* ── Load character secret ───────────────────────────────── */
@@ -232,6 +235,22 @@
       secretHtml +
       ddbHtml +
 
+      (char.id
+        ? '<div class="char-section gallery-section" id="gallery-section">' +
+          '<h3 class="char-section__title">Character Images</h3>' +
+          '<p class="char-section__hint">Portraits, art, and reference images for this character.</p>' +
+          '<div class="gallery-grid" id="gallery-grid">' +
+            '<span class="gallery-empty">Loading images…</span>' +
+          '</div>' +
+          (canEdit
+            ? '<div class="gallery-upload-area">' +
+              '<label class="btn btn--ghost btn--sm" for="gallery-file-input">+ Upload Image</label>' +
+              '<input type="file" id="gallery-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">' +
+              '</div>'
+            : '') +
+          '</div>'
+        : '') +
+
       '<div id="char-status" class="char-status" aria-live="polite"></div>' +
     '</div>';
   }
@@ -286,6 +305,12 @@
 
     var ddbBtn = qs('#btn-ddb');
     if (ddbBtn) ddbBtn.addEventListener('click', ddbImport);
+
+    var fileInput = qs('#gallery-file-input');
+    if (fileInput) fileInput.addEventListener('change', function () {
+      if (fileInput.files && fileInput.files[0]) uploadImage(fileInput.files[0]);
+      fileInput.value = '';
+    });
   }
 
   function attachLoreRemoveListeners() {
@@ -432,6 +457,114 @@
       setStatus('Hidden background saved ✓', 'ok');
       setTimeout(function () { setStatus('', ''); }, 3000);
     }
+  }
+
+  /* ── Image gallery ──────────────────────────────────────────
+     Loads from character_images table, renders thumbnails,
+     handles upload via Supabase Storage and delete. */
+
+  async function loadGallery(id, isOwner, isDM) {
+    var grid = qs('#gallery-grid');
+    if (!grid) return;
+
+    var result = await db
+      .from('character_images')
+      .select('*')
+      .eq('character_id', id)
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: true });
+
+    if (result.error) {
+      grid.innerHTML = '<span class="gallery-empty">Could not load images.</span>';
+      return;
+    }
+
+    var rows = result.data || [];
+    if (!rows.length) {
+      grid.innerHTML = '<span class="gallery-empty">No images uploaded yet.</span>';
+      return;
+    }
+
+    var canDelete = isOwner || isDM;
+
+    var html = await Promise.all(rows.map(async function (row) {
+      var signed = await db.storage
+        .from('character-images')
+        .createSignedUrl(row.storage_path, 3600);
+      var src = signed.data ? signed.data.signedUrl : '';
+      return '<div class="gallery-item" data-path="' + esc(row.storage_path) + '" data-img-id="' + esc(row.id) + '">' +
+        '<img src="' + esc(src) + '" alt="' + esc(row.caption || 'Character image') + '" loading="lazy">' +
+        (canDelete
+          ? '<button class="gallery-item__delete" type="button" title="Delete image" data-img-id="' + esc(row.id) + '" data-path="' + esc(row.storage_path) + '">✕</button>'
+          : '') +
+        '</div>';
+    }));
+
+    grid.innerHTML = html.join('');
+
+    // Click image to lightbox
+    grid.querySelectorAll('.gallery-item img').forEach(function (img) {
+      img.addEventListener('click', function () { openLightbox(img.src, img.alt); });
+    });
+
+    // Delete buttons
+    if (canDelete) {
+      grid.querySelectorAll('.gallery-item__delete').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          deleteImage(btn.dataset.imgId, btn.dataset.path, id, isOwner, isDM);
+        });
+      });
+    }
+  }
+
+  async function uploadImage(file) {
+    if (!charId) { setStatus('Save the character first, then upload images.', 'error'); return; }
+    var MAX = 8 * 1024 * 1024;
+    if (file.size > MAX) { setStatus('Image must be under 8 MB.', 'error'); return; }
+
+    setStatus('Uploading…', 'info');
+    var ext  = file.name.split('.').pop().toLowerCase();
+    var path = currentProfile.id + '/' + charId + '/' + Date.now() + '.' + ext;
+
+    var up = await db.storage.from('character-images').upload(path, file, { upsert: false });
+    if (up.error) { setStatus('Upload failed: ' + up.error.message, 'error'); return; }
+
+    var meta = await db.from('character_images').insert({
+      character_id:  charId,
+      player_id:     currentProfile.id,
+      storage_path:  path,
+      caption:       file.name.replace(/\.[^.]+$/, '')
+    });
+
+    if (meta.error) { setStatus('Image saved but metadata failed: ' + meta.error.message, 'error'); return; }
+
+    setStatus('Uploaded ✓', 'ok');
+    setTimeout(function () { setStatus('', ''); }, 2000);
+
+    var isOwner = true;
+    var isDM    = !!currentProfile.is_dm;
+    loadGallery(charId, isOwner, isDM);
+  }
+
+  async function deleteImage(imgId, storagePath, charIdLocal, isOwner, isDM) {
+    if (!confirm('Delete this image? This cannot be undone.')) return;
+    await db.storage.from('character-images').remove([storagePath]);
+    await db.from('character_images').delete().eq('id', imgId);
+    loadGallery(charIdLocal, isOwner, isDM);
+  }
+
+  function openLightbox(src, alt) {
+    var existing = document.querySelector('.gallery-lightbox');
+    if (existing) existing.remove();
+    var lb = document.createElement('div');
+    lb.className = 'gallery-lightbox';
+    lb.innerHTML =
+      '<button class="gallery-lightbox__close" type="button" aria-label="Close">×</button>' +
+      '<img src="' + esc(src) + '" alt="' + esc(alt) + '">';
+    lb.addEventListener('click', function () { lb.remove(); });
+    lb.querySelector('img').addEventListener('click', function (e) { e.stopPropagation(); });
+    document.body.appendChild(lb);
   }
 
   /* ── DDB import stub ─────────────────────────────────────── */

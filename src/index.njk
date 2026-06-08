@@ -35,6 +35,43 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
   </div>
 </section>
 
+<section class="cryptex-section">
+  <div class="container cryptex-container">
+    <div class="ornament" aria-hidden="true"><span class="ornament__symbol" style="font-family:inherit">᛭</span></div>
+    <h2 class="cryptex-heading">The Cryptex</h2>
+    <p class="cryptex-subheading">Align three runes. Consult the stone. Each sequence unlocks an article hidden within the archives.</p>
+
+    <div class="cryptex-wheel" aria-label="Rune selector">
+      {% for pos in [0, 1, 2] %}
+      <div class="cryptex-stone" data-pos="{{ pos }}" role="group" aria-label="Rune position {{ pos + 1 }}">
+        <button class="cryptex-btn-up" data-pos="{{ pos }}" type="button" aria-label="Previous rune">▲</button>
+        <div class="cryptex-rune-face">
+          <span class="cryptex-rune" aria-hidden="true">ᚠ</span>
+          <span class="cryptex-rune-name">Fehu</span>
+        </div>
+        <button class="cryptex-btn-down" data-pos="{{ pos }}" type="button" aria-label="Next rune">▼</button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <button id="cryptex-consult" class="btn btn--primary cryptex-consult-btn" type="button">
+      Consult the Cryptex
+    </button>
+
+    <div id="cryptex-result" class="cryptex-result" aria-live="polite"></div>
+
+    <div class="cryptex-discoveries" id="cryptex-discoveries">
+      <button class="discoveries-toggle" type="button" aria-expanded="false">Discoveries (0)</button>
+      <ul class="discoveries-list" role="list"></ul>
+    </div>
+  </div>
+</section>
+
+<script>
+window.__CRYPTEX_ARTICLES__ = [{% for article in collections.allArticles %}{% if not loop.first %},{% endif %}{"title":{{ article.data.title | dump | safe }},"url":"{{ article.url }}"}{% endfor %}];
+</script>
+<script src="/assets/js/cryptex.js"></script>
+
 <section class="home-categories">
   <div class="container">
     <h2 class="section-title">Browse by Subject</h2>

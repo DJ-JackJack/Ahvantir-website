@@ -146,6 +146,84 @@ create policy "own notes"
   using (player_id = auth.uid())
   with check (player_id = auth.uid());
 
+-- ── Character Images ─────────────────────────────────────────
+-- Metadata for uploaded character portraits / art.
+-- Actual files live in Supabase Storage bucket 'character-images'.
+-- Storage path convention: {player_id}/{character_id}/{timestamp}.{ext}
+create table if not exists character_images (
+  id           uuid primary key default gen_random_uuid(),
+  character_id uuid references characters(id) on delete cascade not null,
+  player_id    uuid references profiles(id)   on delete cascade not null,
+  storage_path text not null,
+  caption      text,
+  sort_order   integer default 0,
+  created_at   timestamptz default now()
+);
+
+alter table character_images enable row level security;
+
+-- Player: full CRUD on their own character's images
+create policy "own character images"
+  on character_images for all
+  using  (player_id = auth.uid())
+  with check (player_id = auth.uid());
+
+-- DM: read all
+create policy "dm sees all character images"
+  on character_images for select
+  using (is_dm());
+
+-- Other signed-in players: see images for public characters
+create policy "public character image records"
+  on character_images for select
+  using (
+    auth.uid() is not null and
+    exists (
+      select 1 from characters c
+      where c.id = character_images.character_id
+        and c.is_public = true
+    )
+  );
+
+-- ============================================================
+-- Storage bucket (run in SQL Editor after tables are created)
+-- ============================================================
+
+-- Create the private bucket for character images
+insert into storage.buckets (id, name, public)
+values ('character-images', 'character-images', false)
+on conflict (id) do nothing;
+
+-- Owner: upload / read / delete own files
+create policy "own storage objects"
+  on storage.objects for all
+  using (
+    bucket_id = 'character-images' and
+    auth.uid()::text = (storage.foldername(name))[1]
+  )
+  with check (
+    bucket_id = 'character-images' and
+    auth.uid()::text = (storage.foldername(name))[1]
+  );
+
+-- DM: read all files in the bucket
+create policy "dm reads all storage objects"
+  on storage.objects for select
+  using (bucket_id = 'character-images' and is_dm());
+
+-- Other players: read files whose parent character is public
+create policy "public character storage objects"
+  on storage.objects for select
+  using (
+    bucket_id = 'character-images' and
+    auth.uid() is not null and
+    exists (
+      select 1 from characters c
+      where c.id::text = (storage.foldername(name))[2]
+        and c.is_public = true
+    )
+  );
+
 -- ============================================================
 -- Post-setup steps (do after running this script):
 -- 1. Have Krys sign up at /player/login/ to create their account
