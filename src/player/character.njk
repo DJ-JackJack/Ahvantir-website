@@ -1,0 +1,26 @@
+---
+layout: base
+title: Character Sheet
+description: "View and edit your character sheet."
+permalink: /player/character/
+---
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/player/dashboard/">Dashboard</a>
+      <span aria-hidden="true"> › </span>
+      <span>Character Sheet</span>
+    </nav>
+  </div>
+</div>
+
+<div class="player-page container" id="player-app">
+  <p class="player-loading">Loading character…</p>
+</div>
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/player.js"></script>
+<script src="/assets/js/player-character.js"></script>
+{% endblock %}
