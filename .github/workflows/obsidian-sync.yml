@@ -16,76 +16,84 @@ jobs:
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Add Git Bash to PATH
-        shell: pwsh
-        run: |
-          "C:\Program Files\Git\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Obsidian converter
-        shell: bash
-        run: python scripts/obsidian-to-md.py 2>&1 | tee sync.log
+        shell: powershell
+        run: |
+          & python scripts/obsidian-to-md.py 2>&1 | Tee-Object -FilePath sync.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
         env:
           OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
 
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
-        shell: bash
+        shell: powershell
         run: |
           git config user.name "Ahvantir Sync Bot"
           git config user.email "actions@github.com"
 
           git add src/articles/
-          ARTICLE_DIFF=$(git diff --staged --name-status -- src/articles/)
+          $articleDiff = git diff --staged --name-status -- src/articles/
 
-          STATS=$(grep -E "^(Updated|Would update)" sync.log 2>/dev/null | tail -1 \
-                  || echo "Sync did not run — OBSIDIAN_VAULT_PATH may not be configured.")
+          $stats = (Get-Content sync.log -ErrorAction SilentlyContinue |
+                    Where-Object { $_ -match "^(Updated|Would update)" } |
+                    Select-Object -Last 1)
+          if (-not $stats) { $stats = "Sync did not run — OBSIDIAN_VAULT_PATH may not be configured." }
 
-          mkdir -p sync-logs
-          LOG_PATH="sync-logs/$(date -u '+%Y-%m-%d').md"
-          {
-            echo "# Ahvantir Vault Sync — $(date -u '+%Y-%m-%d %H:%M UTC')"
-            echo ""
-            echo "**Run:** [Actions #${GITHUB_RUN_NUMBER}](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
-            echo ""
-            echo "## Summary"
-            echo ""
-            echo "${STATS}"
-            echo ""
+          $date     = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd')
+          $datetime = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm UTC')
+          $logPath  = "sync-logs/$date.md"
+          New-Item -ItemType Directory -Force -Path sync-logs | Out-Null
 
-            if [ -n "${ARTICLE_DIFF}" ]; then
-              echo "## Article Changes"
-              echo ""
-              echo "${ARTICLE_DIFF}" \
-                | sed \
-                    -e 's|^A\t.*/\(.*\)|- **Added:**   `\1`|' \
-                    -e 's|^M\t.*/\(.*\)|- **Updated:** `\1`|' \
-                    -e 's|^D\t.*/\(.*\)|- **Removed:** `\1`|'
-              echo ""
-            else
-              echo "_No article files changed this run._"
-              echo ""
-            fi
+          $logLines = [System.Collections.Generic.List[string]]::new()
+          $logLines.Add("# Ahvantir Vault Sync — $datetime")
+          $logLines.Add("")
+          $logLines.Add("**Run:** [Actions #$env:GITHUB_RUN_NUMBER]($env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID)")
+          $logLines.Add("")
+          $logLines.Add("## Summary")
+          $logLines.Add("")
+          $logLines.Add($stats)
+          $logLines.Add("")
 
-            echo "## Full Converter Log"
-            echo ""
-            echo '```'
-            cat sync.log 2>/dev/null || echo "(log unavailable)"
-            echo '```'
-          } > "${LOG_PATH}"
+          if ($articleDiff) {
+            $logLines.Add("## Article Changes")
+            $logLines.Add("")
+            foreach ($line in ($articleDiff -split "`n")) {
+              $t = $line.Trim()
+              if     ($t -match '^A\t') { $logLines.Add("- **Added:**   ``" + ($t -replace '^A\t.*/','') + "``") }
+              elseif ($t -match '^M\t') { $logLines.Add("- **Updated:** ``" + ($t -replace '^M\t.*/','') + "``") }
+              elseif ($t -match '^D\t') { $logLines.Add("- **Removed:** ``" + ($t -replace '^D\t.*/','') + "``") }
+            }
+            $logLines.Add("")
+          } else {
+            $logLines.Add("_No article files changed this run._")
+            $logLines.Add("")
+          }
+
+          $logLines.Add("## Full Converter Log")
+          $logLines.Add("")
+          $logLines.Add('```')
+          $logContent = Get-Content sync.log -ErrorAction SilentlyContinue
+          if ($logContent) { foreach ($l in $logContent) { $logLines.Add($l) } }
+          else              { $logLines.Add("(log unavailable)") }
+          $logLines.Add('```')
+
+          $logLines | Out-File -FilePath $logPath -Encoding utf8
 
           git add sync-logs/
-          if [ -n "${ARTICLE_DIFF}" ]; then
-            git diff --staged --quiet \
-              || git commit -m "chore: sync $(date -u '+%Y-%m-%d')"
-          else
-            git diff --staged --quiet \
-              || git commit -m "chore: sync $(date -u '+%Y-%m-%d') [skip ci]"
-          fi
-          git push
+          $staged = git diff --staged --quiet; $hasChanges = $LASTEXITCODE -ne 0
+          if ($hasChanges) {
+            if ($articleDiff) {
+              git commit -m "chore: sync $date"
+            } else {
+              git commit -m "chore: sync $date [skip ci]"
+            }
+            git push
+          } else {
+            Write-Host "Nothing to commit."
+          }
