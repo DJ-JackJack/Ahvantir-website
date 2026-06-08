@@ -22,7 +22,7 @@ import re
 import sys
 from pathlib import Path
 
-VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "")
+VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "").lstrip('﻿').strip()
 OUTPUT_DIR = Path(__file__).parent.parent / "src" / "articles"
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
