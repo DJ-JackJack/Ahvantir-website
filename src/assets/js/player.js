@@ -4,7 +4,7 @@
   'use strict';
 
   var SUPABASE_URL = 'https://fbfqeijisvckwmkqzjtd.supabase.co';
-  var SUPABASE_KEY = 'sb_publishable_ltaNA7nnVozoSCOcZIjg';
+  var SUPABASE_KEY = 'sb_publishable_VHjrGLPyrTDPt4TLV-Uyow_0g-5y_b0';
 
   var client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   window.__supabase = client;
