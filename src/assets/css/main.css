@@ -2358,3 +2358,348 @@ hr {
   cursor: pointer;
   line-height: 1;
 }
+
+/* ================================================================
+   Hall of Heroes — public character gallery
+   ================================================================ */
+
+.hall-container { padding: 2rem 0 4rem; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.hero-card {
+  background: var(--p-100);
+  border: 1px solid var(--br-light);
+  border-top: 3px solid var(--burg);
+  border-radius: 3px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: box-shadow 0.18s, border-top-color 0.18s, transform 0.18s;
+  overflow: hidden;
+}
+
+.hero-card:hover,
+.hero-card:focus-visible {
+  box-shadow: var(--shadow-md);
+  border-top-color: var(--gold);
+  transform: translateY(-4px);
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.hero-card__portrait {
+  aspect-ratio: 2 / 3;
+  background: var(--ink);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-card__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.hero-card:hover .hero-card__portrait img { transform: scale(1.04); }
+
+.hero-card__rune {
+  font-size: 3.5rem;
+  color: var(--br-mid);
+  opacity: 0.35;
+  line-height: 1;
+  user-select: none;
+}
+
+.hero-card__info {
+  padding: 0.75rem 1rem 0.9rem;
+  border-top: 1px solid var(--p-300);
+}
+
+.hero-card__name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.hero-card__class {
+  font-size: 0.75rem;
+  color: var(--ink-ghost);
+  line-height: 1.4;
+}
+
+.hall-empty {
+  text-align: center;
+  color: var(--ink-ghost);
+  padding: 4rem 1rem;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+/* ── Hero profile modal ──────────────────────────────────────── */
+.hero-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 2, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 900;
+  backdrop-filter: blur(3px);
+}
+
+.hero-modal-overlay[hidden] { display: none; }
+
+.hero-modal {
+  background: var(--p-100);
+  border: 1px solid var(--br-mid);
+  border-top: 4px solid var(--gold);
+  border-radius: 4px;
+  box-shadow: var(--shadow-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.hero-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: 1px solid var(--br-light);
+  border-radius: 2px;
+  color: var(--ink-ghost);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.55rem;
+  line-height: 1;
+  z-index: 1;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hero-modal__close:hover { background: var(--p-300); color: var(--ink); }
+
+.hero-modal__inner { display: flex; }
+
+.hero-modal__portrait {
+  flex: 0 0 220px;
+  background: var(--ink);
+  overflow: hidden;
+  max-height: 440px;
+}
+
+.hero-modal__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-modal__portrait--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.hero-modal__portrait--placeholder span {
+  font-size: 5rem;
+  color: var(--br-mid);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.hero-modal__body {
+  flex: 1;
+  padding: 2rem 1.75rem 1.5rem;
+  min-width: 0;
+}
+
+.hero-modal__name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--burg-dark);
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+  padding-right: 2rem;
+}
+
+.hero-modal__identity {
+  font-size: 0.85rem;
+  color: var(--teal-dark);
+  margin-bottom: 0.2rem;
+}
+
+.hero-modal__meta {
+  font-size: 0.8rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--p-300);
+}
+
+.hero-modal__section { margin-bottom: 1.1rem; }
+
+.hero-modal__section-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--burg);
+  margin-bottom: 0.35rem;
+}
+
+.hero-modal__section p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.hero-modal__empty {
+  font-size: 0.9rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+}
+
+@media (max-width: 540px) {
+  .hero-modal__inner { flex-direction: column; }
+  .hero-modal__portrait { flex: none; max-height: 240px; }
+  .hero-modal__body { padding: 1.25rem; }
+}
+
+/* ================================================================
+   DM Dashboard
+   ================================================================ */
+
+.dm-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dm-badge {
+  background: var(--burg);
+  color: var(--p-100);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.dm-stats {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--p-400);
+}
+
+.dm-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.dm-stat__val {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--burg-dark);
+  line-height: 1;
+}
+
+.dm-stat__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-ghost);
+}
+
+.dm-player-group {
+  background: var(--p-100);
+  border: 1px solid var(--br-light);
+  border-radius: 3px;
+  margin-bottom: 0.85rem;
+  overflow: hidden;
+}
+
+.dm-player-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--p-200);
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--br-light);
+}
+
+.dm-player-group__name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+.dm-player-group__count {
+  font-size: 0.75rem;
+  color: var(--ink-ghost);
+}
+
+.dm-player-group__chars { padding: 0.2rem 0; }
+
+.dm-char-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--p-200);
+  font-size: 0.85rem;
+}
+
+.dm-char-row:last-child { border-bottom: none; }
+
+.dm-char-row__name a {
+  color: var(--burg);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+}
+
+.dm-char-row__name a:hover { text-decoration: underline; }
+
+.dm-char-row__sub { color: var(--ink-ghost); font-size: 0.78rem; }
+
+.dm-char-row__updated {
+  color: var(--ink-ghost);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.dm-no-chars {
+  color: var(--ink-ghost);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 0.65rem 1rem;
+}
+
+@media (max-width: 560px) {
+  .dm-char-row { grid-template-columns: 1fr auto; }
+  .dm-char-row__sub { display: none; }
+  .dm-char-row__updated { display: none; }
+}

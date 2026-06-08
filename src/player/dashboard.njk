@@ -83,6 +83,10 @@ permalink: /player/dashboard/
         '</ul>'
       : '<p class="dash-empty">No notes yet. <a href="/player/notes/">Start writing.</a></p>';
 
+    var dmLink = profile.is_dm
+      ? '<a href="/player/dm-view/" class="btn btn--ghost btn--sm">DM Dashboard</a>'
+      : '';
+
     app.innerHTML =
       '<section class="dash-section">' +
         '<div class="dash-section__header">' +
@@ -101,6 +105,8 @@ permalink: /player/dashboard/
       '</section>' +
 
       '<div class="dash-footer">' +
+        '<a href="/player/hall-of-heroes/" class="btn btn--ghost btn--sm">Hall of Heroes</a>' +
+        dmLink +
         '<button class="btn btn--ghost btn--sm" onclick="window.playerSignOut()" type="button">Sign Out</button>' +
       '</div>';
   }
