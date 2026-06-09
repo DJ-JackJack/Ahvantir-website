@@ -7,7 +7,8 @@
     "build": "eleventy",
     "build:prod": "eleventy && pagefind --site _site",
     "start": "eleventy --serve",
-    "dev": "eleventy --serve --incremental"
+    "dev": "eleventy --serve --incremental",
+    "sync": "python3 scripts/obsidian-to-md.py"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
