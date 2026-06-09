@@ -56,23 +56,49 @@ def slugify(title: str) -> str:
 
 
 def parse_frontmatter(content: str) -> tuple:
-    """Split YAML frontmatter from body. Returns (fm_dict, body_str)."""
+    """Split YAML frontmatter from body. Returns (fm_dict, body_str).
+
+    Handles both inline lists  (tags: [a, b, c])
+    and YAML block lists       (tags:\n  - a\n  - b).
+    The second form is what Obsidian's built-in YAML linter produces.
+    """
     m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n?(.*)", content, re.DOTALL)
     if not m:
         return {}, content
     fm_raw, body = m.group(1), m.group(2)
     fm: dict = {}
-    for line in fm_raw.splitlines():
+    lines = fm_raw.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
         if ":" not in line:
+            i += 1
             continue
         key, _, val = line.partition(":")
         key = key.strip()
         val = val.strip()
+
         if val.startswith("[") and val.endswith("]"):
+            # Inline list: tags: [a, b, c]
             inner = val[1:-1].strip()
             fm[key] = [v.strip().strip("\"'") for v in inner.split(",") if v.strip()] if inner else []
+        elif val == "":
+            # Possibly a block list — peek ahead for "  - item" lines
+            items = []
+            j = i + 1
+            while j < len(lines) and re.match(r"^\s+-\s+", lines[j]):
+                item = re.sub(r"^\s+-\s+", "", lines[j]).strip().strip("\"'")
+                items.append(item)
+                j += 1
+            if items:
+                fm[key] = items
+                i = j
+                continue
+            else:
+                fm[key] = ""
         else:
             fm[key] = val.strip("\"'")
+        i += 1
     return fm, body
 
 
