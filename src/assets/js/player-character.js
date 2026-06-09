@@ -519,11 +519,20 @@
     }
 
     var canDelete = isOwner || isDM;
-    var html = await Promise.all(rows.map(async function (row) {
+    var html = await Promise.all(rows.map(async function (row, idx) {
       var signed = await db.storage.from('character-images').createSignedUrl(row.storage_path, 3600);
       var src = signed.data ? signed.data.signedUrl : '';
       return (
-        '<div class="gallery-item" data-path="' + esc(row.storage_path) + '" data-img-id="' + esc(row.id) + '">' +
+        '<div class="gallery-item' + (isOwner ? ' gallery-item--sortable' : '') + '" ' +
+            'data-path="' + esc(row.storage_path) + '" ' +
+            'data-img-id="' + esc(row.id) + '"' +
+            (isOwner ? ' draggable="true"' : '') + '>' +
+          (isOwner
+            ? '<span class="gallery-item__handle" aria-hidden="true" title="Drag to reorder">⠿</span>'
+            : '') +
+          (idx === 0
+            ? '<span class="gallery-item__portrait-badge">Portrait</span>'
+            : '') +
           '<img src="' + esc(src) + '" alt="' + esc(row.caption || 'Character image') + '" loading="lazy">' +
           (canDelete
             ? '<button class="gallery-item__delete" type="button" title="Delete" ' +
@@ -547,6 +556,95 @@
         });
       });
     }
+
+    if (isOwner && rows.length > 1) {
+      attachDragSort(grid);
+    }
+  }
+
+  /* ── Drag-to-reorder portrait gallery ───────────────────────── */
+  function attachDragSort(grid) {
+    var dragSrc = null;
+
+    function sortableItems() {
+      return Array.from(grid.querySelectorAll('.gallery-item[draggable]'));
+    }
+
+    function syncPortraitBadge() {
+      sortableItems().forEach(function (el, idx) {
+        var badge = el.querySelector('.gallery-item__portrait-badge');
+        if (idx === 0) {
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'gallery-item__portrait-badge';
+            badge.setAttribute('aria-hidden', 'true');
+            badge.textContent = 'Portrait';
+            el.insertBefore(badge, el.firstChild.nextSibling); // after handle
+          }
+        } else if (badge) {
+          badge.remove();
+        }
+      });
+    }
+
+    async function persistOrder() {
+      var items = sortableItems();
+      await Promise.all(items.map(function (el, idx) {
+        return db.from('character_images')
+          .update({ sort_order: idx })
+          .eq('id', el.dataset.imgId);
+      }));
+      setStatus('Portrait order saved ✓', 'ok');
+      setTimeout(function () { setStatus('', ''); }, 1800);
+    }
+
+    grid.addEventListener('dragstart', function (e) {
+      var item = e.target.closest('.gallery-item[draggable]');
+      if (!item) return;
+      dragSrc = item;
+      item.classList.add('gallery-item--dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', item.dataset.imgId);
+    });
+
+    grid.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      var target = e.target.closest('.gallery-item[draggable]');
+      if (!target || target === dragSrc) return;
+      sortableItems().forEach(function (el) { el.classList.remove('gallery-item--dropzone'); });
+      target.classList.add('gallery-item--dropzone');
+    });
+
+    grid.addEventListener('dragleave', function (e) {
+      var target = e.target.closest('.gallery-item[draggable]');
+      if (target) target.classList.remove('gallery-item--dropzone');
+    });
+
+    grid.addEventListener('drop', function (e) {
+      e.preventDefault();
+      var target = e.target.closest('.gallery-item[draggable]');
+      sortableItems().forEach(function (el) {
+        el.classList.remove('gallery-item--dropzone', 'gallery-item--dragging');
+      });
+      if (!target || !dragSrc || target === dragSrc) { dragSrc = null; return; }
+
+      // Insert dragged item before the drop target
+      grid.insertBefore(dragSrc, target);
+      dragSrc = null;
+
+      syncPortraitBadge();
+      persistOrder().catch(function () {
+        setStatus('Could not save order — try again.', 'error');
+      });
+    });
+
+    grid.addEventListener('dragend', function () {
+      sortableItems().forEach(function (el) {
+        el.classList.remove('gallery-item--dragging', 'gallery-item--dropzone');
+      });
+      dragSrc = null;
+    });
   }
 
   async function uploadImage(file) {
