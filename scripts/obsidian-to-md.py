@@ -26,7 +26,10 @@ VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "").lstrip('﻿').strip()
 OUTPUT_DIR = Path(__file__).parent.parent / "src" / "articles"
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
-SKIP_DIRS = {"_Templates", "_Meta", ".obsidian", "Ahvantir V.2"}
+SKIP_DIRS = {"_Templates", "_Meta", ".obsidian", "Ahvantir V.2", "HTML import"}
+
+# Root-level files that are Obsidian boilerplate, not articles
+SKIP_FILES = {"Welcome.md", "welcome.md"}
 
 CATEGORY_MAP = {
     "article":           "history",
@@ -230,6 +233,9 @@ def process_file(src: Path):
     title = fm.get("title", src.stem)
     if "<%" in str(title):
         return None
+    # Skip files with no meaningful title (Obsidian placeholders / imports)
+    if not str(title).strip():
+        return None
 
     body = strip_templater(body)
     body = strip_dataview(body)
@@ -246,6 +252,40 @@ def process_file(src: Path):
     return slug, output
 
 
+def write_sync_log(added: list, updated: list, log_lines: list):
+    """Write/append today's sync log so recently-added.njk picks it up."""
+    import datetime
+    log_dir = OUTPUT_DIR.parent.parent / "sync-logs"
+    log_dir.mkdir(exist_ok=True)
+
+    today = datetime.date.today().isoformat()
+    now   = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    log_path = log_dir / f"{today}.md"
+
+    lines = [f"# Ahvantir Vault Sync — {now}", "", "## Summary", ""]
+    total = len(added) + len(updated)
+    if total:
+        lines.append(f"{total} article(s) changed in this sync.")
+    else:
+        lines.append("_No article files changed this run._")
+    lines += ["", "## Article Changes", ""]
+
+    for slug in added:
+        lines.append(f"- **Added:** `{slug}.md`")
+    for slug in updated:
+        lines.append(f"- **Updated:** `{slug}.md`")
+    if not added and not updated:
+        lines.append("_None._")
+
+    lines += ["", "## Full Converter Log", "", "```"]
+    lines += log_lines
+    lines.append("```")
+    lines.append("")
+
+    log_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"Sync log written: sync-logs/{today}.md")
+
+
 def main():
     if not VAULT_PATH:
         print("OBSIDIAN_VAULT_PATH not set — nothing to sync.", file=sys.stderr)
@@ -259,16 +299,22 @@ def main():
     md_files = [
         f for f in vault.rglob("*.md")
         if not any(skip in f.parts for skip in SKIP_DIRS)
+        and f.name not in SKIP_FILES
     ]
     print(f"Found {len(md_files)} markdown files (after folder exclusions).")
 
-    changed = skipped = errors = 0
+    added = []
+    updated = []
+    skipped = errors = 0
+    log_lines = [f"Found {len(md_files)} markdown files (after folder exclusions)."]
 
     for src in sorted(md_files):
         try:
             result = process_file(src)
         except Exception as e:
-            print(f"ERROR processing {src.name}: {e}", file=sys.stderr)
+            msg = f"ERROR processing {src.name}: {e}"
+            print(msg, file=sys.stderr)
+            log_lines.append(msg)
             errors += 1
             continue
 
@@ -284,16 +330,29 @@ def main():
 
         if DRY_RUN:
             print(f"[DRY RUN] Would write: {dest.name}")
+            log_lines.append(f"[DRY RUN] Would write: {dest.name}")
         else:
+            is_new = not dest.exists()
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(content, encoding="utf-8")
-            print(f"Written: {dest.name}")
-        changed += 1
+            msg = f"Written: {dest.name}"
+            print(msg)
+            log_lines.append(msg)
+            if is_new:
+                added.append(slug)
+            else:
+                updated.append(slug)
 
-    print(
+    changed = len(added) + len(updated)
+    summary = (
         f"{'Would update' if DRY_RUN else 'Updated'} {changed} files. "
         f"Skipped {skipped} stubs. {errors} errors."
     )
+    print(summary)
+    log_lines.append(summary)
+
+    if not DRY_RUN:
+        write_sync_log(added, updated, log_lines)
 
 
 if __name__ == "__main__":
