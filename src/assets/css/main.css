@@ -2360,6 +2360,76 @@ hr {
 }
 
 /* ================================================================
+   Character page — two-column layout with PDF viewer
+   ================================================================ */
+
+.char-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-top: 1.25rem;
+}
+
+.char-layout__form {
+  /* left column: identity + flavor + lore + gallery */
+}
+
+.char-layout__pdf {
+  position: sticky;
+  top: calc(var(--nav-h) + 1rem);
+}
+
+/* PDF section */
+.char-pdf-section { margin-bottom: 0; }
+
+.char-pdf-frame {
+  display: block;
+  width: 100%;
+  height: 760px;
+  border: 1px solid var(--br-light);
+  border-radius: 3px;
+  background: var(--p-200);
+  margin-bottom: 0.5rem;
+}
+
+.pdf-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.pdf-upload-row {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pdf-open-link {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--ink-ghost);
+  text-decoration: none;
+  margin-top: 0.35rem;
+}
+.pdf-open-link:hover { color: var(--burg); text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .char-layout {
+    grid-template-columns: 1fr;
+  }
+  .char-layout__pdf {
+    position: static;
+  }
+  .char-pdf-frame {
+    height: 520px;
+  }
+}
+
+/* ================================================================
    Hall of Heroes — public character gallery
    ================================================================ */
 
