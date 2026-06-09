@@ -136,9 +136,10 @@ window.addEventListener('DOMContentLoaded', function () {
     .on('mouseover', function (e, d) {
       if (!tooltip) return;
       var cat = d.category || 'default';
-      tooltip.innerHTML =
-        '<span class="graph-tooltip__title">' + d.title + '</span>' +
-        '<span class="graph-tooltip__cat">' + (LABELS[cat] || cat) + '</span>';
+      // Use textContent for data-derived values to prevent XSS via article titles
+      tooltip.innerHTML = '<span class="graph-tooltip__title"></span><span class="graph-tooltip__cat"></span>';
+      tooltip.querySelector('.graph-tooltip__title').textContent = d.title || '';
+      tooltip.querySelector('.graph-tooltip__cat').textContent   = LABELS[cat] || cat;
       tooltip.style.display = 'block';
       tooltip.style.left = (e.clientX + 14) + 'px';
       tooltip.style.top  = (e.clientY - 10) + 'px';

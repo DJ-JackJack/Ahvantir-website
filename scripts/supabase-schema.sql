@@ -121,11 +121,20 @@ create policy "dm sees all characters"
 -- ── Character Secrets ────────────────────────────────────────
 alter table character_secrets enable row level security;
 
--- Player: full CRUD on their own character's secret
+-- Player: full CRUD on their own character's secret.
+-- with check also verifies the character_id belongs to the caller, preventing
+-- a player from attaching a secret to another player's character.
 create policy "own secret"
   on character_secrets for all
   using (player_id = auth.uid())
-  with check (player_id = auth.uid());
+  with check (
+    player_id = auth.uid()
+    and exists (
+      select 1 from characters c
+      where c.id = character_secrets.character_id
+        and c.player_id = auth.uid()
+    )
+  );
 
 -- DM: always sees all secrets (even unrevealed ones)
 create policy "dm sees all secrets"
@@ -162,11 +171,20 @@ create table if not exists character_images (
 
 alter table character_images enable row level security;
 
--- Player: full CRUD on their own character's images
+-- Player: full CRUD on their own character's images.
+-- with check also verifies the character_id belongs to the caller, preventing
+-- a player from attaching an image to another player's character.
 create policy "own character images"
   on character_images for all
   using  (player_id = auth.uid())
-  with check (player_id = auth.uid());
+  with check (
+    player_id = auth.uid()
+    and exists (
+      select 1 from characters c
+      where c.id = character_images.character_id
+        and c.player_id = auth.uid()
+    )
+  );
 
 -- DM: read all
 create policy "dm sees all character images"
@@ -223,6 +241,61 @@ create policy "public character storage objects"
         and c.is_public = true
     )
   );
+
+-- ── Profiles — column-level UPDATE restriction ───────────────
+-- Revoke blanket UPDATE so clients cannot flip is_dm.
+-- Only display_name may be updated from an authenticated session.
+-- is_dm must be set manually in the Supabase Dashboard (or via a
+-- SECURITY DEFINER function called by a privileged role).
+revoke update on profiles from authenticated;
+grant  update (display_name) on profiles to authenticated;
+
+-- Allow all authenticated users to read the full profiles list
+-- (needed so the messaging recipient-picker can populate the dropdown).
+create policy "players read all profiles"
+  on profiles for select
+  using (auth.uid() is not null);
+
+-- ── Messages ─────────────────────────────────────────────────
+-- Created in the Dashboard (not via the original schema script).
+-- Captured here so the full schema is reviewable and reproducible.
+create table if not exists messages (
+  id           uuid primary key default gen_random_uuid(),
+  sender_id    uuid not null references profiles(id) on delete cascade,
+  recipient_id uuid not null references profiles(id) on delete cascade,
+  content      text not null default '',
+  created_at   timestamptz default now(),
+  read_at      timestamptz,
+  -- DB-level guards: non-empty content, reasonable length cap, no self-messaging
+  constraint messages_content_length  check (char_length(content) between 1 and 4000),
+  constraint messages_no_self_message check (sender_id <> recipient_id)
+);
+
+alter table messages enable row level security;
+
+-- Participants (sender or recipient) may read the thread
+create policy "message participants can read"
+  on messages for select
+  using (auth.uid() = sender_id or auth.uid() = recipient_id);
+
+-- Only send as yourself
+create policy "send own messages"
+  on messages for insert
+  with check (sender_id = auth.uid());
+
+-- Only the recipient may mark a message read, and only the read_at column
+-- is writable (enforced by the column grant below).
+create policy "recipient marks read"
+  on messages for update
+  using     (recipient_id = auth.uid())
+  with check (recipient_id = auth.uid());
+
+-- Restrict UPDATE to read_at only — content, sender_id, etc. are immutable.
+revoke update on messages from authenticated;
+grant  update (read_at) on messages to authenticated;
+
+-- Enable realtime delivery for the messages table
+alter publication supabase_realtime add table messages;
 
 -- ============================================================
 -- Post-setup steps (do after running this script):

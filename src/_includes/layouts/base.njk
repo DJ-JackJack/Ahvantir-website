@@ -15,6 +15,8 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <div class="grain" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -24,11 +26,12 @@
         <span class="nav__title">{{ meta.site.title }}</span>
       </a>
 
-      <button class="nav__burger" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <button class="nav__burger" aria-label="Toggle navigation" aria-expanded="false"
+              aria-controls="nav-links" type="button">
         <span></span><span></span><span></span>
       </button>
 
-      <ul class="nav__links" role="list">
+      <ul class="nav__links" id="nav-links" role="list">
         <li><a href="/articles/">Articles</a></li>
         <li><a href="/timeline/">Timeline</a></li>
         <li><a href="/map/">World Map</a></li>
@@ -41,7 +44,7 @@
         </a></li>
         <li><a href="/player/dashboard/" class="nav__player-link">Player</a></li>
         <li><a href="/player/messages/" class="nav__player-link nav__messages-link">
-          Messages<span class="nav-badge" id="nav-msg-badge" hidden></span>
+          Messages<span class="nav-badge" id="nav-msg-badge" hidden aria-label="unread messages"></span>
         </a></li>
       </ul>
     </nav>

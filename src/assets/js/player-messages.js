@@ -8,13 +8,16 @@
   var profileMap  = {};          // id → { id, display_name }
   var activeOther = null;        // profile ID of the open conversation
   var conversations = [];        // sorted by latest message
-  var realtimeChannel = null;
+  var realtimeChannel  = null;
+  var resubscribeTimer = null;
+  var resubscribeDelay = 1000;   // ms; doubles on each failure, capped at 30s
 
   function qs(sel) { return document.querySelector(sel); }
   function esc(str) {
     return String(str || '')
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
   function truncate(str, n) {
     str = String(str || '');
@@ -49,6 +52,7 @@
     renderShell();
     await refreshConversations();
     subscribeRealtime();
+    wireAuthRefresh();
 
     // Support ?with=UUID deep-link
     var withId = new URLSearchParams(location.search).get('with');
@@ -166,12 +170,16 @@
       '<div class="messages-thread__header">' +
         '<span class="messages-thread__title">' + esc(other.display_name) + '</span>' +
       '</div>' +
-      '<div class="messages-thread__history" id="thread-history">' +
+      '<div class="messages-thread__history" id="thread-history"' +
+          ' aria-live="polite" aria-atomic="false">' +
         '<p class="player-loading">Loading…</p>' +
       '</div>' +
       '<div class="messages-thread__compose">' +
+        '<div id="msg-send-error" class="messages-send-error" hidden></div>' +
         '<textarea id="msg-input" class="messages-compose-input"' +
-          ' placeholder="Write a message… (Enter to send, Shift+Enter for new line)" rows="2"></textarea>' +
+          ' aria-label="Message text"' +
+          ' placeholder="Write a message… (Enter to send, Shift+Enter for new line)"' +
+          ' rows="2" maxlength="4000"></textarea>' +
         '<button class="btn btn--primary messages-send-btn" id="btn-send-msg">Send</button>' +
       '</div>';
 
@@ -247,13 +255,16 @@
 
   /* ── Send a message ──────────────────────────────────────────── */
   async function sendMessage(otherId) {
-    var input = qs('#msg-input');
+    var input  = qs('#msg-input');
+    var errBox = qs('#msg-send-error');
     if (!input) return;
     var content = input.value.trim();
     if (!content) return;
 
-    input.value = '';
-    input.focus();
+    // Disable send button while in flight to prevent double-submit
+    var btn = qs('#btn-send-msg');
+    if (btn) btn.disabled = true;
+    if (errBox) errBox.hidden = true;
 
     var res = await db.from('messages').insert({
       sender_id:    myProfile.id,
@@ -261,8 +272,18 @@
       content:      content
     }).select('id, sender_id, content, created_at, read_at').single();
 
-    if (!res.error && res.data) appendBubble(res.data);
-    await refreshConversations();
+    if (res.error) {
+      // Keep the typed text so the user can retry
+      if (errBox) { errBox.textContent = 'Failed to send — please try again.'; errBox.hidden = false; }
+    } else {
+      // Only clear on success
+      input.value = '';
+      if (res.data) appendBubble(res.data);
+      await refreshConversations();
+    }
+
+    if (btn) btn.disabled = false;
+    input.focus();
   }
 
   /* ── Mark received messages as read ─────────────────────────── */
@@ -284,6 +305,7 @@
   /* ── Supabase Realtime subscription ─────────────────────────── */
   function subscribeRealtime() {
     if (realtimeChannel) db.removeChannel(realtimeChannel);
+    clearTimeout(resubscribeTimer);
 
     realtimeChannel = db
       .channel('player-messages:' + myProfile.id)
@@ -295,7 +317,31 @@
       }, function (payload) {
         handleIncoming(payload.new);
       })
-      .subscribe();
+      .subscribe(function (status) {
+        if (status === 'SUBSCRIBED') {
+          resubscribeDelay = 1000; // reset backoff on clean connect
+        } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') {
+          // Reconnect with exponential backoff (1s → 2s → 4s → … → 30s max)
+          resubscribeTimer = setTimeout(function () {
+            resubscribeDelay = Math.min(resubscribeDelay * 2, 30000);
+            subscribeRealtime();
+          }, resubscribeDelay);
+        }
+      });
+  }
+
+  /* ── Token-refresh: keep realtime auth in sync ───────────────── */
+  function wireAuthRefresh() {
+    db.auth.onAuthStateChange(function (event, session) {
+      if (event === 'TOKEN_REFRESHED' && session) {
+        db.realtime.setAuth(session.access_token);
+      }
+    });
+    // Recover any missed messages after tab regains focus or network comes back
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') refreshConversations();
+    });
+    window.addEventListener('online', function () { refreshConversations(); });
   }
 
   async function handleIncoming(msg) {
@@ -344,14 +390,22 @@
           '</select>' +
         '</label>' +
         '<textarea id="new-content" class="messages-compose-input" rows="4"' +
-          ' placeholder="Write your first message…"></textarea>' +
+          ' aria-label="Message text"' +
+          ' placeholder="Write your first message…"' +
+          ' maxlength="4000"></textarea>' +
+        '<div id="new-send-error" class="messages-send-error" hidden></div>' +
         '<button class="btn btn--primary" id="btn-send-new">Send Message</button>' +
       '</div>';
 
     qs('#btn-send-new').addEventListener('click', async function () {
       var recipientId = qs('#new-recipient').value;
       var content     = (qs('#new-content').value || '').trim();
+      var errBox      = qs('#new-send-error');
+      var btn         = qs('#btn-send-new');
       if (!recipientId || !content) return;
+
+      if (btn) btn.disabled = true;
+      if (errBox) errBox.hidden = true;
 
       var res = await db.from('messages').insert({
         sender_id:    myProfile.id,
@@ -359,7 +413,10 @@
         content:      content
       });
 
-      if (!res.error) {
+      if (res.error) {
+        if (errBox) { errBox.textContent = 'Failed to send — please try again.'; errBox.hidden = false; }
+        if (btn) btn.disabled = false;
+      } else {
         await refreshConversations();
         openConversation(recipientId);
       }

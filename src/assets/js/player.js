@@ -57,7 +57,9 @@
     if (!badge) return;
     var count = res.count || 0;
     if (count > 0) {
-      badge.textContent = count > 9 ? '9+' : String(count);
+      var label = count + ' unread message' + (count !== 1 ? 's' : '');
+      badge.textContent  = count > 9 ? '9+' : String(count);
+      badge.setAttribute('aria-label', label);
       badge.hidden = false;
     } else {
       badge.hidden = true;

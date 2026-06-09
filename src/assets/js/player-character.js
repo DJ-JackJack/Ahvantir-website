@@ -20,8 +20,18 @@
     return String(str || '')
       .replace(/&/g, '&amp;')
       .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
+  }
+
+  // Allow-list URL schemes before storing or rendering lore links.
+  // Blocks javascript: / data: etc. that esc() can't catch in href attributes.
+  function safeUrl(u) {
+    try {
+      var url = new URL(u, location.origin);
+      return /^(https?|mailto):$/.test(url.protocol) ? url.href : '#';
+    } catch (_) { return '#'; }
   }
 
   /* ── Bootstrap ───────────────────────────────────────────── */
@@ -268,7 +278,7 @@
     if (!canEdit && !links.length) return '';
     var items = links.map(function (u, i) {
       if (!canEdit) {
-        return '<li><a href="' + esc(u) + '" class="wikilink">' + esc(u) + '</a></li>';
+        return '<li><a href="' + safeUrl(u) + '" class="wikilink">' + esc(u) + '</a></li>';
       }
       return '<div class="lore-link-row">' +
         '<input type="url" class="form-input" value="' + esc(u) + '" data-idx="' + i + '" placeholder="https://ahvantir.world/articles/...">' +
@@ -342,8 +352,8 @@
     var list = qs('#lore-links-list');
     if (list) {
       list.querySelectorAll('input[type="url"]').forEach(function (inp) {
-        var v = inp.value.trim();
-        if (v) loreLinks.push(v);
+        var v = safeUrl(inp.value.trim());
+        if (v && v !== '#') loreLinks.push(v);
       });
     }
     var existingData = currentChar && currentChar.data ? currentChar.data : {};

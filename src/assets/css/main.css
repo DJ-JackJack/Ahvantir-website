@@ -27,7 +27,7 @@
 
   /* Fantasy palette — city concept art (vivid cyan water, orange rooftops, golden sand, bright green hills) */
   --teal:        #3dcee0;
-  --teal-dark:   #1eaabf;
+  --teal-dark:   #0e707f;  /* darkened from #1eaabf → now ≥4.5:1 on parchment */
   --teal-pale:   #c0eef6;
   --gold:        #d4aa40;
   --gold-dark:   #a88020;
@@ -1376,8 +1376,8 @@ hr {
 
 .hidden { display: none !important; }
 
-/* Nav "Player" link — subtle gold tint to distinguish from lore nav */
-.nav__player-link { color: var(--gold) !important; font-weight: 600; }
+/* Nav "Player" link — dark gold, meets WCAG AA 4.5:1 on parchment */
+.nav__player-link { color: #8c6a18 !important; font-weight: 600; }
 .nav__player-link:hover { color: var(--gold-dark) !important; }
 
 /* Shared player page wrapper */
@@ -3472,5 +3472,73 @@ hr {
     border-right: none;
     border-bottom: 1px solid var(--br-mid);
     max-height: 220px;
+  }
+}
+
+/* ── Messaging: send error feedback ────────────────────────────────────────── */
+.messages-send-error {
+  color: var(--burg);
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+
+/* ── Accessibility: skip-to-content link ────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0.5rem;
+  background: var(--ink);
+  color: var(--p-100);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: var(--font-display);
+  border-radius: 0 0 4px 4px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.1s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Accessibility: :focus-visible rings ────────────────────────────────────── */
+/*
+ * Elements with `outline: none` above have custom mouse-focus styles (border
+ * colour / box-shadow). This block restores a visible ring for keyboard
+ * navigation, which browsers only apply via :focus-visible. Because these
+ * rules appear after the outline:none declarations they take precedence.
+ */
+.form-input:focus-visible,
+.char-name-input:focus-visible,
+.char-field input:focus-visible,
+.char-field textarea:focus-visible,
+.ability-box__input:focus-visible,
+.notes-editor__title-input:focus-visible,
+.messages-compose-input:focus-visible,
+.messages-recipient-select:focus-visible {
+  outline: 2px solid var(--teal-dark);
+  outline-offset: 2px;
+}
+/* Notes content area has no other focus indicator, so give it a clear ring */
+.notes-editor__content:focus-visible {
+  outline: 2px solid var(--burg);
+  outline-offset: -2px;
+}
+/* Pagefind has !important on its own outline suppression */
+.pagefind-ui__search-input:focus-visible {
+  outline: 2px solid var(--burg) !important;
+  outline-offset: 2px !important;
+}
+
+/* ── Accessibility: reduced motion ─────────────────────────────────────────── */
+/* Respect the user's OS preference for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior:      auto   !important;
   }
 }
