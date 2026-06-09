@@ -40,4 +40,36 @@
     await client.auth.signOut();
     location.href = '/player/login/';
   };
+
+  /* Update the nav unread-message badge on any /player/* page. */
+  window.loadUnreadBadge = async function () {
+    var userResult = await client.auth.getUser();
+    if (!userResult.data.user) return;
+    var myId = userResult.data.user.id;
+
+    var res = await client
+      .from('messages')
+      .select('id', { count: 'exact', head: true })
+      .eq('recipient_id', myId)
+      .is('read_at', null);
+
+    var badge = document.getElementById('nav-msg-badge');
+    if (!badge) return;
+    var count = res.count || 0;
+    if (count > 0) {
+      badge.textContent = count > 9 ? '9+' : String(count);
+      badge.hidden = false;
+    } else {
+      badge.hidden = true;
+    }
+  };
+
+  // Auto-load the badge on every /player/* page
+  document.addEventListener('DOMContentLoaded', function () {
+    if (location.pathname.startsWith('/player/')) {
+      client.auth.getSession().then(function (res) {
+        if (res.data.session) window.loadUnreadBadge();
+      });
+    }
+  });
 })();

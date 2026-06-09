@@ -1,0 +1,26 @@
+---
+layout: base
+title: Messages
+description: "Send and receive messages with your fellow adventurers."
+permalink: /player/messages/
+---
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/player/dashboard/">Dashboard</a>
+      <span aria-hidden="true"> › </span>
+      <span>Messages</span>
+    </nav>
+  </div>
+</div>
+
+<div class="messages-page" id="player-app">
+  <p class="player-loading">Loading messages…</p>
+</div>
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/player.js"></script>
+<script src="/assets/js/player-messages.js"></script>
+{% endblock %}
