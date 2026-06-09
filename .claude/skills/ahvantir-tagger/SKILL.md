@@ -24,7 +24,7 @@ then syncs and publishes them to the website.
 ## Paths (hardcoded for this project)
 
 ```
-VAULT      = C:\Users\klfal\Desktop\Explore Ahvantir\
+VAULT      = C:\Users\klfal\Documents\Claude\Projects\Ahvantir Lore\
 SYNC_SCRIPT= C:\Users\klfal\Desktop\Claude_Directory\Ahvantir-website\scripts\obsidian-to-md.py
 WEBSITE    = C:\Users\klfal\Desktop\Claude_Directory\Ahvantir-website\
 ```
@@ -120,7 +120,7 @@ Claims and Wardens.md
 Run the sync script from the website repo directory:
 
 ```bash
-OBSIDIAN_VAULT_PATH="C:/Users/klfal/Desktop/Explore Ahvantir" \
+OBSIDIAN_VAULT_PATH="C:/Users/klfal/Documents/Claude/Projects/Ahvantir Lore" \
   python3 scripts/obsidian-to-md.py
 ```
 
