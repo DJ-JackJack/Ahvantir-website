@@ -78,6 +78,12 @@ layout: base
       </section>
       {% endif %}
 
+      {# Character lore links — populated client-side by article-links.js #}
+      <section class="sidebar-section" id="char-links-section" hidden>
+        <h3 class="sidebar-title">Linked Characters</h3>
+        <ul class="backlinks-list" role="list" id="char-links-list"></ul>
+      </section>
+
       {% if related and related.length %}
       <section class="sidebar-section">
         <h3 class="sidebar-title">Related</h3>
@@ -101,3 +107,7 @@ layout: base
   </a>
 
 </article>
+
+{% block scripts %}
+<script src="/assets/js/article-links.js" defer></script>
+{% endblock %}

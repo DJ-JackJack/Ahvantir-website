@@ -836,6 +836,14 @@ hr {
   color: var(--burg-dark);
 }
 
+.backlinks-list li { line-height: 1.35; }
+
+.backlink-sub {
+  font-size: 0.72rem;
+  color: var(--ink-ghost);
+  letter-spacing: 0.03em;
+}
+
 .sidebar-tags {
   display: flex;
   flex-wrap: wrap;
