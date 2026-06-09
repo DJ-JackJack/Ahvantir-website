@@ -2,9 +2,6 @@
 title: "Battle of Hallowed Hollow"
 category: history
 tags: [history, event, landing-war, neverwood, green-man, primordem]
-timeline_year: -7
-timeline_date: "~Year -7 MC"
-
 ---
 
 # Battle of Hallowed Hollow

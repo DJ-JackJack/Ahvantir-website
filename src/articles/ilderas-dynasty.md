@@ -2,9 +2,6 @@
 title: "Ilderas Dynasty"
 category: factions
 tags: [faction, government]
-timeline_year: 150
-timeline_date: "~Year 150 MC"
-
 ---
 
 # Ilderas Dynasty

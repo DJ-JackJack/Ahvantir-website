@@ -2,9 +2,6 @@
 title: "Marduk Sunspear"
 category: characters
 tags: [historical-figure, landing-war, founding, drorn-duur, first-pact]
-timeline_year: 0
-timeline_date: "Year 0 MC"
-
 ---
 
 # Marduk Sunspear

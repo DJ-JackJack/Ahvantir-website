@@ -2,9 +2,6 @@
 title: "Order of Valor"
 category: factions
 tags: [faction, religious, church]
-timeline_year: 3
-timeline_date: "~Year 3 MC"
-
 ---
 
 # Order of Valor

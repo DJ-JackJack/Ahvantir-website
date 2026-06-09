@@ -2,9 +2,6 @@
 title: "Ilderas Public Archive"
 category: locations
 tags: [district-site, hearthstone, aru-mas]
-timeline_year: 150
-timeline_date: "~Year 150 MC"
-
 ---
 
 # Ilderas Public Archive
