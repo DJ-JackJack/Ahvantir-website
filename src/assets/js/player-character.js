@@ -201,22 +201,25 @@
         '</div>';
     }
 
-    /* Portrait gallery (only for saved characters) */
-    var galleryHtml = char.id
-      ? '<div class="char-section gallery-section" id="gallery-section">' +
-          '<h3 class="char-section__title">Character Images</h3>' +
-          '<p class="char-section__hint">Portraits and reference art — first image shown in the Hall of Heroes.</p>' +
-          '<div class="gallery-grid" id="gallery-grid">' +
-            '<span class="gallery-empty">Loading images…</span>' +
-          '</div>' +
-          (canEdit
-            ? '<div class="gallery-upload-area">' +
-                '<label class="btn btn--ghost btn--sm" for="gallery-file-input">+ Upload Image</label>' +
-                '<input type="file" id="gallery-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">' +
-              '</div>'
-            : '') +
-        '</div>'
-      : '';
+    /* Portrait gallery */
+    var galleryHtml =
+      '<div class="char-section gallery-section" id="gallery-section">' +
+        '<h3 class="char-section__title">Character Images</h3>' +
+        '<p class="char-section__hint">Portraits and reference art — first image shown in the Hall of Heroes.</p>' +
+        (char.id
+          ? '<div class="gallery-grid" id="gallery-grid">' +
+              '<span class="gallery-empty">Loading images…</span>' +
+            '</div>' +
+            (canEdit
+              ? '<div class="gallery-upload-area">' +
+                  '<label class="btn btn--ghost btn--sm" for="gallery-file-input">+ Upload Image</label>' +
+                  '<input type="file" id="gallery-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">' +
+                '</div>'
+              : '')
+          : (canEdit
+              ? '<p class="gallery-save-hint">Save your character first, then upload portrait images.</p>'
+              : '')) +
+      '</div>';
 
     /* PDF viewer (right column — content filled by loadPDFViewer) */
     var pdfHtml = char.id
@@ -240,7 +243,7 @@
         headerHtml +
         '<div class="char-layout">' +
           '<div class="char-layout__form">' +
-            metaHtml + flavorHtml + loreHtml + secretHtml + galleryHtml +
+            metaHtml + galleryHtml + flavorHtml + loreHtml + secretHtml +
           '</div>' +
           '<div class="char-layout__pdf">' +
             pdfHtml +
@@ -504,7 +507,16 @@
     if (result.error) { grid.innerHTML = '<span class="gallery-empty">Could not load images.</span>'; return; }
 
     var rows = result.data || [];
-    if (!rows.length) { grid.innerHTML = '<span class="gallery-empty">No images uploaded yet.</span>'; return; }
+    if (!rows.length) {
+      grid.innerHTML = isOwner
+        ? '<label class="gallery-empty-cta" for="gallery-file-input">' +
+            '<span class="gallery-empty-cta__icon">+</span>' +
+            '<span class="gallery-empty-cta__text">Upload your first portrait</span>' +
+            '<span class="gallery-empty-cta__sub">JPG, PNG, GIF or WebP · max 8 MB</span>' +
+          '</label>'
+        : '<span class="gallery-empty">No images uploaded yet.</span>';
+      return;
+    }
 
     var canDelete = isOwner || isDM;
     var html = await Promise.all(rows.map(async function (row) {
