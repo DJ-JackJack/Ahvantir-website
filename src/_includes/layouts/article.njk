@@ -1,7 +1,11 @@
 ---
 layout: base
 ---
-<article class="article" data-pagefind-body data-pagefind-meta="title:{{ title }}">
+<article class="article"
+  data-pagefind-body
+  data-pagefind-meta="title:{{ title }}"
+  {% if category %}data-pagefind-filter="category:{{ category | capitalize }}"{% endif %}
+  {% if tags %}data-pagefind-meta="tags:{{ tags | join(', ') }}"{% endif %}>
 
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/">Home</a>

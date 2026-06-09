@@ -34,7 +34,7 @@ jobs:
         run: npx @11ty/eleventy
 
       - name: Index with Pagefind
-        run: npx pagefind --source _site
+        run: npx pagefind --site _site
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

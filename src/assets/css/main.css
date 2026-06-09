@@ -984,16 +984,88 @@ hr {
   font-style: italic;
 }
 
-/* Pagefind UI overrides */
+/* ── Pagefind UI — parchment theme overrides ─────────────────── */
 :root {
   --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: var(--burg);
-  --pagefind-ui-text: var(--ink-soft);
-  --pagefind-ui-background: var(--p-100);
-  --pagefind-ui-border: var(--br-mid);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 2px;
-  --pagefind-ui-font: var(--font-body);
+  --pagefind-ui-primary:         var(--burg);
+  --pagefind-ui-text:            var(--ink-soft);
+  --pagefind-ui-background:      var(--p-100);
+  --pagefind-ui-border:          var(--br-mid);
+  --pagefind-ui-border-width:    1px;
+  --pagefind-ui-border-radius:   2px;
+  --pagefind-ui-font:            var(--font-body);
+  --pagefind-ui-tag-background:  var(--p-300);
+  --pagefind-ui-tag-border:      var(--br-mid);
+}
+
+/* Search input */
+.pagefind-ui__search-input {
+  background: var(--p-200) !important;
+  border-color: var(--br-mid) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+}
+
+.pagefind-ui__search-input:focus {
+  border-color: var(--burg) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(123,29,42,0.15) !important;
+}
+
+/* Search clear/submit buttons */
+.pagefind-ui__search-clear,
+.pagefind-ui__suppressed-button {
+  color: var(--ink-ghost) !important;
+}
+
+/* Filter section */
+.pagefind-ui__filter-panel { margin-top: 0.75rem; }
+
+.pagefind-ui__filter-name {
+  font-family: var(--font-display) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-faded) !important;
+}
+
+/* Result card */
+.pagefind-ui__result {
+  border-top: 1px solid var(--p-300) !important;
+  padding: 1rem 0 !important;
+}
+
+.pagefind-ui__result-title {
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+}
+
+.pagefind-ui__result-title a { color: var(--burg) !important; }
+.pagefind-ui__result-title a:hover { color: var(--burg-dark) !important; }
+
+.pagefind-ui__result-excerpt {
+  color: var(--ink-faded) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+/* "Load more" button */
+.pagefind-ui__button {
+  background: transparent !important;
+  border: 1px solid var(--br-mid) !important;
+  color: var(--ink-faded) !important;
+  font-family: var(--font-display) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  padding: 0.4rem 1rem !important;
+  transition: border-color 0.15s, color 0.15s !important;
+}
+
+.pagefind-ui__button:hover {
+  border-color: var(--burg) !important;
+  color: var(--burg) !important;
 }
 
 /* ── Timeline ───────────────────────────────────────────────────── */
