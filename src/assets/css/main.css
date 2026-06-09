@@ -2773,3 +2773,184 @@ hr {
   .dm-char-row__sub { display: none; }
   .dm-char-row__updated { display: none; }
 }
+
+/* ================================================================
+   Horizontal Timeline
+   ================================================================ */
+
+.timeline-h-wrap {
+  padding: 0 0 3rem;
+  overflow: hidden;
+}
+
+.timeline-h {
+  overflow-x: auto;
+  overflow-y: visible;
+  cursor: grab;
+  padding: 6rem 4rem;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--br-mid) transparent;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+}
+
+.timeline-h.is-dragging { cursor: grabbing; }
+
+.timeline-h::-webkit-scrollbar { height: 4px; }
+.timeline-h::-webkit-scrollbar-thumb { background: var(--br-mid); border-radius: 2px; }
+.timeline-h::-webkit-scrollbar-track { background: transparent; }
+
+/* The central horizontal rule */
+.timeline-h__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--br-mid) 4%, var(--br-mid) 96%, transparent);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Flex row of entries — inline so the track fills full width */
+.timeline-h__items {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+/* Each entry is a column: [card | dot | date] or [date | dot | card] */
+.timeline-h__entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 170px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Above variant: card on top, dot in middle, date below */
+.timeline-h__entry--above { flex-direction: column; }
+.timeline-h__entry--above .timeline-h__card { order: 1; margin-bottom: 0.6rem; }
+.timeline-h__entry--above .timeline-h__dot  { order: 2; }
+.timeline-h__entry--above .timeline-h__date { order: 3; margin-top: 0.5rem; }
+
+/* Below variant: date on top, dot in middle, card below */
+.timeline-h__entry--below { flex-direction: column; }
+.timeline-h__entry--below .timeline-h__date { order: 1; margin-bottom: 0.5rem; }
+.timeline-h__entry--below .timeline-h__dot  { order: 2; }
+.timeline-h__entry--below .timeline-h__card { order: 3; margin-top: 0.6rem; }
+
+/* Dot on the track line */
+.timeline-h__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--burg);
+  border: 2px solid var(--p-200);
+  box-shadow: 0 0 0 2px var(--burg);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Connector line from dot to card */
+.timeline-h__entry--above .timeline-h__dot::before,
+.timeline-h__entry--below .timeline-h__dot::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 0.6rem;
+  background: var(--br-mid);
+  margin: 0 auto;
+}
+
+/* Date stamp */
+.timeline-h__date {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--burg);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Card */
+.timeline-h__card {
+  background: var(--p-200);
+  border: 1px solid var(--br-light);
+  border-radius: 2px;
+  padding: 0.65rem 0.75rem;
+  width: 150px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+
+.timeline-h__card:hover { box-shadow: var(--shadow-md); }
+
+.timeline-h__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 0.3rem;
+  line-height: 1.35;
+}
+
+.timeline-h__title:hover { color: var(--burg); }
+
+.timeline-h__snippet {
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Scroll hint */
+.timeline-h__hint {
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  color: var(--ink-ghost);
+  margin-top: 0.25rem;
+  transition: opacity 0.4s;
+}
+
+/* ================================================================
+   Province Graph — tooltip & label additions
+   ================================================================ */
+
+.graph-tooltip__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.graph-tooltip__cat {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-ghost);
+  letter-spacing: 0.05em;
+}
+
+/* Ensure hull paths and SVG labels don't capture pointer events */
+.province-hulls path { pointer-events: none; }
+.province-labels text,
+.province-labels line { pointer-events: none; }
+
+/* ── Graph responsive ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .graph-container { min-height: 400px; }
+}

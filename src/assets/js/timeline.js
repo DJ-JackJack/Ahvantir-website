@@ -1,27 +1,50 @@
-// Timeline page enhancements — animate entries on scroll
 window.addEventListener('DOMContentLoaded', function () {
-  const entries = document.querySelectorAll('.timeline-entry');
-  if (!entries.length) return;
+  var el = document.getElementById('timeline-h');
+  if (!el) return;
 
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(
-      (items) => {
-        items.forEach((item) => {
-          if (item.isIntersecting) {
-            item.target.style.opacity = '1';
-            item.target.style.transform = 'translateX(0)';
-            obs.unobserve(item.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-    );
+  // Scroll to roughly the middle of the timeline on load so earlier history is accessible
+  // (most timelines start at the beginning — leave at 0 unless entries are very short)
 
-    entries.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateX(-16px)';
-      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-      obs.observe(el);
-    });
+  // ── Drag-to-scroll (mouse) ──────────────────────────────────────
+  var isDragging = false;
+  var startX = 0;
+  var scrollOrigin = 0;
+
+  el.addEventListener('mousedown', function (e) {
+    // Ignore clicks on links/buttons inside the cards
+    if (e.target.closest('a, button')) return;
+    isDragging = true;
+    el.classList.add('is-dragging');
+    startX = e.pageX;
+    scrollOrigin = el.scrollLeft;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mouseup', function () {
+    if (!isDragging) return;
+    isDragging = false;
+    el.classList.remove('is-dragging');
+  });
+
+  window.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    var dx = e.pageX - startX;
+    el.scrollLeft = scrollOrigin - dx;
+  });
+
+  // ── Keyboard navigation ─────────────────────────────────────────
+  el.setAttribute('tabindex', '0');
+  el.addEventListener('keydown', function (e) {
+    var step = 240;
+    if (e.key === 'ArrowRight') { el.scrollLeft += step; e.preventDefault(); }
+    if (e.key === 'ArrowLeft')  { el.scrollLeft -= step; e.preventDefault(); }
+  });
+
+  // ── Hide scroll hint once user has scrolled ─────────────────────
+  var hint = document.querySelector('.timeline-h__hint');
+  if (hint) {
+    el.addEventListener('scroll', function () {
+      hint.style.opacity = '0';
+    }, { once: true });
   }
 });

@@ -12,33 +12,40 @@ permalink: /timeline/
   </div>
 </div>
 
-<div class="container timeline-page">
+{% if collections.timeline.length %}
 
-  {% if collections.timeline.length %}
-  <div class="timeline" id="timeline" aria-label="Historical timeline">
-    {% for article in collections.timeline %}
-    <div class="timeline-entry" data-year="{{ article.data.timeline_year }}">
-      <div class="timeline-entry__marker" aria-hidden="true"></div>
-      <div class="timeline-entry__content">
-        <span class="timeline-entry__date">{{ article.data.timeline_date or article.data.timeline_year }}</span>
-        <h3 class="timeline-entry__title">
-          <a href="{{ article.url }}">{{ article.data.title }}</a>
-        </h3>
-        {% if article.data.description %}
-        <p class="timeline-entry__desc">{{ article.data.description }}</p>
-        {% endif %}
+<div class="timeline-h-wrap">
+  <div class="timeline-h" id="timeline-h" aria-label="Historical timeline">
+    <div class="timeline-h__track"></div>
+    <div class="timeline-h__items">
+      {% for article in collections.timeline %}
+      <div class="timeline-h__entry {% if loop.index0 % 2 == 0 %}timeline-h__entry--above{% else %}timeline-h__entry--below{% endif %}"
+           data-year="{{ article.data.timeline_year }}">
+        <div class="timeline-h__card">
+          <a class="timeline-h__title" href="{{ article.url }}">{{ article.data.title }}</a>
+          {% if article.data.description %}
+          <p class="timeline-h__snippet">{{ article.data.description }}</p>
+          {% endif %}
+        </div>
+        <div class="timeline-h__dot"></div>
+        <div class="timeline-h__date">{{ article.data.timeline_date or article.data.timeline_year }}</div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-  {% else %}
+  <p class="timeline-h__hint" aria-hidden="true">⟵ &nbsp; drag or scroll to travel through time &nbsp; ⟶</p>
+</div>
+
+{% else %}
+
+<div class="container">
   <div class="empty-state">
     <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
     <p>No timeline entries yet. Add <code>timeline_year</code> to article frontmatter to populate this page.</p>
   </div>
-  {% endif %}
-
 </div>
+
+{% endif %}
 
 {% block scripts %}
 <script src="/assets/js/timeline.js"></script>
