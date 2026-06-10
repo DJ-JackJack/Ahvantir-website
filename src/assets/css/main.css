@@ -3228,6 +3228,17 @@ hr {
   outline: none;
 }
 
+/* Reset browser button chrome so <button class="messages-convo"> looks identical to the old <li> */
+button.messages-convo {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--br-light);
+}
+
 .messages-convo:hover { background: var(--p-300); }
 .messages-convo:focus-visible { background: var(--p-300); outline: 2px solid var(--burg); outline-offset: -2px; }
 .messages-convo--active { background: var(--p-100); border-left: 3px solid var(--burg); padding-left: calc(1.1rem - 3px); }
@@ -3473,6 +3484,18 @@ hr {
     border-bottom: 1px solid var(--br-mid);
     max-height: 220px;
   }
+}
+
+/* ── Accessibility: visually hidden utility ─────────────────────────────────── */
+/* Hides content visually while keeping it in the accessibility tree. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ── Messaging: send error feedback ────────────────────────────────────────── */

@@ -243,10 +243,12 @@ window.addEventListener('DOMContentLoaded', function () {
         return val === 'all' || d.cat === val ? 1 : 0.1;
       });
 
-      labelLayer.selectAll('text, line').attr('opacity', function () {
-        // labels are in document order matching categories array
-        return 1; // keep all labels visible — they orient the viewer
-      });
+      var statusEl = document.getElementById('graph-filter-status');
+      if (statusEl) {
+        statusEl.textContent = val === 'all'
+          ? 'Showing all categories'
+          : 'Showing: ' + filter.options[filter.selectedIndex].text;
+      }
     });
   }
 });

@@ -135,25 +135,25 @@
       var preview = (c.latest.sender_id === myProfile.id ? 'You: ' : '') +
                     esc(truncate(c.latest.content, 42));
       return (
-        '<li class="messages-convo' + active + '" data-id="' + esc(c.otherId) + '" role="button" tabindex="0">' +
-          '<div class="messages-convo__row">' +
-            '<span class="messages-convo__name">' + esc(other.display_name) + '</span>' +
-            (c.unread > 0
-              ? '<span class="messages-unread-badge" aria-label="' + c.unread + ' unread">' +
-                  (c.unread > 9 ? '9+' : c.unread) + '</span>'
-              : '') +
-            '<span class="messages-convo__time">' + relTime(c.latest.created_at) + '</span>' +
-          '</div>' +
-          '<div class="messages-convo__preview">' + preview + '</div>' +
+        '<li>' +
+          '<button class="messages-convo' + active + '" data-id="' + esc(c.otherId) + '" type="button">' +
+            '<div class="messages-convo__row">' +
+              '<span class="messages-convo__name">' + esc(other.display_name) + '</span>' +
+              (c.unread > 0
+                ? '<span class="messages-unread-badge" aria-label="' + c.unread + ' unread">' +
+                    (c.unread > 9 ? '9+' : c.unread) + '</span>'
+                : '') +
+              '<span class="messages-convo__time">' + relTime(c.latest.created_at) + '</span>' +
+            '</div>' +
+            '<div class="messages-convo__preview">' + preview + '</div>' +
+          '</button>' +
         '</li>'
       );
     }).join('');
 
-    list.querySelectorAll('[data-id]').forEach(function (li) {
-      li.addEventListener('click',   function () { openConversation(li.dataset.id); });
-      li.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') openConversation(li.dataset.id);
-      });
+    // Real <button> elements handle Enter/Space natively — only need click
+    list.querySelectorAll('[data-id]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openConversation(btn.dataset.id); });
     });
   }
 
@@ -176,8 +176,9 @@
       '</div>' +
       '<div class="messages-thread__compose">' +
         '<div id="msg-send-error" class="messages-send-error" hidden></div>' +
+        '<span id="msg-compose-hint" class="sr-only">Press Enter to send. Shift+Enter adds a new line.</span>' +
         '<textarea id="msg-input" class="messages-compose-input"' +
-          ' aria-label="Message text"' +
+          ' aria-label="Message text" aria-describedby="msg-compose-hint"' +
           ' placeholder="Write a message… (Enter to send, Shift+Enter for new line)"' +
           ' rows="2" maxlength="4000"></textarea>' +
         '<button class="btn btn--primary messages-send-btn" id="btn-send-msg">Send</button>' +
@@ -190,6 +191,8 @@
 
     await loadThread(otherId);
     await markRead(otherId);
+    var input = qs('#msg-input');
+    if (input) input.focus();
   }
 
   /* ── Load thread history ─────────────────────────────────────── */
@@ -396,6 +399,10 @@
         '<div id="new-send-error" class="messages-send-error" hidden></div>' +
         '<button class="btn btn--primary" id="btn-send-new">Send Message</button>' +
       '</div>';
+
+    // Move focus to the recipient picker so keyboard users can act immediately
+    var recipientSelect = qs('#new-recipient');
+    if (recipientSelect) recipientSelect.focus();
 
     qs('#btn-send-new').addEventListener('click', async function () {
       var recipientId = qs('#new-recipient').value;
