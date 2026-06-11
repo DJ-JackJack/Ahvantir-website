@@ -78,10 +78,8 @@
     });
     if (result.error) {
       showStatus(result.error.message, 'error');
-    } else if (result.data.session) {
-      location.replace('/player/dashboard/');
     } else {
-      showStatus('Confirmation email sent to ' + email + '. Check your inbox (and spam folder), then return here to sign in.', 'info');
+      location.replace('/player/dashboard/');
     }
   });
 })();
