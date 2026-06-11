@@ -67,9 +67,7 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
   </div>
 </section>
 
-<script>
-window.__CRYPTEX_ARTICLES__ = [{% for article in collections.allArticles %}{% if not loop.first %},{% endif %}{"title":{{ article.data.title | jsonscript | safe }},"url":"{{ article.url }}"}{% endfor %}];
-</script>
+<script type="application/json" id="cryptex-data">[{% for article in collections.allArticles %}{% if not loop.first %},{% endif %}{"title":{{ article.data.title | jsonscript | safe }},"url":"{{ article.url }}"}{% endfor %}]</script>
 <script src="/assets/js/cryptex.js"></script>
 
 <section class="home-categories">

@@ -272,7 +272,7 @@ def write_sync_log(added: list, updated: list, log_lines: list):
     now   = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     log_path = log_dir / f"{today}.md"
 
-    lines = [f"# Ahvantir Vault Sync — {now}", "", "## Summary", ""]
+    lines = ["<!-- ahvantir-sync-log-v1 -->", "", f"# Ahvantir Vault Sync — {now}", "", "## Summary", ""]
     total = len(added) + len(updated)
     if total:
         lines.append(f"{total} article(s) changed in this sync.")
@@ -299,7 +299,7 @@ def write_sync_log(added: list, updated: list, log_lines: list):
 def main():
     if not VAULT_PATH:
         print("OBSIDIAN_VAULT_PATH not set — nothing to sync.", file=sys.stderr)
-        sys.exit(0)
+        sys.exit(1)
 
     vault = Path(VAULT_PATH)
     if not vault.exists():
@@ -316,6 +316,7 @@ def main():
     added = []
     updated = []
     skipped = errors = 0
+    slug_map = {}  # slug -> source filename; detect collisions across this run
     log_lines = [f"Found {len(md_files)} markdown files (after folder exclusions)."]
 
     for src in sorted(md_files):
@@ -333,6 +334,15 @@ def main():
             continue
 
         slug, content = result
+
+        if slug in slug_map:
+            msg = f"WARN slug collision: '{slug}' claimed by both '{slug_map[slug]}' and '{src.name}' — skipping '{src.name}'"
+            print(msg, file=sys.stderr)
+            log_lines.append(msg)
+            errors += 1
+            continue
+        slug_map[slug] = src.name
+
         dest = OUTPUT_DIR / f"{slug}.md"
 
         if dest.exists() and dest.read_text(encoding="utf-8") == content:

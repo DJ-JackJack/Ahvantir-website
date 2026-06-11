@@ -132,6 +132,25 @@ module.exports = function (eleventyConfig) {
       .replace(/>/g, "\\u003e")
       .replace(/&/g, "\\u0026")
   );
+  // Safe JSON for the relationship graph: serialises nodes+links from collections
+  eleventyConfig.addFilter("graphJson", function (collections) {
+    const nodes = (collections.allArticles || []).map((a) => ({
+      id: a.url,
+      title: a.data.title || a.fileSlug,
+      url: a.url,
+      category: a.data.category || "uncategorized",
+    }));
+    const links = [];
+    for (const article of collections.withBacklinks || []) {
+      for (const bl of article.data.backlinks || []) {
+        links.push({ source: bl.url, target: article.url });
+      }
+    }
+    return JSON.stringify({ nodes, links })
+      .replace(/</g, "\\u003c")
+      .replace(/>/g, "\\u003e")
+      .replace(/&/g, "\\u0026");
+  });
   eleventyConfig.addFilter("articleUrl", (title) => `/articles/${toSlug(title)}/`);
   eleventyConfig.addFilter("dateDisplay", (date) => {
     if (!date) return "";

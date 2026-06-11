@@ -1,4 +1,8 @@
 module.exports = {
+  supabase: {
+    url: 'https://fbfqeijisvckwmkqzjtd.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiZnFlaWppc3Zja3dta3F6anRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3OTI4MzMsImV4cCI6MjA5NjM2ODgzM30.UzGAdE12QnFEKvsTsuA2UiiV-1qUu0f0b_VQUMCdXnI',
+  },
   site: {
     title: "Ahvantir",
     subtitle: "A Living World",

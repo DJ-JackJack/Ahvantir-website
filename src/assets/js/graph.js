@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
-  var data = window.__GRAPH_DATA__;
+  var _graphEl = document.getElementById('graph-data');
+  var data = _graphEl ? JSON.parse(_graphEl.textContent) : window.__GRAPH_DATA__;
   var container = document.getElementById('graph-container');
   if (!data || !container || typeof d3 === 'undefined') return;
 

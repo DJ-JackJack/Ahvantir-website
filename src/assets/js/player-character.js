@@ -527,7 +527,7 @@
         ? '<label class="gallery-empty-cta" for="gallery-file-input">' +
             '<span class="gallery-empty-cta__icon">+</span>' +
             '<span class="gallery-empty-cta__text">Upload your first portrait</span>' +
-            '<span class="gallery-empty-cta__sub">JPG, PNG, GIF or WebP · max 8 MB</span>' +
+            '<span class="gallery-empty-cta__sub">JPG, PNG, GIF or WebP · max 5 MB</span>' +
           '</label>'
         : '<span class="gallery-empty">No images uploaded yet.</span>';
       return;
@@ -718,7 +718,7 @@
 
   async function uploadImage(file) {
     if (!charId) { setStatus('Save the character first, then upload images.', 'error'); return; }
-    if (file.size > 8 * 1024 * 1024) { setStatus('Image must be under 8 MB.', 'error'); return; }
+    if (file.size > 5 * 1024 * 1024) { setStatus('Image must be under 5 MB.', 'error'); return; }
 
     setStatus('Uploading image…', 'info');
     var ext  = file.name.split('.').pop().toLowerCase();

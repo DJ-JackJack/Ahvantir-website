@@ -33,7 +33,8 @@
   function seqKey(arr) { return arr[0] + ',' + arr[1] + ',' + arr[2]; }
 
   function buildMap() {
-    var articles = window.__CRYPTEX_ARTICLES__ || [];
+    var _el = document.getElementById('cryptex-data');
+    var articles = _el ? JSON.parse(_el.textContent) : (window.__CRYPTEX_ARTICLES__ || []);
     for (var i = 0; i < articles.length; i++) {
       var a = articles[i];
       if (!a.title) continue;

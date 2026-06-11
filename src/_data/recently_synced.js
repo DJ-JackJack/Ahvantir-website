@@ -6,6 +6,7 @@ const fs   = require('fs');
 const path = require('path');
 
 const LOG_DIR = path.join(__dirname, '../../sync-logs');
+const FORMAT_MARKER = 'ahvantir-sync-log-v1';
 
 module.exports = function () {
   try {
@@ -18,6 +19,11 @@ module.exports = function () {
 
     const latestDate = files[0].replace('.md', '');
     const content    = fs.readFileSync(path.join(LOG_DIR, files[0]), 'utf8');
+
+    if (!content.includes(FORMAT_MARKER)) {
+      console.error('[recently_synced] WARNING: ' + files[0] + ' is missing the format version marker — skipping parse');
+      return empty();
+    }
 
     const added   = [];
     const updated = [];

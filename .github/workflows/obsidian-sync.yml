@@ -53,6 +53,8 @@ jobs:
           New-Item -ItemType Directory -Force -Path sync-logs | Out-Null
 
           $logLines = [System.Collections.Generic.List[string]]::new()
+          $logLines.Add("<!-- ahvantir-sync-log-v1 -->")
+          $logLines.Add("")
           $logLines.Add("# Ahvantir Vault Sync — $datetime")
           $logLines.Add("")
           $logLines.Add("**Run:** [Actions #$env:GITHUB_RUN_NUMBER]($env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID)")

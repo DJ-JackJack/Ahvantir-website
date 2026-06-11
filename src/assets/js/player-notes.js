@@ -46,7 +46,7 @@
             '<li class="notes-list__empty">Loading…</li>' +
           '</ul>' +
           '<div class="notes-sidebar__footer">' +
-            '<button class="btn btn--ghost btn--sm" onclick="window.playerSignOut()">Sign Out</button>' +
+            '<button class="btn btn--ghost btn--sm" id="btn-signout" type="button">Sign Out</button>' +
           '</div>' +
         '</aside>' +
         '<main class="notes-editor" id="notes-editor">' +
@@ -55,6 +55,7 @@
       '</div>';
 
     qs('#btn-new-note').addEventListener('click', newNote);
+    qs('#btn-signout').addEventListener('click', function () { window.playerSignOut(); });
   }
 
   /* ── Load all notes (titles only) ───────────────────────── */
@@ -179,7 +180,12 @@
   /* ── Delete note ─────────────────────────────────────────── */
   async function deleteNote(id) {
     if (!confirm('Delete this note? This cannot be undone.')) return;
-    await db.from('campaign_notes').delete().eq('id', id);
+    var result = await db.from('campaign_notes').delete().eq('id', id);
+    if (result.error) {
+      var status = qs('#note-status');
+      if (status) { status.textContent = 'Delete failed — try again.'; status.className = 'note-status note-status--error'; }
+      return;
+    }
     notes = notes.filter(function (n) { return n.id !== id; });
     activeNoteId = null;
     renderList();

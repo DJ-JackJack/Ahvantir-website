@@ -34,24 +34,7 @@ permalink: /graph/
   <div id="graph-tooltip" class="graph-tooltip" role="tooltip" aria-live="polite"></div>
 </div>
 
-<script>
-  window.__GRAPH_DATA__ = {
-    nodes: [
-      {% for article in collections.allArticles %}
-      {
-        id: "{{ article.url }}",
-        title: {{ article.data.title | jsonscript | safe }},
-        url: "{{ article.url }}",
-        category: "{{ article.data.category or 'uncategorized' }}"
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
-    ],
-    links: [
-      {% for article in collections.withBacklinks %}{% for bl in article.data.backlinks %}{ source: "{{ bl.url }}", target: "{{ article.url }}" },
-      {% endfor %}{% endfor %}
-    ]
-  };
-</script>
+<script type="application/json" id="graph-data">{{ collections | graphJson | safe }}</script>
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>

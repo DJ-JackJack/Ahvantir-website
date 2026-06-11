@@ -9,9 +9,10 @@
 (function () {
   'use strict';
 
-  var SUPABASE_URL  = 'https://fbfqeijisvckwmkqzjtd.supabase.co';
-  var SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiZnFlaWppc3Zja3dta3F6anRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3OTI4MzMsImV4cCI6MjA5NjM2ODgzM30.UzGAdE12QnFEKvsTsuA2UiiV-1qUu0f0b_VQUMCdXnI';
-  var SESSION_KEY   = 'sb-fbfqeijisvckwmkqzjtd-auth-token';
+  var SUPABASE_URL = document.querySelector('meta[name="supabase-url"]').content;
+  var SUPABASE_KEY = document.querySelector('meta[name="supabase-anon-key"]').content;
+  var _ref = SUPABASE_URL.replace('https://', '').split('.')[0];
+  var SESSION_KEY  = 'sb-' + _ref + '-auth-token';
 
   document.addEventListener('DOMContentLoaded', function () {
     // Non-blocking — we don't want a failed query to affect article reading
