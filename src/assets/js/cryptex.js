@@ -161,7 +161,7 @@
       recordDiscovery(article);
     } else {
       playGrind(0.4, 85);
-      setResult('<span class="cryptex-unmapped">This sequence is not yet mapped by the Cryptex.</span>', 'unmapped');
+      setResult('<span class="cryptex-unmapped">This sequence is not yet mapped by the Cryptex. Adjust the runes, or <a href="/articles/">browse all articles</a>.</span>', 'unmapped');
     }
   }
 
@@ -188,6 +188,7 @@
       seq:   current.map(function (i) { return RUNES[i]; }).join(''),
       date:  new Date().toISOString().slice(0, 10)
     });
+    if (list.length > 100) list = list.slice(0, 100);
     saveDisc(list);
     renderDiscoveries();
   }
@@ -197,7 +198,7 @@
     var toggle = qs('.discoveries-toggle');
     var ul     = qs('.discoveries-list');
     if (!toggle || !ul) return;
-    toggle.textContent = 'Discoveries (' + list.length + ')';
+    toggle.textContent = 'Your Discoveries (' + list.length + ')';
     if (!list.length) {
       ul.innerHTML = '<li class="discoveries-empty">No sequences unlocked yet.</li>';
       return;

@@ -9,7 +9,9 @@
 
     var profile = await window.getProfile();
     if (!profile || !profile.is_dm) {
-      location.replace('/player/dashboard/');
+      var appEl = document.getElementById('dm-app');
+      if (appEl) appEl.innerHTML = '<p class="player-error">DM access is required to view this page. Redirecting to your dashboard…</p>';
+      setTimeout(function () { location.replace('/player/dashboard/'); }, 2500);
       return;
     }
 

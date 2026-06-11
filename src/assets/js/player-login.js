@@ -74,7 +74,7 @@
     } else if (result.data.session) {
       location.replace('/player/dashboard/');
     } else {
-      showStatus('Check your email to confirm your account, then sign in.', 'info');
+      showStatus('Confirmation email sent to ' + email + '. Check your inbox (and spam folder), then return here to sign in.', 'info');
     }
   });
 })();

@@ -61,7 +61,7 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
     <div id="cryptex-result" class="cryptex-result" aria-live="polite"></div>
 
     <div class="cryptex-discoveries" id="cryptex-discoveries">
-      <button class="discoveries-toggle" type="button" aria-expanded="false">Discoveries (0)</button>
+      <button class="discoveries-toggle" type="button" aria-expanded="false" title="Rune sequences you have unlocked">Your Discoveries (0)</button>
       <ul class="discoveries-list" role="list"></ul>
     </div>
   </div>
@@ -109,6 +109,14 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
     <div class="home-recent__more">
       <a href="/articles/" class="btn btn--ghost">View All Articles</a>
     </div>
+  </div>
+</section>
+{% else %}
+<section class="home-recent">
+  <div class="container">
+    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
+    <h2 class="section-title">Recent Articles</h2>
+    <p class="home-empty">No articles yet. Add markdown files to <code>src/articles/</code> to see them here.</p>
   </div>
 </section>
 {% endif %}

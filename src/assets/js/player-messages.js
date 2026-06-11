@@ -153,7 +153,7 @@
     if (!list) return;
 
     if (!conversations.length) {
-      list.innerHTML = '<li class="messages-list-empty">No messages yet. Start a new conversation!</li>';
+      list.innerHTML = '<li class="messages-list-empty">No messages yet — click <strong>+ New</strong> to start a conversation.</li>';
       return;
     }
 
@@ -378,6 +378,10 @@
     });
     window.addEventListener('online', function () { scheduleRefresh(); });
   }
+
+  window.addEventListener('beforeunload', function () {
+    if (realtimeChannel) db.removeChannel(realtimeChannel);
+  });
 
   async function handleIncoming(msg) {
     // Lazy-fetch sender if they registered after this page loaded (D7)

@@ -26,7 +26,11 @@
     });
   }
 
-  input.addEventListener('input', applyFilters);
+  var filterTimeout = null;
+  input.addEventListener('input', function () {
+    clearTimeout(filterTimeout);
+    filterTimeout = setTimeout(applyFilters, 200);
+  });
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
