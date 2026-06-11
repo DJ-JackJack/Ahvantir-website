@@ -4,7 +4,7 @@ layout: base
 <article class="article"
   data-pagefind-body
   {% if category %}data-pagefind-filter="category:{{ category | capitalize }}"{% endif %}>
-  {{/* Pagefind metadata — each key needs its own element; duplicate attrs on one element are dropped by the HTML parser */}}
+  {# Pagefind metadata — each key needs its own element; duplicate attrs on one element are dropped by the HTML parser #}
   <span hidden data-pagefind-meta="title:{{ title }}"></span>
   {% if tags %}<span hidden data-pagefind-meta="tags:{{ tags | join(', ') }}"></span>{% endif %}
 

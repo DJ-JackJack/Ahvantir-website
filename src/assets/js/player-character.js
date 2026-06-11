@@ -544,15 +544,23 @@
             'data-img-id="' + esc(row.id) + '"' +
             (isOwner ? ' draggable="true"' : '') + '>' +
           (isOwner
-            ? '<span class="gallery-item__handle" aria-hidden="true" title="Drag to reorder">⠿</span>'
+            ? '<span class="gallery-item__handle" aria-hidden="true" title="Drag to reorder">⠷</span>'
             : '') +
           (idx === 0
             ? '<span class="gallery-item__portrait-badge">Portrait</span>'
             : '') +
           '<img src="' + esc(src) + '" alt="' + esc(row.caption || 'Character image') + '" loading="lazy">' +
+          (isOwner
+            ? '<div class="gallery-item__reorder">' +
+                '<button class="gallery-item__move gallery-item__move--up" type="button" ' +
+                    'aria-label="Move image up">↑</button>' +
+                '<button class="gallery-item__move gallery-item__move--down" type="button" ' +
+                    'aria-label="Move image down">↓</button>' +
+              '</div>'
+            : '') +
           (canDelete
             ? '<button class="gallery-item__delete" type="button" title="Delete" ' +
-                'data-img-id="' + esc(row.id) + '" data-path="' + esc(row.storage_path) + '">✕</button>'
+                'data-img-id="' + esc(row.id) + '" data-path="' + esc(row.storage_path) + '">×</button>'
             : '') +
         '</div>'
       );
@@ -564,28 +572,7 @@
     }
     grid.innerHTML = htmlItems.join('');
 
-    grid.querySelectorAll('.gallery-item img').forEach(function (img) {
-      img.addEventListener('click', function () { openLightbox(img.src, img.alt, img); });
-    });
-
-    if (canDelete) {
-      grid.querySelectorAll('.gallery-item__delete').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          deleteImage(btn.dataset.imgId, btn.dataset.path, id, isOwner, isDM);
-        });
-      });
-    }
-
-    if (isOwner && rows.length > 1) {
-      attachDragSort(grid);
-    }
-  }
-
-  /* ── Drag-to-reorder portrait gallery ───────────────────────── */
-  function attachDragSort(grid) {
-    var dragSrc = null;
-
+    // ── Helpers shared by drag-sort and keyboard move buttons ────
     function sortableItems() {
       return Array.from(grid.querySelectorAll('.gallery-item[draggable]'));
     }
@@ -599,11 +586,21 @@
             badge.className = 'gallery-item__portrait-badge';
             badge.setAttribute('aria-hidden', 'true');
             badge.textContent = 'Portrait';
-            el.insertBefore(badge, el.firstChild.nextSibling); // after handle
+            el.insertBefore(badge, el.firstChild.nextSibling);
           }
         } else if (badge) {
           badge.remove();
         }
+      });
+    }
+
+    function updateMoveButtons() {
+      var items = sortableItems();
+      items.forEach(function (el, idx) {
+        var up = el.querySelector('.gallery-item__move--up');
+        var dn = el.querySelector('.gallery-item__move--down');
+        if (up) up.disabled = (idx === 0);
+        if (dn) dn.disabled = (idx === items.length - 1);
       });
     }
 
@@ -620,6 +617,55 @@
       setStatus('Portrait order saved ✓', 'ok');
       setTimeout(function () { setStatus('', ''); }, 1800);
     }
+
+    // ── Keyboard reorder buttons ─────────────────────────────────
+    if (isOwner) {
+      updateMoveButtons();
+      grid.addEventListener('click', function (e) {
+        var upBtn = e.target.closest('.gallery-item__move--up');
+        var dnBtn = e.target.closest('.gallery-item__move--down');
+        var btn   = upBtn || dnBtn;
+        if (!btn) return;
+        e.stopPropagation();
+        var item = btn.closest('.gallery-item');
+        if (!item) return;
+        if (upBtn && item.previousElementSibling) {
+          grid.insertBefore(item, item.previousElementSibling);
+        } else if (dnBtn && item.nextElementSibling) {
+          grid.insertBefore(item.nextElementSibling, item);
+        } else {
+          return;
+        }
+        syncPortraitBadge();
+        updateMoveButtons();
+        persistOrder().catch(function () {
+          setStatus('Could not save order — try again.', 'error');
+        });
+      });
+    }
+
+    // ── Image click → lightbox ───────────────────────────────────
+    grid.querySelectorAll('.gallery-item img').forEach(function (img) {
+      img.addEventListener('click', function () { openLightbox(img.src, img.alt, img); });
+    });
+
+    if (canDelete) {
+      grid.querySelectorAll('.gallery-item__delete').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          deleteImage(btn.dataset.imgId, btn.dataset.path, id, isOwner, isDM);
+        });
+      });
+    }
+
+    if (isOwner && htmlItems.length > 1) {
+      attachDragSort(grid, sortableItems, syncPortraitBadge, persistOrder);
+    }
+  }
+
+  /* ── Drag-to-reorder portrait gallery ───────────────────────── */
+  function attachDragSort(grid, sortableItems, syncPortraitBadge, persistOrder) {
+    var dragSrc = null;
 
     grid.addEventListener('dragstart', function (e) {
       var item = e.target.closest('.gallery-item[draggable]');
