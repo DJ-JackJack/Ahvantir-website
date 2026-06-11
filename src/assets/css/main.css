@@ -1551,6 +1551,7 @@ hr {
   color: var(--ink-soft);
 }
 .form-label__hint { font-size: 0.75rem; color: var(--ink-ghost); font-family: var(--font-body); font-style: italic; }
+.form-hint { display: block; margin-top: 0.3rem; font-size: 0.8rem; color: var(--ink-soft); font-family: var(--font-body); }
 .form-input {
   width: 100%;
   padding: 0.55rem 0.75rem;

@@ -8,6 +8,8 @@
   var currentProfile = null;
   var isNew = false;
   var charId = null;
+  var dirty = false;
+  var deleteStep = 0;
 
   function qs(sel) { return document.querySelector(sel); }
 
@@ -294,6 +296,8 @@
     return '<div id="lore-links-list">' + items.join('') + '</div>';
   }
 
+  function markDirty() { dirty = true; }
+
   /* ── Listeners ───────────────────────────────────────────── */
   function attachListeners(canEdit, isOwner, isDM) {
     if (!canEdit) return;
@@ -303,6 +307,22 @@
 
     var delBtn = qs('#btn-delete');
     if (delBtn) delBtn.addEventListener('click', deleteCharacter);
+
+    // Dirty tracking — warn before navigating away with unsaved changes
+    ['f-name','f-race','f-class','f-subclass','f-level','f-background','f-alignment',
+     'f-backstory','f-appearance','f-traits','f-ideals','f-bonds','f-flaws','f-public'
+    ].forEach(function (id) {
+      var el = qs('#' + id);
+      if (el) el.addEventListener('input', markDirty);
+      if (el) el.addEventListener('change', markDirty);
+    });
+
+    window.addEventListener('beforeunload', function (e) {
+      if (dirty) {
+        e.preventDefault();
+        e.returnValue = 'You have unsaved changes. Leave anyway?';
+      }
+    });
 
     var addLoreBtn = qs('#btn-add-lore');
     if (addLoreBtn) addLoreBtn.addEventListener('click', addLoreLink);
@@ -410,17 +430,45 @@
     if (result.error) {
       setStatus('Error: ' + result.error.message, 'error');
     } else {
+      dirty = false;
       setStatus('Saved ✓', 'ok');
       setTimeout(function () { setStatus('', ''); }, 3000);
     }
   }
 
-  /* ── Delete ──────────────────────────────────────────────── */
+  /* ── Delete (two-step inline confirmation) ───────────────── */
   async function deleteCharacter() {
     if (!charId) { location.href = '/player/dashboard/'; return; }
-    if (!confirm('Delete this character? This cannot be undone.')) return;
+
+    if (deleteStep === 0) {
+      deleteStep = 1;
+      var btn = qs('#btn-delete');
+      if (btn) {
+        btn.textContent = 'Yes, delete';
+        var cancel = document.createElement('button');
+        cancel.className = 'btn btn--ghost';
+        cancel.type = 'button';
+        cancel.id = 'btn-delete-cancel';
+        cancel.textContent = 'Cancel';
+        btn.insertAdjacentElement('afterend', cancel);
+        cancel.addEventListener('click', resetDeleteStep);
+        setTimeout(resetDeleteStep, 6000);
+      }
+      return;
+    }
+
+    deleteStep = 0;
+    dirty = false;
     await db.from('characters').delete().eq('id', charId);
     location.href = '/player/dashboard/';
+  }
+
+  function resetDeleteStep() {
+    deleteStep = 0;
+    var btn = qs('#btn-delete');
+    if (btn) btn.textContent = 'Delete';
+    var cancel = qs('#btn-delete-cancel');
+    if (cancel) cancel.remove();
   }
 
   /* ── Save secret ─────────────────────────────────────────── */

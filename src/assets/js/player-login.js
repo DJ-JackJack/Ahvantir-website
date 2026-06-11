@@ -41,11 +41,16 @@
     el.textContent = '';
   }
 
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
   // Sign in
   document.getElementById('form-signin').addEventListener('submit', async function (e) {
     e.preventDefault();
     var email    = document.getElementById('signin-email').value.trim();
     var password = document.getElementById('signin-password').value;
+    if (!email)               { showStatus('Please enter your email address.', 'error'); return; }
+    if (!isValidEmail(email)) { showStatus('Please enter a valid email address.', 'error'); return; }
+    if (!password)            { showStatus('Please enter your password.', 'error'); return; }
     showStatus('Signing in…', 'info');
     var result = await db.auth.signInWithPassword({ email: email, password: password });
     if (result.error) {
@@ -61,8 +66,10 @@
     var name     = document.getElementById('reg-name').value.trim();
     var email    = document.getElementById('reg-email').value.trim();
     var password = document.getElementById('reg-password').value;
-    if (!name)   { showStatus('Please enter a display name.', 'error'); return; }
-    if (password.length < 8) { showStatus('Password must be at least 8 characters.', 'error'); return; }
+    if (!name)                { showStatus('Please enter a display name.', 'error'); return; }
+    if (!email)               { showStatus('Please enter your email address.', 'error'); return; }
+    if (!isValidEmail(email)) { showStatus('Please enter a valid email address.', 'error'); return; }
+    if (password.length < 8)  { showStatus('Password must be at least 8 characters.', 'error'); return; }
     showStatus('Creating account…', 'info');
     var result = await db.auth.signUp({
       email: email,
