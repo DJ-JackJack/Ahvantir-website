@@ -56,11 +56,16 @@ permalink: /player/login/
   'use strict';
   var db = window.__supabase;
 
-  // Already signed in? Go straight to dashboard (or ?next= destination)
+  // Already signed in? Go straight to dashboard (or ?next= destination).
+  // Validate next= is a relative path (starts with / but not //) to prevent open redirects.
+  function safeNext(params) {
+    var n = params.get('next') || '';
+    return (n && /^\/(?!\/)/.test(n)) ? n : '/player/dashboard/';
+  }
+
   db.auth.getSession().then(function (r) {
     if (r.data.session) {
-      var params = new URLSearchParams(location.search);
-      location.replace(params.get('next') || '/player/dashboard/');
+      location.replace(safeNext(new URLSearchParams(location.search)));
     }
   });
 
@@ -99,8 +104,7 @@ permalink: /player/login/
     if (result.error) {
       showStatus(result.error.message, 'error');
     } else {
-      var params = new URLSearchParams(location.search);
-      location.replace(params.get('next') || '/player/dashboard/');
+      location.replace(safeNext(new URLSearchParams(location.search)));
     }
   });
 

@@ -116,6 +116,14 @@ module.exports = function (eleventyConfig) {
   // Filters
   eleventyConfig.addFilter("toSlug", toSlug);
   eleventyConfig.addFilter("joinSlugs", (arr) => (arr || []).map(toSlug).join(" "));
+  // Safe JSON for embedding in <script> blocks: encode <, >, & as Unicode escapes
+  // so </script> sequences in string values can never terminate the script element.
+  eleventyConfig.addFilter("jsonscript", (val) =>
+    JSON.stringify(val)
+      .replace(/</g, "\\u003c")
+      .replace(/>/g, "\\u003e")
+      .replace(/&/g, "\\u0026")
+  );
   eleventyConfig.addFilter("articleUrl", (title) => `/articles/${toSlug(title)}/`);
   eleventyConfig.addFilter("dateDisplay", (date) => {
     if (!date) return "";

@@ -40,7 +40,7 @@ permalink: /graph/
       {% for article in collections.allArticles %}
       {
         id: "{{ article.url }}",
-        title: {{ article.data.title | dump | safe }},
+        title: {{ article.data.title | jsonscript | safe }},
         url: "{{ article.url }}",
         category: "{{ article.data.category or 'uncategorized' }}"
       }{% if not loop.last %},{% endif %}
