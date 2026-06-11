@@ -48,6 +48,7 @@ permalink: /articles/
          class="article-card"
          data-category="{{ article.data.category }}"
          data-tags="{{ article.data.tags | join(' ') }}"
+         data-tag-slugs="{{ article.data.tags | joinSlugs }}"
          data-title="{{ article.data.title | lower }}">
         <h3 class="article-card__title">{{ article.data.title }}</h3>
         {% if article.data.description %}
@@ -129,5 +130,22 @@ permalink: /articles/
       applyFilters();
     });
   });
+
+  // Support tag deep-links: /articles/#tag-<slug>
+  // Article tag links use this pattern; without a handler the fragment goes nowhere.
+  const hash = location.hash;
+  if (hash && hash.startsWith('#tag-')) {
+    const tagSlug = hash.slice(5);
+    sections.forEach(sec => {
+      let visible = 0;
+      sec.querySelectorAll('.article-card').forEach(card => {
+        const slugs = (card.dataset.tagSlugs || '').split(' ');
+        const show = slugs.includes(tagSlug);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      sec.style.display = visible ? '' : 'none';
+    });
+  }
 })();
 </script>

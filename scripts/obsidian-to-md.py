@@ -63,7 +63,7 @@ CATEGORY_MAP = {
 
 def slugify(title: str) -> str:
     slug = title.lower()
-    slug = re.sub(r"['''’]", "", slug)
+    slug = re.sub(r"['‘’]", "", slug)
     slug = re.sub(r"[^a-z0-9]+", "-", slug)
     return slug.strip("-")
 

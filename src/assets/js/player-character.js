@@ -103,6 +103,11 @@
     var section = qs('#secret-section');
     if (!section) return;
 
+    if (result.error) {
+      section.innerHTML = '<p class="player-error">Could not load hidden background.</p>';
+      section.classList.remove('hidden');
+      return;
+    }
     if (result.data) {
       var ta = qs('#secret-content');
       if (ta) ta.value = result.data.content || '';
@@ -529,9 +534,10 @@
     }
 
     var canDelete = isOwner || isDM;
-    var html = await Promise.all(rows.map(async function (row, idx) {
+    var htmlItems = (await Promise.all(rows.map(async function (row, idx) {
       var signed = await db.storage.from('character-images').createSignedUrl(row.storage_path, 3600);
-      var src = signed.data ? signed.data.signedUrl : '';
+      if (signed.error || !signed.data) return null;
+      var src = signed.data.signedUrl;
       return (
         '<div class="gallery-item' + (isOwner ? ' gallery-item--sortable' : '') + '" ' +
             'data-path="' + esc(row.storage_path) + '" ' +
@@ -550,12 +556,16 @@
             : '') +
         '</div>'
       );
-    }));
+    }))).filter(Boolean);
 
-    grid.innerHTML = html.join('');
+    if (!htmlItems.length) {
+      grid.innerHTML = '<span class="gallery-empty">Could not load images — try refreshing.</span>';
+      return;
+    }
+    grid.innerHTML = htmlItems.join('');
 
     grid.querySelectorAll('.gallery-item img').forEach(function (img) {
-      img.addEventListener('click', function () { openLightbox(img.src, img.alt); });
+      img.addEventListener('click', function () { openLightbox(img.src, img.alt, img); });
     });
 
     if (canDelete) {
@@ -599,11 +609,14 @@
 
     async function persistOrder() {
       var items = sortableItems();
-      await Promise.all(items.map(function (el, idx) {
+      var results = await Promise.all(items.map(function (el, idx) {
         return db.from('character_images')
           .update({ sort_order: idx })
           .eq('id', el.dataset.imgId);
       }));
+      if (results.some(function (r) { return r.error; })) {
+        throw new Error('one or more sort_order updates failed');
+      }
       setStatus('Portrait order saved ✓', 'ok');
       setTimeout(function () { setStatus('', ''); }, 1800);
     }
@@ -683,22 +696,61 @@
 
   async function deleteImage(imgId, storagePath, id, isOwner, isDM) {
     if (!confirm('Delete this image? This cannot be undone.')) return;
-    await db.storage.from('character-images').remove([storagePath]);
-    await db.from('character_images').delete().eq('id', imgId);
+    var del1 = await db.storage.from('character-images').remove([storagePath]);
+    var del2 = await db.from('character_images').delete().eq('id', imgId);
+    if (del1.error || del2.error) {
+      setStatus('Delete failed — please try again.', 'error');
+      return;
+    }
     loadGallery(id, isOwner, isDM);
   }
 
-  function openLightbox(src, alt) {
+  function openLightbox(src, alt, triggerEl) {
     var existing = qs('.gallery-lightbox');
     if (existing) existing.remove();
+
     var lb = document.createElement('div');
     lb.className = 'gallery-lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', alt || 'Image preview');
+
     lb.innerHTML =
-      '<button class="gallery-lightbox__close" type="button" aria-label="Close">×</button>' +
+      '<button class="gallery-lightbox__close" type="button" aria-label="Close lightbox">\xd7</button>' +
       '<img src="' + esc(src) + '" alt="' + esc(alt) + '">';
-    lb.addEventListener('click', function () { lb.remove(); });
+
+    function close() {
+      lb.remove();
+      document.removeEventListener('keydown', onKeydown);
+      if (triggerEl) triggerEl.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        var focusable = Array.from(lb.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )).filter(function (el) { return !el.disabled; });
+        if (!focusable.length) { e.preventDefault(); return; }
+        var first = focusable[0];
+        var last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      }
+    }
+
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb) close();
+    });
+    lb.querySelector('.gallery-lightbox__close').addEventListener('click', close);
     lb.querySelector('img').addEventListener('click', function (e) { e.stopPropagation(); });
+
+    document.addEventListener('keydown', onKeydown);
     document.body.appendChild(lb);
+    lb.querySelector('.gallery-lightbox__close').focus();
   }
 
   function setStatus(msg, type) {

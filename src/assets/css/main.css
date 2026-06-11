@@ -992,6 +992,12 @@ hr {
   font-style: italic;
 }
 
+.search-error {
+  color: var(--terra);
+  padding: 2rem 0;
+  font-style: italic;
+}
+
 /* ── Pagefind UI — parchment theme overrides ─────────────────── */
 :root {
   --pagefind-ui-scale: 1;

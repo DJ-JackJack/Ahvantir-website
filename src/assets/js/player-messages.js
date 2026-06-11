@@ -11,6 +11,7 @@
   var realtimeChannel  = null;
   var resubscribeTimer = null;
   var resubscribeDelay = 1000;   // ms; doubles on each failure, capped at 30s
+  var refreshTimer     = null;   // debounce handle for scheduleRefresh()
 
   function qs(sel) { return document.querySelector(sel); }
   function esc(str) {
@@ -56,13 +57,31 @@
 
     // Support ?with=UUID deep-link
     var withId = new URLSearchParams(location.search).get('with');
-    if (withId && profileMap[withId]) openConversation(withId);
+    if (withId) {
+      if (!profileMap[withId]) await ensureProfile(withId);
+      if (profileMap[withId]) {
+        openConversation(withId);
+      } else {
+        var thread = qs('#messages-thread');
+        if (thread) thread.innerHTML =
+          '<div class="messages-thread__placeholder">' +
+            '<p class="player-error">Could not find the player for this conversation link.</p>' +
+          '</div>';
+      }
+    }
   });
 
   /* ── Load all player profiles (for names + recipient picker) ── */
   async function loadProfiles() {
     var res = await db.from('profiles').select('id, display_name');
     (res.data || []).forEach(function (p) { profileMap[p.id] = p; });
+  }
+
+  /* ── Lazy-fetch a single profile not yet in profileMap (D7) ─── */
+  async function ensureProfile(id) {
+    if (profileMap[id]) return;
+    var res = await db.from('profiles').select('id, display_name').eq('id', id).single();
+    if (res.data) profileMap[id] = res.data;
   }
 
   /* ── Static shell ────────────────────────────────────────────── */
@@ -115,8 +134,17 @@
       return new Date(b.latest.created_at) - new Date(a.latest.created_at);
     });
 
+    // Ensure every conversation partner has a name even if they registered after boot (D7)
+    await Promise.all(Object.keys(grouped).map(ensureProfile));
+
     renderConvoList();
     window.loadUnreadBadge && window.loadUnreadBadge();
+  }
+
+  /* ── Debounced refresh (D6) — collapses rapid realtime bursts ── */
+  function scheduleRefresh() {
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(refreshConversations, 300);
   }
 
   /* ── Render sidebar conversation list ───────────────────────── */
@@ -248,6 +276,8 @@
   function appendBubble(msg) {
     var history = qs('#thread-history');
     if (!history) return;
+    // Dedup: realtime reconnect replays can deliver the same message twice (D10)
+    if (history.querySelector('[data-msg-id="' + esc(msg.id) + '"]')) return;
     var empty = history.querySelector('.messages-thread__empty-hint');
     if (empty) empty.remove();
     var div = document.createElement('div');
@@ -291,6 +321,8 @@
 
   /* ── Mark received messages as read ─────────────────────────── */
   async function markRead(otherId) {
+    // Uses client clock. Functionally fine — only null vs non-null is checked.
+    // For exact server timestamps, add a mark_read(sender_uuid) RPC instead.
     await db.from('messages')
       .update({ read_at: new Date().toISOString() })
       .eq('sender_id',    otherId)
@@ -342,19 +374,21 @@
     });
     // Recover any missed messages after tab regains focus or network comes back
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') refreshConversations();
+      if (document.visibilityState === 'visible') scheduleRefresh();
     });
-    window.addEventListener('online', function () { refreshConversations(); });
+    window.addEventListener('online', function () { scheduleRefresh(); });
   }
 
   async function handleIncoming(msg) {
+    // Lazy-fetch sender if they registered after this page loaded (D7)
+    await ensureProfile(msg.sender_id);
     if (msg.sender_id === activeOther) {
       // The open conversation just got a new message
       appendBubble(msg);
       await markRead(msg.sender_id);
     }
-    // Always refresh the sidebar (updates preview + unread count)
-    await refreshConversations();
+    // Debounced refresh: collapses rapid bursts of incoming messages (D6)
+    scheduleRefresh();
   }
 
   /* ── New conversation form ───────────────────────────────────── */

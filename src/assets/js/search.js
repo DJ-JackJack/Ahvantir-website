@@ -1,5 +1,12 @@
 window.addEventListener('DOMContentLoaded', function () {
-  if (typeof PagefindUI === 'undefined') return;
+  if (typeof PagefindUI === 'undefined') {
+    var el = document.getElementById('search');
+    if (el) el.innerHTML =
+      '<p class="search-error">Search failed to load. ' +
+      'Try <a href="javascript:location.reload()">reloading the page</a>, ' +
+      'or <a href="/articles/">browse the full article list</a>.</p>';
+    return;
+  }
 
   new PagefindUI({
     element: '#search',

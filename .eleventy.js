@@ -1,10 +1,11 @@
+const fs = require("fs");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
 function toSlug(str) {
   return String(str)
     .toLowerCase()
-    .replace(/['']/g, "")
+    .replace(/['‘’]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
@@ -80,11 +81,15 @@ module.exports = function (eleventyConfig) {
     }
 
     for (const page of all) {
-      const raw = String(
-        page.template?.frontMatter?.content ||
-        page.template?.inputContent ||
-        ""
-      );
+      let raw;
+      try {
+        const src = fs.readFileSync(page.inputPath, "utf8");
+        // Strip YAML frontmatter (--- ... ---) to get the markdown body
+        const m = src.match(/^---[\r\n][\s\S]*?[\r\n]---[\r\n]?([\s\S]*)$/);
+        raw = m ? m[1] : src;
+      } catch (_) {
+        raw = String(page.template?.frontMatter?.content || "");
+      }
       const links = [...raw.matchAll(/\[\[([^\]|]+?)(?:\|[^\]]+?)?\]\]/g)];
       for (const [, title] of links) {
         const slug = toSlug(title);
@@ -99,6 +104,8 @@ module.exports = function (eleventyConfig) {
               url: page.url,
             });
           }
+        } else {
+          console.warn(`[wikilink] unresolved: [[${title}]] (slug: "${slug}") in ${page.fileSlug}`);
         }
       }
     }
@@ -108,6 +115,7 @@ module.exports = function (eleventyConfig) {
 
   // Filters
   eleventyConfig.addFilter("toSlug", toSlug);
+  eleventyConfig.addFilter("joinSlugs", (arr) => (arr || []).map(toSlug).join(" "));
   eleventyConfig.addFilter("articleUrl", (title) => `/articles/${toSlug(title)}/`);
   eleventyConfig.addFilter("dateDisplay", (date) => {
     if (!date) return "";
