@@ -295,6 +295,10 @@ hr {
   transition: transform 0.2s, opacity 0.2s;
 }
 
+.nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
 /* ── Hero ───────────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -1385,6 +1389,24 @@ hr {
 /* Nav "Player" link — dark gold, meets WCAG AA 4.5:1 on parchment */
 .nav__player-link { color: #8c6a18 !important; font-weight: 600; }
 .nav__player-link:hover { color: var(--gold-dark) !important; }
+
+/* Nav sign-out button — styled like a nav link */
+.nav__signout {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.65rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faded);
+  border-radius: 2px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav__signout:hover { color: var(--burg); background: rgba(123,29,42,0.07); }
 
 /* Shared player page wrapper */
 .player-page {

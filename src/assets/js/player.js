@@ -66,11 +66,16 @@
     }
   };
 
-  // Auto-load the badge on every /player/* page
+  // Auto-load the badge and reveal sign-out button on every /player/* page
   document.addEventListener('DOMContentLoaded', function () {
     if (location.pathname.startsWith('/player/')) {
       client.auth.getSession().then(function (res) {
-        if (res.data.session) window.loadUnreadBadge();
+        if (!res.data.session) return;
+        window.loadUnreadBadge();
+        var signoutItem = document.getElementById('nav-signout-item');
+        var signoutBtn  = document.getElementById('nav-signout');
+        if (signoutItem) signoutItem.hidden = false;
+        if (signoutBtn)  signoutBtn.addEventListener('click', function () { window.playerSignOut(); });
       });
     }
   });
