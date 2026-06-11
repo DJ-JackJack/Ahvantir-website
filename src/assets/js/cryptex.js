@@ -104,7 +104,7 @@
 
   function esc(s) {
     return String(s || '')
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function renderStones() {
@@ -159,7 +159,6 @@
         'found'
       );
       recordDiscovery(article);
-      setTimeout(function () { window.location.href = article.url; }, 1800);
     } else {
       playGrind(0.4, 85);
       setResult('<span class="cryptex-unmapped">This sequence is not yet mapped by the Cryptex.</span>', 'unmapped');

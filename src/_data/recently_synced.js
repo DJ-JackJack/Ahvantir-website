@@ -27,7 +27,6 @@ module.exports = function () {
 
     const added   = [];
     const updated = [];
-    const removed = [];
 
     let inChanges = false;
     for (const line of content.split('\n')) {
@@ -38,19 +37,17 @@ module.exports = function () {
       // Lines look like:  - **Added:**   `filename.md`
       const addM = line.match(/\*\*Added:\*\*\s+`(.+?)\.md`/);
       const updM = line.match(/\*\*Updated:\*\*\s+`(.+?)\.md`/);
-      const remM = line.match(/\*\*Removed:\*\*\s+`(.+?)\.md`/);
 
       if (addM) added.push(addM[1]);
       if (updM) updated.push(updM[1]);
-      if (remM) removed.push(remM[1]);
     }
 
-    return { date: latestDate, added, updated, removed };
+    return { date: latestDate, added, updated };
   } catch (_) {
     return empty();
   }
 };
 
 function empty() {
-  return { date: null, added: [], updated: [], removed: [] };
+  return { date: null, added: [], updated: [] };
 }

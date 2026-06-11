@@ -2,7 +2,12 @@ window.addEventListener('DOMContentLoaded', function () {
   var _graphEl = document.getElementById('graph-data');
   var data = _graphEl ? JSON.parse(_graphEl.textContent) : window.__GRAPH_DATA__;
   var container = document.getElementById('graph-container');
-  if (!data || !container || typeof d3 === 'undefined') return;
+  if (!data || !container) return;
+  if (typeof d3 === 'undefined') {
+    var ph = container.querySelector('.graph-placeholder');
+    if (ph) ph.innerHTML = '<span aria-hidden="true">◎</span><p>The graph could not load. <a href="">Reload the page</a> to try again.</p>';
+    return;
+  }
 
   var placeholder = container.querySelector('.graph-placeholder');
   if (placeholder) placeholder.remove();

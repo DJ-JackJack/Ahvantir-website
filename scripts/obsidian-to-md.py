@@ -28,9 +28,16 @@ _env_file = Path(__file__).parent.parent / ".env"
 if _env_file.exists():
     for _line in _env_file.read_text(encoding="utf-8").splitlines():
         _line = _line.strip()
-        if _line and not _line.startswith("#") and "=" in _line:
-            _key, _, _val = _line.partition("=")
-            os.environ.setdefault(_key.strip(), _val.strip().strip("\"'"))
+        if not _line or _line.startswith("#") or "=" not in _line:
+            continue
+        _key, _, _val = _line.partition("=")
+        _key = _key.strip()
+        _val = _val.strip()
+        if len(_val) >= 2 and _val[0] == _val[-1] and _val[0] in ('"', "'"):
+            _val = _val[1:-1]  # strip matched quotes, preserving interior content
+        elif " #" in _val:
+            _val = _val[:_val.index(" #")].strip()  # strip trailing inline comment
+        os.environ.setdefault(_key, _val)
 
 VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "").lstrip('﻿').strip()
 OUTPUT_DIR = Path(__file__).parent.parent / "src" / "articles"

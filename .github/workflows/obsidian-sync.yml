@@ -89,6 +89,13 @@ jobs:
 
           $logLines | Out-File -FilePath $logPath -Encoding utf8
 
+          # Prune sync logs older than 90 days
+          $cutoff = (Get-Date).AddDays(-90)
+          Get-ChildItem "sync-logs" -Filter "*.md" | Where-Object {
+            $_.BaseName -match '^\d{4}-\d{2}-\d{2}$' -and
+            ([datetime]::ParseExact($_.BaseName, 'yyyy-MM-dd', $null) -lt $cutoff)
+          } | Remove-Item -Force
+
           git add sync-logs/
           $staged = git diff --staged --quiet; $hasChanges = $LASTEXITCODE -ne 0
           if ($hasChanges) {

@@ -85,7 +85,7 @@ module.exports = function (eleventyConfig) {
     const pageMap = new Map();
     for (const page of all) {
       pageMap.set(page.fileSlug, page);
-      if (!page.data.backlinks) page.data.backlinks = [];
+      page.data.backlinks = [];
     }
 
     for (const page of all) {
