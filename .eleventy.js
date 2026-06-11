@@ -2,6 +2,14 @@ const fs = require("fs");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function toSlug(str) {
   return String(str)
     .toLowerCase()
@@ -35,7 +43,7 @@ module.exports = function (eleventyConfig) {
       (_, target, alias) => {
         const text = alias || target;
         const slug = toSlug(target);
-        return `<a href="/articles/${slug}/" class="wikilink" data-target="${slug}">${text}</a>`;
+        return `<a href="/articles/${slug}/" class="wikilink" data-target="${slug}">${escHtml(text)}</a>`;
       }
     );
   });

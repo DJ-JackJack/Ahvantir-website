@@ -24,7 +24,7 @@ permalink: /player/hall-of-heroes/
 </div>
 
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>
 <script src="/assets/js/player.js"></script>
 <script>
 (function () {
@@ -124,6 +124,26 @@ permalink: /player/hall-of-heroes/
     return parts.join(' · ');
   }
 
+  var lastFocusedEl = null;
+
+  function onModalKeydown(e) {
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      var overlay = document.getElementById('hero-modal');
+      var focusable = Array.from(overlay.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )).filter(function (el) { return !el.disabled; });
+      if (!focusable.length) { e.preventDefault(); return; }
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    }
+  }
+
   function openModal(idx) {
     var c = heroData[idx];
     if (!c) return;
@@ -149,9 +169,11 @@ permalink: /player/hall-of-heroes/
         (sections || '<p class="hero-modal__empty">This hero\'s story has yet to be written.</p>') +
       '</div>';
 
+    lastFocusedEl = document.activeElement;
     var overlay = document.getElementById('hero-modal');
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onModalKeydown);
     document.getElementById('hero-modal-close').focus();
   }
 
@@ -169,15 +191,14 @@ permalink: /player/hall-of-heroes/
     document.getElementById('hero-modal').addEventListener('click', function (e) {
       if (e.target === this) closeModal();
     });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModal();
-    });
   }
 
   function closeModal() {
+    document.removeEventListener('keydown', onModalKeydown);
     var overlay = document.getElementById('hero-modal');
     overlay.hidden = true;
     document.body.style.overflow = '';
+    if (lastFocusedEl) { lastFocusedEl.focus(); lastFocusedEl = null; }
   }
 
   var RUNES = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ'];
