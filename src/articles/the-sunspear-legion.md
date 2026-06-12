@@ -2,6 +2,7 @@
 title: "The Sunspear Legion"
 category: factions
 tags: [sunspear-legion, military, aru-mas, founding-era, second-era, marduk-sunspear, crowns-approach, hearthstone, stonegate, spireview, city-militia, noble-houses, law-politics, historical-figure, queen-vaylis]
+timeline_year: 0
 ---
 
 # The Sunspear Legion

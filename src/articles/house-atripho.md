@@ -2,6 +2,7 @@
 title: "House Atripho"
 category: factions
 tags: [faction, noble-house]
+timeline_year: 0
 ---
 
 # House Atripho

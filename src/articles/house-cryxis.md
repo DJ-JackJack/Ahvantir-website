@@ -2,6 +2,7 @@
 title: "House Cryxis"
 category: factions
 tags: [faction, noble-house]
+timeline_pending: "Shattered Strand era (~100-400 MC) — needs specific year for the Shattered Strand calamity"
 ---
 
 # House Cryxis
