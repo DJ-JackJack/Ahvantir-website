@@ -3,6 +3,7 @@ title: "He Who Was Forgotten"
 description: "Leader of the eleven [[The Primordem|Primordem]]. Sealed 1 of 11 during the First Pact. A war hero among spirits — disciplined, honorable, and feared. He accepted imprisonment once. He will not do so again."
 category: cosmology
 tags: [spirit, primordem]
+timeline_year: 0
 ---
 
 # He Who Was Forgotten

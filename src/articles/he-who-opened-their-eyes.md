@@ -3,6 +3,7 @@ title: "He Who Opened Their Eyes"
 description: "Eighth of the eleven [[The Primordem|Primordem]]. Sealed 8 of 11 during the First Pact. He was once the closest thing the spirits had to a diplomat — the one who believed understanding was possible, who made the [[First Pact]] conceivable by proving the two sides could feel each other's grief. The Pact was signed. He was sealed. He has had four centuries to consider what empathy is actually worth."
 category: cosmology
 tags: [spirit, primordem]
+timeline_year: 0
 ---
 
 # He Who Opened Their Eyes

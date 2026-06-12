@@ -3,6 +3,7 @@ title: "He Who Hardens the Heart"
 description: "Third of the eleven [[The Primordem|Primordem]]. Sealed 3 of 11 during the First Pact. He was born from the moment protection became permission — when closing off emotionally stopped being a survival mechanism and became an identity. He does not make people cruel. He makes cruelty feel like armor."
 category: cosmology
 tags: [spirit, primordem]
+timeline_year: 0
 ---
 
 # He Who Hardens the Heart

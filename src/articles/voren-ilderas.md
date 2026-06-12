@@ -2,6 +2,7 @@
 title: "Voren Ilderas"
 category: characters
 tags: [npc, royal-family]
+timeline_year: 412
 ---
 
 # Voren Ilderas
