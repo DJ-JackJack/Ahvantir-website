@@ -3024,6 +3024,73 @@ hr {
   .dm-char-row__updated { display: none; }
 }
 
+/* ── DM Session Schedule ── */
+.dm-session-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--p-200);
+  font-size: 0.85rem;
+}
+.dm-session-row:last-child { border-bottom: none; }
+.dm-session-row--next { background: rgba(120,30,30,0.04); }
+
+.dm-session-row__info { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.dm-session-row__badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--p-100);
+  background: var(--burg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  margin-bottom: 0.2rem;
+  width: fit-content;
+}
+
+.dm-session-row__date {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.dm-session-row__time { color: var(--ink-ghost); font-size: 0.78rem; }
+.dm-session-row__title { color: var(--ink); font-style: italic; font-size: 0.82rem; }
+.dm-session-row__notes { color: var(--ink-ghost); font-size: 0.78rem; margin: 0.1rem 0 0; line-height: 1.4; }
+
+/* Add Session form */
+.dm-session-form {
+  background: var(--p-100);
+  border: 1px solid var(--br-light);
+  border-radius: 4px;
+  padding: 1.25rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.dm-session-form__row { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.dm-session-form__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dm-session-form__msg {
+  font-size: 0.82rem;
+  color: var(--ink-ghost);
+}
+.dm-session-form__msg--error { color: var(--terra); }
+
 /* ================================================================
    Horizontal Timeline
    ================================================================ */

@@ -50,7 +50,6 @@
     if (!players.length) {
       groupsHtml = '<p class="dash-empty">No players have registered yet.</p>';
     } else {
-      // Sort players: those with characters first, then alphabetically
       players.sort(function (a, b) {
         var aCount = (charsByPlayer[a.id] || []).length;
         var bCount = (charsByPlayer[b.id] || []).length;
@@ -99,6 +98,37 @@
       }).join('');
     }
 
+    var sessionSectionHtml =
+      '<section class="dash-section" id="dm-sessions-section">' +
+        '<div class="dash-section__header">' +
+          '<h2 class="dash-section__title">Session Schedule</h2>' +
+          '<button class="btn btn--ghost btn--sm" id="btn-add-session" type="button">+ Add Session</button>' +
+        '</div>' +
+        '<div id="dm-session-form-wrap" hidden>' +
+          '<form class="dm-session-form" id="dm-session-form" novalidate>' +
+            '<div class="dm-session-form__row">' +
+              '<label class="form-label" for="s-dt">Date &amp; Time</label>' +
+              '<input class="form-input" type="datetime-local" id="s-dt" required>' +
+              '<span class="form-hint">Your local time — players see it in their own timezone.</span>' +
+            '</div>' +
+            '<div class="dm-session-form__row">' +
+              '<label class="form-label" for="s-title">Title <span class="form-label__hint">optional</span></label>' +
+              '<input class="form-input form-input--full" type="text" id="s-title" placeholder="Episode 23: Into the Depths" maxlength="120">' +
+            '</div>' +
+            '<div class="dm-session-form__row">' +
+              '<label class="form-label" for="s-notes">Notes <span class="form-label__hint">optional</span></label>' +
+              '<textarea class="form-input form-input--full" id="s-notes" rows="2" placeholder="Reminders or announcements for players…"></textarea>' +
+            '</div>' +
+            '<div class="dm-session-form__actions">' +
+              '<button class="btn btn--primary btn--sm" type="submit" id="s-submit">Save Session</button>' +
+              '<button class="btn btn--ghost btn--sm" type="button" id="s-cancel">Cancel</button>' +
+              '<span class="dm-session-form__msg" id="s-msg"></span>' +
+            '</div>' +
+          '</form>' +
+        '</div>' +
+        '<div id="dm-sessions-list"><p class="player-loading">Loading…</p></div>' +
+      '</section>';
+
     app.innerHTML =
       statsHtml +
       '<section class="dash-section">' +
@@ -108,12 +138,131 @@
         '</div>' +
         groupsHtml +
       '</section>' +
+      sessionSectionHtml +
       '<div class="dash-footer">' +
         '<a href="/player/dashboard/" class="btn btn--ghost btn--sm">My Dashboard</a>' +
         '<button class="btn btn--ghost btn--sm" id="btn-signout" type="button">Sign Out</button>' +
       '</div>';
 
     app.querySelector('#btn-signout').addEventListener('click', function () { window.playerSignOut(); });
+
+    bindSessionUI();
+    await loadAndRenderSessions();
+  }
+
+  /* ── Session management ──────────────────────────────────────── */
+
+  function bindSessionUI() {
+    var formWrap  = document.getElementById('dm-session-form-wrap');
+    var form      = document.getElementById('dm-session-form');
+    var submitBtn = document.getElementById('s-submit');
+    var msg       = document.getElementById('s-msg');
+
+    document.getElementById('btn-add-session').addEventListener('click', function () {
+      formWrap.hidden = false;
+      document.getElementById('s-dt').focus();
+    });
+
+    document.getElementById('s-cancel').addEventListener('click', function () {
+      form.reset();
+      formWrap.hidden = true;
+      msg.textContent = '';
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var dtVal    = document.getElementById('s-dt').value;
+      var titleVal = document.getElementById('s-title').value.trim();
+      var notesVal = document.getElementById('s-notes').value.trim();
+
+      if (!dtVal) {
+        setMsg(msg, 'Please pick a date and time.', true);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving…';
+      msg.textContent = '';
+
+      var res = await db.from('sessions').insert({
+        scheduled_at: new Date(dtVal).toISOString(),
+        title: titleVal || null,
+        notes: notesVal || null
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Save Session';
+
+      if (res.error) {
+        setMsg(msg, 'Error: ' + res.error.message, true);
+        return;
+      }
+
+      form.reset();
+      formWrap.hidden = true;
+      msg.textContent = '';
+      await loadAndRenderSessions();
+    });
+  }
+
+  async function loadAndRenderSessions() {
+    var list = document.getElementById('dm-sessions-list');
+    if (!list) return;
+
+    var res = await db
+      .from('sessions')
+      .select('id, scheduled_at, title, notes')
+      .gte('scheduled_at', new Date().toISOString())
+      .order('scheduled_at', { ascending: true })
+      .limit(20);
+
+    var sessions = res.data || [];
+
+    if (!sessions.length) {
+      list.innerHTML = '<p class="dash-empty">No upcoming sessions scheduled.</p>';
+      return;
+    }
+
+    list.innerHTML = sessions.map(function (s, i) {
+      var isNext   = i === 0;
+      var titleHtml = s.title ? '<span class="dm-session-row__title">' + esc(s.title) + '</span>' : '';
+      var notesHtml = s.notes ? '<p class="dm-session-row__notes">'   + esc(s.notes) + '</p>'   : '';
+      return '<div class="dm-session-row' + (isNext ? ' dm-session-row--next' : '') + '">' +
+        '<div class="dm-session-row__info">' +
+          (isNext ? '<span class="dm-session-row__badge">Next</span>' : '') +
+          '<span class="dm-session-row__date">' + esc(fmtDate(s.scheduled_at)) + '</span>' +
+          '<span class="dm-session-row__time">' + esc(fmtTime(s.scheduled_at)) + '</span>' +
+          titleHtml + notesHtml +
+        '</div>' +
+        '<button class="btn btn--danger btn--sm dm-session-row__del" data-id="' + esc(s.id) + '" type="button">Delete</button>' +
+      '</div>';
+    }).join('');
+
+    list.querySelectorAll('.dm-session-row__del').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        btn.textContent = '…';
+        btn.disabled = true;
+        await db.from('sessions').delete().eq('id', btn.dataset.id);
+        await loadAndRenderSessions();
+      });
+    });
+  }
+
+  function setMsg(el, text, isError) {
+    el.textContent = text;
+    el.classList.toggle('dm-session-form__msg--error', !!isError);
+  }
+
+  function fmtDate(iso) {
+    return new Date(iso).toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+  }
+
+  function fmtTime(iso) {
+    return new Date(iso).toLocaleTimeString('en-US', {
+      hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+    });
   }
 
   function dmStat(val, label) {
