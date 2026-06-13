@@ -32,6 +32,7 @@ permalink: /play/
         <span class="play-no-signal__symbol" aria-hidden="true">✦</span>
         <p class="play-no-signal__title">There is no active game at this time.</p>
         <p class="play-no-signal__sub">The session has ended or the game server is offline. Your DM will announce when the next session opens.</p>
+        <p class="play-no-signal__next" id="no-signal-next" hidden></p>
         <a href="/articles/" class="btn btn--ghost">Browse the Lore →</a>
       </div>
     </div>
@@ -106,6 +107,14 @@ permalink: /play/
   </div>{# /play-lore #}
 
 </div>{# /play-layout #}
+
+{# Session schedule — visible by scrolling below the panels #}
+<section class="session-schedule" id="session-schedule" aria-label="Session schedule">
+  <div class="session-schedule__inner">
+    <h2 class="session-schedule__heading">Session Schedule</h2>
+    <div id="schedule-list" class="schedule-list" aria-live="polite" aria-busy="true"></div>
+  </div>
+</section>
 
 {# Article index for client-side search — embedded at build time #}
 <script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }}}{%- endfor -%}]</script>

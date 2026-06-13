@@ -28,6 +28,63 @@
   var articleLink  = document.getElementById('lore-article-link');
   var backBtn      = document.getElementById('lore-back');
 
+  /* ── Session schedule ──────────────────────────────────── */
+  function loadSessions() {
+    var client = window.__supabase;
+    if (!client) return Promise.resolve([]);
+    return client
+      .from('sessions')
+      .select('id, scheduled_at, title, notes')
+      .gte('scheduled_at', new Date().toISOString())
+      .order('scheduled_at', { ascending: true })
+      .limit(10)
+      .then(function (res) { return res.data || []; })
+      .catch(function () { return []; });
+  }
+
+  function fmtDate(iso) {
+    return new Date(iso).toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+  }
+
+  function fmtTime(iso) {
+    return new Date(iso).toLocaleTimeString('en-US', {
+      hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+    });
+  }
+
+  function renderNextSession(sessions) {
+    var el = document.getElementById('no-signal-next');
+    if (!el) return;
+    var next = sessions[0];
+    if (!next) { el.hidden = true; return; }
+    el.textContent = 'Next session: ' + fmtDate(next.scheduled_at) + ' at ' + fmtTime(next.scheduled_at);
+    el.hidden = false;
+  }
+
+  function renderSchedule(sessions) {
+    var el = document.getElementById('schedule-list');
+    if (!el) return;
+    el.removeAttribute('aria-busy');
+    if (!sessions.length) {
+      el.innerHTML = '<p class="schedule-empty">No upcoming sessions scheduled.</p>';
+      return;
+    }
+    el.innerHTML = sessions.map(function (s, i) {
+      var isNext = i === 0;
+      var badge  = isNext ? '<span class="schedule-item__badge">Next Session</span>' : '';
+      var title  = s.title ? '<span class="schedule-item__title">'  + esc(s.title)  + '</span>' : '';
+      var notes  = s.notes ? '<p class="schedule-item__notes">'     + esc(s.notes)  + '</p>'    : '';
+      return '<div class="schedule-item' + (isNext ? ' schedule-item--next' : '') + '">' +
+        badge +
+        '<p class="schedule-item__date">' + esc(fmtDate(s.scheduled_at)) + '</p>' +
+        '<p class="schedule-item__time">' + esc(fmtTime(s.scheduled_at)) + '</p>' +
+        title + notes +
+      '</div>';
+    }).join('');
+  }
+
   /* ── Article index ──────────────────────────────────────── */
   function loadIndex() {
     var el = document.getElementById('play-article-data');
@@ -154,7 +211,13 @@
 
     loadIndex();
 
-    // Prevent body scroll and hide footer — play page fills the viewport
+    // Load session schedule in background — runs regardless of mobile/Foundry state
+    loadSessions().then(function (sessions) {
+      renderNextSession(sessions);
+      renderSchedule(sessions);
+    });
+
+    // Allow vertical scroll so the schedule section below is reachable
     document.body.classList.add('play-active');
 
     if (window.innerWidth < MOBILE_BREAKPT) {
