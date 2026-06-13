@@ -66,7 +66,7 @@
     }
   };
 
-  // Auto-load the badge and reveal sign-out button on every /player/* page
+  // Auto-load the badge and reveal auth-only nav items on every /player/* page
   document.addEventListener('DOMContentLoaded', function () {
     if (location.pathname.startsWith('/player/')) {
       client.auth.getSession().then(function (res) {
@@ -74,8 +74,10 @@
         window.loadUnreadBadge();
         var signoutItem = document.getElementById('nav-signout-item');
         var signoutBtn  = document.getElementById('nav-signout');
+        var playItem    = document.getElementById('nav-play-item');
         if (signoutItem) signoutItem.hidden = false;
         if (signoutBtn)  signoutBtn.addEventListener('click', function () { window.playerSignOut(); });
+        if (playItem)    playItem.hidden    = false;
       });
     }
   });

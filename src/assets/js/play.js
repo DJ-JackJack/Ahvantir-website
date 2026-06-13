@@ -143,11 +143,13 @@
     var session = await window.requireAuth(true);
     if (!session) return;
 
-    // Reveal the sign-out nav item (play page is outside /player/*)
+    // Reveal auth-only nav items (play page is outside /player/*)
     var signoutItem = document.getElementById('nav-signout-item');
     var signoutBtn  = document.getElementById('nav-signout');
+    var playItem    = document.getElementById('nav-play-item');
     if (signoutItem) signoutItem.hidden = false;
     if (signoutBtn)  signoutBtn.addEventListener('click', function () { window.playerSignOut(); });
+    if (playItem)    playItem.hidden    = false;
     if (window.loadUnreadBadge) window.loadUnreadBadge();
 
     loadIndex();
@@ -160,24 +162,30 @@
       return;
     }
 
-    // Start loading Foundry
+    // Start loading Foundry.
+    // A `resolved` flag ensures the first outcome (load or timeout) wins and
+    // cannot be overridden. This handles the case where the browser fires `load`
+    // with a DNS/connection error page before the timeout, which would otherwise
+    // incorrectly show a broken iframe instead of the no-signal message.
+    var resolved = false;
+
+    function resolve(show) {
+      if (resolved) return;
+      resolved = true;
+      clearTimeout(signalTimer);
+      signalTimer = null;
+      show();
+    }
+
     showLoading();
     iframe.src = FOUNDRY_URL;
 
-    signalTimer = setTimeout(showNoSignal, SIGNAL_TIMEOUT);
+    signalTimer = setTimeout(function () { resolve(showNoSignal); }, SIGNAL_TIMEOUT);
 
-    iframe.addEventListener('load', function () {
-      clearTimeout(signalTimer);
-      signalTimer = null;
-      showIframe();
-    });
-
-    // onerror fires for network failures (cross-origin errors are silent, hence timeout above)
-    iframe.addEventListener('error', function () {
-      clearTimeout(signalTimer);
-      signalTimer = null;
-      showNoSignal();
-    });
+    // If Foundry responds before the timeout, show it. If the timeout fires first
+    // (tunnel unreachable, slow connection), the resolve flag prevents load from
+    // overriding the no-signal state.
+    iframe.addEventListener('load', function () { resolve(showIframe); });
 
     // Panel toggle
     if (loreToggle) {
