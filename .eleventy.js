@@ -36,11 +36,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", md);
 
   // Wikilink transform: [[Title]] or [[Title|Alias]]
+  // The alternation matches <script>...</script> blocks first (returned unchanged)
+  // so wikilinks embedded in JSON data inside <script> elements are never expanded.
   eleventyConfig.addTransform("wikilinks", function (content, outputPath) {
     if (!outputPath?.endsWith(".html")) return content;
     return content.replace(
-      /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
-      (_, target, alias) => {
+      /(<script\b[\s\S]*?<\/script>)|\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
+      (match, scriptBlock, target, alias) => {
+        if (scriptBlock !== undefined) return scriptBlock;
         const text = alias || target;
         const slug = toSlug(target);
         return `<a href="/articles/${slug}/" class="wikilink" data-target="${slug}">${escHtml(text)}</a>`;

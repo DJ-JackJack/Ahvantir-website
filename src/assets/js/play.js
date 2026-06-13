@@ -162,18 +162,21 @@
       return;
     }
 
-    // Start loading Foundry.
-    // A `resolved` flag ensures the first outcome (load or timeout) wins and
-    // cannot be overridden. This handles the case where the browser fires `load`
-    // with a DNS/connection error page before the timeout, which would otherwise
-    // incorrectly show a broken iframe instead of the no-signal message.
+    // Detect whether Foundry is reachable via a fetch probe rather than the
+    // iframe `load` event. The browser fires `load` even when it renders its
+    // own DNS-error page inside the iframe, so `load` alone can't distinguish
+    // a working Foundry from an unreachable host. A no-cors fetch throws a
+    // NetworkError on DNS/connection failure and resolves (opaque response) when
+    // any server actually responds — that distinction is reliable cross-origin.
     var resolved = false;
+    var abortCtrl = new AbortController();
 
     function resolve(show) {
       if (resolved) return;
       resolved = true;
       clearTimeout(signalTimer);
       signalTimer = null;
+      abortCtrl.abort();
       show();
     }
 
@@ -182,10 +185,15 @@
 
     signalTimer = setTimeout(function () { resolve(showNoSignal); }, SIGNAL_TIMEOUT);
 
-    // If Foundry responds before the timeout, show it. If the timeout fires first
-    // (tunnel unreachable, slow connection), the resolve flag prevents load from
-    // overriding the no-signal state.
-    iframe.addEventListener('load', function () { resolve(showIframe); });
+    fetch(FOUNDRY_URL + '/', {
+      mode: 'no-cors',
+      cache: 'no-store',
+      signal: abortCtrl.signal
+    }).then(function () {
+      resolve(showIframe);
+    }).catch(function () {
+      resolve(showNoSignal);
+    });
 
     // Panel toggle
     if (loreToggle) {
