@@ -3676,6 +3676,9 @@ body.play-active #main-content {
 }
 .play-iframe[hidden] { display: none; }
 
+/* hidden attribute must win over display:flex set on panel states */
+#play-layout [hidden] { display: none !important; }
+
 /* Shared centred-content style for loading / no-signal / mobile states */
 .play-foundry__loading,
 .play-no-signal,
