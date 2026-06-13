@@ -1,0 +1,117 @@
+---
+layout: base
+title: Play — Ahvantir
+description: "Live game session — Foundry VTT and lore reference."
+permalink: /play/
+---
+
+<div class="play-layout" id="play-layout">
+
+  {# ── Foundry panel ─────────────────────────────────────────── #}
+  <div class="play-foundry" id="play-foundry">
+
+    <div class="play-foundry__loading" id="play-loading" aria-live="polite" aria-atomic="true">
+      <div class="play-foundry__loading-inner">
+        <span class="play-foundry__loading-symbol" aria-hidden="true">⚜</span>
+        <p class="play-foundry__loading-text">Connecting to the game…</p>
+      </div>
+    </div>
+
+    {# src set by JS after auth to avoid premature load #}
+    <iframe
+      id="play-iframe"
+      class="play-iframe"
+      title="Foundry VTT game session"
+      allowfullscreen
+      allow="camera; microphone; fullscreen"
+      aria-label="Foundry VTT game session"
+    ></iframe>
+
+    <div class="play-no-signal" id="play-no-signal" hidden>
+      <div class="play-no-signal__inner">
+        <span class="play-no-signal__symbol" aria-hidden="true">✦</span>
+        <p class="play-no-signal__title">There is no active game at this time.</p>
+        <p class="play-no-signal__sub">The session has ended or the game server is offline. Your DM will announce when the next session opens.</p>
+        <a href="/articles/" class="btn btn--ghost">Browse the Lore →</a>
+      </div>
+    </div>
+
+    <div class="play-mobile-msg" id="play-mobile" hidden>
+      <div class="play-mobile-msg__inner">
+        <span class="play-mobile-msg__symbol" aria-hidden="true">🎲</span>
+        <p class="play-mobile-msg__title">Desktop Required</p>
+        <p class="play-mobile-msg__body">Foundry VTT requires a desktop browser to play. Please return on a laptop or desktop computer to join the game session.</p>
+        <a href="/articles/" class="btn btn--ghost">Browse the Lore →</a>
+      </div>
+    </div>
+
+  </div>{# /play-foundry #}
+
+  {# ── Panel divider / toggle ────────────────────────────────── #}
+  <button
+    class="play-lore-toggle"
+    id="play-lore-toggle"
+    type="button"
+    aria-label="Collapse lore panel"
+    aria-expanded="true"
+    aria-controls="play-lore"
+  >›</button>
+
+  {# ── Lore panel ────────────────────────────────────────────── #}
+  <div class="play-lore" id="play-lore" aria-label="Lore reference panel">
+    <div class="play-lore-inner">
+
+      {# Search view #}
+      <div id="lore-search-view" class="lore-search-view">
+        <div class="lore-panel-header">
+          <h2 class="lore-panel-title">Lore</h2>
+        </div>
+        <div class="lore-search-wrap">
+          <label for="lore-search-input" class="sr-only">Search articles</label>
+          <input
+            type="search"
+            id="lore-search-input"
+            class="lore-search-input"
+            placeholder="Search the archives…"
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+        <ul
+          id="lore-results"
+          class="lore-results"
+          role="list"
+          aria-label="Search results"
+          aria-live="polite"
+        >
+          <li class="lore-results__hint">Enter a name or keyword.</li>
+        </ul>
+      </div>
+
+      {# Article view (hidden until a result is selected) #}
+      <div id="lore-article-view" class="lore-article-view" hidden>
+        <button class="lore-back-btn" id="lore-back" type="button">← Back</button>
+        <h2 class="lore-article-title" id="lore-article-title"></h2>
+        <div class="lore-article-body" id="lore-article-body"></div>
+        <a
+          class="lore-article-fulllink"
+          id="lore-article-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Open full article ↗</a>
+      </div>
+
+    </div>
+  </div>{# /play-lore #}
+
+</div>{# /play-layout #}
+
+{# Article index for client-side search — embedded at build time #}
+<script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }}}{%- endfor -%}]</script>
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>
+<script src="/assets/js/player.js"></script>
+<script src="/assets/js/play.js"></script>
+{% endblock %}

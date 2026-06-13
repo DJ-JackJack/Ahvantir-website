@@ -1,0 +1,26 @@
+# Cloudflare Tunnel config for Ahvantir Foundry VTT
+# ─────────────────────────────────────────────────
+# Before filling in the values below, complete steps 1–4 in FOUNDRY_SETUP.md:
+#   1. Install cloudflared
+#   2. cloudflared tunnel login
+#   3. cloudflared tunnel create ahvantir-foundry   ← generates UUID + credentials file
+#   4. Replace the placeholders here with the generated values
+
+tunnel: <TUNNEL-UUID>
+credentials-file: C:\Users\klfal\.cloudflared\<TUNNEL-UUID>.json
+
+ingress:
+  - hostname: play-tunnel.ahvantir.world
+    service: http://localhost:30000
+    # Foundry VTT uses WebSockets for real-time game updates (dice rolls, map
+    # sync, chat). WebSocket support must be explicitly enabled for this tunnel
+    # in the Cloudflare dashboard:
+    #   Zero Trust → Networks → Tunnels → ahvantir-foundry → Settings →
+    #   Enable WebSocket connections
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+      keepAliveTimeout: 90s
+
+  # Catch-all — required by cloudflared; any unmatched hostname returns 404
+  - service: http_status:404
