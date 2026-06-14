@@ -7,10 +7,12 @@
   var SIGNAL_TIMEOUT   = 8000;   // ms before showing "no signal"
   var MOBILE_BREAKPT   = 768;    // px — Foundry is not usable on mobile
   var MAX_RESULTS      = 25;
+  var NOTES_SAVE_DELAY = 1500;   // ms debounce for scratchpad autosave
 
   var articles = [];
   var loreOpen = true;
   var signalTimer = null;
+  var notesTimer = null;
 
   /* ── DOM refs ───────────────────────────────────────────── */
   var iframe       = document.getElementById('play-iframe');
@@ -27,6 +29,11 @@
   var articleBody  = document.getElementById('lore-article-body');
   var articleLink  = document.getElementById('lore-article-link');
   var backBtn      = document.getElementById('lore-back');
+  var tabSearch    = document.getElementById('tab-search');
+  var tabNotes     = document.getElementById('tab-notes');
+  var notesView    = document.getElementById('lore-notes-view');
+  var notesInput   = document.getElementById('lore-notes-input');
+  var notesStatus  = document.getElementById('lore-notes-status');
 
   /* ── Session schedule ──────────────────────────────────── */
   function loadSessions() {
@@ -195,6 +202,64 @@
     articleView.hidden = true;
   }
 
+  /* ── Tab switching ──────────────────────────────────────── */
+  function switchTab(tab) {
+    var isSearch = tab === 'search';
+    if (tabSearch) {
+      tabSearch.classList.toggle('lore-tab--active', isSearch);
+      tabSearch.setAttribute('aria-selected', String(isSearch));
+    }
+    if (tabNotes) {
+      tabNotes.classList.toggle('lore-tab--active', !isSearch);
+      tabNotes.setAttribute('aria-selected', String(!isSearch));
+    }
+    if (searchView)  searchView.hidden  = !isSearch;
+    if (articleView) articleView.hidden = true;
+    if (notesView)   notesView.hidden   = isSearch;
+    if (!isSearch && notesInput) notesInput.focus();
+  }
+
+  /* ── Notes scratchpad ───────────────────────────────────── */
+  function setNotesStatus(text, state) {
+    if (!notesStatus) return;
+    notesStatus.textContent = text;
+    notesStatus.className   = 'lore-notes-status' + (state ? ' lore-notes-status--' + state : '');
+  }
+
+  async function loadNotes(userId) {
+    var client = window.__supabase;
+    if (!client || !userId || !notesInput) return;
+    var res = await client
+      .from('player_scratchpad')
+      .select('content')
+      .eq('player_id', userId)
+      .maybeSingle();
+    if (res.data) notesInput.value = res.data.content || '';
+  }
+
+  function scheduleNoteSave(userId) {
+    clearTimeout(notesTimer);
+    setNotesStatus('…', 'pending');
+    notesTimer = setTimeout(function () { saveNotes(userId); }, NOTES_SAVE_DELAY);
+  }
+
+  async function saveNotes(userId) {
+    var client = window.__supabase;
+    if (!client || !notesInput) return;
+    var res = await client
+      .from('player_scratchpad')
+      .upsert(
+        { player_id: userId, content: notesInput.value, updated_at: new Date().toISOString() },
+        { onConflict: 'player_id' }
+      );
+    if (res.error) {
+      setNotesStatus('Error saving', 'error');
+    } else {
+      setNotesStatus('Saved ✓', 'ok');
+      setTimeout(function () { setNotesStatus('', ''); }, 2000);
+    }
+  }
+
   /* ── Init ───────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', async function () {
     var session = await window.requireAuth(true);
@@ -210,6 +275,15 @@
     if (window.loadUnreadBadge) window.loadUnreadBadge();
 
     loadIndex();
+
+    // Notes scratchpad
+    var userId = session.user.id;
+    loadNotes(userId);
+    if (tabSearch) tabSearch.addEventListener('click', function () { switchTab('search'); });
+    if (tabNotes)  tabNotes.addEventListener('click',  function () { switchTab('notes'); });
+    if (notesInput) {
+      notesInput.addEventListener('input', function () { scheduleNoteSave(userId); });
+    }
 
     // Load session schedule in background — runs regardless of mobile/Foundry state
     loadSessions().then(function (sessions) {

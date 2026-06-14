@@ -62,11 +62,18 @@ permalink: /play/
   <div class="play-lore" id="play-lore" aria-label="Lore reference panel">
     <div class="play-lore-inner">
 
+      {# Tab bar #}
+      <div class="lore-panel-header">
+        <div class="lore-tabs" role="tablist" aria-label="Panel tabs">
+          <button class="lore-tab lore-tab--active" id="tab-search" role="tab"
+                  aria-selected="true" aria-controls="lore-search-view" type="button">Search</button>
+          <button class="lore-tab" id="tab-notes" role="tab"
+                  aria-selected="false" aria-controls="lore-notes-view" type="button">Notes</button>
+        </div>
+      </div>
+
       {# Search view #}
       <div id="lore-search-view" class="lore-search-view">
-        <div class="lore-panel-header">
-          <h2 class="lore-panel-title">Lore</h2>
-        </div>
         <div class="lore-search-wrap">
           <label for="lore-search-input" class="sr-only">Search articles</label>
           <input
@@ -101,6 +108,18 @@ permalink: /play/
           target="_blank"
           rel="noopener noreferrer"
         >Open full article ↗</a>
+      </div>
+
+      {# Notes view #}
+      <div id="lore-notes-view" class="lore-notes-view" hidden aria-label="Session notes">
+        <textarea
+          id="lore-notes-input"
+          class="lore-notes-textarea"
+          placeholder="Jot down thoughts mid-session…"
+          aria-label="Session notes"
+          spellcheck="true"
+        ></textarea>
+        <p class="lore-notes-status" id="lore-notes-status" aria-live="polite" aria-atomic="true"></p>
       </div>
 
     </div>
