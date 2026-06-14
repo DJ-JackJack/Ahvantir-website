@@ -3,7 +3,6 @@ title: "Drorn'Duur"
 category: culture
 tags: [species, history, fend, landing-war, drorn-duur]
 aliases: ["Keepers of the Deep Stone"]
-timeline_year: -275
 ---
 
 # Drorn'Duur

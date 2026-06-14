@@ -3,7 +3,6 @@ title: "He Who Awakens the World"
 description: "Ninth of the eleven [[The Primordem|Primordem]]. Sealed 9 of 11 during the First Pact. He sees himself not as a destroyer but as a catalyst — the force that burns away what does not belong so that what does can finally grow. He considers mortal civilization an invasive presence. He intends to correct it."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 ---
 
 # He Who Awakens the World

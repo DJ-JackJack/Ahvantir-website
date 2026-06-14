@@ -2,7 +2,6 @@
 title: "Adobban Demoranza"
 category: characters
 tags: [historical-figure, landing-war, church, founding]
-timeline_year: 1
 ---
 
 # Adobban Demoranza

@@ -3,7 +3,6 @@ title: "He Who Breaks the Walls"
 description: "Sixth of the eleven [[The Primordem|Primordem]]. Sealed 6 of 11 during the First Pact. He is the enforcer. He does not argue for violence — he enacts it, once the case has been made by others. He accepts force as a burden rather than celebrating it as release. That discipline makes him more dangerous, not less."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 ---
 
 # He Who Breaks the Walls

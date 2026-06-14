@@ -2,7 +2,6 @@
 title: "House Ninetti"
 category: factions
 tags: [faction, noble-house]
-timeline_year: 0
 ---
 
 # House Ninetti

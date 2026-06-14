@@ -3,7 +3,6 @@ title: "He Who Burns"
 description: "Seventh of the eleven [[The Primordem|Primordem]]. Sealed 7 of 11 during the First Pact. The most volatile of the Primordem — the one [[He Who Was Forgotten]] watches most closely. His imprisonment has not cooled him. It has given him four centuries to inventory every unpaid debt. He does not want war. He wants reckoning, which is something worse."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 ---
 
 # He Who Burns

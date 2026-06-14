@@ -4,7 +4,6 @@ description: "A comprehensive historical record of Ahvantir from mythic prehisto
 category: history
 tags: [history, timeline, meta, landing-war, first-pact, drorn-duur, marduk-sunspear]
 aliases: ["Ahvantir History", "Timeline of Ahvantir"]
-timeline_year: 0
 ---
 
 # History of Ahvantir
@@ -114,7 +113,7 @@ Archivist Ilyrana Vael, Third Circle Pact Scholar, recorded two sequences into a
 
 *Date unconfirmed; estimated early post-founding period.*
 
-Marduk died in battle against a rampaging spirit. The details of the encounter are vague in the historical record — whether this reflects genuine ambiguity or deliberate suppression is unknown. His elder son Darod Sunspear assumed leadership. The Sunspear line continued for an unspecified period before the Ilderas Dynasty rose to power.
+Marduk died in battle against a rampaging spirit. The details of the encounter are vague in the historical record — whether this reflects genuine ambiguity or deliberate suppression is unknown. His elder son Darod Sunspear assumed leadership. The Sunspear line ruled Aru'Mas for over three centuries before the [[The Fall of the Sunspear Line|Siege of Asgoraviel]] (~330–339 MC) ended the dynasty; Galligan Ilderas was crowned in the siege's aftermath, founding the [[Ilderas Dynasty]].
 
 ### 42 MC — The Resurrection Ban
 
@@ -130,7 +129,9 @@ The widespread use of resurrection magic during the Landing War had sustained se
 - **Captain Varrick** was executed for treason at some point in this period, becoming a bound spirit in the harbor. Described as "centuries ago."
 - **Arielle the Lantern-Bearer** died in a market fire in the Far-Farewell Market District. Described as "centuries ago."
 - The **[[Ilderas Public Archive]]** was established by the Ilderas royal family "centuries ago," placing it well within this period.
-- The **Ilderas Dynasty** rose to power at some point, replacing the Sunspear succession. How this transition occurred is not documented.
+### ~330–339 MC — The Siege of Asgoraviel
+
+The city faced no greater test between the Landing War and the present than the nine-year siege waged by [[Asgoraviel]] — a cast-down Archangel who entered Ahvantir's spiritual fabric in open declaration and assaulted Aru'Mas with celestial legions. Considered the most terrifying event the city had faced since the loss of the Shattered Strand, the siege ended the Sunspear dynasty: King **Dammadan Sunspear** and his entire court were killed. The sole survivor was his queen consort, **Nishta Ilderas-Sunspear**, who claimed the throne and held the city through the siege's conclusion, when a coalition of Legionnaires, [[Runeguard]], and adventurers sealed Asgoraviel beneath the [[Heartspire]]. The coronation of **Galligan Ilderas** — Nishta's son — formally founded the [[Ilderas Dynasty]] in the siege's aftermath. See [[The Fall of the Sunspear Line]] for the full account.
 - The **Spillway** expanded at some point, physically dividing Hearthstone into Upper and Lower — a significant urban event with no confirmed date.
 
 ---

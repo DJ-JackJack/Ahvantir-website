@@ -3,7 +3,6 @@ title: "He Who Suffers the Darkness"
 description: "Last of the eleven [[The Primordem|Primordem]]. Sealed 11 of 11. He cannot be freed by naming — he is released only when the seals of all ten others fail, as a structural consequence. Even the other Primordem fear him. No one remembers what he was before the sealing. It is possible he no longer remembers either."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 ---
 
 # He Who Suffers the Darkness

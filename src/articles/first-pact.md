@@ -3,7 +3,6 @@ title: "First Pact"
 category: culture
 tags: [culture, law, history, landing-war, primordem, he-who-was-forgotten]
 aliases: ["Old Pact", "the Old Pact", "the First Pact"]
-timeline_year: 0
 ---
 
 # First Pact

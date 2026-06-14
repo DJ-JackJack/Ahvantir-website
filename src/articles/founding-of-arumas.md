@@ -2,7 +2,6 @@
 title: "Founding of Aru’Mas"
 category: history
 tags: [history, event, landing-war, marduk-sunspear]
-timeline_year: 0
 ---
 
 # Founding of [[Aru’Mas]]

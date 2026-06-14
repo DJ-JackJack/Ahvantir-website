@@ -2,7 +2,6 @@
 title: "Captain Varrick"
 category: characters
 tags: []
-timeline_pending: "centuries ago — needs a specific MC year for the wrongful execution"
 ---
 
 # Captain Varrick

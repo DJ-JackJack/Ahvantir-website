@@ -2,7 +2,6 @@
 title: "The Order of the Platinum Chalice"
 category: factions
 tags: [faction, religious, church]
-timeline_year: 399
 ---
 
 # The Order of the Platinum Chalice

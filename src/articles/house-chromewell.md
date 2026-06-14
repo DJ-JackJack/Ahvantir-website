@@ -2,7 +2,6 @@
 title: "House Chromewell"
 category: factions
 tags: [faction, noble-house]
-timeline_year: 0
 ---
 
 # House Chromewell
