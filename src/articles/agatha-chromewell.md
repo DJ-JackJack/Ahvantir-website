@@ -2,6 +2,7 @@
 title: "Agatha Chromewell"
 category: characters
 tags: [npc]
+date_added: "2026-06-06"
 ---
 
 # Agatha Chromewell

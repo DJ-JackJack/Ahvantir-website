@@ -2,6 +2,7 @@
 title: "Kadrin the Duelist"
 category: characters
 tags: []
+date_added: "2026-06-06"
 ---
 
 # Kadrin the Duelist

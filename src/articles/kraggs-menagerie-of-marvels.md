@@ -2,6 +2,7 @@
 title: "Kragg’s Menagerie of Marvels"
 category: locations
 tags: [district-site, driftmoor-haven, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Kragg’s Menagerie of Marvels

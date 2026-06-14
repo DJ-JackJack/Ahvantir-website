@@ -2,6 +2,7 @@
 title: "The Haze"
 category: magic
 tags: [material]
+date_added: "2026-06-06"
 ---
 
 # The Haze

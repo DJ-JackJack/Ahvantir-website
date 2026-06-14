@@ -2,6 +2,7 @@
 title: "Creeping Green"
 category: factions
 tags: [faction, criminal, gang]
+date_added: "2026-06-06"
 ---
 
 # Creeping Green

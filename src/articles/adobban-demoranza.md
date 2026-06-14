@@ -3,6 +3,7 @@ title: "Adobban Demoranza"
 category: characters
 tags: [historical-figure, landing-war, church, founding]
 timeline_year: 1
+date_added: "2026-06-06"
 ---
 
 # Adobban Demoranza

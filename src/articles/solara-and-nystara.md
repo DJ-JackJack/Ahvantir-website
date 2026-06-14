@@ -3,6 +3,7 @@ title: "Solara and Nystara"
 category: cosmology
 tags: [cosmology, astronomy, calendar, culture, twin-suns]
 aliases: ["the twin suns", "Solara", "Nystara", "twin suns of Ahvantir"]
+date_added: "2026-06-14"
 ---
 
 # Solara and Nystara

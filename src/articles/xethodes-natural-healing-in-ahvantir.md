@@ -2,6 +2,7 @@
 title: "Xethodes: Natural Healing in Ahvantir"
 category: culture
 tags: [culture, law]
+date_added: "2026-06-06"
 ---
 
 # Xethodes: Natural Healing in Ahvantir

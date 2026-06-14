@@ -2,6 +2,7 @@
 title: "Looming Grasp"
 category: factions
 tags: [faction, criminal]
+date_added: "2026-06-06"
 ---
 
 # Looming Grasp

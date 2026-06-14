@@ -2,6 +2,7 @@
 title: "Adventurers Guild Association"
 category: factions
 tags: [faction, commerce]
+date_added: "2026-06-06"
 ---
 
 # Adventurers Guild Association

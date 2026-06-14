@@ -2,6 +2,7 @@
 title: "Order of Harmony Hospitals"
 category: factions
 tags: [faction, religious]
+date_added: "2026-06-06"
 ---
 
 # [[Order of Harmony]] Hospitals

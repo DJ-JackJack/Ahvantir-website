@@ -2,6 +2,7 @@
 title: "The Anvilwrought Trust and Exchange"
 category: factions
 tags: []
+date_added: "2026-06-06"
 ---
 
 # The Anvilwrought Trust and Exchange

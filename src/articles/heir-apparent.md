@@ -2,6 +2,7 @@
 title: "Heir Apparent"
 category: characters
 tags: [npc, royal-family]
+date_added: "2026-06-06"
 ---
 
 # Heir Apparent

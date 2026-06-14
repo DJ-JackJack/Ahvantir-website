@@ -3,6 +3,7 @@ title: "Aru'Mas"
 category: locations
 tags: [location, aru-mas, city]
 aliases: ["the city", "the gateway"]
+date_added: "2026-06-06"
 ---
 
 # Aru'Mas

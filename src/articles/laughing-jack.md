@@ -2,6 +2,7 @@
 title: "Laughing Jack"
 category: characters
 tags: [npc]
+date_added: "2026-06-06"
 ---
 
 # Laughing Jack

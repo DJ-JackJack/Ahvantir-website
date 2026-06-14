@@ -2,6 +2,7 @@
 title: "Burrower Hogs"
 category: history
 tags: [agriculture]
+date_added: "2026-06-06"
 ---
 
 # Burrower Hogs

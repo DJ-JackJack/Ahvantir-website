@@ -2,6 +2,7 @@
 title: "Jujurot the Shaper"
 category: characters
 tags: [npc]
+date_added: "2026-06-06"
 ---
 
 # Jujurot the Shaper

@@ -2,6 +2,7 @@
 title: "The Great Debate: Magic as Science"
 category: culture
 tags: [culture]
+date_added: "2026-06-06"
 ---
 
 # The Great Debate: Magic as Science

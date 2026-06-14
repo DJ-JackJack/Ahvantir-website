@@ -4,6 +4,7 @@ description: "Nodd is a spirit — specifically a [[Loci]] of extraordinary scal
 category: cosmology
 tags: [spirit, loci, warden, dreaming, deity-comparable]
 aliases: ["Monarch of Dreams", "the Monarch of Dreams"]
+date_added: "2026-06-06"
 ---
 
 # Nodd the Monarch of Dreams

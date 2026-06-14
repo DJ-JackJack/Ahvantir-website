@@ -2,6 +2,7 @@
 title: "Alor"
 category: religion
 tags: [deity, pathite-pantheon]
+date_added: "2026-06-06"
 ---
 
 # Alor

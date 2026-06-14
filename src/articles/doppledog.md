@@ -2,6 +2,7 @@
 title: "Doppledog"
 category: culture
 tags: [creature]
+date_added: "2026-06-06"
 ---
 
 # Doppledog

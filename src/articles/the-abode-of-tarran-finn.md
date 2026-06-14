@@ -2,6 +2,7 @@
 title: "The Abode of Tarran Finn"
 category: locations
 tags: [district-site, hearthstone, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # The Abode of [[Tarran Finn]]

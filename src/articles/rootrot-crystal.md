@@ -2,6 +2,7 @@
 title: "Rootrot Crystal"
 category: magic
 tags: [material]
+date_added: "2026-06-06"
 ---
 
 # Rootrot Crystal

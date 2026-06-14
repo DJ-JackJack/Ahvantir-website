@@ -2,6 +2,7 @@
 title: "Faded Veil"
 category: cosmology
 tags: [plane, cosmology]
+date_added: "2026-06-06"
 ---
 
 # Faded Veil

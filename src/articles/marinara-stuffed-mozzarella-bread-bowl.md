@@ -3,6 +3,7 @@ title: "Marinara Stuffed Mozzarella Bread Bowl"
 category: culture
 tags: [culture, food, driftmoor, arrandak, street-food, off-world]
 aliases: ["bread bowl", "mozzarella bread bowl"]
+date_added: "2026-06-09"
 ---
 
 # Marinara Stuffed Mozzarella Bread Bowl

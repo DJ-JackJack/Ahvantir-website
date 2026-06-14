@@ -2,6 +2,7 @@
 title: "Hearthstone"
 category: locations
 tags: [district, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Hearthstone

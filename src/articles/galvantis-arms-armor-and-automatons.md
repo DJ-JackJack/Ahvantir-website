@@ -2,6 +2,7 @@
 title: "Galvantis Arms, Armor, and Automatons"
 category: locations
 tags: [district-site, spireview, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Galvantis Arms, Armor, and Automatons

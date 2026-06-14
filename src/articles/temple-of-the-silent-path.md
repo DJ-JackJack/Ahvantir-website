@@ -2,6 +2,7 @@
 title: "Temple of the Silent Path"
 category: locations
 tags: [temple-way, aru-mas, primordem, first-pact, religion-ritual, city-militia, driftmoor-haven, dm-only, npc, temple-of-the-silent-path, silentmaster-orah]
+date_added: "2026-06-09"
 ---
 
 # Temple of the Silent Path

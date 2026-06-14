@@ -2,6 +2,7 @@
 title: "Vast Green"
 category: cosmology
 tags: [plane, cosmology]
+date_added: "2026-06-06"
 ---
 
 # Vast Green

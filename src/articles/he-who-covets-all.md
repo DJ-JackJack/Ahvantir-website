@@ -3,6 +3,7 @@ title: "He Who Covets All"
 description: "The twelfth Primordem. Sealed separately from the original eleven during the [[First Pact]] negotiations, by unanimous vote of the spirit delegation. He committed no act of violence. He did not scheme or deceive. His passive presence was deemed incompatible with any lasting peace — simply being near him made every party's desires sharper, every rivalry harder to set aside. He did not resist the seal."
 category: cosmology
 tags: [spirit, primordem]
+date_added: "2026-06-06"
 ---
 
 # He Who Covets All

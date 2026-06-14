@@ -2,6 +2,7 @@
 title: "Ilderas Dynasty"
 category: factions
 tags: [faction, government]
+date_added: "2026-06-06"
 ---
 
 # Ilderas Dynasty

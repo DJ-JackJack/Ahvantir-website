@@ -2,6 +2,7 @@
 title: "Roost"
 category: locations
 tags: [district-site, stonegate, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Roost

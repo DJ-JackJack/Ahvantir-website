@@ -2,6 +2,7 @@
 title: "Painted Child"
 category: characters
 tags: []
+date_added: "2026-06-06"
 ---
 
 # Painted Child

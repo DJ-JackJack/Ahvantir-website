@@ -2,6 +2,7 @@
 title: "Heartspire"
 category: locations
 tags: [district-site, spireview, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Heartspire

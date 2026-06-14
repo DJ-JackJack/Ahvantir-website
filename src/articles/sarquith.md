@@ -2,6 +2,7 @@
 title: "Sarquith"
 category: cosmology
 tags: [spirit, eight-shadows]
+date_added: "2026-06-06"
 ---
 
 # Sarquith

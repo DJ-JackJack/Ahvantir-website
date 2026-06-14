@@ -2,6 +2,7 @@
 title: "Grand Speaker Artrice Vanderbane"
 category: characters
 tags: [npc]
+date_added: "2026-06-06"
 ---
 
 # Grand Speaker Artrice Vanderbane

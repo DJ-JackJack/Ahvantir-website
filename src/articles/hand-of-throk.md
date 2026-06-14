@@ -2,6 +2,7 @@
 title: "Hand of Throk"
 category: factions
 tags: [faction, criminal]
+date_added: "2026-06-06"
 ---
 
 # Hand of Throk

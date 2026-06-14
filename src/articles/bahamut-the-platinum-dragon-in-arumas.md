@@ -2,6 +2,7 @@
 title: "Bahamut, the Platinum Dragon in Aru’Mas"
 category: religion
 tags: [deity, foreign-deity]
+date_added: "2026-06-06"
 ---
 
 # Bahamut, the Platinum Dragon in Aru’Mas

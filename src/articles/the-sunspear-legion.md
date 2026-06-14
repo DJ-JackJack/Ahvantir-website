@@ -5,6 +5,7 @@ category: factions
 tags: [sunspear-legion, military, marduk-sunspear, aru-mas, history, founding, landing-war]
 aliases: ["City Guard", "the Legion"]
 timeline_year: 0
+date_added: "2026-06-09"
 ---
 
 # The Sunspear Legion

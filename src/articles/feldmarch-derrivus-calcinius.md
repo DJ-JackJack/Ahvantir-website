@@ -3,6 +3,7 @@ title: "Feldmarch Derrivus Calcinius"
 description: "Magister of Defense of the [[Sunspear Legion]] — born outside the city's walls, shaped by a paramilitary gang, and appointed over every more obvious candidate by a king who understood that loyalty to a gate and loyalty to a house are not the same thing."
 category: characters
 tags: [npc, sunspear-legion, military, ragmarket, iron-boots, all-are-one]
+date_added: "2026-06-14"
 ---
 
 # Feldmarch Derrivus Calcinius

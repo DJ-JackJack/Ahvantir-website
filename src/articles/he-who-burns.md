@@ -4,6 +4,7 @@ description: "Seventh of the eleven [[The Primordem|Primordem]]. Sealed 7 of 11 
 category: cosmology
 tags: [spirit, primordem]
 timeline_year: 0
+date_added: "2026-06-06"
 ---
 
 # He Who Burns

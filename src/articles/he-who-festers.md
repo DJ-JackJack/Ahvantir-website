@@ -4,6 +4,7 @@ description: "Fifth of the eleven [[The Primordem|Primordem]]. Sealed 5 of 11 du
 category: cosmology
 tags: [spirit, primordem]
 timeline_year: 0
+date_added: "2026-06-06"
 ---
 
 # He Who Festers

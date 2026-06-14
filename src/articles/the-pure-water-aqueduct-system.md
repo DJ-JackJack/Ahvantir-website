@@ -2,6 +2,7 @@
 title: "The Pure Water Aqueduct System"
 category: magic
 tags: [magic, technology]
+date_added: "2026-06-06"
 ---
 
 # The Pure Water Aqueduct System

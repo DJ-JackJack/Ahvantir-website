@@ -2,6 +2,7 @@
 title: "Unregistered Guilds"
 category: culture
 tags: [culture, law]
+date_added: "2026-06-06"
 ---
 
 # Unregistered Guilds

@@ -1,104 +1,56 @@
 ---
 layout: base
 title: Recently Added
-description: "Articles added or updated in the most recent vault sync."
+description: "All lore articles ordered by the date they were added to the archive."
 permalink: /recently-added/
 ---
 
 <div class="page-header">
   <div class="container">
     <h1 class="page-title">Recently Added</h1>
-    {% if recently_synced.date %}
-    <p class="page-lead">Articles from the vault sync on <strong>{{ recently_synced.date }}</strong>.</p>
-    {% else %}
-    <p class="page-lead">Articles from the most recent vault sync.</p>
-    {% endif %}
+    <p class="page-lead">All lore articles, newest additions first.</p>
   </div>
 </div>
 
 <div class="container recently-container">
 
-  {% set addedArticles = [] %}
-  {% for slug in recently_synced.added %}
-    {% for article in collections.allArticles %}
-      {% if article.fileSlug == slug %}
-        {% set addedArticles = (addedArticles.push(article), addedArticles) %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
+  {% set groups = collections.allArticlesByDateAdded | groupByField("date_added") %}
 
-  {% set updatedArticles = [] %}
-  {% for slug in recently_synced.updated %}
-    {% for article in collections.allArticles %}
-      {% if article.fileSlug == slug %}
-        {% set updatedArticles = (updatedArticles.push(article), updatedArticles) %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-
-  {% if addedArticles.length == 0 and updatedArticles.length == 0 %}
-    {% if recently_synced.date %}
-    <div class="recently-empty">
-      <p>The last sync on <strong>{{ recently_synced.date }}</strong> did not add or update any articles —
-        either the vault source was unchanged or <code>OBSIDIAN_VAULT_PATH</code> is not yet configured.</p>
-      <p><a href="/articles/">Browse all articles →</a></p>
-    </div>
-    {% else %}
-    <div class="recently-empty">
-      <p>No sync data available yet. Once the weekly vault sync runs, new and updated articles will appear here.</p>
-      <p><a href="/articles/">Browse all articles →</a></p>
-    </div>
-    {% endif %}
+  {% if groups.length == 0 %}
+  <div class="recently-empty">
+    <p>No articles found in the archive yet.</p>
+    <p><a href="/articles/">Browse all articles →</a></p>
+  </div>
 
   {% else %}
 
-    {% if addedArticles.length > 0 %}
-    <section class="recently-section">
-      <h2 class="recently-section__title">
-        New Articles
-        <span class="recently-count">{{ addedArticles.length }}</span>
-      </h2>
-      <div class="article-grid">
-        {% for article in addedArticles %}
-        <a href="{{ article.url }}" class="article-card">
-          <span class="article-card__category" style="color:
-            {%- for cat in meta.categories -%}
-              {%- if cat.slug == article.data.category -%}{{ cat.color }}{%- endif -%}
-            {%- endfor -%}
-          ">{{ article.data.category or "uncategorized" }}</span>
-          <h3 class="article-card__title">{{ article.data.title }}</h3>
-          {% if article.data.description %}
-          <p class="article-card__desc">{{ article.data.description }}</p>
-          {% endif %}
-        </a>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
-
-    {% if updatedArticles.length > 0 %}
-    <section class="recently-section">
-      <h2 class="recently-section__title">
-        Updated Articles
-        <span class="recently-count">{{ updatedArticles.length }}</span>
-      </h2>
-      <div class="article-grid">
-        {% for article in updatedArticles %}
-        <a href="{{ article.url }}" class="article-card article-card--updated">
-          <span class="article-card__category" style="color:
-            {%- for cat in meta.categories -%}
-              {%- if cat.slug == article.data.category -%}{{ cat.color }}{%- endif -%}
-            {%- endfor -%}
-          ">{{ article.data.category or "uncategorized" }}</span>
-          <h3 class="article-card__title">{{ article.data.title }}</h3>
-          {% if article.data.description %}
-          <p class="article-card__desc">{{ article.data.description }}</p>
-          {% endif %}
-        </a>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
+  {% for group in groups %}
+  <section class="recently-section">
+    <h2 class="recently-section__title">
+      {% if group.key == "Unknown" %}
+        Undated
+      {% else %}
+        {{ group.key | dateDisplay }}
+      {% endif %}
+      <span class="recently-count">{{ group.items.length }}</span>
+    </h2>
+    <div class="article-grid">
+      {% for article in group.items %}
+      <a href="{{ article.url }}" class="article-card">
+        <span class="article-card__category" style="color:
+          {%- for cat in meta.categories -%}
+            {%- if cat.slug == article.data.category -%}{{ cat.color }}{%- endif -%}
+          {%- endfor -%}
+        ">{{ article.data.category or "uncategorized" }}</span>
+        <h3 class="article-card__title">{{ article.data.title }}</h3>
+        {% if article.data.description %}
+        <p class="article-card__desc">{{ article.data.description }}</p>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
 
   {% endif %}
 

@@ -3,6 +3,7 @@ title: "Shattered Strand"
 category: cosmology
 tags: [plane, cosmology]
 timeline_pending: "Middle History (~100-400 MC) — needs a specific year assigned to the calamity"
+date_added: "2026-06-06"
 ---
 
 # Shattered Strand

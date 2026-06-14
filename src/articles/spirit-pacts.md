@@ -2,6 +2,7 @@
 title: "Spirit Pacts"
 category: culture
 tags: [culture, law]
+date_added: "2026-06-06"
 ---
 
 # Spirit Pacts

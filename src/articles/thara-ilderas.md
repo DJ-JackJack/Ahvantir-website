@@ -2,6 +2,7 @@
 title: "Thara Ilderas"
 category: characters
 tags: [npc, royal-family]
+date_added: "2026-06-06"
 ---
 
 # Thara Ilderas

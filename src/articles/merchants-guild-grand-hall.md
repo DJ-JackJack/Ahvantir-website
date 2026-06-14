@@ -2,6 +2,7 @@
 title: "Merchants Guild Grand Hall"
 category: locations
 tags: [district-site, driftmoor-haven, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Merchants Guild Grand Hall

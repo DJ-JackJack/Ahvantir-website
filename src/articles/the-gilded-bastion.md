@@ -2,6 +2,7 @@
 title: "The Gilded Bastion"
 category: locations
 tags: [district-site, crowns-approach, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # The Gilded Bastion

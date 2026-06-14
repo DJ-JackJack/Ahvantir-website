@@ -4,6 +4,7 @@ description: "In Ahvantir, a deity is not simply a powerful supernatural being â
 category: cosmology
 tags: [cosmology, deities, divine-mechanics, pathite-pantheon, magic]
 aliases: ["Divine Mechanics", "How Gods Work", "Deification"]
+date_added: "2026-06-06"
 ---
 
 # Deification in Ahvantir

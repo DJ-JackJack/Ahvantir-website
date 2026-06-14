@@ -2,6 +2,7 @@
 title: "Pepper Hens"
 category: history
 tags: [agriculture]
+date_added: "2026-06-06"
 ---
 
 # Pepper Hens

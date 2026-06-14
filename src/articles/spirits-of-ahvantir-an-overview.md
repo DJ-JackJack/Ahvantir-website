@@ -4,6 +4,7 @@ description: "\"Spirit\" is a broad umbrella term for a wide range of supernatur
 category: cosmology
 tags: [cosmology, spirits, spirit-types, lore-fundamentals]
 aliases: ["Spirit Overview", "What is a Spirit", "Spirits Overview"]
+date_added: "2026-06-06"
 ---
 
 # Spirits of Ahvantir — An Overview

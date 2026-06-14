@@ -72,6 +72,25 @@ module.exports = function (eleventyConfig) {
       );
   });
 
+  eleventyConfig.addCollection("allArticlesByDateAdded", function (api) {
+    // YAML parses bare YYYY-MM-DD as a Date object (UTC midnight); normalize to string.
+    function normDate(v) {
+      if (!v) return "0000-00-00";
+      if (v instanceof Date) return v.toISOString().slice(0, 10);
+      return String(v);
+    }
+    return api
+      .getFilteredByGlob("src/articles/**/*.md")
+      .filter((p) => !p.data.draft)
+      .sort((a, b) => {
+        const da = normDate(a.data.date_added);
+        const db = normDate(b.data.date_added);
+        if (db > da) return 1;
+        if (db < da) return -1;
+        return (a.data.title || "").localeCompare(b.data.title || "");
+      });
+  });
+
   eleventyConfig.addCollection("timeline", function (api) {
     return api
       .getFilteredByGlob("src/articles/**/*.md")
@@ -137,6 +156,27 @@ module.exports = function (eleventyConfig) {
       .trim();
   });
 
+  // Group a collection array by a frontmatter field, preserving encounter order.
+  // Returns [{key, items}] — used by recently-added.njk to group by date_added.
+  // Normalizes YAML Date objects (parsed from bare YYYY-MM-DD) to ISO strings so
+  // Date instances from different articles group correctly (objects compare by ref).
+  eleventyConfig.addFilter("groupByField", function (arr, field) {
+    const groups = [];
+    const keyMap = new Map();
+    for (const item of arr) {
+      let val = item.data && item.data[field];
+      if (val instanceof Date) val = val.toISOString().slice(0, 10);
+      const key = val || "Unknown";
+      if (!keyMap.has(key)) {
+        const group = { key, items: [] };
+        groups.push(group);
+        keyMap.set(key, group);
+      }
+      keyMap.get(key).items.push(item);
+    }
+    return groups;
+  });
+
   eleventyConfig.addFilter("toSlug", toSlug);
   eleventyConfig.addFilter("joinSlugs", (arr) => (arr || []).map(toSlug).join(" "));
   // Safe JSON for embedding in <script> blocks: encode <, >, & as Unicode escapes
@@ -169,7 +209,17 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("articleUrl", (title) => `/articles/${toSlug(title)}/`);
   eleventyConfig.addFilter("dateDisplay", (date) => {
     if (!date) return "";
-    return new Date(date).toLocaleDateString("en-US", {
+    // YAML parses bare YYYY-MM-DD as a Date object at UTC midnight, which shifts
+    // one day in US timezones. Extract UTC parts and construct a local-noon Date
+    // so the displayed date always matches what was written in frontmatter.
+    let d;
+    if (date instanceof Date) {
+      d = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 12, 0, 0);
+    } else {
+      const s = String(date);
+      d = /^\d{4}-\d{2}-\d{2}$/.test(s) ? new Date(s + "T12:00:00") : new Date(s);
+    }
+    return d.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",

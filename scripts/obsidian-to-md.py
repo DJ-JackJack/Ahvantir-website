@@ -17,6 +17,7 @@ Transformations:
   - Skips articles with status: stub
 """
 
+import datetime
 import os
 import re
 import sys
@@ -50,7 +51,7 @@ SKIP_FILES = {"Welcome.md", "welcome.md"}
 
 # Frontmatter fields that are set manually on the website side and must
 # survive every sync (they don't exist in the Obsidian vault files).
-PRESERVE_FIELDS = {"timeline_year", "timeline_date", "timeline_pending"}
+PRESERVE_FIELDS = {"timeline_year", "timeline_date", "timeline_pending", "date_added"}
 
 CATEGORY_MAP = {
     "article":           "history",
@@ -238,10 +239,15 @@ def build_frontmatter(fm: dict, description: str, preserved: dict = None) -> str
     if aliases:
         alias_str = ", ".join(f'"{a}"' for a in aliases)
         lines.append(f"aliases: [{alias_str}]")
-    # Re-emit website-specific fields that don't exist in the Obsidian vault
+    # Re-emit website-specific fields that don't exist in the Obsidian vault.
+    # Date values are quoted so YAML parsers keep them as strings, not Date objects.
     if preserved:
         for key in sorted(preserved.keys()):
-            lines.append(f"{key}: {preserved[key]}")
+            val = preserved[key]
+            if key == "date_added":
+                lines.append(f'{key}: "{val}"')
+            else:
+                lines.append(f"{key}: {val}")
     lines.append("---")
     return "\n".join(lines)
 
@@ -279,7 +285,6 @@ def process_file(src: Path, preserved_fm: dict = None):
 
 def write_sync_log(added: list, updated: list, log_lines: list):
     """Write/append today's sync log so recently-added.njk picks it up."""
-    import datetime
     log_dir = OUTPUT_DIR.parent.parent / "sync-logs"
     log_dir.mkdir(exist_ok=True)
 
@@ -333,6 +338,7 @@ def main():
     skipped = errors = 0
     slug_map = {}  # slug -> source filename; detect collisions across this run
     log_lines = [f"Found {len(md_files)} markdown files (after folder exclusions)."]
+    today_str = datetime.date.today().isoformat()
 
     for src in sorted(md_files):
         try:
@@ -361,14 +367,18 @@ def main():
         dest = OUTPUT_DIR / f"{slug}.md"
 
         # Preserve website-specific frontmatter that lives only in the output
-        # files and doesn't exist in the Obsidian vault (e.g. timeline_year).
+        # files and doesn't exist in the Obsidian vault (e.g. timeline_year,
+        # date_added). New files get date_added stamped with today's date.
         if dest.exists():
             existing_fm, _ = parse_frontmatter(dest.read_text(encoding="utf-8"))
             preserved = {f: existing_fm[f] for f in PRESERVE_FIELDS if f in existing_fm}
-            if preserved:
-                result2 = process_file(src, preserved_fm=preserved)
-                if result2 is not None:
-                    _, content = result2
+        else:
+            preserved = {"date_added": today_str}
+
+        if preserved:
+            result2 = process_file(src, preserved_fm=preserved)
+            if result2 is not None:
+                _, content = result2
 
         if dest.exists() and dest.read_text(encoding="utf-8") == content:
             continue

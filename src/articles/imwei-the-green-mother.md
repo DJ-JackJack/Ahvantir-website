@@ -3,6 +3,7 @@ title: "Imwei, the Green Mother"
 category: religion
 tags: [deity, greater-deity, nature, cosmology]
 aliases: ["Green Mother", "Imwei"]
+date_added: "2026-06-06"
 ---
 
 # Imwei, the Green Mother

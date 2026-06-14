@@ -2,6 +2,7 @@
 title: "Graveyard Rift"
 category: locations
 tags: [district-site, aurora-song, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Graveyard Rift

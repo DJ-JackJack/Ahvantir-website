@@ -4,6 +4,7 @@ description: "The more affluent half of the original Hearthstone district. When 
 category: locations
 tags: [district, aru-mas, hearthstone]
 aliases: ["Upper Hearth"]
+date_added: "2026-06-06"
 ---
 
 # Upper [[Hearthstone]]

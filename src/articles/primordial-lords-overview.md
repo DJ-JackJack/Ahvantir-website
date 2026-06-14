@@ -2,6 +2,7 @@
 title: "Primordial Lords: Overview"
 category: religion
 tags: [deity, primordial-lords]
+date_added: "2026-06-06"
 ---
 
 # Primordial Lords: Overview

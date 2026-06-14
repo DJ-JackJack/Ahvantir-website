@@ -2,6 +2,7 @@
 title: "Red Masquerade"
 category: factions
 tags: [faction, cult]
+date_added: "2026-06-06"
 ---
 
 # Red Masquerade

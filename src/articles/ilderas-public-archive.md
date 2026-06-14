@@ -2,6 +2,7 @@
 title: "Ilderas Public Archive"
 category: locations
 tags: [district-site, hearthstone, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Ilderas Public Archive

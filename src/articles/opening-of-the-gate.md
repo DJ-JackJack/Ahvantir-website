@@ -2,6 +2,7 @@
 title: "Opening of the Gate"
 category: culture
 tags: [culture, tradition]
+date_added: "2026-06-06"
 ---
 
 # Opening of the Gate

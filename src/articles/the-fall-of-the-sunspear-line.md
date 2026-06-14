@@ -4,6 +4,7 @@ description: "The dynastic rupture that ended Sunspear rule: a nine-year siege b
 category: history
 tags: [history, sunspear, ilderas, dynastic-transition, asgoraviel, dammadan-sunspear, nishta-ilderas-sunspear, galligan-ilderas, siege]
 aliases: ["Siege of Asgoraviel", "Sunspear-Ilderas Transition", "Fall of the Sunspear Dynasty"]
+date_added: "2026-06-14"
 ---
 
 # The Fall of the Sunspear Line

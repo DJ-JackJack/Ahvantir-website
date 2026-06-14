@@ -4,6 +4,7 @@ description: "Leader of the eleven [[The Primordem|Primordem]]. Sealed 1 of 11 d
 category: cosmology
 tags: [spirit, primordem]
 timeline_year: 0
+date_added: "2026-06-06"
 ---
 
 # He Who Was Forgotten

@@ -3,6 +3,7 @@ title: "Lycanum Tyr Mechanus"
 category: religion
 tags: [deity, greater-deity, time, fate, cosmology]
 aliases: ["Lycanum", "Nonarch of Predestination", "god of Time"]
+date_added: "2026-06-06"
 ---
 
 # Lycanum Tyr Mechanus

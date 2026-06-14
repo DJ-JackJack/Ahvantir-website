@@ -2,6 +2,7 @@
 title: "Merchants Guild"
 category: factions
 tags: [faction, government]
+date_added: "2026-06-06"
 ---
 
 # Merchants Guild

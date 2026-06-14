@@ -3,6 +3,7 @@ title: "House Ninetti"
 category: factions
 tags: [faction, noble-house]
 timeline_year: 0
+date_added: "2026-06-06"
 ---
 
 # House Ninetti

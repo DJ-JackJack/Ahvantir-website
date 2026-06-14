@@ -2,6 +2,7 @@
 title: "Glamour Birds"
 category: culture
 tags: [creature]
+date_added: "2026-06-06"
 ---
 
 # Glamour Birds

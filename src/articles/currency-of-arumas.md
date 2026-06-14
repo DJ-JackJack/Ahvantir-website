@@ -2,6 +2,7 @@
 title: "Currency of Aru'Mas"
 category: culture
 tags: [culture, law]
+date_added: "2026-06-06"
 ---
 
 # Currency of [[Aru'Mas]]

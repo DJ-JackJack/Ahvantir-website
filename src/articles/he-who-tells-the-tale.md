@@ -4,6 +4,7 @@ description: "Tenth of the eleven [[The Primordem|Primordem]]. Sealed 10 of 11 d
 category: cosmology
 tags: [spirit, primordem]
 timeline_year: 0
+date_added: "2026-06-06"
 ---
 
 # He Who Tells the Tale

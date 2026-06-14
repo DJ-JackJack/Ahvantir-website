@@ -2,6 +2,7 @@
 title: "Yara Yamina"
 category: cosmology
 tags: [spirit, land-spirit]
+date_added: "2026-06-06"
 ---
 
 # Yara Yamina

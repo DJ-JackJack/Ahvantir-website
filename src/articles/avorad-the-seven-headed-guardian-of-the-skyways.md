@@ -2,6 +2,7 @@
 title: "Avorad, the Seven-Headed Guardian of the Skyways"
 category: religion
 tags: [deity, foreign-deity]
+date_added: "2026-06-06"
 ---
 
 # Avorad, the Seven-Headed Guardian of the Skyways

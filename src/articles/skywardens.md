@@ -2,6 +2,7 @@
 title: "Skywardens"
 category: factions
 tags: [faction, military]
+date_added: "2026-06-06"
 ---
 
 # Skywardens

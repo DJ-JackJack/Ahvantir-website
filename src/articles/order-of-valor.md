@@ -2,6 +2,7 @@
 title: "Order of Valor"
 category: factions
 tags: [faction, religious, church]
+date_added: "2026-06-06"
 ---
 
 # Order of Valor

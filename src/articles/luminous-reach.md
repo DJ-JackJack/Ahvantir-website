@@ -2,6 +2,7 @@
 title: "Luminous Reach"
 category: locations
 tags: [district, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Luminous Reach

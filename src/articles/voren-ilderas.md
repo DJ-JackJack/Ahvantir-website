@@ -3,6 +3,7 @@ title: "Voren Ilderas"
 category: characters
 tags: [npc, royal-family]
 timeline_year: 412
+date_added: "2026-06-06"
 ---
 
 # Voren Ilderas

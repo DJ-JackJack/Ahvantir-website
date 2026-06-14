@@ -2,6 +2,7 @@
 title: "Horizon Watch Arena"
 category: locations
 tags: [district-site, luminous-reach, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Horizon Watch Arena

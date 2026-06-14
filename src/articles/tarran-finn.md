@@ -2,6 +2,7 @@
 title: "Tarran Finn"
 category: characters
 tags: [npc, adventurer]
+date_added: "2026-06-06"
 ---
 
 # Tarran Finn

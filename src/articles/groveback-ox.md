@@ -2,6 +2,7 @@
 title: "Groveback Ox"
 category: history
 tags: [agriculture]
+date_added: "2026-06-06"
 ---
 
 # Groveback Ox

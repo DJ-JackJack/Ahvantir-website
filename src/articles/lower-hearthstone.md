@@ -4,6 +4,7 @@ description: "The grittier, more resilient half of the original Hearthstone dist
 category: locations
 tags: [district, aru-mas, hearthstone]
 aliases: ["Lower Hearth"]
+date_added: "2026-06-06"
 ---
 
 # Lower [[Hearthstone]]

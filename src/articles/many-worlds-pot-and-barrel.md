@@ -2,6 +2,7 @@
 title: "Many Worlds Pot and Barrel"
 category: locations
 tags: [district-site, driftmoor-haven, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Many Worlds Pot and Barrel

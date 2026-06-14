@@ -2,6 +2,7 @@
 title: "The Arcanum Dispersal System"
 category: magic
 tags: [magic, technology]
+date_added: "2026-06-06"
 ---
 
 # The Arcanum Dispersal System

@@ -2,6 +2,7 @@
 title: "Razorwool Alpaca"
 category: history
 tags: [agriculture]
+date_added: "2026-06-06"
 ---
 
 # Razorwool Alpaca

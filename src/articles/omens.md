@@ -2,6 +2,7 @@
 title: "Omens"
 category: cosmology
 tags: [spirit]
+date_added: "2026-06-06"
 ---
 
 # Omens

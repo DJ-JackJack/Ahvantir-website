@@ -2,6 +2,7 @@
 title: "Widow Elira"
 category: characters
 tags: []
+date_added: "2026-06-06"
 ---
 
 # Widow Elira

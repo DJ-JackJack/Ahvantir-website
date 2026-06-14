@@ -2,6 +2,7 @@
 title: "Erand Frond Marsad Pinkerton LaCroi"
 category: characters
 tags: [npc]
+date_added: "2026-06-06"
 ---
 
 # Erand Frond Marsad Pinkerton LaCroi

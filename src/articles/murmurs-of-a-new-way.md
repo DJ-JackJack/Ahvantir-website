@@ -2,6 +2,7 @@
 title: "Murmurs of a New Way"
 category: factions
 tags: [faction, cult]
+date_added: "2026-06-06"
 ---
 
 # Murmurs of a New Way

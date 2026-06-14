@@ -3,6 +3,7 @@ title: "Mountain Wall"
 category: locations
 tags: [location, geography, ahvantir, landing-war, first-pact, spiritsway]
 aliases: ["the Mountain Wall"]
+date_added: "2026-06-06"
 ---
 
 # Mountain Wall

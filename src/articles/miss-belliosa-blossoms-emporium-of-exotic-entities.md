@@ -2,6 +2,7 @@
 title: "Miss Belliosa Blossom’s Emporium of Exotic Entities"
 category: locations
 tags: [district-site, aurora-song, aru-mas]
+date_added: "2026-06-06"
 ---
 
 # Miss Belliosa Blossom’s Emporium of Exotic Entities

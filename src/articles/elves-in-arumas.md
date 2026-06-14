@@ -2,6 +2,7 @@
 title: "Elves in Aru'Mas"
 category: culture
 tags: [species]
+date_added: "2026-06-06"
 ---
 
 # Elves in [[Aru'Mas]]
