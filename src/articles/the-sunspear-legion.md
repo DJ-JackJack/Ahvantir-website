@@ -11,7 +11,7 @@ aliases: ["City Guard", "the Legion"]
 | Field | Detail |
 |---|---|
 | Type | Military |
-| Leader | Feldmarch Derrivus Calcinius (*Magister of Defense*) |
+| Leader | [[Feldmarch Derrivus Calcinius]] (*Magister of Defense*) |
 | Headquarters | [[Citadel of Solara]], Stonegate |
 | Status | Active |
 | Founded | Year 0 MC (formally); wartime precursor from -13 MC |
@@ -219,13 +219,13 @@ This stability is both its strength and its problem. The Legion's structures wer
 
 Prince [[Warrior Prince|Jorran Ilderas]] (18) currently trains with the city guard in Stonegate, an arrangement that pleases [[House Der'Tagan]] considerably and makes the political dynamics between the royal family and the noble house visible in miniature. Whether Jorran intends to eventually lead the Legion's defense apparatus is a matter of active speculation in the Council.
 
-The current Magister of Defense is **Feldmarch Derrivus Calcinius**. He was born in [[Ragmarket]]. He ran with a street gang called the **Iron Boots** in his early years. He came to the Legion's attention through an incident that has since become something between a legend and a recruitment story: when a faction known as **[[All Are One]]** mentally influenced and drugged a platoon of Iron Boots members into attacking the city's southern gate, Calcinius held that gate alone against his former brothers until Legion reinforcements arrived. He did not look away from what he was doing. He did not leave the post.
+The current Magister of Defense is **[[Feldmarch Derrivus Calcinius]]**. He was born in [[Ragmarket]]. He ran with a street gang called the **Iron Boots** in his early years. He came to the Legion's attention through an incident that has since become something between a legend and a recruitment story: when a faction known as **[[All Are One]]** mentally influenced and drugged a platoon of Iron Boots members into attacking the city's southern gate, [[Feldmarch Derrivus Calcinius|Calcinius]] held that gate alone against his former brothers until Legion reinforcements arrived. He did not look away from what he was doing. He did not leave the post.
 
-His appointment by [[Voren Ilderas|King Voren Ilderas]] — confirmed by the Merchants' Guild and the Church, bypassing the more obvious candidates from established military families — was a deliberate signal, though what exactly it was meant to signal depends on who you ask. [[House Der'Tagan]], whose blood runs deepest in the Legion's ranks, received it with the studied graciousness of people who know how to lose gracefully. Whether that graciousness holds as Calcinius settles into the role is a matter of ongoing calibration between the house and the man.
+His appointment by [[Voren Ilderas|King Voren Ilderas]] — confirmed by the Merchants' Guild and the Church, bypassing the more obvious candidates from established military families — was a deliberate signal, though what exactly it was meant to signal depends on who you ask. [[House Der'Tagan]], whose blood runs deepest in the Legion's ranks, received it with the studied graciousness of people who know how to lose gracefully. Whether that graciousness holds as [[Feldmarch Derrivus Calcinius|Calcinius]] settles into the role is a matter of ongoing calibration between the house and the man.
 
-Calcinius is someone formed by choices about loyalty — which means he thinks about loyalty more precisely than most. He came up from the streets the Ironshields patrol. He knows what it looks like when a Spillway resident sees a Legion uniform, because he was on that side of it once. He does not pretend the Legion has earned the same standing in every district it polices.
+[[Feldmarch Derrivus Calcinius|Calcinius]] is someone formed by choices about loyalty — which means he thinks about loyalty more precisely than most. He came up from the streets the Ironshields patrol. He knows what it looks like when a Spillway resident sees a Legion uniform, because he was on that side of it once. He does not pretend the Legion has earned the same standing in every district it polices.
 
-What is less certain is what he intends to do with that knowledge. He is not a man who avoids hard questions — his entire career is a demonstration of what happens when he faces one. But he also chose the institution over his own people at the moment of crisis, and has spent the years since deciding that choice was right. The Legion under Calcinius is competent, and it is led by someone who understands the gap between what it claims to be and what it is. Whether understanding that gap narrows it is the question his tenure will eventually have to answer.
+What is less certain is what he intends to do with that knowledge. He is not a man who avoids hard questions — his entire career is a demonstration of what happens when he faces one. But he also chose the institution over his own people at the moment of crisis, and has spent the years since deciding that choice was right. The Legion under [[Feldmarch Derrivus Calcinius|Calcinius]] is competent, and it is led by someone who understands the gap between what it claims to be and what it is. Whether understanding that gap narrows it is the question his tenure will eventually have to answer.
 
 ---
 
