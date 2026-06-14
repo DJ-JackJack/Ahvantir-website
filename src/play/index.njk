@@ -110,16 +110,53 @@ permalink: /play/
         >Open full article ↗</a>
       </div>
 
-      {# Notes view #}
+      {# Notes view — wraps both list and editor sub-views #}
       <div id="lore-notes-view" class="lore-notes-view" hidden aria-label="Session notes">
-        <textarea
-          id="lore-notes-input"
-          class="lore-notes-textarea"
-          placeholder="Jot down thoughts mid-session…"
-          aria-label="Session notes"
-          spellcheck="true"
-        ></textarea>
-        <p class="lore-notes-status" id="lore-notes-status" aria-live="polite" aria-atomic="true"></p>
+
+        {# List sub-view #}
+        <div id="notes-list-view" class="notes-list-view">
+          <div class="notes-toolbar">
+            <input
+              type="search"
+              id="notes-search"
+              class="notes-search"
+              placeholder="Search notes…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search your notes"
+            >
+            <button type="button" id="notes-new-btn" class="notes-new-btn" aria-label="Create new note">+ New</button>
+          </div>
+          <ul id="notes-cards" class="notes-cards" role="list" aria-label="Your notes" aria-live="polite"></ul>
+          <p id="notes-empty" class="notes-empty" hidden>No notes yet — hit <strong>+ New</strong> to start one.</p>
+          <p id="notes-no-results" class="notes-empty" hidden>No notes match your search.</p>
+        </div>
+
+        {# Editor sub-view #}
+        <div id="notes-editor-view" class="notes-editor-view" hidden>
+          <div class="notes-editor-toolbar">
+            <button type="button" id="notes-back-btn" class="notes-back-btn">← Notes</button>
+            <button type="button" id="notes-delete-btn" class="notes-delete-btn">Delete</button>
+          </div>
+          <input
+            type="text"
+            id="notes-title-input"
+            class="notes-title-input"
+            placeholder="Title (optional)"
+            aria-label="Note title"
+            spellcheck="true"
+            maxlength="120"
+          >
+          <textarea
+            id="notes-content-input"
+            class="notes-content-textarea"
+            placeholder="Write your note…"
+            aria-label="Note content"
+            spellcheck="true"
+          ></textarea>
+          <p id="notes-save-status" class="notes-save-status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+
       </div>
 
     </div>

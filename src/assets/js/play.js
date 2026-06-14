@@ -7,12 +7,11 @@
   var SIGNAL_TIMEOUT   = 8000;   // ms before showing "no signal"
   var MOBILE_BREAKPT   = 768;    // px — Foundry is not usable on mobile
   var MAX_RESULTS      = 25;
-  var NOTES_SAVE_DELAY = 1500;   // ms debounce for scratchpad autosave
+  var NOTES_SAVE_DELAY = 1500;   // ms debounce for note autosave
 
   var articles = [];
   var loreOpen = true;
   var signalTimer = null;
-  var notesTimer = null;
 
   /* ── DOM refs ───────────────────────────────────────────── */
   var iframe       = document.getElementById('play-iframe');
@@ -29,11 +28,21 @@
   var articleBody  = document.getElementById('lore-article-body');
   var articleLink  = document.getElementById('lore-article-link');
   var backBtn      = document.getElementById('lore-back');
-  var tabSearch    = document.getElementById('tab-search');
-  var tabNotes     = document.getElementById('tab-notes');
-  var notesView    = document.getElementById('lore-notes-view');
-  var notesInput   = document.getElementById('lore-notes-input');
-  var notesStatus  = document.getElementById('lore-notes-status');
+  var tabSearch       = document.getElementById('tab-search');
+  var tabNotes        = document.getElementById('tab-notes');
+  var notesView       = document.getElementById('lore-notes-view');
+  var notesListView   = document.getElementById('notes-list-view');
+  var notesEditorView = document.getElementById('notes-editor-view');
+  var notesSearch     = document.getElementById('notes-search');
+  var notesNewBtn     = document.getElementById('notes-new-btn');
+  var notesCards      = document.getElementById('notes-cards');
+  var notesEmpty      = document.getElementById('notes-empty');
+  var notesNoResults  = document.getElementById('notes-no-results');
+  var notesBackBtn    = document.getElementById('notes-back-btn');
+  var notesDeleteBtn  = document.getElementById('notes-delete-btn');
+  var notesTitleInput = document.getElementById('notes-title-input');
+  var notesContentInput = document.getElementById('notes-content-input');
+  var notesSaveStatus = document.getElementById('notes-save-status');
 
   /* ── Session schedule ──────────────────────────────────── */
   function loadSessions() {
@@ -216,48 +225,147 @@
     if (searchView)  searchView.hidden  = !isSearch;
     if (articleView) articleView.hidden = true;
     if (notesView)   notesView.hidden   = isSearch;
-    if (!isSearch && notesInput) notesInput.focus();
+    if (!isSearch) showNotesList();
   }
 
-  /* ── Notes scratchpad ───────────────────────────────────── */
+  /* ── Notes (per-card system) ───────────────────────────────── */
+  var notesAll          = [];
+  var notesCurrent      = null;   // {id, title, content} | null for a new unsaved note
+  var notesSaveTimer    = null;
+  var notesDeleteArmed  = false;
+  var notesDeleteTimer  = null;
+
+  function fmtNoteDate(iso) {
+    if (!iso) return '';
+    var d    = new Date(iso);
+    var now  = new Date();
+    var days = Math.floor((now - d) / 86400000);
+    if (days === 0) return 'Today';
+    if (days === 1) return 'Yesterday';
+    var opts = { month: 'short', day: 'numeric' };
+    if (d.getFullYear() !== now.getFullYear()) opts.year = 'numeric';
+    return d.toLocaleDateString('en-US', opts);
+  }
+
   function setNotesStatus(text, state) {
-    if (!notesStatus) return;
-    notesStatus.textContent = text;
-    notesStatus.className   = 'lore-notes-status' + (state ? ' lore-notes-status--' + state : '');
+    if (!notesSaveStatus) return;
+    notesSaveStatus.textContent = text;
+    notesSaveStatus.className   = 'notes-save-status' + (state ? ' notes-save-status--' + state : '');
   }
 
-  async function loadNotes(userId) {
+  function renderNoteCards(notes) {
+    if (!notesCards) return;
+    notesCards.innerHTML = notes.map(function (n) {
+      var headline = n.title || (n.content.split('\n')[0]) || '(empty)';
+      var preview  = n.title ? (n.content.split('\n')[0] || '') : (n.content.split('\n')[1] || '');
+      return '<li class="note-card" data-id="' + esc(n.id) + '" role="button" tabindex="0">' +
+        '<div class="note-card__title">' + esc(headline) + '</div>' +
+        (preview ? '<div class="note-card__preview">' + esc(preview) + '</div>' : '') +
+        '<div class="note-card__date">' + esc(fmtNoteDate(n.updated_at)) + '</div>' +
+        '</li>';
+    }).join('');
+  }
+
+  function applyNotesFilter(query) {
+    var q    = query.trim().toLowerCase();
+    var hits = q ? notesAll.filter(function (n) {
+      return (n.title + ' ' + n.content).toLowerCase().indexOf(q) !== -1;
+    }) : notesAll;
+    renderNoteCards(hits);
+    if (notesEmpty)     notesEmpty.hidden     = !(!q && !notesAll.length);
+    if (notesNoResults) notesNoResults.hidden = !(q && !hits.length);
+  }
+
+  function showNotesList() {
+    if (notesListView)   notesListView.hidden   = false;
+    if (notesEditorView) notesEditorView.hidden = true;
+    applyNotesFilter(notesSearch ? notesSearch.value : '');
+  }
+
+  function showNoteEditor(note) {
+    notesCurrent = note ? { id: note.id, title: note.title, content: note.content } : null;
+    if (notesTitleInput)   notesTitleInput.value   = note ? (note.title   || '') : '';
+    if (notesContentInput) notesContentInput.value = note ? (note.content || '') : '';
+    setNotesStatus('', '');
+    notesDeleteArmed = false;
+    clearTimeout(notesDeleteTimer);
+    if (notesDeleteBtn) {
+      notesDeleteBtn.textContent = 'Delete';
+      notesDeleteBtn.classList.remove('notes-delete-btn--armed');
+    }
+    if (notesListView)   notesListView.hidden   = true;
+    if (notesEditorView) notesEditorView.hidden = false;
+    if (notesContentInput) notesContentInput.focus();
+  }
+
+  async function loadAllNotes(userId) {
     var client = window.__supabase;
-    if (!client || !userId || !notesInput) return;
+    if (!client || !userId) return;
     var res = await client
-      .from('player_scratchpad')
-      .select('content')
+      .from('player_notes')
+      .select('id, title, content, updated_at')
       .eq('player_id', userId)
-      .maybeSingle();
-    if (res.data) notesInput.value = res.data.content || '';
+      .order('updated_at', { ascending: false });
+    notesAll = res.data || [];
+    if (notesListView && !notesListView.hidden) showNotesList();
+  }
+
+  async function persistCurrentNote(userId) {
+    var client = window.__supabase;
+    if (!client || !userId) return;
+    var title   = notesTitleInput   ? notesTitleInput.value   : '';
+    var content = notesContentInput ? notesContentInput.value : '';
+
+    if (notesCurrent && notesCurrent.id) {
+      var res = await client
+        .from('player_notes')
+        .update({ title: title, content: content, updated_at: new Date().toISOString() })
+        .eq('id', notesCurrent.id)
+        .eq('player_id', userId);
+      if (res.error) { setNotesStatus('Error saving', 'error'); return; }
+      for (var i = 0; i < notesAll.length; i++) {
+        if (notesAll[i].id === notesCurrent.id) {
+          notesAll[i].title      = title;
+          notesAll[i].content    = content;
+          notesAll[i].updated_at = new Date().toISOString();
+          break;
+        }
+      }
+      notesCurrent.title   = title;
+      notesCurrent.content = content;
+    } else {
+      if (!title.trim() && !content.trim()) return;
+      var res = await client
+        .from('player_notes')
+        .insert({ player_id: userId, title: title, content: content })
+        .select('id, updated_at')
+        .single();
+      if (res.error) { setNotesStatus('Error saving', 'error'); return; }
+      notesCurrent = { id: res.data.id, title: title, content: content };
+      notesAll.unshift({ id: res.data.id, title: title, content: content, updated_at: res.data.updated_at });
+    }
+    setNotesStatus('Saved ✓', 'ok');
+    setTimeout(function () { setNotesStatus('', ''); }, 2000);
   }
 
   function scheduleNoteSave(userId) {
-    clearTimeout(notesTimer);
+    clearTimeout(notesSaveTimer);
     setNotesStatus('…', 'pending');
-    notesTimer = setTimeout(function () { saveNotes(userId); }, NOTES_SAVE_DELAY);
+    notesSaveTimer = setTimeout(function () { persistCurrentNote(userId); }, NOTES_SAVE_DELAY);
   }
 
-  async function saveNotes(userId) {
+  async function deleteCurrentNote(userId) {
     var client = window.__supabase;
-    if (!client || !notesInput) return;
-    var res = await client
-      .from('player_scratchpad')
-      .upsert(
-        { player_id: userId, content: notesInput.value, updated_at: new Date().toISOString() },
-        { onConflict: 'player_id' }
-      );
-    if (res.error) {
-      setNotesStatus('Error saving', 'error');
-    } else {
-      setNotesStatus('Saved ✓', 'ok');
-      setTimeout(function () { setNotesStatus('', ''); }, 2000);
+    if (!notesCurrent || !notesCurrent.id || !client || !userId) {
+      notesCurrent = null;
+      showNotesList();
+      return;
     }
+    var id  = notesCurrent.id;
+    await client.from('player_notes').delete().eq('id', id).eq('player_id', userId);
+    notesAll    = notesAll.filter(function (n) { return n.id !== id; });
+    notesCurrent = null;
+    showNotesList();
   }
 
   /* ── Init ───────────────────────────────────────────────── */
@@ -280,12 +388,73 @@
     if (tabSearch) tabSearch.addEventListener('click', function () { switchTab('search'); });
     if (tabNotes)  tabNotes.addEventListener('click',  function () { switchTab('notes'); });
 
-    // Notes scratchpad needs a valid user ID
     var userId = session.user ? session.user.id : null;
     if (userId) {
-      loadNotes(userId);
-      if (notesInput) {
-        notesInput.addEventListener('input', function () { scheduleNoteSave(userId); });
+      loadAllNotes(userId);
+
+      // Notes: new note button
+      if (notesNewBtn) {
+        notesNewBtn.addEventListener('click', function () { showNoteEditor(null); });
+      }
+
+      // Notes: open card in editor (click or Enter/Space on keyboard)
+      if (notesCards) {
+        notesCards.addEventListener('click', function (e) {
+          var card = e.target.closest('.note-card');
+          if (!card) return;
+          var id   = card.dataset.id;
+          var note = notesAll.find(function (n) { return n.id === id; });
+          if (note) showNoteEditor(note);
+        });
+        notesCards.addEventListener('keydown', function (e) {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          var card = e.target.closest('.note-card');
+          if (!card) return;
+          e.preventDefault();
+          var id   = card.dataset.id;
+          var note = notesAll.find(function (n) { return n.id === id; });
+          if (note) showNoteEditor(note);
+        });
+      }
+
+      // Notes: live search filter
+      if (notesSearch) {
+        notesSearch.addEventListener('input', function () { applyNotesFilter(notesSearch.value); });
+      }
+
+      // Notes: editor — back button
+      if (notesBackBtn) {
+        notesBackBtn.addEventListener('click', function () {
+          clearTimeout(notesSaveTimer);
+          persistCurrentNote(userId).then(showNotesList);
+        });
+      }
+
+      // Notes: editor — delete with two-tap confirm
+      if (notesDeleteBtn) {
+        notesDeleteBtn.addEventListener('click', function () {
+          if (!notesDeleteArmed) {
+            notesDeleteArmed = true;
+            notesDeleteBtn.textContent = 'Sure?';
+            notesDeleteBtn.classList.add('notes-delete-btn--armed');
+            notesDeleteTimer = setTimeout(function () {
+              notesDeleteArmed = false;
+              notesDeleteBtn.textContent = 'Delete';
+              notesDeleteBtn.classList.remove('notes-delete-btn--armed');
+            }, 2500);
+          } else {
+            clearTimeout(notesDeleteTimer);
+            deleteCurrentNote(userId);
+          }
+        });
+      }
+
+      // Notes: editor — autosave on input
+      if (notesTitleInput) {
+        notesTitleInput.addEventListener('input', function () { scheduleNoteSave(userId); });
+      }
+      if (notesContentInput) {
+        notesContentInput.addEventListener('input', function () { scheduleNoteSave(userId); });
       }
     }
 
