@@ -48,6 +48,10 @@ SKIP_DIRS = {"_Templates", "_Meta", ".obsidian", "Ahvantir V.2", "HTML import"}
 # Root-level files that are Obsidian boilerplate, not articles
 SKIP_FILES = {"Welcome.md", "welcome.md"}
 
+# Frontmatter fields that are set manually on the website side and must
+# survive every sync (they don't exist in the Obsidian vault files).
+PRESERVE_FIELDS = {"timeline_year", "timeline_date", "timeline_pending"}
+
 CATEGORY_MAP = {
     "article":           "history",
     "cosmology":         "cosmology",
@@ -212,7 +216,7 @@ def convert_note_callouts(body: str) -> str:
     )
 
 
-def build_frontmatter(fm: dict, description: str) -> str:
+def build_frontmatter(fm: dict, description: str, preserved: dict = None) -> str:
     title = fm.get("title", "")
     category_raw = fm.get("category", "")
     category = CATEGORY_MAP.get(category_raw, category_raw)
@@ -234,11 +238,15 @@ def build_frontmatter(fm: dict, description: str) -> str:
     if aliases:
         alias_str = ", ".join(f'"{a}"' for a in aliases)
         lines.append(f"aliases: [{alias_str}]")
+    # Re-emit website-specific fields that don't exist in the Obsidian vault
+    if preserved:
+        for key in sorted(preserved.keys()):
+            lines.append(f"{key}: {preserved[key]}")
     lines.append("---")
     return "\n".join(lines)
 
 
-def process_file(src: Path):
+def process_file(src: Path, preserved_fm: dict = None):
     """Returns (slug, output_content) or None if file should be skipped."""
     raw = src.read_text(encoding="utf-8")
 
@@ -262,7 +270,7 @@ def process_file(src: Path):
     body = strip_inline_tags(body)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
 
-    fm_out = build_frontmatter(fm, description)
+    fm_out = build_frontmatter(fm, description, preserved=preserved_fm)
     output = f"{fm_out}\n\n{body}\n"
 
     slug = slugify(str(title) or src.stem)
@@ -351,6 +359,16 @@ def main():
         slug_map[slug] = src.name
 
         dest = OUTPUT_DIR / f"{slug}.md"
+
+        # Preserve website-specific frontmatter that lives only in the output
+        # files and doesn't exist in the Obsidian vault (e.g. timeline_year).
+        if dest.exists():
+            existing_fm, _ = parse_frontmatter(dest.read_text(encoding="utf-8"))
+            preserved = {f: existing_fm[f] for f in PRESERVE_FIELDS if f in existing_fm}
+            if preserved:
+                result2 = process_file(src, preserved_fm=preserved)
+                if result2 is not None:
+                    _, content = result2
 
         if dest.exists() and dest.read_text(encoding="utf-8") == content:
             continue

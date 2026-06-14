@@ -2,6 +2,7 @@
 title: "The Church of the Threefold Path"
 category: factions
 tags: [faction, government]
+timeline_year: 1
 ---
 
 # The Church of the Threefold Path

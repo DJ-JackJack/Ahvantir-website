@@ -3,6 +3,7 @@ title: "He Who Tells the Tale"
 description: "Tenth of the eleven [[The Primordem|Primordem]]. Sealed 10 of 11 during the First Pact. He was born when the first library burned — he is the grief of knowledge lost and the determination that it will not be lost again. He chronicles the Primordem's case. He makes forgetting impossible. He serves [[He Who Was Forgotten]] with particular devotion, because he is the one who remembers what was done to him."
 category: cosmology
 tags: [spirit, primordem]
+timeline_year: 0
 ---
 
 # He Who Tells the Tale

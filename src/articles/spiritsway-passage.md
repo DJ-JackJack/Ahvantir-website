@@ -2,6 +2,7 @@
 title: "Spiritsway Passage"
 category: locations
 tags: [district-site, stonegate, aru-mas, first-pact, mountain-wall]
+timeline_year: 0
 ---
 
 # Spiritsway Passage

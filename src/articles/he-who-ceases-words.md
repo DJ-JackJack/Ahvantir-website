@@ -3,6 +3,7 @@ title: "He Who Ceases Words"
 description: "Second of the eleven [[The Primordem|Primordem]]. Sealed 2 of 11 during the First Pact. He does not silence others by force — he embodies the moment dialogue was abandoned. In his presence, words lose their purchase. Conversations end. And that ending feels, somehow, correct."
 category: cosmology
 tags: [spirit, primordem]
+timeline_year: 0
 ---
 
 # He Who Ceases Words
