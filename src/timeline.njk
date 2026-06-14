@@ -12,41 +12,55 @@ permalink: /timeline/
   </div>
 </div>
 
-{% if collections.timeline.length %}
+<div class="container timeline-container">
 
-<div class="timeline-h-wrap">
-  <div class="timeline-h" id="timeline-h" aria-label="Historical timeline">
-    <div class="timeline-h__track"></div>
-    <div class="timeline-h__items">
-      {% for article in collections.timeline %}
-      <div class="timeline-h__entry {% if loop.index0 % 2 == 0 %}timeline-h__entry--above{% else %}timeline-h__entry--below{% endif %}"
-           data-year="{{ article.data.timeline_year }}">
-        <div class="timeline-h__card">
-          <a class="timeline-h__title" href="{{ article.url }}">{{ article.data.title }}</a>
-          {% if article.data.description %}
-          <p class="timeline-h__snippet">{{ article.data.description }}</p>
-          {% endif %}
-        </div>
-        <div class="timeline-h__dot"></div>
-        <div class="timeline-h__date">{{ article.data.timeline_date or article.data.timeline_year }}</div>
-      </div>
-      {% endfor %}
-    </div>
+  {% if collections.timeline.length %}
+
+  {% set yearGroups = collections.timeline | groupByField("timeline_year") %}
+
+  <div class="tl-accordion" role="list">
+    {% for group in yearGroups %}
+    <details class="tl-year" role="listitem">
+      <summary class="tl-year__header">
+        <span class="tl-year__chevron" aria-hidden="true">›</span>
+        <span class="tl-year__label">
+          {%- if group.key < 0 -%}
+            {{ 0 - group.key }} Pre-Founding
+          {%- elif group.key == 0 -%}
+            The Founding &mdash; Year 0 MC
+          {%- else -%}
+            Year {{ group.key }} MC
+          {%- endif -%}
+        </span>
+        <span class="tl-year__count">{{ group.items.length }}</span>
+      </summary>
+      <ul class="tl-entries" role="list">
+        {% for article in group.items %}
+        <li class="tl-entry">
+          <span class="tl-entry__dot" aria-hidden="true"></span>
+          <div class="tl-entry__body">
+            <a class="tl-entry__title" href="{{ article.url }}">{{ article.data.title }}</a>
+            {% if article.data.timeline_date %}
+            <span class="tl-entry__date">{{ article.data.timeline_date }}</span>
+            {% endif %}
+            {% if article.data.description %}
+            <p class="tl-entry__desc">{{ article.data.description }}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
   </div>
-  <p class="timeline-h__hint" aria-hidden="true">⟵ &nbsp; drag or scroll to travel through time &nbsp; ⟶</p>
-</div>
 
-{% else %}
+  {% else %}
 
-<div class="container">
   <div class="empty-state">
     <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
     <p>No timeline entries yet. Add <code>timeline_year</code> to article frontmatter to populate this page.</p>
   </div>
+
+  {% endif %}
+
 </div>
-
-{% endif %}
-
-{% block scripts %}
-<script src="/assets/js/timeline.js"></script>
-{% endblock %}

@@ -166,7 +166,8 @@ module.exports = function (eleventyConfig) {
     for (const item of arr) {
       let val = item.data && item.data[field];
       if (val instanceof Date) val = val.toISOString().slice(0, 10);
-      const key = val || "Unknown";
+      // Use explicit null/undefined check so 0 and "" are valid keys, not "Unknown"
+      const key = (val !== undefined && val !== null) ? val : "Unknown";
       if (!keyMap.has(key)) {
         const group = { key, items: [] };
         groups.push(group);
