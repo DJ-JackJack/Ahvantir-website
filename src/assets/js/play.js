@@ -276,13 +276,17 @@
 
     loadIndex();
 
-    // Notes scratchpad
-    var userId = session.user.id;
-    loadNotes(userId);
+    // Tab listeners — attach unconditionally before any async work that could throw
     if (tabSearch) tabSearch.addEventListener('click', function () { switchTab('search'); });
     if (tabNotes)  tabNotes.addEventListener('click',  function () { switchTab('notes'); });
-    if (notesInput) {
-      notesInput.addEventListener('input', function () { scheduleNoteSave(userId); });
+
+    // Notes scratchpad needs a valid user ID
+    var userId = session.user ? session.user.id : null;
+    if (userId) {
+      loadNotes(userId);
+      if (notesInput) {
+        notesInput.addEventListener('input', function () { scheduleNoteSave(userId); });
+      }
     }
 
     // Load session schedule in background — runs regardless of mobile/Foundry state
