@@ -85,6 +85,13 @@ permalink: /play/
             spellcheck="false"
           >
         </div>
+
+        {# Bookmarks — visible when search is empty, hidden while typing #}
+        <div id="lore-bookmarks" class="lore-bookmarks" hidden>
+          <p class="lore-bookmarks__label">Bookmarked</p>
+          <ul id="lore-bookmark-list" class="lore-bookmark-list" role="list" aria-label="Bookmarked articles"></ul>
+        </div>
+
         <ul
           id="lore-results"
           class="lore-results"
@@ -98,7 +105,11 @@ permalink: /play/
 
       {# Article view (hidden until a result is selected) #}
       <div id="lore-article-view" class="lore-article-view" hidden>
-        <button class="lore-back-btn" id="lore-back" type="button">← Back</button>
+        <div class="lore-article-toolbar">
+          <button class="lore-back-btn" id="lore-back" type="button">← Back</button>
+          <button class="lore-bookmark-btn" id="lore-bookmark-btn" type="button"
+                  aria-pressed="false" title="Bookmark this article">☆</button>
+        </div>
         <h2 class="lore-article-title" id="lore-article-title"></h2>
         <div class="lore-article-body" id="lore-article-body"></div>
         <a
@@ -173,7 +184,7 @@ permalink: /play/
 </section>
 
 {# Article index for client-side search — embedded at build time #}
-<script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }}}{%- endfor -%}]</script>
+<script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }},"body":{{ ((article.templateContent or "") | striptags) | jsonscript | safe }}}{%- endfor -%}]</script>
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>

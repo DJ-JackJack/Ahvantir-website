@@ -1409,6 +1409,27 @@ hr {
 }
 .nav__signout:hover { color: var(--burg); background: rgba(123,29,42,0.07); }
 
+/* Dark-mode theme toggle */
+.nav__theme-item { display: flex; align-items: center; }
+.nav__theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faded);
+  padding: 0.35rem;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+.nav__theme-toggle:hover { color: var(--burg); background: rgba(123,29,42,0.07); }
+.nav__theme-toggle .icon-moon { display: block; }
+.nav__theme-toggle .icon-sun  { display: none; }
+html.dark .nav__theme-toggle .icon-moon { display: none; }
+html.dark .nav__theme-toggle .icon-sun  { display: block; }
+
 /* Shared player page wrapper */
 .player-page {
   padding: 2rem 0 4rem;
@@ -4215,6 +4236,70 @@ body.play-active .site-footer { display: none; }
 
 .lore-back-btn:hover { color: var(--burg-dark); }
 
+.lore-article-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lore-bookmark-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--ink-ghost);
+  padding: 0.2rem 0.3rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.lore-bookmark-btn:hover { color: var(--gold-dark); }
+.lore-bookmark-btn--active { color: var(--gold-dark); }
+
+/* Bookmarks pinned list */
+.lore-bookmarks { margin: 0.25rem 0 0.5rem; }
+.lore-bookmarks__label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  padding: 0 0 0.3rem;
+  display: block;
+}
+.lore-bookmark-list { list-style: none; padding: 0; margin: 0; }
+.lore-bookmark-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--br-light);
+}
+.lore-bookmark-item:last-child { border-bottom: none; }
+.lore-bookmark-item__btn {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  padding: 0.35rem 0.25rem;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+.lore-bookmark-item__btn:hover { color: var(--burg); }
+.lore-bookmark-item__rm {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-ghost);
+  font-size: 1rem;
+  padding: 0.25rem 0.4rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.lore-bookmark-item__rm:hover { color: var(--burg); }
+
 .lore-article-title {
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -4356,4 +4441,68 @@ body.play-active .site-footer { display: none; }
 @media (max-width: 600px) {
   .session-schedule { padding: 2rem 1rem 3rem; }
   .schedule-item { padding: 1rem 1.125rem; }
+}
+
+/* ================================================================
+   Dark mode — html.dark class toggled by the theme button in main.js
+   ================================================================ */
+
+html.dark {
+  --p-100: #1c140a;
+  --p-200: #231a0f;
+  --p-300: #2e2014;
+  --p-400: #3a2a1a;
+  --p-500: #4a3622;
+
+  --ink:       #e8d8c0;
+  --ink-soft:  #d4c4a8;
+  --ink-faded: #a89070;
+  --ink-ghost: #6a5540;
+
+  --burg:      #c04060;
+  --burg-dark: #e05070;
+  --burg-mid:  #a03050;
+  --burg-pale: #602030;
+
+  --br-dark:  #3a2a1a;
+  --br-mid:   #5a4030;
+  --br-light: #7a5a40;
+
+  --teal-dark: #4abfd0;
+  --gold-dark: #c09030;
+
+  --shadow-sm: 1px 2px 6px rgba(0,0,0,0.5);
+  --shadow-md: 2px 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg: 4px 8px 32px rgba(0,0,0,0.7);
+}
+
+html.dark body {
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(80,50,20,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(60,40,15,0.12) 0%, transparent 45%),
+    linear-gradient(155deg, var(--p-100) 0%, var(--p-300) 60%, var(--p-400) 100%);
+}
+
+html.dark body::before {
+  mix-blend-mode: screen;
+  opacity: 0.06;
+}
+
+html.dark .site-header {
+  background: var(--p-400);
+  background-image: linear-gradient(to bottom, var(--p-300), var(--p-400));
+}
+
+html.dark code {
+  background: rgba(255,255,255,0.06);
+  color: var(--burg-dark);
+}
+
+html.dark pre {
+  background: var(--p-100);
+  color: var(--ink);
+}
+
+html.dark blockquote {
+  background: rgba(192,64,96,0.06);
 }

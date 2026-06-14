@@ -9,8 +9,10 @@
   var MAX_RESULTS      = 25;
   var NOTES_SAVE_DELAY = 1500;   // ms debounce for note autosave
 
-  var articles = [];
-  var loreOpen = true;
+  var articles    = [];
+  var bookmarks   = new Set();
+  var currentArticleUrl = '';
+  var loreOpen    = true;
   var signalTimer = null;
 
   /* ── DOM refs ───────────────────────────────────────────── */
@@ -20,14 +22,17 @@
   var mobileEl     = document.getElementById('play-mobile');
   var lorePanel    = document.getElementById('play-lore');
   var loreToggle   = document.getElementById('play-lore-toggle');
-  var searchInput  = document.getElementById('lore-search-input');
-  var resultsList  = document.getElementById('lore-results');
-  var searchView   = document.getElementById('lore-search-view');
-  var articleView  = document.getElementById('lore-article-view');
-  var articleTitle = document.getElementById('lore-article-title');
-  var articleBody  = document.getElementById('lore-article-body');
-  var articleLink  = document.getElementById('lore-article-link');
-  var backBtn      = document.getElementById('lore-back');
+  var searchInput    = document.getElementById('lore-search-input');
+  var resultsList    = document.getElementById('lore-results');
+  var searchView     = document.getElementById('lore-search-view');
+  var articleView    = document.getElementById('lore-article-view');
+  var articleTitle   = document.getElementById('lore-article-title');
+  var articleBody    = document.getElementById('lore-article-body');
+  var articleLink    = document.getElementById('lore-article-link');
+  var backBtn        = document.getElementById('lore-back');
+  var bookmarkBtn    = document.getElementById('lore-bookmark-btn');
+  var loreBookmarks  = document.getElementById('lore-bookmarks');
+  var loreBookmarkList = document.getElementById('lore-bookmark-list');
   var tabSearch       = document.getElementById('tab-search');
   var tabNotes        = document.getElementById('tab-notes');
   var notesView       = document.getElementById('lore-notes-view');
@@ -169,7 +174,7 @@
 
     var terms = norm(query).split(/\s+/).filter(Boolean);
     var hits = articles.filter(function (a) {
-      var hay = norm(a.title + ' ' + (a.description || '') + ' ' + (a.tags || []).join(' '));
+      var hay = norm(a.title + ' ' + (a.description || '') + ' ' + (a.tags || []).join(' ') + ' ' + (a.body || ''));
       return terms.every(function (t) { return hay.indexOf(t) !== -1; });
     }).slice(0, MAX_RESULTS);
 
@@ -194,7 +199,35 @@
     }).join('');
   }
 
+  function updateBookmarkBtn() {
+    if (!bookmarkBtn) return;
+    var starred = bookmarks.has(currentArticleUrl);
+    bookmarkBtn.textContent = starred ? '★' : '☆';
+    bookmarkBtn.setAttribute('aria-pressed', String(starred));
+    bookmarkBtn.classList.toggle('lore-bookmark-btn--active', starred);
+    bookmarkBtn.setAttribute('title', starred ? 'Remove bookmark' : 'Bookmark this article');
+  }
+
+  function renderBookmarkList() {
+    if (!loreBookmarkList) return;
+    var query = searchInput ? searchInput.value.trim() : '';
+    var pinned = articles.filter(function (a) { return bookmarks.has(a.url); });
+    if (loreBookmarks) loreBookmarks.hidden = query.length > 0 || pinned.length === 0;
+    loreBookmarkList.innerHTML = pinned.map(function (a) {
+      return '<li class="lore-bookmark-item">' +
+        '<button class="lore-bookmark-item__btn" type="button"' +
+          ' data-url="' + esc(a.url) + '"' +
+          ' data-title="' + esc(a.title) + '"' +
+          ' data-desc="' + esc(a.description || '') + '">' +
+          esc(a.title) +
+        '</button>' +
+        '<button class="lore-bookmark-item__rm" type="button" data-url="' + esc(a.url) + '" aria-label="Remove bookmark">×</button>' +
+      '</li>';
+    }).join('');
+  }
+
   function openArticle(url, title, desc) {
+    currentArticleUrl = url;
     if (articleTitle) articleTitle.textContent = title;
     if (articleBody) {
       articleBody.innerHTML = desc
@@ -202,6 +235,7 @@
         : '<p class="lore-article-nodesc">No summary available for this article.</p>';
     }
     if (articleLink) { articleLink.href = url; }
+    updateBookmarkBtn();
     searchView.hidden  = true;
     articleView.hidden = false;
   }
@@ -209,6 +243,7 @@
   function showSearch() {
     searchView.hidden  = false;
     articleView.hidden = true;
+    renderBookmarkList();
   }
 
   /* ── Tab switching ──────────────────────────────────────── */
@@ -368,6 +403,38 @@
     showNotesList();
   }
 
+  /* ── Bookmarks ─────────────────────────────────────────── */
+  async function loadBookmarks(userId) {
+    var client = window.__supabase;
+    if (!client || !userId) return;
+    var res = await client
+      .from('player_bookmarks')
+      .select('article_url')
+      .eq('player_id', userId);
+    bookmarks = new Set((res.data || []).map(function (r) { return r.article_url; }));
+    renderBookmarkList();
+  }
+
+  async function toggleBookmark(userId) {
+    var client = window.__supabase;
+    if (!client || !userId || !currentArticleUrl) return;
+    if (bookmarks.has(currentArticleUrl)) {
+      bookmarks.delete(currentArticleUrl);
+      await client
+        .from('player_bookmarks')
+        .delete()
+        .eq('player_id', userId)
+        .eq('article_url', currentArticleUrl);
+    } else {
+      bookmarks.add(currentArticleUrl);
+      await client
+        .from('player_bookmarks')
+        .insert({ player_id: userId, article_url: currentArticleUrl });
+    }
+    updateBookmarkBtn();
+    renderBookmarkList();
+  }
+
   /* ── Init ───────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', async function () {
     var session = await window.requireAuth(true);
@@ -391,6 +458,7 @@
     var userId = session.user ? session.user.id : null;
     if (userId) {
       loadAllNotes(userId);
+      loadBookmarks(userId);
 
       // Notes: new note button
       if (notesNewBtn) {
@@ -456,6 +524,27 @@
       if (notesContentInput) {
         notesContentInput.addEventListener('input', function () { scheduleNoteSave(userId); });
       }
+
+      // Bookmark toggle button in article view
+      if (bookmarkBtn) {
+        bookmarkBtn.addEventListener('click', function () { toggleBookmark(userId); });
+      }
+
+      // Bookmark list — open article or remove bookmark
+      if (loreBookmarkList) {
+        loreBookmarkList.addEventListener('click', function (e) {
+          var openBtn = e.target.closest('.lore-bookmark-item__btn');
+          if (openBtn) {
+            openArticle(openBtn.dataset.url, openBtn.dataset.title, openBtn.dataset.desc);
+            return;
+          }
+          var rmBtn = e.target.closest('.lore-bookmark-item__rm');
+          if (rmBtn) {
+            currentArticleUrl = rmBtn.dataset.url;
+            toggleBookmark(userId);
+          }
+        });
+      }
     }
 
     // Load session schedule in background — runs regardless of mobile/Foundry state
@@ -515,7 +604,10 @@
       var debounce;
       searchInput.addEventListener('input', function () {
         clearTimeout(debounce);
-        debounce = setTimeout(function () { runSearch(searchInput.value); }, 180);
+        debounce = setTimeout(function () {
+          runSearch(searchInput.value);
+          renderBookmarkList();
+        }, 180);
       });
     }
 

@@ -1,3 +1,22 @@
+// Apply saved theme before first paint to avoid flash
+(function () { try { if (localStorage.getItem('ahvantir-theme') === 'dark') document.documentElement.classList.add('dark'); } catch (_) {} }());
+
+(function () {
+  // Dark mode toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      const isDark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('ahvantir-theme', isDark ? 'dark' : 'light'); } catch (_) {}
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+    // Sync aria-label to initial state
+    if (document.documentElement.classList.contains('dark')) {
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+  }
+})();
+
 (function () {
   // Mobile nav toggle
   const burger = document.querySelector('.nav__burger');

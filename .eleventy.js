@@ -125,6 +125,18 @@ module.exports = function (eleventyConfig) {
   });
 
   // Filters
+  // Strip HTML for search index. Removes dm-only blocks first so spoiler
+  // content never leaks into the client-side article search payload.
+  eleventyConfig.addFilter("striptags", (str) => {
+    if (!str) return "";
+    return String(str)
+      .replace(/<details class="dm-only">[\s\S]*?<\/details>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/¶/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  });
+
   eleventyConfig.addFilter("toSlug", toSlug);
   eleventyConfig.addFilter("joinSlugs", (arr) => (arr || []).map(toSlug).join(" "));
   // Safe JSON for embedding in <script> blocks: encode <, >, & as Unicode escapes
