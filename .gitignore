@@ -4,3 +4,4 @@ _site/
 *.log
 .env
 scripts/__pycache__/
+.cloudflared/*.json

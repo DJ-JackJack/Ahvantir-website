@@ -6,8 +6,8 @@
 #   3. cloudflared tunnel create ahvantir-foundry   ← generates UUID + credentials file
 #   4. Replace the placeholders here with the generated values
 
-tunnel: <TUNNEL-UUID>
-credentials-file: C:\Users\klfal\.cloudflared\<TUNNEL-UUID>.json
+tunnel: e2ff2a5b-0f40-44b9-a5b4-6d9cb5f3cee2
+credentials-file: C:\Users\klfal\.cloudflared\e2ff2a5b-0f40-44b9-a5b4-6d9cb5f3cee2.json
 
 ingress:
   - hostname: play-tunnel.ahvantir.world
