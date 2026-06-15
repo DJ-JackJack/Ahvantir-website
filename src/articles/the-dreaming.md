@@ -44,7 +44,7 @@ No mortal has found the Eternal Library deliberately. Some have stumbled into a 
 
 ## Cosmological Position
 
-The Dreaming occupies a liminal position that resists the categories applied to other planes. Unlike the [[Astral Sea]], it does not connect worlds to one another. Unlike the [[Faded Veil]], it does not mirror the material in any literal geographic sense. Unlike [[The Ranjergon]], it is not separated from mortals by any barrier.
+The Dreaming occupies a liminal position that resists the categories applied to other planes. Unlike the [[The Astral Sea|Astral Sea]], it does not connect worlds to one another. Unlike the [[Faded Veil]], it does not mirror the material in any literal geographic sense. Unlike [[The Ranjergon]], it is not separated from mortals by any barrier.
 
 It is simply parallel — always adjacent, always inhabited, always full of everyone who has fallen asleep.
 

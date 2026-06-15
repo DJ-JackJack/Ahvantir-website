@@ -30,7 +30,7 @@ The [[Vast Green]] occupies a different kind of proximity — less a mirror than
 
 [[The Dreaming]] runs parallel at a remove accessible by anyone who sleeps. It is the most intimate planar relationship Ahvantir has: not a plane one travels to, but one the entire mortal population of the archipelago inhabits in fragments every night.
 
-The [[Astral Sea]] connects rather than mirrors. It is the medium through which other worlds reach Ahvantir and through which Ahvantir's ships reach other worlds. The convergence of astral currents on this particular material plane is the reason Aru'Mas is a multiversal hub and not simply an isolated archipelago on a single world.
+The [[The Astral Sea|Astral Sea]] connects rather than mirrors. It is the medium through which other worlds reach Ahvantir and through which Ahvantir's ships reach other worlds. The convergence of astral currents on this particular material plane is the reason Aru'Mas is a multiversal hub and not simply an isolated archipelago on a single world.
 
 ## The Convergence
 
@@ -43,7 +43,7 @@ What drove Marduk Sunspear's fleet here after forty-nine years in the Astral Sea
 ## Connections
 - The land's spiritual fabric: [[Spirits of Ahvantir]] — the native entities whose power predates mortal civilization
 - The governing treaty: [[First Pact]] — the agreement that structures mortal-spirit coexistence
-- Adjacent planes: [[Faded Veil]], [[Vast Green]], [[The Dreaming]], [[Astral Sea]]
+- Adjacent planes: [[Faded Veil]], [[Vast Green]], [[The Dreaming]], [[The Astral Sea|Astral Sea]]
 - Divine separation: [[The Ranjergon]] and the Divine Gate (what keeps the gods out)
 - Historical context: [[History of Ahvantir]] — the Divine War and the Landing War
 - Convergence: [[Starleaper Fleet]] (primary navigators of Ahvantir's Astral connections)

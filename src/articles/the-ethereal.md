@@ -10,7 +10,7 @@ date_added: "2026-06-15"
 
 The Ethereal is not traveled to. It is passed through.
 
-Unlike the [[Astral Sea]], which is a medium with navigable distance and documentable hazards, or [[The Dreaming]], which is a destination accessible through sleep, the Ethereal is more accurately described as a condition of transition — the between-space that exists at the edges of all things, encountered not by seeking it out but by moving from one state of existence into another.
+Unlike the [[The Astral Sea|Astral Sea]], which is a medium with navigable distance and documentable hazards, or [[The Dreaming]], which is a destination accessible through sleep, the Ethereal is more accurately described as a condition of transition — the between-space that exists at the edges of all things, encountered not by seeking it out but by moving from one state of existence into another.
 
 ## What It Is
 
