@@ -177,10 +177,10 @@ def build() -> str:
       '<feGaussianBlur stdDeviation="9"/></filter>')
     # Far Realm soft underglow
     a('<radialGradient id="rg-far" cx="30%" cy="70%" r="78%">'
-      '<stop offset="0%" stop-color="#9a3aaa" stop-opacity="0.55"/>'
-      '<stop offset="35%" stop-color="#4a6a2a" stop-opacity="0.35"/>'
-      '<stop offset="70%" stop-color="#2a1238" stop-opacity="0.15"/>'
-      '<stop offset="100%" stop-color="#0a0510" stop-opacity="0"/></radialGradient>')
+      '<stop offset="0%" stop-color="#4a1a56" stop-opacity="0.45"/>'
+      '<stop offset="35%" stop-color="#22360f" stop-opacity="0.28"/>'
+      '<stop offset="70%" stop-color="#160a20" stop-opacity="0.12"/>'
+      '<stop offset="100%" stop-color="#06030a" stop-opacity="0"/></radialGradient>')
     # Far Realm — turbulence-displaced blur for wrong, organic edges
     a('<filter id="f-far">'
       '<feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blr"/>'
@@ -261,41 +261,41 @@ def build() -> str:
     a('<!-- The Far Realm -->')
     # soft underglow halo at the breach
     a('<circle cx="95" cy="855" r="150" fill="url(#rg-far)"/>')
-    # the breach mass — wrong, organic, displaced
-    a('<g filter="url(#f-far)" opacity="0.88">')
-    for bx, by, br, bc in [(60, 890, 95, "#5a2078"), (150, 870, 72, "#3a5a18"),
-                            (48, 800, 82, "#42206a"), (180, 905, 60, "#4a6818"),
-                            (110, 850, 60, "#7a2a9a"), (90, 912, 70, "#26400f")]:
+    # the breach mass — wrong, organic, displaced (deep, near-black tones)
+    a('<g filter="url(#f-far)" opacity="0.9">')
+    for bx, by, br, bc in [(60, 890, 95, "#2c1040"), (150, 870, 72, "#1c2c0c"),
+                            (48, 800, 82, "#23103a"), (180, 905, 60, "#26340c"),
+                            (110, 850, 60, "#3a1450"), (90, 912, 70, "#121e08")]:
         a(f'<circle cx="{bx}" cy="{by}" r="{br}" fill="{bc}"/>')
     a('</g>')
     # tendrils creeping inward toward the wheel
     a('<g fill="none" stroke-linecap="round" filter="url(#f-soft)">')
     for d, col, w, op in [
-        ("M140,820 C200,758 244,718 286,688", "#5a7a2a", 8, 0.42),
-        ("M120,802 C162,704 150,648 206,598", "#7a2a9a", 6, 0.36),
-        ("M58,762 C36,684 60,624 30,556",     "#4a6a1a", 5, 0.30),
-        ("M196,902 C320,898 372,910 470,902", "#5a2a78", 4, 0.24),
+        ("M140,820 C200,758 244,718 286,688", "#324412", 8, 0.40),
+        ("M120,802 C162,704 150,648 206,598", "#3a1450", 6, 0.34),
+        ("M58,762 C36,684 60,624 30,556",     "#2a3a10", 5, 0.28),
+        ("M196,902 C320,898 372,910 470,902", "#2a1442", 4, 0.22),
     ]:
         a(f'<path d="{d}" stroke="{col}" stroke-width="{w}" opacity="{op}"/>')
     a('</g>')
-    # watching eyes — sickly slit-pupil eyes peering from the corruption
+    # watching eyes — dim, sickly slit-pupil eyes peering from the corruption
     for ex, ey, s in [(108.0, 842.0, 1.5), (52.0, 726.0, 0.8), (238.0, 892.0, 0.72)]:
         a(f'<circle cx="{fmt(ex)}" cy="{fmt(ey)}" r="{fmt(15*s)}" '
-          f'fill="#aacc40" opacity="0.30" filter="url(#f-soft)"/>')
+          f'fill="#6a8a28" opacity="0.22" filter="url(#f-soft)"/>')
         a(f'<ellipse cx="{fmt(ex)}" cy="{fmt(ey)}" rx="{fmt(13*s)}" ry="{fmt(8*s)}" '
-          f'fill="#c4d048"/>')
-        a(f'<circle cx="{fmt(ex)}" cy="{fmt(ey)}" r="{fmt(6.5*s)}" fill="#5a7a1a"/>')
+          f'fill="#8a9636"/>')
+        a(f'<circle cx="{fmt(ex)}" cy="{fmt(ey)}" r="{fmt(6.5*s)}" fill="#3a4e10"/>')
         a(f'<ellipse cx="{fmt(ex)}" cy="{fmt(ey)}" rx="{fmt(2*s)}" ry="{fmt(6*s)}" '
-          f'fill="#080a04"/>')
+          f'fill="#050603"/>')
         a(f'<circle cx="{fmt(ex-2.4*s)}" cy="{fmt(ey-2.6*s)}" r="{fmt(1.4*s)}" '
-          f'fill="#f0ffd0" opacity="0.8"/>')
+          f'fill="#c8d89a" opacity="0.6"/>')
     # label, rising from the breach
     a('<text x="22" y="900" text-anchor="start" '
       'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
-      'fill="#a6d24a" letter-spacing="0.16em" opacity="0.85">THE FAR REALM</text>')
+      'fill="#6e8a30" letter-spacing="0.16em" opacity="0.85">THE FAR REALM</text>')
     a('<text x="22" y="914" text-anchor="start" '
       'font-family="Georgia,\'Times New Roman\',serif" font-size="8" '
-      'fill="#6a8a3a" letter-spacing="0.04em" font-style="italic" opacity="0.7">'
+      'fill="#4e6628" letter-spacing="0.04em" font-style="italic" opacity="0.7">'
       'that which should not be</text>')
 
     # ── orbital guide paths ─────────────────────────────────────────
