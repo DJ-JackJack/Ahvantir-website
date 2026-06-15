@@ -79,7 +79,10 @@
     if (result.error) {
       showStatus(result.error.message, 'error');
     } else {
-      location.replace('/player/dashboard/');
+      // Honor ?next= so "create account" from the homepage Play button returns
+      // to /play (matches the sign-in flow). With no next=, safeNext() still
+      // defaults to the dashboard — unchanged from before.
+      location.replace(safeNext(new URLSearchParams(location.search)));
     }
   });
 })();

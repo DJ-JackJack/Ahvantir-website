@@ -441,6 +441,34 @@ hr {
   border-color: rgba(253,248,237,0.45);
 }
 
+/* Marquee "Enter the World" call-to-action — illuminated gold, stands above
+   the other hero actions as the primary way into the live game. */
+.btn--play {
+  background-image: linear-gradient(155deg, var(--gold-pale) 0%, var(--gold) 45%, var(--gold-dark) 100%);
+  color: var(--ink);
+  font-size: 0.82rem;
+  padding: 0.75rem 1.7rem;
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.35);
+  border: 1px solid var(--gold-dark);
+}
+
+.btn--play:hover {
+  background-image: linear-gradient(155deg, #fbe8a8 0%, var(--gold-pale) 45%, var(--gold) 100%);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+.btn--play__sigil {
+  font-size: 1em;
+  line-height: 1;
+  color: var(--burg);
+}
+
+.hero .btn--play {
+  color: var(--ink);
+}
+
 .hero .btn--ghost:hover {
   background: rgba(253,248,237,0.1);
   color: var(--p-100);
