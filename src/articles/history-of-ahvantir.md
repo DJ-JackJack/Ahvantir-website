@@ -4,8 +4,8 @@ description: "A comprehensive historical record of Ahvantir from mythic prehisto
 category: history
 tags: [history, timeline, meta, landing-war, first-pact, drorn-duur, marduk-sunspear]
 aliases: ["Ahvantir History", "Timeline of Ahvantir"]
-timeline_year: 0
 date_added: "2026-06-06"
+timeline_year: 0
 ---
 
 # History of Ahvantir

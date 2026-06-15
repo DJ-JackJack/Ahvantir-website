@@ -4,8 +4,8 @@ description: "A first-generation [[Arcanum Cryptex]] containing two recordings m
 category: history
 tags: [document, primordem, pact-scholars, in-world, arcanum-cryptex, first-pact]
 aliases: ["Vael Cryptex", "Ilyrana Vael Recordings"]
-timeline_year: 1
 date_added: "2026-06-06"
+timeline_year: 1
 ---
 
 # Ilyrana Vael Cryptex Recordings

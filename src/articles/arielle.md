@@ -2,8 +2,8 @@
 title: "Arielle"
 category: characters
 tags: []
-timeline_pending: "centuries ago — needs a specific MC year for the market fire"
 date_added: "2026-06-06"
+timeline_pending: centuries ago — needs a specific MC year for the market fire
 ---
 
 # Arielle

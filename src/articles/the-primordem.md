@@ -4,8 +4,8 @@ description: "Twelve spirits sealed during the First Pact. Absolute separationis
 category: factions
 tags: [primordem, spirits, cosmology, faction]
 aliases: ["Primordem"]
-timeline_year: 0
 date_added: "2026-06-06"
+timeline_year: 0
 ---
 
 # The Primordem

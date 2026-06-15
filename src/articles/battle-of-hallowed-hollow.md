@@ -2,8 +2,8 @@
 title: "Battle of Hallowed Hollow"
 category: history
 tags: [history, event, landing-war, neverwood, green-man, primordem]
-timeline_year: -7
 date_added: "2026-06-06"
+timeline_year: -7
 ---
 
 # Battle of Hallowed Hollow

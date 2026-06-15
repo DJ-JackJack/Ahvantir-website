@@ -3,8 +3,8 @@ title: "He Who Festers"
 description: "Fifth of the eleven [[The Primordem|Primordem]]. Sealed 5 of 11 during the First Pact. He does not invent wounds. He finds real ones — genuine wrongs, legitimate grievances — and keeps them from closing. Forgiveness, in his presence, becomes physically difficult. Every slight that was survived is preserved and returned to, again and again, until it is the only thing left."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 date_added: "2026-06-06"
+timeline_year: 0
 ---
 
 # He Who Festers

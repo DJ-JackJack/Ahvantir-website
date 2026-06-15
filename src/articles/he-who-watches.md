@@ -3,8 +3,8 @@ title: "He Who Watches"
 description: "Fourth of the eleven [[The Primordem|Primordem]]. Sealed 4 of 11 during the First Pact. The first seal the players encountered. He embodies the paranoia that turns neighbors into threats and allies into suspects. His aura strengthens with each sibling freed — if all eleven walk the isles together, the effect would blanket every spirit pact and old alliance in the archipelago."
 category: cosmology
 tags: [spirit, primordem]
-timeline_year: 0
 date_added: "2026-06-06"
+timeline_year: 0
 ---
 
 # He Who Watches

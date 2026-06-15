@@ -374,7 +374,7 @@ def build() -> str:
 
     # ── SECTION I: elemental chaos + material plane ─────────────────
     a('<!-- Elemental Chaos band -->')
-    a(link_open("elemental-chaos", "Elemental Chaos"))
+    a(link_open("the-elemental-chaos", "The Elemental Chaos"))
     a('<g mask="url(#m-chaos)" filter="url(#f-chaos)">')
     # four elements blended: fire NE, earth SE, water SW, air NW
     bx, by = CX, CY
@@ -394,7 +394,7 @@ def build() -> str:
     a('</a>')
 
     a('<!-- Material Plane -->')
-    a(link_open("ahvantir-material-plane", "Ahvantir, the Material Plane"))
+    a(link_open("ahvantir-the-material-plane", "Ahvantir (The Material Plane)"))
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" '
       f'fill="url(#rg-mp)" filter="url(#f-soft)"/>')
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" fill="url(#rg-mp)"/>')

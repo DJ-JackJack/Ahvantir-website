@@ -241,7 +241,7 @@
 <text x="323.2" y="608" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="9" fill="#9a8a72" letter-spacing="0.03em" font-style="italic">The Dark Mirror</text>
 </a>
 <!-- Elemental Chaos band -->
-<a class="cosmos-link" href="/articles/elemental-chaos/" aria-label="Elemental Chaos">
+<a class="cosmos-link" href="/articles/the-elemental-chaos/" aria-label="The Elemental Chaos">
 <g mask="url(#m-chaos)" filter="url(#f-chaos)">
 <circle cx="506" cy="426" r="74" fill="#e8521a"/>
 <circle cx="506" cy="494" r="74" fill="#9a7018"/>
@@ -254,7 +254,7 @@
 <text x="550" y="469" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#c8a050" letter-spacing="0.10em" opacity="0.75">CHAOS</text>
 </a>
 <!-- Material Plane -->
-<a class="cosmos-link" href="/articles/ahvantir-material-plane/" aria-label="Ahvantir, the Material Plane">
+<a class="cosmos-link" href="/articles/ahvantir-the-material-plane/" aria-label="Ahvantir (The Material Plane)">
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)" filter="url(#f-soft)"/>
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)"/>
 <ellipse cx="447" cy="445" rx="14" ry="9" fill="#e0f8ff" opacity="0.14"/>
