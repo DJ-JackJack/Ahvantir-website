@@ -394,7 +394,7 @@ def build() -> str:
     a('</a>')
 
     a('<!-- Material Plane -->')
-    a(link_open("ahvantir-the-material-plane", "Ahvantir (The Material Plane)"))
+    a(link_open("nyhexus", "Nyhexus (The Material Plane)"))
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" '
       f'fill="url(#rg-mp)" filter="url(#f-soft)"/>')
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" fill="url(#rg-mp)"/>')
@@ -402,7 +402,7 @@ def build() -> str:
       f'fill="#e0f8ff" opacity="0.14"/>')
     a(f'<text x="{fmt(CX)}" y="{fmt(CY+4)}" text-anchor="middle" '
       f'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
-      f'fill="#e8f4ee" letter-spacing="0.06em">Ahvantir</text>')
+      f'fill="#e8f4ee" letter-spacing="0.06em">Nyhexus</text>')
     a('</a>')
 
     # ── SECTION V: The Ranjergon — its own sphere, set apart ─────────

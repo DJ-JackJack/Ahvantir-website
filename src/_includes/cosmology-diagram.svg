@@ -254,11 +254,11 @@
 <text x="550" y="469" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#c8a050" letter-spacing="0.10em" opacity="0.75">CHAOS</text>
 </a>
 <!-- Material Plane -->
-<a class="cosmos-link" href="/articles/ahvantir-the-material-plane/" aria-label="Ahvantir (The Material Plane)">
+<a class="cosmos-link" href="/articles/nyhexus/" aria-label="Nyhexus (The Material Plane)">
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)" filter="url(#f-soft)"/>
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)"/>
 <ellipse cx="447" cy="445" rx="14" ry="9" fill="#e0f8ff" opacity="0.14"/>
-<text x="460" y="464" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#e8f4ee" letter-spacing="0.06em">Ahvantir</text>
+<text x="460" y="464" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#e8f4ee" letter-spacing="0.06em">Nyhexus</text>
 </a>
 <!-- The Ranjergon (Deific Plane), behind the Divine Gate -->
 <a class="cosmos-link" href="/articles/the-ranjergon/" aria-label="The Ranjergon">

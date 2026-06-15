@@ -2,13 +2,13 @@
 title: "Solara and Nystara"
 category: cosmology
 tags: [cosmology, astronomy, calendar, culture, twin-suns]
-aliases: ["the twin suns", "Solara", "Nystara", "twin suns of Ahvantir"]
+aliases: ["the twin suns", "Solara", "Nystara", "twin suns of Nyhexus"]
 date_added: "2026-06-14"
 ---
 
 # Solara and Nystara
 
-Solara and Nystara are Ahvantir's twin suns — a binary star system around which the planet orbits on a circumbinary path, encircling both stars at once. Solara is the larger of the two: a warm yellow star whose light most inhabitants of Aru'Mas simply call *daylight*. Nystara is smaller, burns blue-white, and runs far hotter than her counterpart. Both have shaped Ahvantir's calendar, its agriculture, its military iconography, and the symbolic vocabulary the city reaches for when it needs to talk about two things that are not the same.
+Solara and Nystara are Nyhexus's twin suns — a binary star system around which the planet orbits on a circumbinary path, encircling both stars at once. Solara is the larger of the two: a warm yellow star whose light most inhabitants of Aru'Mas simply call *daylight*. Nystara is smaller, burns blue-white, and runs far hotter than her counterpart. Both have shaped Ahvantir's calendar, its agriculture, its military iconography, and the symbolic vocabulary the city reaches for when it needs to talk about two things that are not the same.
 
 ---
 
