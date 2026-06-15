@@ -4636,3 +4636,92 @@ html.dark pre {
 html.dark blockquote {
   background: rgba(192,64,96,0.06);
 }
+
+/* ================================================================
+   Cosmology page
+   ================================================================ */
+
+.cosmos-container {
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.cosmos-figure {
+  margin: 0 auto 2.5rem;
+  max-width: 760px;
+  background: radial-gradient(ellipse at center, #0a0420 0%, #050210 70%);
+  border: 1px solid var(--br-mid);
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.cosmos-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cosmos-legend {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cosmos-legend__group {
+  margin-bottom: 1.75rem;
+}
+
+.cosmos-legend__heading {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--burg);
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--br-light);
+}
+
+.cosmos-legend p { margin: 0 0 0.6rem; line-height: 1.6; }
+.cosmos-legend ul { margin: 0.4rem 0; padding-left: 1.2rem; line-height: 1.6; }
+.cosmos-legend li { margin-bottom: 0.3rem; }
+
+.cosmos-key {
+  font-weight: 600;
+  padding: 0 0.25em;
+  border-radius: 3px;
+}
+.cosmos-key--upper   { color: #8a6a1a; background: rgba(202,162,74,0.16); }
+.cosmos-key--lower   { color: #8a1f2a; background: rgba(138,31,42,0.12); }
+.cosmos-key--neutral { color: #4a5468; background: rgba(106,116,136,0.16); }
+
+.cosmos-wheel-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.cosmos-wheel-col__title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+  margin: 0 0 0.5rem;
+}
+
+.cosmos-wheel-cols ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ink-faded);
+}
+
+html.dark .cosmos-key--upper   { color: #e0c070; background: rgba(202,162,74,0.14); }
+html.dark .cosmos-key--lower   { color: #e08878; background: rgba(196,58,48,0.16); }
+html.dark .cosmos-key--neutral { color: #aab4c8; background: rgba(154,166,186,0.14); }
+
+@media (max-width: 600px) {
+  .cosmos-wheel-cols { grid-template-columns: 1fr 1fr; }
+}
