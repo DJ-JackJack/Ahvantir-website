@@ -1,12 +1,12 @@
 ---
-title: "Nyhexus"
+title: "Nyhexus (The Material Plane)"
 category: cosmology
 tags: [plane, cosmology, material-plane, nyhexus, convergence, spirits]
 aliases: ["Material Plane", "the Material Plane", "Nyhexus", "the planet"]
 date_added: "2026-06-15"
 ---
 
-# Nyhexus
+# Nyhexus (The Material Plane)
 
 Nyhexus is the material plane at the center of the cosmological framework that Aru'Mas scholars have mapped and argued over for centuries. It is the plane where mortal life occurs, where history accumulates, where the decisions of individuals and institutions leave marks on physical reality. It is also, as far as Starleaper Fleet navigators and the scholars who study their reports have been able to determine, a convergence point — and that distinction is not incidental to anything else about Nyhexus.
 

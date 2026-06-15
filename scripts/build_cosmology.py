@@ -394,7 +394,7 @@ def build() -> str:
     a('</a>')
 
     a('<!-- Material Plane -->')
-    a(link_open("nyhexus", "Nyhexus (The Material Plane)"))
+    a(link_open("nyhexus-the-material-plane", "Nyhexus (The Material Plane)"))
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" '
       f'fill="url(#rg-mp)" filter="url(#f-soft)"/>')
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" fill="url(#rg-mp)"/>')

@@ -254,7 +254,7 @@
 <text x="550" y="469" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#c8a050" letter-spacing="0.10em" opacity="0.75">CHAOS</text>
 </a>
 <!-- Material Plane -->
-<a class="cosmos-link" href="/articles/nyhexus/" aria-label="Nyhexus (The Material Plane)">
+<a class="cosmos-link" href="/articles/nyhexus-the-material-plane/" aria-label="Nyhexus (The Material Plane)">
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)" filter="url(#f-soft)"/>
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)"/>
 <ellipse cx="447" cy="445" rx="14" ry="9" fill="#e0f8ff" opacity="0.14"/>
