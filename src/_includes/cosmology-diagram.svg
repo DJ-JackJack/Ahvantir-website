@@ -76,10 +76,14 @@
 <circle cx="660" cy="200" r="0.5" fill="#eef0ff" opacity="0.4"/>
 <circle cx="300" cy="300" r="0.5" fill="#eef0ff" opacity="0.4"/>
 </g>
+<a class="cosmos-link" href="/articles/the-astral-sea/" aria-label="The Astral Sea">
 <text x="28" y="42" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#aab8e0" letter-spacing="0.14em" opacity="0.72">THE ASTRAL SEA</text>
 <text x="28" y="56" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#7888b0" letter-spacing="0.04em" font-style="italic" opacity="0.6">the scaffolding between worlds</text>
+</a>
+<a class="cosmos-link" href="/articles/the-ethereal/" aria-label="The Ethereal">
 <text x="892" y="884" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#88c0b0" letter-spacing="0.14em" opacity="0.72">THE ETHEREAL</text>
 <text x="892" y="898" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#5e9084" letter-spacing="0.04em" font-style="italic" opacity="0.6">the unseen between-space</text>
+</a>
 <!-- The Far Realm -->
 <circle cx="95" cy="855" r="150" fill="url(#rg-far)"/>
 <g filter="url(#f-far)" opacity="0.9">
@@ -111,92 +115,133 @@
 <circle cx="238" cy="892" r="4.7" fill="#3a4e10"/>
 <ellipse cx="238" cy="892" rx="1.4" ry="4.3" fill="#050603"/>
 <circle cx="236.3" cy="890.1" r="1" fill="#c8d89a" opacity="0.6"/>
+<a class="cosmos-link" href="/articles/the-far-realm/" aria-label="The Far Realm">
 <text x="22" y="900" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#6e8a30" letter-spacing="0.16em" opacity="0.85">THE FAR REALM</text>
 <text x="22" y="914" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#4e6628" letter-spacing="0.04em" font-style="italic" opacity="0.7">that which should not be</text>
+</a>
 <circle cx="460" cy="460" r="158" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="5 9" opacity="0.20"/>
 <circle cx="460" cy="460" r="362" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="5 9" opacity="0.18"/>
 <!-- Outer planes (Great Wheel) -->
+<a class="cosmos-link" href="/articles/mount-celestia/" aria-label="Mount Celestia">
 <circle cx="204" cy="204" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="204" cy="204" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="194.7" cy="193.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="171.5" y="174.5" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Celestia</text>
+</a>
+<a class="cosmos-link" href="/articles/bytopia/" aria-label="Bytopia">
 <circle cx="321.5" cy="125.6" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="321.5" cy="125.6" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="312.2" cy="115.1" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="303.9" y="86.1" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Bytopia</text>
+</a>
+<a class="cosmos-link" href="/articles/elysium/" aria-label="Elysium">
 <circle cx="460" cy="98" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="460" cy="98" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="450.7" cy="87.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="460" y="55" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Elysium</text>
+</a>
+<a class="cosmos-link" href="/articles/the-beastlands/" aria-label="The Beastlands">
 <circle cx="598.5" cy="125.6" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="598.5" cy="125.6" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="589.3" cy="115.1" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="616.1" y="86.1" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Beastlands</text>
+</a>
+<a class="cosmos-link" href="/articles/arborea/" aria-label="Arborea">
 <circle cx="716" cy="204" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="716" cy="204" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="706.7" cy="193.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="748.5" y="174.5" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Arborea</text>
+</a>
+<a class="cosmos-link" href="/articles/ysgard/" aria-label="Ysgard">
 <circle cx="794.4" cy="321.5" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="794.4" cy="321.5" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="785.2" cy="311" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="836.9" y="306.9" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Ysgard</text>
+</a>
+<a class="cosmos-link" href="/articles/limbo/" aria-label="Limbo">
 <circle cx="822" cy="460" r="38" fill="#caa24a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="822" cy="460" r="29" fill="url(#rg-gold)"/>
 <ellipse cx="812.7" cy="449.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="868" y="463" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Limbo</text>
+</a>
+<a class="cosmos-link" href="/articles/pandemonium/" aria-label="Pandemonium">
 <circle cx="794.4" cy="598.5" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="794.4" cy="598.5" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="785.2" cy="588.1" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="836.9" y="619.1" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Pandemonium</text>
+</a>
+<a class="cosmos-link" href="/articles/the-abyss/" aria-label="The Abyss">
 <circle cx="716" cy="716" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="716" cy="716" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="706.7" cy="705.5" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="748.5" y="751.5" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">The Abyss</text>
+</a>
+<a class="cosmos-link" href="/articles/carceri/" aria-label="Carceri">
 <circle cx="598.5" cy="794.4" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="598.5" cy="794.4" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="589.3" cy="784" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="616.1" y="839.9" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Carceri</text>
+</a>
+<a class="cosmos-link" href="/articles/hades/" aria-label="The Gray Waste (Hades)">
 <circle cx="460" cy="822" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="460" cy="822" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="450.7" cy="811.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="460" y="871" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Hades</text>
+</a>
+<a class="cosmos-link" href="/articles/gehenna/" aria-label="Gehenna">
 <circle cx="321.5" cy="794.4" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="321.5" cy="794.4" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="312.2" cy="784" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="303.9" y="839.9" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Gehenna</text>
+</a>
+<a class="cosmos-link" href="/articles/the-nine-hells/" aria-label="The Nine Hells">
 <circle cx="204" cy="716" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="204" cy="716" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="194.7" cy="705.5" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="171.5" y="751.5" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Nine Hells</text>
+</a>
+<a class="cosmos-link" href="/articles/acheron/" aria-label="Acheron">
 <circle cx="125.6" cy="598.5" r="38" fill="#8a1f2a" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="125.6" cy="598.5" r="29" fill="url(#rg-crimson)"/>
 <ellipse cx="116.3" cy="588.1" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="83.1" y="619.1" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Acheron</text>
+</a>
+<a class="cosmos-link" href="/articles/mechanus/" aria-label="Mechanus">
 <circle cx="98" cy="460" r="38" fill="#6a7488" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="98" cy="460" r="29" fill="url(#rg-steel)"/>
 <ellipse cx="88.7" cy="449.6" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="52" y="463" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Mechanus</text>
+</a>
+<a class="cosmos-link" href="/articles/arcadia/" aria-label="Arcadia">
 <circle cx="125.6" cy="321.5" r="38" fill="#6a7488" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="125.6" cy="321.5" r="29" fill="url(#rg-steel)"/>
 <ellipse cx="116.3" cy="311" rx="9.9" ry="6.4" fill="#ffffff" opacity="0.16"/>
 <text x="83.1" y="306.9" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="10.5" fill="#d8c8a8" letter-spacing="0.04em">Arcadia</text>
+</a>
 <!-- Inner planes -->
+<a class="cosmos-link" href="/articles/the-dreaming/" aria-label="The Dreaming">
 <circle cx="460" cy="302" r="46" fill="#7040b8" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="460" cy="302" r="34" fill="url(#rg-dream)"/>
 <ellipse cx="449.1" cy="289.8" rx="10.9" ry="6.8" fill="#ffffff" opacity="0.16"/>
 <text x="460" y="254" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#e8dcc4" letter-spacing="0.05em">The Dreaming</text>
 <text x="460" y="267" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="9" fill="#9a8a72" letter-spacing="0.03em" font-style="italic">Nodd's Sovereign Domain</text>
+</a>
+<a class="cosmos-link" href="/articles/vast-green/" aria-label="The Vast Green">
 <circle cx="596.8" cy="539" r="46" fill="#2f9a2f" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="596.8" cy="539" r="34" fill="url(#rg-green)"/>
 <ellipse cx="586" cy="526.8" rx="10.9" ry="6.8" fill="#ffffff" opacity="0.16"/>
 <text x="596.8" y="595" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#e8dcc4" letter-spacing="0.05em">The Vast Green</text>
 <text x="596.8" y="608" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="9" fill="#9a8a72" letter-spacing="0.03em" font-style="italic">The Fey Realm</text>
+</a>
+<a class="cosmos-link" href="/articles/faded-veil/" aria-label="The Faded Veil">
 <circle cx="323.2" cy="539" r="46" fill="#3a2850" opacity="0.20" filter="url(#f-soft)"/>
 <circle cx="323.2" cy="539" r="34" fill="url(#rg-veil)"/>
 <ellipse cx="312.3" cy="526.8" rx="10.9" ry="6.8" fill="#ffffff" opacity="0.16"/>
 <text x="323.2" y="595" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#e8dcc4" letter-spacing="0.05em">The Faded Veil</text>
 <text x="323.2" y="608" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="9" fill="#9a8a72" letter-spacing="0.03em" font-style="italic">The Dark Mirror</text>
+</a>
 <!-- Elemental Chaos band -->
+<a class="cosmos-link" href="/articles/elemental-chaos/" aria-label="Elemental Chaos">
 <g mask="url(#m-chaos)" filter="url(#f-chaos)">
 <circle cx="506" cy="426" r="74" fill="#e8521a"/>
 <circle cx="506" cy="494" r="74" fill="#9a7018"/>
@@ -207,12 +252,16 @@
 </g>
 <text x="550" y="457" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#c8a050" letter-spacing="0.10em" opacity="0.75">ELEMENTAL</text>
 <text x="550" y="469" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#c8a050" letter-spacing="0.10em" opacity="0.75">CHAOS</text>
+</a>
 <!-- Material Plane -->
+<a class="cosmos-link" href="/articles/ahvantir-material-plane/" aria-label="Ahvantir, the Material Plane">
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)" filter="url(#f-soft)"/>
 <circle cx="460" cy="460" r="46" fill="url(#rg-mp)"/>
 <ellipse cx="447" cy="445" rx="14" ry="9" fill="#e0f8ff" opacity="0.14"/>
 <text x="460" y="464" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#e8f4ee" letter-spacing="0.06em">Ahvantir</text>
+</a>
 <!-- The Ranjergon (Deific Plane), behind the Divine Gate -->
+<a class="cosmos-link" href="/articles/the-ranjergon/" aria-label="The Ranjergon">
 <circle cx="850" cy="80" r="62" fill="#ffd060" opacity="0.16" filter="url(#f-ranjglow)"/>
 <circle cx="850" cy="80" r="64" fill="none" stroke="#f0d890" stroke-width="1.2" stroke-dasharray="2 7" opacity="0.55"/>
 <circle cx="850" cy="80" r="57" fill="none" stroke="#e8c870" stroke-width="0.8" stroke-dasharray="1 6" opacity="0.4"/>
@@ -220,4 +269,5 @@
 <ellipse cx="835.3" cy="63.4" rx="13.8" ry="9.2" fill="#fffdf0" opacity="0.22"/>
 <text x="850" y="156" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="12" fill="#f0dca0" letter-spacing="0.05em">The Ranjergon</text>
 <text x="850" y="169" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="8.5" fill="#b09850" letter-spacing="0.03em" font-style="italic">Behind the Divine Gate</text>
+</a>
 </svg>

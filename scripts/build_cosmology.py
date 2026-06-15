@@ -45,9 +45,9 @@ def polar(cx, cy, r, deg):
 
 
 # ── Inner planes (approved layout: 120deg spacing) ──────────────────
-# (name, subtitle, angle_deg, gradient_id, glow_color, slug_or_None)
+# (name, subtitle, angle_deg, gradient_id, glow_color, slug)
 INNER = [
-    ("The Dreaming",  "Nodd's Sovereign Domain", -90.0, "rg-dream", "#7040b8", None),
+    ("The Dreaming",  "Nodd's Sovereign Domain", -90.0, "rg-dream", "#7040b8", "the-dreaming"),
     ("The Vast Green", "The Fey Realm",            30.0, "rg-green", "#2f9a2f", "vast-green"),
     ("The Faded Veil", "The Dark Mirror",         150.0, "rg-veil",  "#3a2850", "faded-veil"),
 ]
@@ -56,24 +56,24 @@ INNER = [
 # group: upper (gold) / lower (crimson) / neutral (steel).
 # Elysium (pure NG) sits at top (-90); Hades (pure NE) at bottom (90),
 # so Good is up, Evil is down, Chaos to the right, Law to the left.
-# (full, short, group)  — wheel order, index 1..16
+# (full, short, group, slug)  — wheel order, index 1..16
 OUTER_ORDER = [
-    ("Mount Celestia",        "Celestia",     "upper"),   # 1  LG
-    ("Bytopia",               "Bytopia",      "upper"),   # 2  LG/NG
-    ("Elysium",               "Elysium",      "upper"),   # 3  NG  (top)
-    ("The Beastlands",        "Beastlands",   "upper"),   # 4  NG/CG
-    ("Arborea",               "Arborea",      "upper"),   # 5  CG
-    ("Ysgard",                "Ysgard",       "upper"),   # 6  CG/CN
-    ("Limbo",                 "Limbo",        "upper"),   # 7  CN  (right)
-    ("Pandemonium",           "Pandemonium",  "lower"),   # 8  CN/CE
-    ("The Abyss",             "The Abyss",    "lower"),   # 9  CE
-    ("Carceri",               "Carceri",      "lower"),   # 10 CE/NE
-    ("The Gray Waste (Hades)", "Hades",       "lower"),   # 11 NE  (bottom)
-    ("Gehenna",               "Gehenna",      "lower"),   # 12 NE/LE
-    ("The Nine Hells",        "Nine Hells",   "lower"),   # 13 LE
-    ("Acheron",               "Acheron",      "lower"),   # 14 LE/LN
-    ("Mechanus",              "Mechanus",     "neutral"), # 15 LN  (left)
-    ("Arcadia",               "Arcadia",      "neutral"), # 16 LN/LG
+    ("Mount Celestia",        "Celestia",     "upper",   "mount-celestia"),  # 1  LG
+    ("Bytopia",               "Bytopia",      "upper",   "bytopia"),         # 2  LG/NG
+    ("Elysium",               "Elysium",      "upper",   "elysium"),         # 3  NG  (top)
+    ("The Beastlands",        "Beastlands",   "upper",   "the-beastlands"),  # 4  NG/CG
+    ("Arborea",               "Arborea",      "upper",   "arborea"),         # 5  CG
+    ("Ysgard",                "Ysgard",       "upper",   "ysgard"),          # 6  CG/CN
+    ("Limbo",                 "Limbo",        "upper",   "limbo"),           # 7  CN  (right)
+    ("Pandemonium",           "Pandemonium",  "lower",   "pandemonium"),     # 8  CN/CE
+    ("The Abyss",             "The Abyss",    "lower",   "the-abyss"),       # 9  CE
+    ("Carceri",               "Carceri",      "lower",   "carceri"),         # 10 CE/NE
+    ("The Gray Waste (Hades)", "Hades",       "lower",   "hades"),           # 11 NE  (bottom)
+    ("Gehenna",               "Gehenna",      "lower",   "gehenna"),         # 12 NE/LE
+    ("The Nine Hells",        "Nine Hells",   "lower",   "the-nine-hells"),  # 13 LE
+    ("Acheron",               "Acheron",      "lower",   "acheron"),         # 14 LE/LN
+    ("Mechanus",              "Mechanus",     "neutral", "mechanus"),        # 15 LN  (left)
+    ("Arcadia",               "Arcadia",      "neutral", "arcadia"),         # 16 LN/LG
 ]
 
 GROUP_STYLE = {
@@ -86,6 +86,12 @@ GROUP_STYLE = {
 def outer_angle(idx_1based: int) -> float:
     """Index 3 (Elysium) at top (-90), 22.5deg per step, clockwise."""
     return -90.0 + (idx_1based - 3) * 22.5
+
+
+def link_open(slug: str, label: str) -> str:
+    """Open an SVG hyperlink wrapping a plane's sphere and/or label. Trailing
+    slash matches the site's article permalinks (/articles/<slug>/)."""
+    return f'<a class="cosmos-link" href="/articles/{slug}/" aria-label="{label}">'
 
 
 # ── Star field (fixed seed, hand-scattered for an even spread) ───────
@@ -239,6 +245,7 @@ def build() -> str:
     a('</g>')
 
     # Field labels, tucked into opposite corners
+    a(link_open("the-astral-sea", "The Astral Sea"))
     a('<text x="28" y="42" text-anchor="start" '
       'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
       'fill="#aab8e0" letter-spacing="0.14em" opacity="0.72">THE ASTRAL SEA</text>')
@@ -246,6 +253,8 @@ def build() -> str:
       'font-family="Georgia,\'Times New Roman\',serif" font-size="8" '
       'fill="#7888b0" letter-spacing="0.04em" font-style="italic" opacity="0.6">'
       'the scaffolding between worlds</text>')
+    a('</a>')
+    a(link_open("the-ethereal", "The Ethereal"))
     a('<text x="892" y="884" text-anchor="end" '
       'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
       'fill="#88c0b0" letter-spacing="0.14em" opacity="0.72">THE ETHEREAL</text>')
@@ -253,6 +262,7 @@ def build() -> str:
       'font-family="Georgia,\'Times New Roman\',serif" font-size="8" '
       'fill="#5e9084" letter-spacing="0.04em" font-style="italic" opacity="0.6">'
       'the unseen between-space</text>')
+    a('</a>')
 
     # ── SECTION VI: the Far Realm ───────────────────────────────────
     # Drawn behind the wheel so the ordered cosmos holds against it. It
@@ -290,6 +300,7 @@ def build() -> str:
         a(f'<circle cx="{fmt(ex-2.4*s)}" cy="{fmt(ey-2.6*s)}" r="{fmt(1.4*s)}" '
           f'fill="#c8d89a" opacity="0.6"/>')
     # label, rising from the breach
+    a(link_open("the-far-realm", "The Far Realm"))
     a('<text x="22" y="900" text-anchor="start" '
       'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
       'fill="#6e8a30" letter-spacing="0.16em" opacity="0.85">THE FAR REALM</text>')
@@ -297,6 +308,7 @@ def build() -> str:
       'font-family="Georgia,\'Times New Roman\',serif" font-size="8" '
       'fill="#4e6628" letter-spacing="0.04em" font-style="italic" opacity="0.7">'
       'that which should not be</text>')
+    a('</a>')
 
     # ── orbital guide paths ─────────────────────────────────────────
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_INNER)}" fill="none" '
@@ -306,10 +318,11 @@ def build() -> str:
 
     # ── SECTION III: outer planes ───────────────────────────────────
     a('<!-- Outer planes (Great Wheel) -->')
-    for i, (full, short, group) in enumerate(OUTER_ORDER, start=1):
+    for i, (full, short, group, slug) in enumerate(OUTER_ORDER, start=1):
         ang = outer_angle(i)
         x, y = polar(CX, CY, R_OUTER, ang)
         style = GROUP_STYLE[group]
+        a(link_open(slug, full))
         # glow
         a(f'<circle cx="{fmt(x)}" cy="{fmt(y)}" r="{fmt(R_OUTER_BODY + 9)}" '
           f'fill="{style["glow"]}" opacity="0.20" filter="url(#f-soft)"/>')
@@ -333,11 +346,13 @@ def build() -> str:
         a(f'<text x="{fmt(lx)}" y="{fmt(ly)}" text-anchor="{anchor}" '
           f'font-family="Georgia,\'Times New Roman\',serif" font-size="10.5" '
           f'fill="#d8c8a8" letter-spacing="0.04em">{short}</text>')
+        a('</a>')
 
     # ── SECTION II: inner planes ────────────────────────────────────
     a('<!-- Inner planes -->')
     for full, sub, ang, grad, glow, slug in INNER:
         x, y = polar(CX, CY, R_INNER, ang)
+        a(link_open(slug, full))
         a(f'<circle cx="{fmt(x)}" cy="{fmt(y)}" r="{fmt(R_INNER_BODY + 12)}" '
           f'fill="{glow}" opacity="0.20" filter="url(#f-soft)"/>')
         a(f'<circle cx="{fmt(x)}" cy="{fmt(y)}" r="{fmt(R_INNER_BODY)}" '
@@ -355,9 +370,11 @@ def build() -> str:
         a(f'<text x="{fmt(x)}" y="{fmt(sy)}" text-anchor="middle" '
           f'font-family="Georgia,\'Times New Roman\',serif" font-size="9" '
           f'fill="#9a8a72" letter-spacing="0.03em" font-style="italic">{sub}</text>')
+        a('</a>')
 
     # ── SECTION I: elemental chaos + material plane ─────────────────
     a('<!-- Elemental Chaos band -->')
+    a(link_open("elemental-chaos", "Elemental Chaos"))
     a('<g mask="url(#m-chaos)" filter="url(#f-chaos)">')
     # four elements blended: fire NE, earth SE, water SW, air NW
     bx, by = CX, CY
@@ -374,8 +391,10 @@ def build() -> str:
     a(f'<text x="{fmt(CX + CHAOS_OUT + 8)}" y="{fmt(CY+9)}" '
       f'font-family="Georgia,\'Times New Roman\',serif" font-size="8.5" '
       f'fill="#c8a050" letter-spacing="0.10em" opacity="0.75">CHAOS</text>')
+    a('</a>')
 
     a('<!-- Material Plane -->')
+    a(link_open("ahvantir-material-plane", "Ahvantir, the Material Plane"))
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" '
       f'fill="url(#rg-mp)" filter="url(#f-soft)"/>')
     a(f'<circle cx="{fmt(CX)}" cy="{fmt(CY)}" r="{fmt(R_MAT)}" fill="url(#rg-mp)"/>')
@@ -384,6 +403,7 @@ def build() -> str:
     a(f'<text x="{fmt(CX)}" y="{fmt(CY+4)}" text-anchor="middle" '
       f'font-family="Georgia,\'Times New Roman\',serif" font-size="11" '
       f'fill="#e8f4ee" letter-spacing="0.06em">Ahvantir</text>')
+    a('</a>')
 
     # ── SECTION V: The Ranjergon — its own sphere, set apart ─────────
     # The Deific Plane sits outside the major cosmology, sealed behind the
@@ -391,6 +411,7 @@ def build() -> str:
     # no orbital tie to the wheel — deliberately separate.
     rx, ry, rr = 850.0, 80.0, 46.0
     a('<!-- The Ranjergon (Deific Plane), behind the Divine Gate -->')
+    a(link_open("the-ranjergon", "The Ranjergon"))
     a(f'<circle cx="{fmt(rx)}" cy="{fmt(ry)}" r="{fmt(rr+16)}" '
       f'fill="#ffd060" opacity="0.16" filter="url(#f-ranjglow)"/>')
     # Divine Gate — concentric broken rings enclosing the sphere
@@ -408,6 +429,7 @@ def build() -> str:
       f'font-family="Georgia,\'Times New Roman\',serif" font-size="8.5" '
       f'fill="#b09850" letter-spacing="0.03em" font-style="italic">'
       f'Behind the Divine Gate</text>')
+    a('</a>')
 
     a('</svg>')
     return "\n".join(p)

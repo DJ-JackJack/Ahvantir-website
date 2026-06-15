@@ -4662,6 +4662,25 @@ html.dark blockquote {
   height: auto;
 }
 
+/* Clickable plane labels/spheres — parchment-gold hover glow */
+.cosmos-svg a.cosmos-link { cursor: pointer; }
+.cosmos-svg a.cosmos-link text,
+.cosmos-svg a.cosmos-link circle,
+.cosmos-svg a.cosmos-link ellipse {
+  transition: fill 0.15s ease, filter 0.15s ease;
+}
+.cosmos-svg a.cosmos-link:hover text {
+  fill: #ffe9b0;
+  filter: drop-shadow(0 0 5px rgba(240, 200, 120, 0.75));
+}
+.cosmos-svg a.cosmos-link:focus-visible {
+  outline: none;
+}
+.cosmos-svg a.cosmos-link:focus-visible text {
+  fill: #ffe9b0;
+  filter: drop-shadow(0 0 5px rgba(240, 200, 120, 0.9));
+}
+
 .cosmos-legend {
   max-width: 720px;
   margin: 0 auto;
