@@ -22,7 +22,7 @@ Whether any Far Realm presence exists within Ahvantir's spiritual fabric — whe
 
 ## Cosmological Position
 
-[[The Ranjergon]] is separated from the mortal world by the Divine Gate. [[The Dreaming]] runs parallel to the material. The [[Astral Sea]] provides the scaffolding between known worlds. Each of these planes connects to the others in ways that follow the logic of connection.
+[[The Ranjergon]] is separated from the mortal world by the Divine Gate. [[The Dreaming]] runs parallel to the material. The [[The Astral Sea|Astral Sea]] provides the scaffolding between known worlds. Each of these planes connects to the others in ways that follow the logic of connection.
 
 The Far Realm does not connect in those ways. Attempts to develop a systematic account of it have tended to produce accounts that are internally consistent and completely irreconcilable with every other systematic account of the same subject. Among scholars of planar philosophy, this is considered diagnostic rather than merely inconvenient.
 
@@ -30,7 +30,7 @@ The Far Realm does not connect in those ways. Attempts to develop a systematic a
 > The Far Realm is included on the cosmology diagram and defined by its position as that which should not be, but it has not been developed in Ahvantir's vault. This article establishes a framework — the category of things that don't fit — without committing to specific entities or manifestations. Develop when and if the Far Realm becomes relevant in play, with reference to any Ahvantir-specific entities that may prove to be Far Realm in origin.
 
 ## Connections
-- Cosmological context: [[The Ranjergon]], [[Astral Sea]], [[The Dreaming]] (the planes it is defined against)
+- Cosmological context: [[The Ranjergon]], [[The Astral Sea|Astral Sea]], [[The Dreaming]] (the planes it is defined against)
 - See also: the Eight Shadows *(possible connection — not confirmed)*
 
 ---
