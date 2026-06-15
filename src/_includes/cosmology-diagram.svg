@@ -15,6 +15,8 @@
 <filter id="f-soft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6"/></filter>
 <filter id="f-mist" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="22"/></filter>
 <filter id="f-ranjglow" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="9"/></filter>
+<radialGradient id="rg-far" cx="30%" cy="70%" r="78%"><stop offset="0%" stop-color="#9a3aaa" stop-opacity="0.55"/><stop offset="35%" stop-color="#4a6a2a" stop-opacity="0.35"/><stop offset="70%" stop-color="#2a1238" stop-opacity="0.15"/><stop offset="100%" stop-color="#0a0510" stop-opacity="0"/></radialGradient>
+<filter id="f-far"><feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blr"/><feTurbulence type="turbulence" baseFrequency="0.018" numOctaves="3" seed="13" result="nse"/><feDisplacementMap in="blr" in2="nse" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter>
 <filter id="f-chaos"><feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blr"/><feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="7" result="nse"/><feDisplacementMap in="blr" in2="nse" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter>
 <mask id="m-chaos"><circle cx="460" cy="460" r="82" fill="white"/><circle cx="460" cy="460" r="50" fill="black"/></mask>
 </defs>
@@ -78,6 +80,39 @@
 <text x="28" y="56" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#7888b0" letter-spacing="0.04em" font-style="italic" opacity="0.6">the scaffolding between worlds</text>
 <text x="892" y="884" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#88c0b0" letter-spacing="0.14em" opacity="0.72">THE ETHEREAL</text>
 <text x="892" y="898" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#5e9084" letter-spacing="0.04em" font-style="italic" opacity="0.6">the unseen between-space</text>
+<!-- The Far Realm -->
+<circle cx="95" cy="855" r="150" fill="url(#rg-far)"/>
+<g filter="url(#f-far)" opacity="0.88">
+<circle cx="60" cy="890" r="95" fill="#5a2078"/>
+<circle cx="150" cy="870" r="72" fill="#3a5a18"/>
+<circle cx="48" cy="800" r="82" fill="#42206a"/>
+<circle cx="180" cy="905" r="60" fill="#4a6818"/>
+<circle cx="110" cy="850" r="60" fill="#7a2a9a"/>
+<circle cx="90" cy="912" r="70" fill="#26400f"/>
+</g>
+<g fill="none" stroke-linecap="round" filter="url(#f-soft)">
+<path d="M140,820 C200,758 244,718 286,688" stroke="#5a7a2a" stroke-width="8" opacity="0.42"/>
+<path d="M120,802 C162,704 150,648 206,598" stroke="#7a2a9a" stroke-width="6" opacity="0.36"/>
+<path d="M58,762 C36,684 60,624 30,556" stroke="#4a6a1a" stroke-width="5" opacity="0.3"/>
+<path d="M196,902 C320,898 372,910 470,902" stroke="#5a2a78" stroke-width="4" opacity="0.24"/>
+</g>
+<circle cx="108" cy="842" r="22.5" fill="#aacc40" opacity="0.30" filter="url(#f-soft)"/>
+<ellipse cx="108" cy="842" rx="19.5" ry="12" fill="#c4d048"/>
+<circle cx="108" cy="842" r="9.8" fill="#5a7a1a"/>
+<ellipse cx="108" cy="842" rx="3" ry="9" fill="#080a04"/>
+<circle cx="104.4" cy="838.1" r="2.1" fill="#f0ffd0" opacity="0.8"/>
+<circle cx="52" cy="726" r="12" fill="#aacc40" opacity="0.30" filter="url(#f-soft)"/>
+<ellipse cx="52" cy="726" rx="10.4" ry="6.4" fill="#c4d048"/>
+<circle cx="52" cy="726" r="5.2" fill="#5a7a1a"/>
+<ellipse cx="52" cy="726" rx="1.6" ry="4.8" fill="#080a04"/>
+<circle cx="50.1" cy="723.9" r="1.1" fill="#f0ffd0" opacity="0.8"/>
+<circle cx="238" cy="892" r="10.8" fill="#aacc40" opacity="0.30" filter="url(#f-soft)"/>
+<ellipse cx="238" cy="892" rx="9.4" ry="5.8" fill="#c4d048"/>
+<circle cx="238" cy="892" r="4.7" fill="#5a7a1a"/>
+<ellipse cx="238" cy="892" rx="1.4" ry="4.3" fill="#080a04"/>
+<circle cx="236.3" cy="890.1" r="1" fill="#f0ffd0" opacity="0.8"/>
+<text x="22" y="900" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#a6d24a" letter-spacing="0.16em" opacity="0.85">THE FAR REALM</text>
+<text x="22" y="914" text-anchor="start" font-family="Georgia,'Times New Roman',serif" font-size="8" fill="#6a8a3a" letter-spacing="0.04em" font-style="italic" opacity="0.7">that which should not be</text>
 <circle cx="460" cy="460" r="158" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="5 9" opacity="0.20"/>
 <circle cx="460" cy="460" r="362" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="5 9" opacity="0.18"/>
 <!-- Outer planes (Great Wheel) -->
