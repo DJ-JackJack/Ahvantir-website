@@ -4,7 +4,13 @@
 
   // Update this to the real tunnel hostname once the Cloudflare tunnel is created.
   var FOUNDRY_URL      = 'https://play-tunnel.ahvantir.world';
-  var SIGNAL_TIMEOUT   = 8000;   // ms before showing "no signal"
+  // Same-origin Cloudflare Worker that reports {"up":bool} by reading the
+  // tunnel's real HTTP status server-side. A browser can't read that status
+  // cross-origin (no-cors responses are opaque and hide 502s), so we poll this
+  // instead of probing the tunnel directly. See workers/foundry-status/.
+  var STATUS_ENDPOINT  = '/api/foundry-status';
+  var SIGNAL_TIMEOUT   = 8000;   // ms before falling back to "no signal" on first load
+  var POLL_INTERVAL    = 30000;  // ms between Foundry status checks
   var MOBILE_BREAKPT   = 768;    // px — Foundry is not usable on mobile
   var MAX_RESULTS      = 25;
   var NOTES_SAVE_DELAY = 1500;   // ms debounce for note autosave
@@ -14,6 +20,9 @@
   var currentArticleUrl = '';
   var loreOpen    = true;
   var signalTimer = null;
+  var foundryUp    = null;   // null = unknown, true = live, false = offline
+  var iframeLoaded = false;  // whether the Foundry iframe src has been set
+  var pollTimer    = null;
 
   /* ── DOM refs ───────────────────────────────────────────── */
   var iframe       = document.getElementById('play-iframe');
@@ -143,6 +152,36 @@
     mobileEl.hidden   = false;
     if (lorePanel)  lorePanel.hidden  = true;
     if (loreToggle) loreToggle.hidden = true;
+  }
+
+  // Apply a confirmed Foundry up/down state. Only acts on a change, so a live
+  // session isn't reloaded on every poll. Loads the iframe lazily (only once
+  // up) and blanks it on going offline so the next session starts fresh.
+  function applyFoundryState(up) {
+    if (up === foundryUp) return;
+    foundryUp = up;
+    if (up) {
+      if (!iframeLoaded) { iframe.src = FOUNDRY_URL; iframeLoaded = true; }
+      showIframe();
+    } else {
+      showNoSignal();
+      if (iframeLoaded) { iframe.src = 'about:blank'; iframeLoaded = false; }
+    }
+  }
+
+  // Ask the Worker whether Foundry is live. On a transient error we keep an
+  // already-confirmed live session showing rather than yanking players out;
+  // only fall to the offline panel when we haven't confirmed Foundry is up.
+  function pollFoundry() {
+    fetch(STATUS_ENDPOINT, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('status ' + r.status); return r.json(); })
+      .then(function (data) {
+        if (signalTimer) { clearTimeout(signalTimer); signalTimer = null; }
+        applyFoundryState(!!(data && data.up));
+      })
+      .catch(function () {
+        if (foundryUp !== true) applyFoundryState(false);
+      });
   }
 
   /* ── Lore panel toggle ──────────────────────────────────── */
@@ -561,38 +600,21 @@
       return;
     }
 
-    // Detect whether Foundry is reachable via a fetch probe rather than the
-    // iframe `load` event. The browser fires `load` even when it renders its
-    // own DNS-error page inside the iframe, so `load` alone can't distinguish
-    // a working Foundry from an unreachable host. A no-cors fetch throws a
-    // NetworkError on DNS/connection failure and resolves (opaque response) when
-    // any server actually responds — that distinction is reliable cross-origin.
-    var resolved = false;
-    var abortCtrl = new AbortController();
-
-    function resolve(show) {
-      if (resolved) return;
-      resolved = true;
-      clearTimeout(signalTimer);
-      signalTimer = null;
-      abortCtrl.abort();
-      show();
-    }
-
+    // Decide between the Foundry iframe and the "no active game" panel by
+    // polling the foundry-status Worker, which reports the tunnel's real HTTP
+    // status. We never point the iframe at the tunnel until the Worker confirms
+    // Foundry is up — otherwise a closed Foundry shows Cloudflare's 502 page in
+    // the frame instead of the offline panel. Re-polls so the page flips to the
+    // game automatically once the DM opens Foundry, without a manual refresh.
     showLoading();
-    iframe.src = FOUNDRY_URL;
 
-    signalTimer = setTimeout(function () { resolve(showNoSignal); }, SIGNAL_TIMEOUT);
+    // Fall back to the offline panel if the very first check hasn't resolved.
+    signalTimer = setTimeout(function () {
+      if (foundryUp === null) showNoSignal();
+    }, SIGNAL_TIMEOUT);
 
-    fetch(FOUNDRY_URL + '/', {
-      mode: 'no-cors',
-      cache: 'no-store',
-      signal: abortCtrl.signal
-    }).then(function () {
-      resolve(showIframe);
-    }).catch(function () {
-      resolve(showNoSignal);
-    });
+    pollFoundry();
+    pollTimer = setInterval(pollFoundry, POLL_INTERVAL);
 
     // Panel toggle
     if (loreToggle) {

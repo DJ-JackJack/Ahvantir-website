@@ -1,0 +1,11 @@
+name = "foundry-status"
+main = "worker.js"
+compatibility_date = "2026-06-01"
+
+# Serve the Worker at https://ahvantir.world/api/foundry-status.
+# This intercepts only that path; the rest of the site stays on GitHub Pages.
+# Requires the ahvantir.world zone to be on this Cloudflare account (it is —
+# the play-tunnel subdomain and the 502 error page are Cloudflare's).
+routes = [
+  { pattern = "ahvantir.world/api/foundry-status", zone_name = "ahvantir.world" }
+]
