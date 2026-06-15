@@ -45,7 +45,7 @@ jobs:
           $stats = (Get-Content sync.log -ErrorAction SilentlyContinue |
                     Where-Object { $_ -match "^(Updated|Would update)" } |
                     Select-Object -Last 1)
-          if (-not $stats) { $stats = "Sync did not run — OBSIDIAN_VAULT_PATH may not be configured." }
+          if (-not $stats) { $stats = "Sync did not run: OBSIDIAN_VAULT_PATH may not be configured." }
 
           $date     = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd')
           $datetime = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm UTC')
@@ -55,7 +55,7 @@ jobs:
           $logLines = [System.Collections.Generic.List[string]]::new()
           $logLines.Add("<!-- ahvantir-sync-log-v1 -->")
           $logLines.Add("")
-          $logLines.Add("# Ahvantir Vault Sync — $datetime")
+          $logLines.Add("# Ahvantir Vault Sync $([char]0x2014) $datetime")
           $logLines.Add("")
           $logLines.Add("**Run:** [Actions #$env:GITHUB_RUN_NUMBER]($env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID)")
           $logLines.Add("")
