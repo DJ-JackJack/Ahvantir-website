@@ -1,6 +1,25 @@
 const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+
+// Cache-busting: short content hash per asset, computed from the source file.
+// The hash only changes when the file's bytes change, so unchanged assets keep
+// their URL (and stay cached) while edited ones get a fresh URL automatically.
+const _assetHashes = new Map();
+function assetHash(url) {
+  if (_assetHashes.has(url)) return _assetHashes.get(url);
+  let h = "";
+  try {
+    const fp = path.join(__dirname, "src", url.replace(/^\//, ""));
+    h = crypto.createHash("sha1").update(fs.readFileSync(fp)).digest("hex").slice(0, 8);
+  } catch (_) {
+    h = ""; // asset missing — leave the URL unversioned rather than break the build
+  }
+  _assetHashes.set(url, h);
+  return h;
+}
 
 function escHtml(str) {
   return String(str)
@@ -47,6 +66,21 @@ module.exports = function (eleventyConfig) {
         const text = alias || target;
         const slug = toSlug(target);
         return `<a href="/articles/${slug}/" class="wikilink" data-target="${slug}">${escHtml(text)}</a>`;
+      }
+    );
+  });
+
+  // Cache-bust transform: append ?v=<hash> to local /assets/*.css and *.js URLs
+  // so visitors always get the current file after a deploy without a hard
+  // refresh, while unchanged assets keep their cached URL. Runs on HTML output;
+  // external (CDN) URLs and anything already carrying a query string are skipped.
+  eleventyConfig.addTransform("cacheBustAssets", function (content, outputPath) {
+    if (!outputPath?.endsWith(".html")) return content;
+    return content.replace(
+      /(href|src)="(\/assets\/(?:css|js)\/[^"?]+\.(?:css|js))"/g,
+      (match, attr, url) => {
+        const h = assetHash(url);
+        return h ? `${attr}="${url}?v=${h}"` : match;
       }
     );
   });
