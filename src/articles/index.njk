@@ -52,7 +52,7 @@ permalink: /articles/
          data-title="{{ article.data.title | lower }}">
         <h3 class="article-card__title">{{ article.data.title }}</h3>
         {% if article.data.description %}
-        <p class="article-card__desc">{{ article.data.description }}</p>
+        <p class="article-card__desc">{{ article.data.description | stripWikilinks }}</p>
         {% endif %}
         {% if article.data.tags and article.data.tags.length %}
         <div class="article-card__tags">
@@ -82,7 +82,7 @@ permalink: /articles/
       <a href="{{ article.url }}" class="article-card" data-title="{{ article.data.title | lower }}">
         <h3 class="article-card__title">{{ article.data.title }}</h3>
         {% if article.data.description %}
-        <p class="article-card__desc">{{ article.data.description }}</p>
+        <p class="article-card__desc">{{ article.data.description | stripWikilinks }}</p>
         {% endif %}
       </a>
       {% endfor %}

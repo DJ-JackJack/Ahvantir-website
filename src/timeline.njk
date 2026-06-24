@@ -44,7 +44,7 @@ permalink: /timeline/
             <span class="tl-entry__date">{{ article.data.timeline_date }}</span>
             {% endif %}
             {% if article.data.description %}
-            <p class="tl-entry__desc">{{ article.data.description }}</p>
+            <p class="tl-entry__desc">{{ article.data.description | stripWikilinks }}</p>
             {% endif %}
           </div>
         </li>

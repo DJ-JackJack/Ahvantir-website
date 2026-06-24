@@ -44,7 +44,7 @@ permalink: /recently-added/
         ">{{ article.data.category or "uncategorized" }}</span>
         <h3 class="article-card__title">{{ article.data.title }}</h3>
         {% if article.data.description %}
-        <p class="article-card__desc">{{ article.data.description }}</p>
+        <p class="article-card__desc">{{ article.data.description | stripWikilinks }}</p>
         {% endif %}
       </a>
       {% endfor %}

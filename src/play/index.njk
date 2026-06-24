@@ -147,6 +147,7 @@ permalink: /play/
         <div id="notes-editor-view" class="notes-editor-view" hidden>
           <div class="notes-editor-toolbar">
             <button type="button" id="notes-back-btn" class="notes-back-btn">← Notes</button>
+            <p id="notes-save-status" class="notes-save-status" aria-live="polite" aria-atomic="true"></p>
             <button type="button" id="notes-delete-btn" class="notes-delete-btn">Delete</button>
           </div>
           <input
@@ -165,7 +166,6 @@ permalink: /play/
             aria-label="Note content"
             spellcheck="true"
           ></textarea>
-          <p id="notes-save-status" class="notes-save-status" aria-live="polite" aria-atomic="true"></p>
         </div>
 
       </div>
@@ -184,7 +184,7 @@ permalink: /play/
 </section>
 
 {# Article index for client-side search — embedded at build time #}
-<script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }},"body":{{ ((article.templateContent or "") | striptags) | jsonscript | safe }}}{%- endfor -%}]</script>
+<script type="application/json" id="play-article-data">[{%- for article in collections.allArticles -%}{%- if not loop.first -%},{%- endif -%}{"title":{{ article.data.title | jsonscript | safe }},"description":{{ (article.data.description or "") | stripWikilinks | jsonscript | safe }},"url":"{{ article.url }}","tags":{{ (article.data.tags or []) | jsonscript | safe }},"body":{{ ((article.templateContent or "") | striptags) | jsonscript | safe }}}{%- endfor -%}]</script>
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>

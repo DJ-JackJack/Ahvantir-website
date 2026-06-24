@@ -70,6 +70,22 @@ module.exports = function (eleventyConfig) {
     );
   });
 
+  // Strip wikilink markup to plain text for preview/meta contexts:
+  //   [[Target]]        -> Target
+  //   [[Target|Alias]]  -> Alias
+  // Descriptions double as card-preview text and <meta name="description">
+  // content. The site-wide wikilink transform would otherwise expand a [[..]]
+  // there into an <a>, which nests illegally inside a card's own <a> (breaking
+  // the card layout) and corrupts the meta tag's content attribute. Article
+  // *bodies* are unaffected — they still render wikilinks as real links.
+  eleventyConfig.addFilter("stripWikilinks", function (str) {
+    if (!str) return "";
+    return String(str).replace(
+      /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
+      (m, target, alias) => alias || target
+    );
+  });
+
   // Cache-bust transform: append ?v=<hash> to local /assets/*.css and *.js URLs
   // so visitors always get the current file after a deploy without a hard
   // refresh, while unchanged assets keep their cached URL. Runs on HTML output;
