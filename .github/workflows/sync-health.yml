@@ -1,0 +1,49 @@
+name: Sync Health Check
+
+# Watches the *outcome* we care about — "is the lore sync still happening?" —
+# rather than any single pipeline. If the most recent successful "Obsidian Sync"
+# run is older than the threshold, this job fails, and GitHub emails the repo
+# owner (the same failure-notification path that surfaced the original sync bug).
+#
+# Runs on a GitHub-hosted runner, so the monitor keeps working even if the
+# self-hosted runner (FENRIS-FOUNDRY) is offline — which is exactly the
+# situation it needs to catch.
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # daily at 12:00 UTC
+  workflow_dispatch:        # allow manual "is it healthy right now?" checks
+
+permissions:
+  actions: read            # needed to read the Obsidian Sync workflow's run history
+  contents: read
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alert if the lore sync has gone stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MAX_AGE_DAYS: '9'   # sync is weekly (7d); alert once a full cycle is clearly missed
+        run: |
+          set -euo pipefail
+
+          last=$(gh run list --repo "$GITHUB_REPOSITORY" \
+                   --workflow "Obsidian Sync" --status success \
+                   --limit 1 --json createdAt --jq '.[0].createdAt // empty')
+
+          if [ -z "$last" ]; then
+            echo "::error::No successful 'Obsidian Sync' run found. The weekly lore sync has never succeeded recently, or the workflow was renamed/removed."
+            exit 1
+          fi
+
+          age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 86400 ))
+          echo "Last successful Obsidian Sync: $last  (${age} day(s) ago; threshold ${MAX_AGE_DAYS})."
+
+          if [ "$age" -gt "$MAX_AGE_DAYS" ]; then
+            echo "::error::Lore sync is STALE — last successful Obsidian Sync was ${age} days ago (threshold ${MAX_AGE_DAYS}). The self-hosted runner (FENRIS-FOUNDRY) may be offline or the sync is failing, so ahvantir.world articles may be out of date. Fallback: enable the 'Ahvantir Weekly Lore Sync' Task Scheduler job (the cold standby) until the runner is back."
+            exit 1
+          fi
+
+          echo "Lore sync is fresh — nothing to do."
