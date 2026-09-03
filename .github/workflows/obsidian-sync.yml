@@ -32,6 +32,34 @@ jobs:
           OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
 
+      # A sync that reads an EMPTY vault and a sync that reads a vault with
+      # nothing new both report "Updated 0 files. 0 errors." and both go green.
+      # That is how OBSIDIAN_VAULT_PATH sat pointing at a 3-note scratch vault
+      # on the Desktop from July to September: this workflow succeeded every
+      # Sunday, the daily health check confirmed it had succeeded, and no lore
+      # reached the site for two months.
+      #
+      # The distinguishing fact is the note count, so assert on it. The vault
+      # holds ~234 notes; a floor of 50 leaves room to prune heavily and still
+      # trips instantly on a wrong path.
+      - name: Sanity-check the vault was actually read
+        shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
+        env:
+          MIN_NOTES: '50'
+        run: |
+          $m = Select-String -Path sync.log -Pattern 'Found (\d+) markdown files' | Select-Object -First 1
+          if (-not $m) {
+            Write-Host "::error::The converter reported no file count at all. Its output format changed, or it never ran."
+            exit 1
+          }
+          $found = [int]$m.Matches[0].Groups[1].Value
+          $floor = [int]$env:MIN_NOTES
+          Write-Host "Vault yielded $found notes (floor $floor)."
+          if ($found -lt $floor) {
+            Write-Host "::error::Only $found notes found, below the floor of $floor. OBSIDIAN_VAULT_PATH is almost certainly pointing at the wrong folder -- check the secret against the real vault. Nothing has been committed."
+            exit 1
+          }
+
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
         shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
