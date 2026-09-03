@@ -29,25 +29,32 @@ A spirit pact is a magical agreement between a mortal and one or more of the [[S
 
 ## The Consequences of Breaking Pacts: Blood Debt
 
-The spirits of Ahvantir are not forgiving when it comes to the violation of their pacts. Should a pact be broken—intentionally or not—the violator incurs a Blood Debt, a curse-like retribution that reflects the spirit’s anger and demand for atonement.
+When a pact is broken, something deeper than anger stirs. Blood Debt is not retribution handed down by an offended spirit — it is the land itself registering an imbalance, a wound in the spiritual fabric that the islands exert pressure to heal. It is older than any mortal institution, older than [[The Church of the Threefold Path]], older than the city of [[Aru’Mas]]. It does not require acknowledgment to exist, nor enforcement to take effect. The weight of it simply falls, the way a stone falls — inevitable, indifferent to whether anyone is watching.
+
+The scale of a Blood Debt reflects the scale of the wound. A personal violation draws a personal reckoning; a community’s transgressions ripple outward through the community; a wound dealt to the islands themselves reverberates across the whole. This is not categorization — it is cause and consequence, as natural and as remorseless as the tide.
 
 ## 1. Personal Blood Debt
 
-- A personal Blood Debt targets the individual violator, manifesting as bad luck, physical harm, or supernatural misfortune. For example:
-- A person who breaks a pact with a river spirit might find themselves constantly plagued by drowning dreams, inexplicable fatigue, or cursed to feel eternally thirsty.
-- A forest spirit’s vengeance might cause one to be hunted by wild animals, afflicted by sudden illness, or encounter frequent mishaps like twisted ankles and lost paths.
-- Duration and Severity: The debt’s duration depends on the severity of the broken pact and the spirit’s demands. It can last until the original terms of the pact are fulfilled or until the person performs an act of atonement that satisfies the spirit’s honor.
+A Blood Debt falling on a single person bends their life toward misfortune in ways that mirror the wrong committed. It is not punishment — it is balance asserting itself, the violated thread of the pact pulling taut.
 
-## 2. Group Blood Debt
+- A person who breaks a pact with a river spirit might find themselves plagued by drowning dreams, inexplicable fatigue, or a thirst that cannot be slaked.
+- A forest spirit’s severed pact might manifest as animals turning hostile, sudden illness, a persistent inability to find one’s way.
 
-- When a pact is broken by a group of people, such as an adventuring party or a settlement, the Blood Debt can extend to all involved. The effects can include bad luck, such as failed ventures, broken equipment, or unreliable magic. In severe cases, entire groups can be marked by the spirits, making them targets for spirit-bound creatures or dangerous manifestations.
-- The group must perform collective penance, often requiring a combination of rituals, offerings, and the intervention of a spiritual mediator who can negotiate with the offended spirit.
+The debt endures until balance is restored — until the original terms of the pact are honored, or until the act of atonement is genuine enough that the land accepts it. The islands do not forget, and they do not grow impatient. They simply wait.
 
-## 3. Widespread Blood Debt
+## 2. Blood Debt of a Community
 
-- At its most devastating, a broken pact can result in a city-wide Blood Debt, affecting the entire population of Aru'Mas. Such debts are rare, as the Old Pact protects the city, but they have occurred in the past due to large-scale violations, such as attempts to expand the city’s boundaries or to exploit the archipelago’s resources without proper offerings.
-- Manifestations of a city-wide Blood Debt might include unseasonal storms, plagues, magical blight, or the spirits temporarily withdrawing their protection, making the city vulnerable to multiversal threats.
-- Resolving a Blood Debt of this magnitude often requires intervention by the ruling council and [[The Church of the Threefold Path|the Church of the Threefold Path]], engaging in a grand ritual of atonement that may take days, weeks, or even longer, depending on the spirit’s demands.
+When a whole group or settlement has broken faith with the spirits, the imbalance scales accordingly. Failed ventures, broken equipment, unreliable magic — luck curdles across all who are marked. In severe cases, spirit-bound creatures turn hostile, and the land’s protections thin in ways that become hard to ignore.
+
+Communities in this state feel it before they can name it. Spiritual mediators and the [[Fadu-Asai]] are often drawn in not because they hold authority over such things, but because they can read the signs and know, from generations of accumulated practice, what the land requires to begin healing. There is no procedure that resolves a Blood Debt — only the work of restoration, patiently undertaken.
+
+## 3. Blood Debt at Scale
+
+At its most devastating, a broken pact can open an imbalance that spreads across an entire city or region. Such debts are rare — the Old Pact affords [[Aru’Mas]] a degree of insulation — but they have occurred, most often when the city or its leaders moved against the archipelago’s spiritual nature in large and careless ways: pushing the city’s boundaries without proper offering, extracting from the land without reciprocity, breaking agreements that were never fully understood.
+
+The manifestations are unmistakable: unseasonal storms, magical blight, plagues, the withdrawal of spiritual protections that normally go unnoticed until they vanish.
+
+When debt reaches this scale, [[The Church of the Threefold Path|the Church of the Threefold Path]] and the ruling council are moved to act — not because they govern Blood Debt, but because the reality of it demands response. No one governs Blood Debt. The Church carries deep institutional knowledge of grand rituals of atonement, accumulated over centuries of watching the land heal and refuse to heal; what they bring is practical wisdom, not jurisdiction. Such rituals may take days or weeks. What determines their duration is not procedure — it is how long the land requires.
 
 ## Spirit Pacts in Daily Life
 
