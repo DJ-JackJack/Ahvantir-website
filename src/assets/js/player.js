@@ -6,7 +6,22 @@
   var SUPABASE_URL = document.querySelector('meta[name="supabase-url"]').content;
   var SUPABASE_KEY = document.querySelector('meta[name="supabase-anon-key"]').content;
 
-  var client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  /* Share the session across ahvantir.world and its subdomains, so signing in
+     here also signs you in on dawnbreak.ahvantir.world. See auth-storage.js.
+
+     Guarded on both sides. If auth-storage.js failed to load, or localStorage
+     is blocked outright, this falls back to Supabase's own default rather than
+     throwing -- the site loses the SHARED sign-in, it does not lose sign-in. */
+  var localFallback = null;
+  try { localFallback = window.localStorage; } catch (e) { /* blocked */ }
+
+  var sharedStorage = window.AhvantirAuthStorage
+    ? window.AhvantirAuthStorage.createAuthStorage(document, localFallback, location.hostname)
+    : null;
+
+  var client = sharedStorage
+    ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storage: sharedStorage } })
+    : supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   window.__supabase = client;
 
   /* Redirect to /player/login/ if no active session.

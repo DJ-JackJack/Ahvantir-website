@@ -14,6 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
+  {# Must be in <head> and must NOT be deferred. The player templates put
+     their own <script> tags in the page CONTENT, so player.js runs while
+     the body is still parsing -- earlier than anything at the foot of the
+     document. Loaded from the foot, this defined itself after the client
+     had already been created, and the shared sign-in silently did nothing.
+     Site-wide rather than per page because player.js is pulled in by eight
+     templates and a missed tag would drop that one page back to per-origin
+     storage with no visible symptom. Defines a function and touches nothing. #}
+  <script src="/assets/js/auth-storage.js"></script>
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
