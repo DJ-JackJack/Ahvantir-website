@@ -4737,3 +4737,80 @@ html.dark .cosmos-key--neutral { color: #aab4c8; background: rgba(154,166,186,0.
 @media (max-width: 600px) {
   .cosmos-wheel-cols { grid-template-columns: 1fr 1fr; }
 }
+
+/* ================================================================
+   World switcher — the one control that exists on both sites
+   ================================================================
+
+   Ahvantir and Dawnbreak City are separate sites with separate themes,
+   and this is the single element they share. It is deliberately the same
+   OBJECT on both — same geometry, same proportions, same behaviour —
+   wearing each site's own tokens. A reader should recognise it instantly
+   as the seam between the two, not read it as a stray outbound link.
+
+   A segmented pair rather than a link, because a link tells you where you
+   could go and a segment tells you where you ARE. The current world is a
+   span, not an anchor: there is nowhere for it to lead. */
+
+.world-switch {
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin-left: 0.6rem;
+  border: 1px solid var(--gold-dark);
+  border-radius: 3px;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.world-switch__current,
+.world-switch__other {
+  display: flex;
+  align-items: center;
+  padding: 0.42rem 0.6rem;
+  white-space: nowrap;
+}
+
+/* The active segment's background is `--gold`, which dark mode does NOT
+   redefine. Its text colour therefore must not be `--ink`, which dark mode
+   DOES redefine — that pairing renders light-on-light the moment the theme
+   toggle is used. Fixed dark ink is correct here precisely because the
+   surface behind it never changes. */
+.world-switch__current {
+  background: var(--gold);
+  color: #1a0e02;
+  font-weight: 700;
+}
+
+.world-switch__other {
+  color: var(--ink-faded);
+  text-decoration: none;
+  background: transparent;
+  transition: color 0.15s, background 0.15s;
+}
+
+.world-switch__other:hover {
+  color: var(--burg);
+  background: rgba(123, 29, 42, 0.09);
+}
+
+.world-switch__other:focus-visible {
+  outline: 2px solid var(--burg);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-switch__other { transition: none; }
+}
+
+/* Narrow screens: the nav already wraps rather than collapsing to a menu,
+   so the control only needs to stop forcing the row wider than it has to be. */
+@media (max-width: 480px) {
+  .world-switch { margin-left: 0; font-size: 0.6rem; }
+  .world-switch__current,
+  .world-switch__other { padding: 0.35rem 0.45rem; }
+}

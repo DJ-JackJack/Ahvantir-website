@@ -38,6 +38,17 @@
         <span class="nav__title">{{ meta.site.title }}</span>
       </a>
 
+      {% if meta.sister and meta.sister.url %}
+      {# Sits between the wordmark and the page links deliberately: this says
+         WHICH WORLD you are in, which is a masthead job, not a navigation one.
+         `.nav__links` carries `margin-left: auto`, so the control stays beside
+         the title while the page links stay right-aligned. #}
+      <div class="world-switch" role="group" aria-label="Switch world">
+        <span class="world-switch__current" aria-current="true">{{ meta.site.title }}</span>
+        <a class="world-switch__other" href="{{ meta.sister.url }}">{{ meta.sister.label }}</a>
+      </div>
+      {% endif %}
+
       <ul class="nav__links" id="nav-links" role="list">
         <li><a href="/articles/">Articles</a></li>
         <li><a href="/timeline/">Timeline</a></li>
