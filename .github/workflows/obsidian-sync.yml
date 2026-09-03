@@ -14,7 +14,8 @@ jobs:
   sync:
     runs-on: [self-hosted, Windows, X64]
     permissions:
-      contents: write   # read repo + push sync commits back; nothing else needed
+      contents: write   # read repo + push sync commits back
+      actions:  write   # dispatch Build and Deploy; a GITHUB_TOKEN push cannot trigger it
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
@@ -63,6 +64,11 @@ jobs:
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
         shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
+        env:
+          # For the `gh workflow run` at the end. The runner is Krys's own PC,
+          # where gh is logged in as him -- without this the dispatch would go
+          # out under a personal login rather than the job's own token.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "Ahvantir Sync Bot"
           git config user.email "actions@github.com"
@@ -133,6 +139,26 @@ jobs:
               git commit -m "chore: sync $date [skip ci]"
             }
             git push
+
+            # A push made with GITHUB_TOKEN never triggers another workflow --
+            # GitHub blocks that unconditionally, to stop workflows looping.
+            # Omitting [skip ci] above (which this job already does when
+            # articles changed) has no effect on it.
+            #
+            # It went unnoticed because every sync from July to September
+            # changed only a log file, so there was never anything to deploy.
+            # The first sync that did have articles committed them and left
+            # ahvantir.world serving the previous build.
+            #
+            # So ask for the deploy explicitly. Needs `actions: write`.
+            if ($articleDiff) {
+              Write-Host "Articles changed -- dispatching Build and Deploy."
+              gh workflow run "Build and Deploy" --ref main
+              if ($LASTEXITCODE -ne 0) {
+                Write-Host "::error::Articles were committed but the deploy could not be dispatched. Run 'Build and Deploy' by hand, or the site will serve the previous build."
+                exit 1
+              }
+            }
           } else {
             Write-Host "Nothing to commit."
           }
