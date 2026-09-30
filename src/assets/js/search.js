@@ -15,9 +15,12 @@ window.addEventListener('DOMContentLoaded', function () {
     filters:        { category: {} },
     translations: {
       placeholder:        'Search articles, factions, characters…',
-      zero_results:       function (query) { return 'No results for "' + query + '" — try a broader term.'; },
-      many_results:       function (count, query) { return count + ' results for "' + query + '"'; },
-      one_result:         function (query) { return '1 result for "' + query + '"'; },
+      // Pagefind substitutes [COUNT] / [SEARCH_TERM] into these strings via
+      // .replace(), so they MUST be plain strings — a function here throws
+      // "X.replace is not a function" and the results never render.
+      zero_results:       'No results for [SEARCH_TERM] — try a broader term.',
+      many_results:       '[COUNT] results for [SEARCH_TERM]',
+      one_result:         '[COUNT] result for [SEARCH_TERM]',
       load_more:          'Load more results',
       search_label:       'Search Ahvantir lore',
       filters_label:      'Filter by category',
