@@ -61,6 +61,7 @@ create table if not exists map_markers (
   color            text not null default '#c9a227',
   group_name       text not null default '',
   sort_order       integer default 0,
+  deleted_at       timestamptz,
   created_at       timestamptz default now(),
   updated_at       timestamptz default now(),
 
@@ -70,10 +71,28 @@ create table if not exists map_markers (
     (kind = 'point' and geo_x is not null and geo_y is not null)
     or
     (kind = 'area'  and points is not null and jsonb_typeof(points) = 'array')
-  )
+  ),
+
+  -- A polygon needs at least three vertices to have an interior, and a
+  -- hand-traced district tops out around 90. The ceiling is a guard against a
+  -- freehand tool emitting thousands of points: every anonymous visitor
+  -- downloads this column, so an unbounded shape is a public payload problem,
+  -- not just a storage one.
+  constraint marker_vertex_count check (
+    kind <> 'area' or jsonb_array_length(points) between 3 and 500
+  ),
+
+  -- An invalid colour renders as no fill at all, which looks exactly like a
+  -- failed save. Constrain it rather than debug it later.
+  constraint marker_color_hex check (color ~ '^#[0-9a-fA-F]{6}$')
 );
 
-create index if not exists map_markers_map_id_idx on map_markers (map_id);
+-- Partial index: every public page load queries live markers for one map.
+create index if not exists map_markers_map_id_idx
+  on map_markers (map_id) where deleted_at is null;
+-- Back-links from an article page to the markers that point at it.
+create index if not exists map_markers_article_slug_idx
+  on map_markers (article_slug) where deleted_at is null;
 
 drop trigger if exists map_markers_updated_at on map_markers;
 create trigger map_markers_updated_at
@@ -98,7 +117,8 @@ create policy "published maps are public"
 create policy "markers of published maps are public"
   on map_markers for select
   using (
-    exists (
+    deleted_at is null
+    and exists (
       select 1 from maps m
       where m.id = map_markers.map_id
         and m.is_published = true
@@ -117,6 +137,16 @@ create policy "dm manages markers"
   on map_markers for all
   using (is_dm())
   with check (is_dm());
+
+-- ── Letting the editor ask whether it may write ─────────────
+-- Postgres RLS FILTERS rather than errors. A DM whose token has expired, or who
+-- signed in with the wrong account, does not get a permission error on UPDATE:
+-- they get "0 rows affected" and a UI that looks like it saved. The editor
+-- therefore asks this question directly before it renders any control, and
+-- treats zero affected rows on a write as a failure rather than a no-op.
+--
+-- This is a convenience for the UI only. RLS above remains the actual gate.
+grant execute on function is_dm() to anon, authenticated;
 
 -- ============================================================
 -- Storage bucket for map images

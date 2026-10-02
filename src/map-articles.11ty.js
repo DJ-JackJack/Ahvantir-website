@@ -30,6 +30,31 @@ function sourceBody(inputPath) {
   return body.replace(/^\s*#\s+[^\n]*\r?\n/, "");
 }
 
+/* The title the DM picks from in the article dropdown. A few articles carry an
+   empty `title:` in their frontmatter, and falling straight through to the slug
+   puts "aru-mas-map-reference" in a list of proper names. Try the H1 first,
+   then a humanised slug, so nothing in the picker is unreadable. */
+function titleFor(page) {
+  const front = String(page.data.title || "").trim();
+  if (front) return front;
+  let raw = "";
+  try {
+    raw = fs.readFileSync(page.inputPath, "utf8");
+  } catch (_) { /* fall through to the slug */ }
+  const h1 = raw.match(/^[ \t]*#[ \t]+([^\r\n]+)/m);
+  if (h1) {
+    const text = h1[1]
+      .replace(/\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g, (s, t, a) => a || t)
+      .replace(/[*_`]+/g, "")
+      .trim();
+    if (text) return text;
+  }
+  return String(page.fileSlug || "")
+    .split("-")
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
 function toPlainText(md) {
   return String(md || "")
     // Spoilers, in both the shortcode and rendered forms
@@ -72,7 +97,7 @@ module.exports = class {
       const body = toPlainText(sourceBody(page.inputPath));
       return {
         slug: page.fileSlug,
-        title: page.data.title || page.fileSlug,
+        title: titleFor(page),
         url: page.url,
         category: page.data.category || "",
         excerpt: excerpt(described || body),

@@ -1315,6 +1315,148 @@ hr {
   .map-canvas { height: clamp(320px, 56vh, 520px); }
 }
 
+/* ── Map Page: DM editing ───────────────────────────
+   Everything below is injected by map-editor.js, which only runs for the DM.
+   A visitor never sees these elements, but the rules ship in the one stylesheet
+   the site already serves rather than in a second request. */
+.map-dm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding-left: 1rem;
+  border-left: 1px solid var(--br-light);
+}
+.map-dm__badge {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-100);
+  background: var(--burg-dark);
+  border-radius: 2px;
+  padding: 0.18rem 0.45rem;
+}
+
+.map-btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: var(--p-200);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  padding: 0.28rem 0.7rem;
+  cursor: pointer;
+}
+.map-btn:hover:not(:disabled) { background: var(--p-300); }
+.map-btn:disabled { opacity: 0.45; cursor: default; }
+.map-btn[aria-pressed="true"] {
+  background: var(--burg-dark);
+  border-color: var(--burg-dark);
+  color: var(--p-100);
+}
+.map-btn--file { display: inline-block; }
+
+/* While edit mode is on, the cursor is a drawing tool rather than a link, so
+   the hover affordances the viewer uses would lie about what a click does. */
+.map-page.is-editing .map-canvas { outline: 2px solid var(--burg); outline-offset: 2px; }
+.map-page.is-editing .map-tip-wrap { display: none; }
+
+/* ── Marker properties panel ───────────────────────── */
+.map-props {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--br-light);
+  display: grid;
+  gap: 0.6rem;
+}
+.map-props__head {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin: 0;
+}
+.map-props__kind { color: var(--ink-ghost); font-size: 0.7rem; }
+.map-props__row { display: grid; gap: 0.2rem; }
+.map-props__row > span {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.map-props input[type="text"],
+.map-props select,
+.map-props textarea {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: var(--p-100);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  padding: 0.3rem 0.45rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.map-props textarea { resize: vertical; }
+
+.map-swatches { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.map-swatch {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 2px;
+  border: 1px solid rgba(26, 14, 2, 0.35);
+  cursor: pointer;
+  padding: 0;
+}
+.map-swatch.is-on { outline: 2px solid var(--ink); outline-offset: 1px; }
+.map-props__actions { display: flex; gap: 0.5rem; align-items: center; }
+
+/* ── Save / error notices ───────────────────────────
+   Fixed rather than inline: a save fires while the DM is looking at the map,
+   not at the sidebar, and a silent failure is the one outcome this whole
+   module is built to avoid. */
+.map-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: min(36rem, calc(100vw - 2rem));
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--p-100);
+  background: var(--ink);
+  border-radius: 3px;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 6px 20px rgba(26, 14, 2, 0.35);
+}
+.map-toast[hidden] { display: none; }
+.map-toast.is-ok    { background: #1f5130; }
+.map-toast.is-warn  { background: #6b4a10; }
+.map-toast.is-error { background: var(--burg-dark); }
+.map-toast__action {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: inherit;
+  background: rgba(253, 248, 237, 0.16);
+  border: 1px solid rgba(253, 248, 237, 0.5);
+  border-radius: 2px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  flex: none;
+}
+.map-toast__action:hover { background: rgba(253, 248, 237, 0.3); }
+
+@media (max-width: 860px) {
+  .map-dm { margin-left: 0; padding-left: 0; border-left: 0; }
+}
+
 /* ── Graph Page ─────────────────────────────────────────────────── */
 .graph-page {
   max-width: var(--max-w);
