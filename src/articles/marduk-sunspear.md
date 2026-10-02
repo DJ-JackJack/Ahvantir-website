@@ -16,12 +16,9 @@ The documented history is more complicated.
 
 ## True History
 
-> **DM Canon — not public knowledge**
 ### Origins: The Astral Sea Refugee
 
 Marduk Sunspear was not a wandering nobleman drawn to Ahvantir by legend. He was a ship’s captain in the fleet of another world — one that had developed Astral Sea vessels analogous to the modern [[Starleaper Fleet]]. He helmed the first exploratory voyage from his homeworld: an eighteen-year journey. On his return, his homeworld had been devastated by gargantuan space-dwelling creatures that devour all matter. He rescued survivors and set adrift in the Astral Sea.
-
-What should be kept vague: the nature of the creatures; the name of the homeworld; whether those creatures remain a threat.
 
 ### The Forty-Nine Years
 
@@ -66,6 +63,7 @@ Marduk died in battle against a rampaging spirit in the early post-founding peri
 ## The Official Account
 
 > **Public Knowledge — the version taught in Aru’Mas**
+
 The official account presents Marduk as a visionary explorer of noble lineage, drawn to Ahvantir by legends of untouched beauty and powerful spirits. He approached the land’s spirits with humility, choosing diplomacy over conquest. His most crucial alliance was with [[Yan Bo Tog]], the spirit of the harbor, who agreed to allow settlement under specific conditions — the basis of the Old Pact.
 
 Among his followers was [[Adobban Demoranza]], an elven cleric who received a vision of the Pathite Pantheon on Ahvantir and founded [[The Church of the Threefold Path]]. Marduk encouraged the Church’s growth, integrating its principles into the city’s foundation.

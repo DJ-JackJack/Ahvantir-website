@@ -61,4 +61,4 @@ Through its expansive collections, secured areas, and storied history, the Ilder
 ---
 
 > **Source**
-> Source: `world-anvil` — imported from `wa_articles_structured.json`            
+> Source: `world-anvil` — imported from `wa_articles_structured.json`

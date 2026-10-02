@@ -28,10 +28,6 @@ He knows what he is. He accepted the seal in silence. He said only one thing, at
 
 ## History & Binding
 
-> **DM Resolution — 2026-03-28**
-> He Who Covets All's sealing was **not** part of the original binding of the eleven Primordem. It occurred during the **First Pact negotiations** themselves, ordered by unanimous vote of the spirit delegation. The reasoning: his passive amplification of desire, envy, and rivalry was judged incompatible with any lasting peace — a pact made in his presence would be inherently unstable, as every party's ambitions would be inflamed simply by proximity to him.
-> He did not resist the seal. This is considered notable.
-> His absence from `The_Primordem_of_Ahvantir.pdf` reflects the different circumstances of his binding — that document covers the original eleven and their founding-era sealing. He Who Covets All is a separate case.
 He was present during the negotiations that produced the [[First Pact]]. What the record shows from those sessions is a pattern of escalating disputes over terms that should have been resolvable: territorial boundaries re-contested after they had been settled, gifts offered as goodwill gestures becoming the source of new resentments, concessions that one side had agreed to becoming, by the following session, things they could not understand having agreed to at all. Every party left each session less certain of what they had come there wanting. Every party arrived at the next session wanting more.
 
 The spirit delegation recognized the pattern. The vote to seal him was unanimous. It was the only unanimous decision the negotiating session produced.

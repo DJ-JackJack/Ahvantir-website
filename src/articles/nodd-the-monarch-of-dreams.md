@@ -9,8 +9,6 @@ date_added: "2026-06-06"
 
 # Nodd the Monarch of Dreams
 
-> **DM Note — Classification**
-> Nodd is categorised here alongside other non-Pathite entities for navigational convenience, but should not be treated as a deity in any mechanical or cosmological sense. The distinction matters: a deity is created, sustained, and empowered by collective worship — a deity without a following dies. Nodd is a spirit, specifically a Loci whose domain is the Dreaming itself. Their power is tied to their sovereignty over that plane, not to the veneration they receive. The worship Nodd attracts is real and widespread, but it is incidental to their existence rather than foundational to it. That said, the comparison to deities in terms of raw influence and capability is apt — Nodd occupies the upper tier of what a spirit can become without crossing into divinity.
 Nodd, the Monarch of Dreams, is the Warden-sovereign of the [[The Dreaming|Dreaming]] — a spirit of extraordinary power whose domain is not a territory within Ahvantir but a plane unto itself. As the Dreaming is shaped by the collective subconscious of all who have ever slept beneath Ahvantir's skies, Nodd is, in a meaningful sense, the spiritual embodiment of that accumulated inner life: every dream, aspiration, fear, and unresolved desire that has ever passed through a sleeping mind.
 
 In this regard Nodd is most precisely understood as a [[Loci]] — a spirit born not from a creature but from a place, gaining sentience and agency from the accumulated significance of what that place holds. The Dreaming is simply a Loci on a scale that has no parallel elsewhere in Ahvantir's spiritual catalogue. And as the Warden of that domain, Nodd's sovereignty over it is total.

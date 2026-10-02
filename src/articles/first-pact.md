@@ -17,8 +17,6 @@ The spirits who negotiated this pact are ancient beyond the reckoning of any mor
 
 ## True History: How the Pact Was Made
 
-> **DM Canon**
-> The official history presents the First Pact as a generous and honorable diplomatic achievement, earned through Marduk’s vision and courage. The documented truth is more complicated.
 The Pact was not a founding vision. It was a negotiated surrender following thirteen years of war.
 
 The [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] began when the native spirits of the archipelago — already bound by ancient pacts to the [[Drorn’Duur]] — responded to the desecration of Drorn’Duur spirit-temples by Marduk’s forces. The conflict lasted from -13 to 0 MC. The settler coalition was held together through [[Adobban Demoranza]]’s divine magic and the widespread use of resurrection magic; the spirit coalition was led by [[He Who Was Forgotten]], a master tactician who inspired loyalty rather than fear.
@@ -73,8 +71,6 @@ The following are popular stories about the Pact’s origins. They are myths —
 
 The most famous founding legend holds that Marduk was challenged by the Spirit King — the supreme ruler of Ahvantir’s spirits — to a contest of will and magic, with the fate of his people at stake. Marduk endured, guided by his understanding of the Threefold Path, and the Spirit King was so impressed that he agreed to the Pact.
 
-> **DM Note**
-> This legend is fabricated. The documented duel was between Marduk and [[He Who Was Forgotten]] — a general, not necessarily the Spirit King — and Marduk *lost*. The spirit’s subsequent mercy is what opened negotiations. The legend inverts the actual outcome, transforming a military defeat into a diplomatic triumph. It also obscures He Who Was Forgotten’s role, which may be intentional given the Pact’s erasure clause.
 ### The [[Shattered Strand]]
 
 A somber tale tied to the Pact involves the Shattered Strand, once a narrow peninsula north of the harbor. During a period of expansionist ambition in early Aru’Mas history, the city’s leaders attempted to claim it in defiance of the Pact’s boundary terms. The spirits responded catastrophically: the peninsula broke apart in a single night, survivors were pulled into the [[Faded Veil]] rather than killed, and the jagged reef that now bears its name is all that remains. The one intact remnant became the island on which the [[The Gilded Bastion|Gilded Bastion]] was later built.
