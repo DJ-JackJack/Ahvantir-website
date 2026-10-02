@@ -289,6 +289,8 @@ module.exports = function (eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"],
+    // "11ty.js" powers src/map-articles.11ty.js, the article lookup the maps
+    // page uses for marker tooltips. Without it listed here Eleventy skips the file.
+    templateFormats: ["njk", "md", "html", "11ty.js"],
   };
 };
