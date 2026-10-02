@@ -10,6 +10,14 @@ This is phase one: the viewer. DM drawing and editing lands in a follow-up.
 
 ## One-time setup
 
+### 0. Already applied to the live project
+
+The schema, the bucket and the Aru'Mas seed were applied to `ahvantir-website`
+(`fbfqeijisvckwmkqzjtd`) on 2026-10-02 as migrations `maps_and_map_markers`,
+`maps_storage_bucket` and `harden_definer_functions`. The map is seeded
+**unpublished** until its image is in the bucket. Steps 1 to 3 below are for a
+fresh project, or for rebuilding this one.
+
 ### 1. Create the tables and bucket
 
 Run `scripts/supabase-maps-schema.sql` in **Supabase Dashboard → SQL Editor**.
