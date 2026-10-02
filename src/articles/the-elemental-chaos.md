@@ -30,9 +30,6 @@ No confirmed accounts of mortal travelers to the Elemental Chaos exist in any re
 
 Any deities or powerful entities that may call the Elemental Chaos home, or that draw power from it as a formal domain, are not documented in current Aru'Mas records.
 
-> **DM Note — Research Gap**
-> The Elemental Chaos is established on the cosmology diagram as the band surrounding the material plane but has not been developed in vault sources. The framework above is extrapolated from the role of land-spirits and ley lines in the existing lore, not from any canonical source that addresses the Chaos directly. This article reflects the current limits of that knowledge. Expand when the plane becomes relevant in play.
-
 ## Connections
 - Implicit connection: [[Spirits of Ahvantir]] (draw from the same elemental forces; anchorage is the difference)
 - Infrastructure: [[Tetherjumps]] (ley lines believed to carry filtered elemental-chaos energy)

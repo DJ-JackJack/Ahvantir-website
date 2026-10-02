@@ -67,10 +67,6 @@ Yan Bo Tog’s dual nature as both a benevolent guardian and a destructive force
 
 ---
 
-> **DM Note — Yan Bo Tog and the Official History**
-> The official founding history of Aru'Mas presents Marduk Sunspear's alliance with Yan Bo Tog as his greatest diplomatic achievement and the foundation of the city's relationship with the spirits of Ahvantir.
-> This is a sanitized construction. Yan Bo Tog was largely uninvolved in the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], rarely engaging unless someone directly disrespected his territory — the harbor. He was not a significant party to the [[First Pact]] negotiations, which were conducted between the settler leadership and a spirit coalition led by [[He Who Was Forgotten]].
-> The official history needed a named, approachable spirit to center its founding narrative. Yan Bo Tog — harbor guardian, locally visible, comprehensible to sailors — served that purpose. His elevation to diplomatic hero of the founding era is a convenient fiction. His current role as Warden of the Harbor is real.
 ---
 
 > **Source**

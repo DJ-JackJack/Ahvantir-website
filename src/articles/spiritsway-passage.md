@@ -8,10 +8,6 @@ timeline_year: 0
 
 # Spiritsway Passage
 
-> **DM Note — True Nature**
-> The Spiritsway Passage is a **portal** at its core — the actual crossing is a spiritually maintained transit to another point in the archipelago, not a physical walk through a gate. It was erected at the northern edge of Stonegate as a joint spirit-mortal construction after the [[First Pact]], built to fulfill the Pact’s mandate that access to the interior must be granted but restricted. It is the **only known safe crossing** through the [[Mountain Wall]].
-> The tremendous stone doors are real and are not merely decorative. They serve as a physical failsafe: even if the portal is inadvertently opened, the doors prevent transit. Both layers — the doors and the portal — require the specialized work of the [[Order of the Keystone]] to operate correctly. Control is layered by design.
-> The city of Aru’Mas grew around it as a strategic and treaty obligation, concentrating the Crown’s forces at the point the city is most bound to defend. The Passage’s location defined the city’s shape.
 At the northernmost point of [[Stonegate]] stands the Spiritsway Passage — the sole sanctioned entrance to the untamed wilds of the Ahvantir Archipelago and the only known safe crossing through the [[Mountain Wall]] that rings the inner islands. It is more than a gateway: it is a living expression of the [[First Pact]], maintained jointly by the city and the spirits of Ahvantir, and the reason the city exists where it does.
 
 The Passage is formed from colossal stone doors set within a frame of obsidian-veined granite, covered in an intricate network of runic symbols that pulse faintly with arcane energy. These runes represent the Pact’s terms, serving as both a spiritual seal and a warning to those who approach. The doors are not just physical barriers — they are a failsafe layer built into the Passage’s design, ensuring that an inadvertent activation of the portal within does not result in unauthorized transit. Both the doors and the portal require the specialized work of the [[Order of the Keystone]] to operate, a task that demands intense concentration and precise ritual coordination.

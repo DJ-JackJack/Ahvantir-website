@@ -9,8 +9,6 @@ date_added: "2026-06-06"
 
 # Upper [[Hearthstone]]
 
-> **District Split — R4**
-> Upper Hearthstone and [[Lower Hearthstone]] were once a single district. See [[Open Questions]] for the full resolution. The WA article treats them as sub-sections ("Upper Hearth" / "Lower Hearth"); by DM ruling they are distinct districts.
 ## Overview
 
 Upper Hearthstone is located on slightly elevated ground in the Hearthstone area, and is the more established, affluent section. Its residents — skilled labourers, artisans, and craftspeople — take pride in their work and their community. The district orients itself toward Temple Way and Spireview, the wealthier neighbours to which it aspires.

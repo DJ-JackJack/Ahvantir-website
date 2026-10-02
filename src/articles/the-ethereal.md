@@ -30,9 +30,6 @@ What is documented is that during the [[History of Ahvantir|Divine War]], Ahvant
 
 Whether the Ethereal has permanent residents — entities that do not merely pass through it but inhabit its between-space — is not established. Certain reported encounters with entities that could not be placed within any known spirit taxonomy, and that seemed to persist at locations where material-to-immaterial transitions occur frequently, have been interpreted by some scholars as evidence of Ethereal inhabitants. None of these encounters have been rigorously documented.
 
-> **DM Note — Research Gap**
-> The Ethereal is named on the cosmology diagram as a distinct plane but is among the least developed planes in the vault. The framework above is extrapolated from the Faded Veil's behavior at the Shattered Strand, spirit movement patterns during the Divine War, and the Tetherjump transit description. No canonical source directly addresses the Ethereal. Expand when the plane becomes relevant in play.
-
 ## Connections
 - Adjacent boundary: [[Shattered Strand]] (site where the Ethereal is closest to the surface)
 - Transit parallel: [[Tetherjumps]] (transit description consistent with Ethereal passage)

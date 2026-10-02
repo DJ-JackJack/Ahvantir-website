@@ -77,5 +77,3 @@ The equivalent period for Solara alone — Nystara below the horizon, Solara sti
 
 > **Source**
 > Source: `original` — new lore article. Anchored in canonical sources: twin suns named in [[Marducian Calendar]] (world-anvil); Solara/Nystara symbolism established in [[Sunspear Legion]] (original, 2026-06-14). Physical characteristics, orbital mechanics, the Pale Hour, and the Pairing are original worldbuilding consistent with the established calendar structure.
-> **Placement**
-> Filed under `30 - Astrology` — a new section created for astronomical and cosmological content. Section 10 was already occupied by Noble Houses.

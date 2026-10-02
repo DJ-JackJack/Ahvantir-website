@@ -83,8 +83,6 @@ The Primordem are **entirely distinct** from the [[Primordial Lords]]. The Primo
 | 11 | [[He Who Suffers the Darkness]] | Released when all ten others are free; not freed by naming |
 | 12 | [[He Who Covets All]] | Anomalous — sealed separately during First Pact negotiations |
 
-> **Resolved — R3**
-> He Who Covets All's absence from the Primordem Doc is explained: his sealing circumstances were entirely different and occurred at a different time. He is canon. See [[Open Questions]].
 ## Connections
 - Leader: [[He Who Was Forgotten]]
 - Last sealed (original eleven): [[He Who Suffers the Darkness]]

@@ -9,8 +9,6 @@ date_added: "2026-06-06"
 
 # Lower [[Hearthstone]]
 
-> **District Split — R4**
-> Lower Hearthstone and [[Upper Hearthstone]] were once a single district. See [[Open Questions]] for the full resolution.
 ## Overview
 
 Lower Hearthstone sits south of the Spillway — the grittier but no less vibrant half of the original Hearthstone. When the Spillway expanded and forced a choice, Lower Hearthstone declined the walls that Upper Hearthstone built. That decision kept the district porous, community-focused, and deeply tied to the Spillway's fate.

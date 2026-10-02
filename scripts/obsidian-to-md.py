@@ -172,7 +172,7 @@ def extract_summary(body: str) -> tuple:
         return ""
 
     cleaned = re.sub(
-        r"^> \[!summary\][^\n]*\n((?:> ?[^\n]*\n?)*)",
+        r"^> \[!summary\][^\n]*\n((?:>(?! ?\[!) ?[^\n]*\n?)*)",
         replacer,
         body,
         flags=re.MULTILINE | re.IGNORECASE,
@@ -194,17 +194,46 @@ def strip_dm_callouts(body: str) -> str:
     simply should not contain them.
     """
     return re.sub(
-        r"^> \[!warning\][^\n]*\n((?:> ?[^\n]*\n?)*)",
+        r"^> \[!warning\][^\n]*\n((?:>(?! ?\[!) ?[^\n]*\n?)*)",
         "",
         body,
         flags=re.MULTILINE | re.IGNORECASE,
     )
 
 
+# Callout titles that mark a note as DM-facing rather than reader-facing.
+# Matched against the callout's title, case-insensitively.
+#
+# [!warning] was never the only way DM material was written. The vault has 278
+# [!note] callouts against 12 warnings, and a dozen of those notes are titled
+# "DM Canon", "DM Note — True Role", "DM Resolution" and the like. They were
+# being converted to ordinary visible blockquotes and published verbatim,
+# including one that read "DM Canon - not public knowledge".
+#
+# The rest are review artefacts left behind by vault-tidying passes. They are
+# notes to self, not lore.
+DM_NOTE_TITLES = (
+    r"^dm\b",                # DM Canon, DM Note, DM Resolution
+    r"vault review",
+    r"^resolved\b",
+    r"^stub$",
+    r"^placement",
+    r"^district split",
+    r"\bnot public knowledge\b",
+)
+
+
+def _is_dm_note(title: str) -> bool:
+    t = title.strip().lower()
+    return any(re.search(pat, t) for pat in DM_NOTE_TITLES)
+
+
 def convert_note_callouts(body: str) -> str:
-    """Convert [!note] callouts to styled blockquotes."""
+    """Convert [!note] callouts to styled blockquotes, dropping DM-facing ones."""
     def replacer(m):
         title = m.group(1).strip()
+        if _is_dm_note(title):
+            return ""
         raw_body = m.group(2)
         inner_lines = _strip_blockquote_prefix(raw_body).strip()
         # Re-prefix stripped lines as blockquote
@@ -219,11 +248,44 @@ def convert_note_callouts(body: str) -> str:
             return bq_lines
 
     return re.sub(
-        r"^> \[!note\] ?([^\n]*)\n((?:> ?[^\n]*\n?)*)",
+        r"^> \[!note\] ?([^\n]*)\n((?:>(?! ?\[!) ?[^\n]*\n?)*)",
         replacer,
         body,
         flags=re.MULTILINE | re.IGNORECASE,
     )
+
+
+def strip_unknown_callouts(body: str) -> str:
+    """Drop callout types the converter has no public rendering for.
+
+    [!resolved] is a vault-review artefact. Without this it fell through every
+    converter and shipped to the public site as raw Obsidian syntax.
+    """
+    return re.sub(
+        r"^> \[!(resolved|todo|bug)\][^\n]*\n((?:>(?! ?\[!) ?[^\n]*\n?)*)",
+        "",
+        body,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+
+
+def separate_blockquotes(body: str) -> str:
+    """Ensure a blank line between a blockquote and the prose after it.
+
+    Markdown lazy continuation pulls an immediately following paragraph INTO
+    the quote, so the page renders ordinary body text inside a callout box.
+    Dropping a DM callout can close that gap, which is how it first appeared.
+    """
+    lines = body.splitlines()
+    out = []
+    for i, line in enumerate(lines):
+        out.append(line)
+        nxt = lines[i + 1] if i + 1 < len(lines) else None
+        if line.startswith(">") and nxt is not None and nxt.strip() \
+                and not nxt.startswith(">"):
+            out.append("")
+    trailing = "\n" if body.endswith("\n") else ""
+    return "\n".join(out) + trailing
 
 
 def build_frontmatter(fm: dict, description: str, preserved: dict = None) -> str:
@@ -281,7 +343,9 @@ def process_file(src: Path, preserved_fm: dict = None):
     body = strip_dataview(body)
     description, body = extract_summary(body)
     body = strip_dm_callouts(body)
+    body = strip_unknown_callouts(body)
     body = convert_note_callouts(body)
+    body = separate_blockquotes(body)
     body = strip_inline_tags(body)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
 

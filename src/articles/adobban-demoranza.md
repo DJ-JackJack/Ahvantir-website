@@ -8,8 +8,6 @@ timeline_year: 1
 
 # Adobban Demoranza
 
-> **DM Note — True Role**
-> The official history presents Adobban as a peaceful spiritual advisor who had a vision and founded the Church. The documented account is more active: Adobban was a **war priest** during the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]]. His divine magic gave the settler fighters a fighting chance against spirit opponents that functioned like forces of nature. The Valor tenant was forged in battle, not theorized in peacetime. His vision of the Pathite Pantheon came during the war years — likely *because* of what the war demanded — and the Church was given formal institutional form in the years following Year 0. He joined [[Marduk Sunspear]]’s expedition after losing faith in his own deities, which means he had no deity to draw on when he arrived. Whatever power he wielded during the Landing War’s early years is an open question.
 Adobban Demoranza, the founder of [[The Church of the Threefold Path|the Church of the Threefold Path]], is a revered figure in the history of Aru’Mas. An elven cleric known for his deep devotion and unshakable faith, Adobban is remembered as a friend and spiritual companion to [[Marduk Sunspear]]. While Marduk led with strength and military command, Adobban provided the spiritual framework that gave the settler coalition both its moral core and, during the Landing War, its fighting capacity. Unlike Marduk, who left behind a family and a line of successors, Adobban’s legacy lives on through his disciples and the church he founded.
 
 ## Early Life and Loss of Faith

@@ -83,6 +83,7 @@ It was during this transition that the appointment mechanism was codified. Nisht
 
 > **See Also**
 > The full history of this transition — Asgoraviel's nine-year siege (~330–339 MC), Dammadan's death, Nishta's interim claim, and Galligan's coronation — is developed in [[The Fall of the Sunspear Line]].
+
 Supporting the Magister of Defense is the **Council of Spears**: senior officers representing each of the Legion's five divisions. The Council meets regularly to assess threats, coordinate defense, and advise on promotions within their units. In practice, the Council also serves as a check on the Magister of Defense — no major operational deployment is undertaken without Council awareness, and a unanimous Council vote can refer a Magister of Defense to the ruling council for review, though this power has been exercised only twice in recorded history.
 
 Beneath the Magister of Defense and Council are **Garrison Commanders**: district-level officers responsible for maintaining order and managing Legion presence in their assigned area of Aru'Mas. Each major district has at least one; busier districts like [[Stonegate]] and [[Luminous Reach]] run full garrison staffs.
@@ -255,11 +256,3 @@ What is less certain is what he intends to do with that knowledge. He is not a m
 
 > **Source**
 > Original article: `world-anvil` — imported from `wa_articles_structured.json`. Substantially expanded 2026-06-14 with founding history, rank structure, cultural analysis, noble house relationships, and moral complexity. DM canon integrated from [[Marduk Sunspear]], [[History of Ahvantir]], [[House Der'Tagan]], and associated articles.
-> [!resolved] Resolved During Expansion (2026-06-14)
-> - **Founding date**: Confirmed as Year 0 MC — the Legion was formally instituted at the end of the Landing War, coinciding with the signing of the First Pact. The Spear served as the wartime personal retinue throughout -13 to 0 MC and is the direct precursor. Reflected in the infobox and the Founding section.
-> - **Solara's nature**: Confirmed as one of Nyhexus's twin suns (via [[Marducian Calendar]]). Name is canonical — no rename needed.
-> - **Nystara's identity**: Confirmed as the second of Nyhexus's twin suns (via [[Marducian Calendar]]). The duality of Solara/Nystara across the Ironshields and Vanguard of Valor is written into the article as intentional Legion symbolism.
-> - **Legion name etymology**: Confirmed — name derives from Marduk's personal spear. The precursor regiment "The Spear" is now incorporated into the founding history.
-> - **Founding structure**: The Spear (personal retinue, Landing War era) → Sunspear Legion (formalized institution, Year 0 MC) — confirmed and incorporated.
-> - **Sunspear → Ilderas transition**: Confirmed. Asgoraviel's siege (~330–339 MC, nine years) killed **Dammadan Sunspear** (last Sunspear king); **Nishta Ilderas-Sunspear** (queen consort, sole survivor of his court) claimed interim rule; **Galligan Ilderas** (Nishta's son; his father's identity is historically unknown) was crowned as the official Ilderas dynasty founding moment. Tripartite Magister of Defense appointment mechanism codified during this transition — Nishta's lasting institutional legacy. The system has held for nearly a century. Incorporated into the Command Structure section. Full history: [[The Fall of the Sunspear Line]].
-> - **Magister of Defense (name)**: Confirmed as **Feldmarch Derrivus Calcinius** — Ragmarket-born, former Iron Boots gang member, rose through the Legion after holding the southern gate alone against drugged former brothers during an All Are One attack. Appointed directly by King Voren Ilderas. Character passage incorporated into Current State section.

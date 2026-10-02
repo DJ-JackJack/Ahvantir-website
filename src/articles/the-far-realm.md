@@ -26,9 +26,6 @@ Whether any Far Realm presence exists within Ahvantir's spiritual fabric — whe
 
 The Far Realm does not connect in those ways. Attempts to develop a systematic account of it have tended to produce accounts that are internally consistent and completely irreconcilable with every other systematic account of the same subject. Among scholars of planar philosophy, this is considered diagnostic rather than merely inconvenient.
 
-> **DM Note — Intentional Gap**
-> The Far Realm is included on the cosmology diagram and defined by its position as that which should not be, but it has not been developed in Ahvantir's vault. This article establishes a framework — the category of things that don't fit — without committing to specific entities or manifestations. Develop when and if the Far Realm becomes relevant in play, with reference to any Ahvantir-specific entities that may prove to be Far Realm in origin.
-
 ## Connections
 - Cosmological context: [[The Ranjergon]], [[The Astral Sea|Astral Sea]], [[The Dreaming]] (the planes it is defined against)
 - See also: the Eight Shadows *(possible connection — not confirmed)*

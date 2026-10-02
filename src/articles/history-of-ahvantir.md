@@ -49,6 +49,7 @@ Marduk Sunspear was not a conqueror who chose Ahvantir. He was a refugee fleet c
 > **True History**
 > Marduk's fleet experienced forty-nine years of travel by his home planet's orbital record. During that time, his people felt the constant sensations of hunger and thirst without the biological need to eat or drink — a form of psychological starvation sustained across five decades. The fleet grew from roughly 680 able-bodied adults at Ahvantir's shore (a military tally; the true total population was likely higher) to 1,486 adults by the Year 0 census, through births, additional refugees encountered during travel, and the widespread use of resurrection magic during the Landing War.
 > When the Drorn'Duur welcomed Marduk's people, they welcomed a population that had been psychologically starving for fifty years. Marduk's subsequent betrayal — a sudden, brutal assault on Drorn'Duur settlements during the Days of Encroachment — likely reflected a calculation: that a people who understood Ahvantir's spiritual landscape better than he did represented an unacceptable risk to his claim on this land. By approximately -15 MC, the Drorn'Duur's above-ground civilization had been destroyed. Their spirit-temples were defiled. Their clans were eradicated or scattered. The survivors attempted to reclaim their settlements and failed.
+
 The desecration of Drorn'Duur spirit-temples did not go unnoticed. The native spirits of the archipelago had standing pacts with the Drorn'Duur — obligations that the defilement of those temples activated. Drorn'Duur survivors who had not yet withdrawn underground allied with the spirit coalition. Their knowledge of the land's geography, their legitimate grievance, and the formal breach of ancient agreements gave the spirit response both cause and structure.
 
 The Landing War had begun.
@@ -98,6 +99,7 @@ The first true census, taken at Year 0, recorded 1,486 adult citizens — nearly
 > 1. **The Primordem sealing** — the twelve spirits sealed beneath Ahvantir as a prerequisite to the treaty. Their existence is known only to the ruling council of Aru'Mas.
 > 2. **The erasure of He Who Was Forgotten** — the removal of the spirit general's name from all records, written into the Pact as a condition. Whether this was demanded by Marduk's side, agreed to by the spirit delegation, or some combination of both has never been documented. He Who Was Forgotten was not directly involved in the negotiations. The extent of what he knew before stepping willingly into the seal is unclear.
 > The Drorn'Duur were not party to the negotiations. The peace made at Year 0 did not acknowledge them, restore their land, or recognize what had been done to them.
+
 [[Adobban Demoranza]]'s vision of the Pathite Pantheon had come during the war years, providing the settlers with a divine framework that both sustained their fighting capacity and planted the seeds of the Church's post-war structure. The [[The Church of the Threefold Path|Church of the Threefold Path]] was formally established in the years following Year 0, giving institutional form to what had been a battlefield faith.
 
 ---
