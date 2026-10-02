@@ -40,15 +40,21 @@ permalink: /map/
 </div>
 
 {% block scripts %}
+{# Leaflet and Geoman both come from jsdelivr: it is the only CDN the
+   Content-Security-Policy in base.njk allows for scripts and styles. #}
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
-      integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
-      crossorigin="anonymous" referrerpolicy="no-referrer">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
-        integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
+      crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>
 <script src="/assets/js/auth-storage.js"></script>
 <script src="/assets/js/player.js"></script>
+<script src="/assets/js/map-coords.js"></script>
 <script src="/assets/js/map.js"></script>
+{# Inert for visitors: it checks is_dm() first and only then fetches the
+   drawing library, so a reader never downloads the editor's 290 KB. #}
+<script src="/assets/js/map-editor.js"></script>
 {% endblock %}

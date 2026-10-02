@@ -1,14 +1,15 @@
 {
   "name": "ahvantir-website",
   "version": "1.0.0",
-  "description": "The Ahvantir lore encyclopedia — a living reference for the Aru'Mas campaign setting",
+  "description": "The Ahvantir lore encyclopedia \u2014 a living reference for the Aru'Mas campaign setting",
   "private": true,
   "scripts": {
     "build": "eleventy",
     "build:prod": "eleventy && pagefind --site _site",
     "start": "eleventy --serve",
     "dev": "eleventy --serve --incremental",
-    "sync": "python3 scripts/obsidian-to-md.py"
+    "sync": "python3 scripts/obsidian-to-md.py",
+    "test": "node scripts/test-map-coords.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",

@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- Throwaway integration harness. Lives in _site only, never committed.
+     Stands up the real map.js + map-editor.js against an in-memory stand-in for
+     Supabase so the DM paths can be exercised without touching the database. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>map editor harness</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+<div class="map-page">
+  <div class="map-main">
+    <div class="map-toolbar" id="map-toolbar" hidden>
+      <label class="map-switch"><span class="map-switch__label">Map</span>
+        <select id="map-select" class="map-switch__select"></select></label>
+      <div class="map-toggles" id="map-toggles"></div>
+    </div>
+    <div class="map-canvas" id="map-canvas"></div>
+    <div class="map-status" id="map-status"></div>
+  </div>
+  <aside class="map-sidebar">
+    <h2 class="sidebar-title">Locations</h2>
+    <p class="map-sidebar__hint" id="map-sidebar-hint"></p>
+    <div class="map-marker-list" id="map-marker-list"></div>
+  </aside>
+</div>
+
+<script>
+/* ---- in-memory stand-in for the Supabase client ---- */
+const LOG = [];
+const DB = {
+  maps: [{
+    id: 'map-1', slug: 'aru-mas', title: "Aru'Mas", description: '',
+    storage_path: 'arumas.jpg', image_width: 4962, image_height: 3508,
+    sort_order: 0, is_published: true,
+    created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z',
+  }, {
+    id: 'map-2', slug: 'the-fend', title: 'The Fend', description: '',
+    storage_path: 'fend.jpg', image_width: 3000, image_height: 2000,
+    sort_order: 1, is_published: false,
+    created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z',
+  }],
+  map_markers: [{
+    id: 'mk-1', map_id: 'map-1', kind: 'area', title: 'Temple District',
+    article_slug: 'temple-district', snippet_override: null,
+    geo_x: null, geo_y: null,
+    points: [[1000, 1000], [1400, 1000], [1400, 1400], [1000, 1400]],
+    color: '#c9a227', group_name: 'Districts', sort_order: 0, deleted_at: null,
+    created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z',
+  }, {
+    id: 'mk-2', map_id: 'map-1', kind: 'point', title: 'Lamplight Tower',
+    article_slug: null, snippet_override: null,
+    geo_x: 2000, geo_y: 1500, points: null,
+    color: '#7b1d2a', group_name: 'Landmarks', sort_order: 0, deleted_at: null,
+    created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z',
+  }],
+};
+let seq = 0;
+const stamp = () => '2026-06-0' + (++seq) + 'T00:00:00Z';
+
+function matches(row, filters) {
+  return filters.every((f) => {
+    if (f.op === 'eq') return String(row[f.col]) === String(f.val);
+    if (f.op === 'is') return row[f.col] === f.val;
+    return true;
+  });
+}
+function qb(table) {
+  const q = { _t: table, _f: [], _rows: null, _mode: 'select', _patch: null };
+  q.select = function () {
+    if (q._mode === 'select') { q._sel = true; return q; }
+    return Promise.resolve(q._run());
+  };
+  q.eq = (c, v) => (q._f.push({ op: 'eq', col: c, val: v }), q);
+  q.is = (c, v) => (q._f.push({ op: 'is', col: c, val: v }), q);
+  q.order = () => q;
+  q.insert = (vals) => { q._mode = 'insert'; q._patch = vals; return q; };
+  q.update = (vals) => { q._mode = 'update'; q._patch = vals; return q; };
+  q._run = function () {
+    const t = DB[q._t];
+    if (q._mode === 'insert') {
+      const row = Object.assign({
+        id: 'new-' + (++seq), article_slug: null, snippet_override: null,
+        geo_x: null, geo_y: null, points: null, sort_order: 0, deleted_at: null,
+        description: '', created_at: stamp(), updated_at: stamp(),
+      }, q._patch);
+      t.push(row);
+      LOG.push(['insert', q._t, row.id, row.title]);
+      return { data: [row], error: null };
+    }
+    if (q._mode === 'update') {
+      const hit = t.filter((r) => matches(r, q._f));
+      hit.forEach((r) => { Object.assign(r, q._patch); r.updated_at = stamp(); });
+      LOG.push(['update', q._t, hit.length, JSON.stringify(q._patch).slice(0, 70)]);
+      return { data: hit, error: null };
+    }
+    return { data: t.filter((r) => matches(r, q._f)), error: null };
+  };
+  q.then = (res, rej) => Promise.resolve(q._run()).then(res, rej);
+  return q;
+}
+window.__supabase = {
+  from: qb,
+  rpc: (name) => Promise.resolve({ data: name === 'is_dm', error: null }),
+  auth: {
+    getSession: () => Promise.resolve({ data: { session: { user: { id: 'dm' } } } }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe() {} } } }),
+  },
+  storage: {
+    from: () => ({
+      getPublicUrl: () => ({ data: { publicUrl:
+        'data:image/svg+xml,' + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="4962" height="3508">' +
+          '<rect width="4962" height="3508" fill="%23eedbb0"/></svg>') } }),
+      upload: (p) => (LOG.push(['upload', p]), Promise.resolve({ data: { path: p }, error: null })),
+      remove: (p) => (LOG.push(['remove', p]), Promise.resolve({ error: null })),
+    }),
+  },
+};
+window.__LOG = LOG;
+window.__DB = DB;
+</script>
+<script src="/assets/js/map-coords.js"></script>
+<script src="/assets/js/map.js"></script>
+<script src="/assets/js/map-editor.js"></script>
+</body>
+</html>
