@@ -10,9 +10,6 @@ timeline_year: 0
 
 # The Primordem
 
-{% dmonly %}
-The core eleven Primordem are documented in `The_Primordem_of_Ahvantir.pdf`, the **highest authority** on this topic. Detailed lore on individual identities, the naming mechanic, and the Ilyrana Vael recordings is from DM canon (ChatGPT lore session, confirmed 2026-05-12). The twelfth — [[He Who Covets All]] — is canon by DM ruling (2026-03-28) but has an anomalous origin and is absent from that document for documented reasons.
-{% enddmonly %}
 ## Overview
 
 The Primordem are twelve spirits sealed beneath Ahvantir during the [[First Pact]]. Their existence is not public knowledge. Only the ruling council of Aru'Mas — the monarch, the head of the Church, and the Speaker of the Merchants' Guild — holds the full account of what was done and why. The secret is treated as foundational: revealing it would not merely embarrass the city. It would challenge the legitimacy of the Pact itself.

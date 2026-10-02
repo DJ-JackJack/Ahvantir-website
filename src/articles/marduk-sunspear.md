@@ -8,9 +8,6 @@ timeline_year: 0
 
 # Marduk Sunspear
 
-{% dmonly %}
-This article contains both the official public account and documented truths suppressed from the historical record. The official history of Marduk Sunspear bears little resemblance to the documented facts of his origins, his actions during the founding era, or his relationship to the [[Drorn’Duur]]. Handle accordingly.
-{% enddmonly %}
 Marduk Sunspear is the founder of [[Aru’Mas]] and the figure around whom the city’s origin mythology is constructed. The [[Marducian Calendar]] is named after him. Statues, songs, and official histories present him as a visionary explorer of noble lineage whose diplomatic genius and spiritual humility won the Ahvantir spirits’ respect and secured the city’s existence.
 
 The documented history is more complicated.
