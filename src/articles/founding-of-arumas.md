@@ -8,11 +8,6 @@ timeline_year: 0
 
 # Founding of [[Aru’Mas]]
 
-{% dmonly %}
-This article presents the official public account of Aru’Mas’s founding as taught in the city — the version citizens know, the version the Church endorses, and the version carved into monuments. It is substantially incomplete and in places inaccurate.
-
-The documented true history — including Marduk Sunspear’s Astral Sea origins, the existence and betrayal of the [[Drorn’Duur]], the thirteen-year [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], the duel with [[He Who Was Forgotten]], and the [[First Pact]]’s suppressed terms — is in [[History of Ahvantir]] and [[Marduk Sunspear]].
-{% enddmonly %}
 Situated on the southeastern island of the archipelago of Ahvantir, Aru’Mas serves as the gateway to these mystical lands, with its harbor facing the open sea. The city’s founding story is woven from acts of courage, diplomacy, and a profound respect for Ahvantir’s powerful spiritual forces. [[Marduk Sunspear]], a famed warrior and explorer, led the first wave of settlers, establishing the framework for a city that would thrive in harmony with the spirits. It was his companion, [[Adobban Demoranza]], an elven cleric with a renewed faith, who laid the spiritual foundations of Aru’Mas by creating [[The Church of the Threefold Path|the Church of the Threefold Path]] after a life-changing vision on Ahvantir.
 
 ## Historical Background and the Journey of [[Marduk Sunspear]]

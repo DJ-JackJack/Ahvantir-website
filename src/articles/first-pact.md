@@ -9,9 +9,6 @@ timeline_year: 0
 
 # First Pact
 
-{% dmonly %}
-This article contains both the official public account and documented truths not available to the public. The First Pact’s suppressed terms — the Primordem sealing and the erasure of [[He Who Was Forgotten]] — are known only to the ruling council of Aru’Mas. The official history of the Pact’s origins has been substantially sanitized. Handle accordingly.
-{% enddmonly %}
 The First Pact — formally the treaty that ended the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] — is the foundational agreement between the settler leadership and the spirit coalition of the Ahvantir Archipelago. Signed at Year 0 of the [[Marducian Calendar]], it established the legal existence of [[Aru’Mas]], set the terms of mortal-spirit coexistence for the centuries that followed, and created the [[Spiritsway Passage]] as the sole sanctioned crossing through the [[Mountain Wall]].
 
 The spirits who negotiated this pact are ancient beyond the reckoning of any mortal calendar — the same primordial forces of land, sky, and sea that once resisted the gods themselves in the Divine War, long before the city existed. Their willingness to negotiate with [[Marduk Sunspear]] at all was historically unusual; that they negotiated as equals with a people carrying divine faith reflects the depth of their claim to this land. [[Imwei, the Green Mother]], whose act of sacrifice ended the Divine War, is sometimes acknowledged in theological discussions of the Pact’s deeper origins.

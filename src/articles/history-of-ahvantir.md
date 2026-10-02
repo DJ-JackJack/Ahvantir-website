@@ -10,9 +10,6 @@ timeline_year: 0
 
 # History of Ahvantir
 
-{% dmonly %}
-This article contains historical truths not available to the public or to most scholars of Aru'Mas. The official history taught in the city omits the Drorn'Duur, sanitizes Marduk Sunspear, and conceals the true nature of the First Pact's darker terms. Handle accordingly.
-{% enddmonly %}
 ---
 
 ## Mythic Prehistory — The Divine War

@@ -7,10 +7,6 @@ date_added: "2026-06-06"
 
 # Hearthstone
 
-{% dmonly %}
-Hearthstone has been officially resolved as **two distinct districts**: [[Upper Hearthstone]] and [[Lower Hearthstone]]. This article is retained as a historical overview and source record. For current lore, use the individual district articles.
-{% enddmonly %}
-
 Hearthstone is a lively residential district that embodies the industrious and hopeful spirit of Aru’Mas. Divided into two distinct sections—Upper Hearth and Lower Hearth—by the nearby Spillway, Hearthstone is home to a predominantly middle-class population. Its residents include skilled laborers, artisans, and their families, who have created a tightly knit community despite the challenges of being near the city’s more impoverished areas. Hearthstone serves as a metaphorical and literal bridge between the hardships of [[The Spillway|the Spillway]] and the opportunities of more prosperous districts like [[Temple Way]] and [[Spireview]].
 
 ## District Layout

@@ -7,7 +7,7 @@ and writes to src/articles/.
 
 Transformations:
   - Maps Obsidian category values to the 8 website category slugs
-  - [!warning] callouts → {% dmonly %}...{% enddmonly %} shortcode blocks
+  - [!warning] callouts are DROPPED: they are DM-only and the site is public
   - [!summary] callouts → description frontmatter field (removed from body)
   - [!note] callouts → styled blockquotes
   - Strips Dataview blocks and inline queries
@@ -43,6 +43,11 @@ if _env_file.exists():
 VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "").lstrip('﻿').strip()
 OUTPUT_DIR = Path(__file__).parent.parent / "src" / "articles"
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
+# Pruning deletes files. Refuse if a run would remove more than this share of
+# the site, which nearly always means the vault path is wrong rather than that
+# the DM deleted a fifth of their lore.
+PRUNE_LIMIT = 0.20
+FORCE_PRUNE = os.environ.get("FORCE_PRUNE", "false").lower() == "true"
 
 SKIP_DIRS = {"_Templates", "_Meta", ".obsidian", "Ahvantir V.2", "HTML import"}
 
@@ -175,18 +180,22 @@ def extract_summary(body: str) -> tuple:
     return description, cleaned
 
 
-def convert_warning_callouts(body: str) -> str:
-    """Convert [!warning] callouts to {% dmonly %} shortcode blocks."""
-    def replacer(m):
-        raw_body = m.group(1)
-        inner = _strip_blockquote_prefix(raw_body).strip()
-        if not inner:
-            return ""
-        return "{{% dmonly %}}\n{inner}\n{{% enddmonly %}}".format(inner=inner)
+def strip_dm_callouts(body: str) -> str:
+    """Drop [!warning] callouts entirely. They are DM-only.
 
+    These used to become {% dmonly %} shortcode blocks, which Eleventy rendered
+    as a collapsed <details> element. Collapsed is not hidden: the text shipped
+    inside the public HTML, one click or one View Source away, and the site
+    search indexed it. The website repository is public as well, so the raw
+    markdown was readable on GitHub regardless of what the build did.
+
+    There is nothing to replace them with. The vault is the canonical copy and
+    keeps every callout, and the DM reads them in Obsidian. The public site
+    simply should not contain them.
+    """
     return re.sub(
         r"^> \[!warning\][^\n]*\n((?:> ?[^\n]*\n?)*)",
-        replacer,
+        "",
         body,
         flags=re.MULTILINE | re.IGNORECASE,
     )
@@ -271,7 +280,7 @@ def process_file(src: Path, preserved_fm: dict = None):
     body = strip_templater(body)
     body = strip_dataview(body)
     description, body = extract_summary(body)
-    body = convert_warning_callouts(body)
+    body = strip_dm_callouts(body)
     body = convert_note_callouts(body)
     body = strip_inline_tags(body)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
@@ -398,10 +407,83 @@ def main():
             else:
                 updated.append(slug)
 
+    # Remove published articles whose vault source has gone away.
+    #
+    # This step did not exist: the sync only ever added and overwrote. An
+    # article therefore stayed on the public site forever once generated.
+    # Deleting it from the vault did nothing, and renaming it published the new
+    # slug while quietly leaving the old one in place. An internal working
+    # document stayed public that way long after it had left the vault.
+    #
+    # The guard matters because this deletes files. If OBSIDIAN_VAULT_PATH is
+    # wrong, or a run fails part way, slug_map collapses and an unguarded prune
+    # would wipe the site in a commit made by the weekly job. Refusing to prune
+    # is always recoverable; that is not.
+    removed = []
+    on_disk = sorted(path.stem for path in OUTPUT_DIR.glob("*.md"))
+    orphans = [slug for slug in on_disk if slug not in slug_map]
+
+    # Never delete an article other articles still point at.
+    #
+    # Output filenames are slugified from the `title:` field, but the website
+    # slugifies a [[wikilink]] from its link text, which in Obsidian is the
+    # vault FILENAME. When the two differ the inbound links only resolve
+    # because an older copy is still sitting there under the filename-derived
+    # slug. "Sunspear Legion.md" retitled to "The Sunspear Legion" is the live
+    # example: a dozen articles link [[Sunspear Legion]], and pruning the stale
+    # copy would turn every one of them into a 404.
+    #
+    # Reporting it is the right move rather than deleting or silently keeping
+    # it. The fix is a rename in the vault or an alias, and that is the DM's
+    # call, not this script's.
+    if orphans:
+        inbound = {}
+        for path in OUTPUT_DIR.glob("*.md"):
+            if path.stem in orphans:
+                continue
+            text = path.read_text(encoding="utf-8")
+            for target in re.findall(r"\[\[([^\]|#]+)", text):
+                inbound.setdefault(slugify(target.strip()), set()).add(path.stem)
+        linked = [slug for slug in orphans if inbound.get(slug)]
+        for slug in linked:
+            who = sorted(inbound[slug])
+            msg = (
+                f"KEEPING orphan '{slug}.md': it has no vault source, but "
+                f"{len(who)} article(s) still link to it ({', '.join(who[:5])}"
+                f"{', ...' if len(who) > 5 else ''}). Rename it in the vault or "
+                f"update those links, then it will prune cleanly."
+            )
+            print(msg, file=sys.stderr)
+            log_lines.append(msg)
+        orphans = [slug for slug in orphans if slug not in inbound or not inbound[slug]]
+    if orphans:
+        share = len(orphans) / max(len(on_disk), 1)
+        if share > PRUNE_LIMIT and not FORCE_PRUNE:
+            msg = (
+                f"REFUSING to prune {len(orphans)} of {len(on_disk)} articles "
+                f"({share:.0%} of the site, limit {PRUNE_LIMIT:.0%}). This almost "
+                f"always means the vault path is wrong or this run failed part "
+                f"way. Set FORCE_PRUNE=true if the deletion really is intended."
+            )
+            print(msg, file=sys.stderr)
+            log_lines.append(msg)
+            errors += 1
+        else:
+            for slug in orphans:
+                victim = OUTPUT_DIR / f"{slug}.md"
+                if DRY_RUN:
+                    msg = f"[DRY RUN] Would remove (no vault source): {victim.name}"
+                else:
+                    victim.unlink()
+                    msg = f"Removed (no vault source): {victim.name}"
+                print(msg)
+                log_lines.append(msg)
+                removed.append(slug)
+
     changed = len(added) + len(updated)
     summary = (
         f"{'Would update' if DRY_RUN else 'Updated'} {changed} files. "
-        f"Skipped {skipped} stubs. {errors} errors."
+        f"Removed {len(removed)}. Skipped {skipped} stubs. {errors} errors."
     )
     print(summary)
     log_lines.append(summary)

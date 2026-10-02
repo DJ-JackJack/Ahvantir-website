@@ -101,15 +101,17 @@ module.exports = function (eleventyConfig) {
     );
   });
 
-  // DM-only spoiler shortcode
-  eleventyConfig.addPairedShortcode("dmonly", function (content) {
-    return `<details class="dm-only">
-      <summary class="dm-only__toggle">
-        <span class="dm-only__icon" aria-hidden="true">🔒</span>
-        DM Only — Contains Spoilers
-      </summary>
-      <div class="dm-only__content">${content}</div>
-    </details>`;
+  // DM-only content: dropped, not hidden.
+  //
+  // This used to render a collapsed <details class="dm-only"> block. Collapsed
+  // is not hidden. The text shipped in the public HTML, was one click away, was
+  // in View Source, and was indexed by the site search. The sync script no
+  // longer emits this shortcode at all; it remains defined only so that an
+  // article still carrying it from an older sync renders nothing rather than
+  // failing the build. If you want DM material on the site, it has to be
+  // fetched at runtime behind the Supabase is_dm() check, not baked in here.
+  eleventyConfig.addPairedShortcode("dmonly", function () {
+    return "";
   });
 
   // Collections
