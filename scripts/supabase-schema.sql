@@ -29,11 +29,33 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function handle_new_user();
 
--- Helper used by RLS policies to check if the current user is the DM
+-- Helper used by RLS policies to check if the current user is the DM.
+--
+-- search_path is pinned. This runs SECURITY DEFINER as the owner, so with a
+-- mutable path a caller able to create objects in an earlier schema could
+-- shadow the unqualified `profiles` reference below and change what it returns.
+-- `public` is required for that reference; auth.uid() is already qualified and
+-- resolves either way; pg_temp is last so a temp object is never preferred.
 create or replace function is_dm()
-returns boolean language sql security definer stable as $$
+returns boolean language sql security definer stable
+set search_path = public, pg_temp as $$
   select coalesce((select is_dm from profiles where id = auth.uid()), false);
 $$;
+
+-- is_dm() is deliberately callable by anon and authenticated: the maps editor
+-- asks it over RPC whether to render the DM controls at all, and the play area
+-- uses it the same way. It returns false for everyone who is not the DM, and
+-- RLS remains the actual gate. Supabase's linter flags this; it is intended.
+grant execute on function is_dm() to anon, authenticated;
+
+-- handle_new_user() is only ever reached through the on_auth_user_created
+-- trigger above. EXECUTE is granted to PUBLIC by default, which also exposed it
+-- at /rest/v1/rpc/handle_new_user. Revoking PUBLIC is the part that matters:
+-- without it the role-level revokes below do nothing.
+--
+-- The trigger is unaffected. PostgreSQL checks EXECUTE when a trigger is
+-- created, not each time it fires, so account signup still works.
+revoke execute on function handle_new_user() from public, anon, authenticated;
 
 -- ── Characters ──────────────────────────────────────────────
 create table if not exists characters (
@@ -46,8 +68,11 @@ create table if not exists characters (
 );
 
 -- Auto-update updated_at on row changes
+-- search_path pinned for the same reason as is_dm(), though this one is
+-- SECURITY INVOKER and only ever stamps a timestamp.
 create or replace function touch_updated_at()
-returns trigger language plpgsql as $$
+returns trigger language plpgsql
+set search_path = public, pg_temp as $$
 begin
   new.updated_at = now();
   return new;
