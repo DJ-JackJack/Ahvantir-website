@@ -1,49 +1,54 @@
 ---
 layout: base
-title: World Map
-description: "An interactive map of Ahvantir and the city of Aru'Mas."
+title: Maps
+description: "Interactive maps of Ahvantir and the city of Aru'Mas."
 permalink: /map/
 ---
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-title">World Map</h1>
-    <p class="page-lead">The known territories of Ahvantir. Click a location to read its lore.</p>
+    <h1 class="page-title">Maps</h1>
+    <p class="page-lead">Hover a marker for a summary. Click to open its article.</p>
   </div>
 </div>
 
 <div class="map-page">
-  <div class="map-container" id="map-container" aria-label="Interactive world map">
-    <div class="map-placeholder">
-      <div class="map-placeholder__inner">
-        <span class="map-placeholder__icon" aria-hidden="true">🗺</span>
-        <p class="map-placeholder__title">Map Coming Soon</p>
-        <p class="map-placeholder__text">
-          The cartographers are still at work. Upload a world map image to
-          <code>src/assets/img/world-map.jpg</code> and configure location
-          pins in <code>src/assets/js/map.js</code>.
-        </p>
+  <div class="map-main">
+    <div class="map-toolbar" id="map-toolbar" hidden>
+      <label class="map-switch">
+        <span class="map-switch__label">Map</span>
+        <select id="map-select" class="map-switch__select" aria-label="Choose a map"></select>
+      </label>
+      <div class="map-toggles" id="map-toggles" role="group" aria-label="Layer visibility"></div>
+    </div>
+
+    <div class="map-canvas" id="map-canvas" aria-label="Interactive map"></div>
+
+    <div class="map-status" id="map-status" role="status">
+      <div class="map-status__inner">
+        <span class="map-status__icon" aria-hidden="true">🗺</span>
+        <p class="map-status__title">Loading maps…</p>
       </div>
     </div>
-    <div id="map-pins" class="map-pins" aria-label="Map locations"></div>
   </div>
 
   <aside class="map-sidebar">
-    <h2 class="sidebar-title">Locations</h2>
-    <ul class="map-location-list" role="list">
-      {% for article in collections.allArticles %}
-      {% if article.data.category == 'locations' %}
-      <li>
-        <a href="{{ article.url }}" class="map-location-link">
-          {{ article.data.title }}
-        </a>
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
+    <h2 class="sidebar-title" id="map-sidebar-title">Locations</h2>
+    <p class="map-sidebar__hint" id="map-sidebar-hint">Select a map to see what has been marked on it.</p>
+    <div class="map-marker-list" id="map-marker-list"></div>
   </aside>
 </div>
 
 {% block scripts %}
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+      integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+        integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.1/dist/umd/supabase.min.js" integrity="sha384-UQ9Ztz63gzT2JZCuDRkNXV8RP/gXxdPUuM9LKlz2BzqGx9xFYNAK8yAEgbfZHs7P" crossorigin="anonymous"></script>
+<script src="/assets/js/auth-storage.js"></script>
+<script src="/assets/js/player.js"></script>
 <script src="/assets/js/map.js"></script>
 {% endblock %}

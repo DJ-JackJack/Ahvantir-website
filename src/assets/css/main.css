@@ -1163,7 +1163,7 @@ hr {
   margin: 0;
 }
 
-/* ── Map Page ───────────────────────────────────────────────────── */
+/* ── Map Page ────────────────────────────────────── */
 .map-page {
   display: grid;
   grid-template-columns: 1fr 18rem;
@@ -1174,44 +1174,146 @@ hr {
   align-items: start;
 }
 
-.map-container {
-  position: relative;
-  background: var(--p-300);
-  border: 1px solid var(--br-mid);
-  min-height: 500px;
+.map-main { position: relative; min-width: 0; }
+
+.map-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
-.map-placeholder {
+.map-switch { display: flex; align-items: center; gap: 0.5rem; }
+.map-switch__label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.map-switch__select {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--p-100);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  padding: 0.35rem 0.6rem;
+}
+
+.map-toggles { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.map-toggle {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  background: var(--p-100);
+  border: 1px solid var(--br-light);
+  border-radius: 999px;
+  padding: 0.22rem 0.7rem;
+  cursor: pointer;
+}
+.map-toggle:hover { border-color: var(--br-mid); color: var(--ink); }
+.map-toggle[aria-pressed="false"] { opacity: 0.45; text-decoration: line-through; }
+
+/* The canvas carries its own height: Leaflet needs a sized container before it
+   will measure anything, so this cannot be left to the content. */
+.map-canvas {
+  height: clamp(420px, 68vh, 760px);
+  background: var(--p-300);
+  border: 1px solid var(--br-mid);
+  box-shadow: var(--shadow-sm);
+}
+.map-canvas .leaflet-container { background: var(--p-300); font-family: var(--font-body); }
+
+.map-status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--p-200) 92%, transparent);
+  pointer-events: none;
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
+}
+.map-status__icon { font-size: 2.6rem; display: block; margin-bottom: 0.9rem; }
+.map-status__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.map-status__text { font-size: 0.85rem; line-height: 1.6; color: var(--ink-ghost); max-width: 30rem; }
+
+/* Tooltips: Leaflet's own chrome is replaced so the card reads as parchment. */
+.leaflet-tooltip.map-tip-wrap {
+  background: var(--p-100);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  box-shadow: var(--shadow-md);
+  padding: 0.6rem 0.75rem;
+  max-width: 19rem;
+  white-space: normal;
+  color: var(--ink);
+}
+.leaflet-tooltip.map-tip-wrap::before { border-top-color: var(--br-mid); }
+.map-tip__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--burg-dark);
+  margin-bottom: 0.3rem;
+}
+.map-tip__text { font-size: 0.82rem; line-height: 1.55; margin: 0 0 0.4rem; }
+.map-tip__cue {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--ink-ghost);
 }
 
-.map-placeholder__icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
-.map-placeholder__title { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink-faded); margin-bottom: 0.5rem; }
-.map-placeholder__text { font-size: 0.85rem; line-height: 1.6; }
+.map-sidebar__hint { font-size: 0.85rem; line-height: 1.6; color: var(--ink-ghost); }
 
-.map-location-list {
-  list-style: none;
-  padding: 0;
+.map-group-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin: 1.1rem 0 0.35rem;
+}
+.map-group-title:first-child { margin-top: 0; }
+
+.map-marker-group { list-style: none; padding: 0; margin: 0; }
+.map-marker-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.map-location-link {
-  display: block;
-  padding: 0.3rem 0;
-  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--burg);
-  text-decoration: none;
+  background: none;
+  border: 0;
   border-bottom: 1px solid var(--br-light);
+  padding: 0.32rem 0;
+  cursor: pointer;
 }
+.map-marker-item:hover { color: var(--burg-dark); }
+.map-marker-item__dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  flex: none;
+  border: 1px solid rgba(26,14,2,0.35);
+}
+.map-marker-item__dot.is-area { border-radius: 2px; }
 
-.map-location-link:hover { color: var(--burg-dark); text-decoration: underline; }
+@media (max-width: 860px) {
+  .map-page { grid-template-columns: 1fr; }
+  .map-canvas { height: clamp(320px, 56vh, 520px); }
+}
 
 /* ── Graph Page ─────────────────────────────────────────────────── */
 .graph-page {
