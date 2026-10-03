@@ -92,3 +92,23 @@ select * from (values
   ((select id from maps where slug = 'arumas-city'), 'point', 'Merchants Guild Grand Hall', 'merchants-guild-grand-hall', 2580, 2888, '#c9a227', 'Government Buildings'),
   ((select id from maps where slug = 'arumas-city'), 'point', 'Kragg''s Menagerie of Marvels', 'kraggs-menagerie-of-marvels', 3123, 2981, '#c9a227', 'Shops'),
   ((select id from maps where slug = 'arumas-city'), 'point', 'Order of Harmony Hospitals — Spillway / Southern', 'order-of-harmony-hospitals', 1599, 3240, '#c2645a', 'Hospitals')) as v(map_id, kind, title, article_slug, geo_x, geo_y, color, group_name);
+
+-- ── DM decision, 2026-10-03: hide the seven quarter polygons ────────────────
+-- The quarters made the map too cluttered to read, so only the ten main
+-- districts are drawn. Their articles are unaffected and still linked from the
+-- point markers and the locations list.
+--
+-- Soft delete rather than removing the rows: these are hand-traced polygons
+-- (172 vertices across the seven) recovered from World Anvil and they cannot be
+-- redrawn faithfully. Keeping them here, stamped, means the seed stays the
+-- complete record of the extraction while the map shows what the DM wants.
+--
+-- To bring them back:
+--   update map_markers set deleted_at = null
+--    where kind = 'area' and group_name = 'Quarters';
+update map_markers
+   set deleted_at = now()
+ where map_id = (select id from maps where slug = 'arumas-city')
+   and kind = 'area'
+   and group_name = 'Quarters'
+   and deleted_at is null;
