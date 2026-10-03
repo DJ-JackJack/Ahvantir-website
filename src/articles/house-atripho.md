@@ -23,7 +23,7 @@ Where other houses command through strength or tradition, Atripho operates from 
 
 ## Political Role
 
-House Atripho’s power lies in foresight and leverage. Though rarely the first to speak in the Council chambers, their counsel often proves prescient. They champion arcane education, extraplanar diplomacy, and the responsible use of enchantment in civil applications.
+House Atripho’s power lies in foresight and leverage. Though rarely the first to speak in the Council Chambers, their counsel often proves prescient. They champion arcane education, extraplanar diplomacy, and the responsible use of enchantment in civil applications.
 
 Their longstanding partnership with the Order of Wisdom has led to joint initiatives in spirit cataloguing and magical ethics. Atripho also provides guidance in crafting laws that govern interplanar trade and the storage of magical knowledge, often acting as arbiters when other houses reach impasses on magical matters.
 

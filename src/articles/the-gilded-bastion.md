@@ -25,7 +25,6 @@ The ruling powers of the time chose not to abandon it. Instead, they built their
 
 The Gilded Bastion is more than a residence for royalty; it is a place where decisions that shape the future of Aru’Mas are made. It consists of several key sections:
 
-- The Grand Council Chamber – The formal meeting hall of the Council of Aru’Mas, where laws are debated and passed. Here, councilors, advisors, and foreign dignitaries gather to deliberate on matters ranging from trade agreements to military conflicts.
 - The Royal Court – Where disputes requiring royal arbitration are settled. While the city’s legal system functions independently, the most significant or sensitive cases are presented before the monarch and their trusted advisors for judgment.
 - The Hall of Luminaries – A venue for performances, debates, and cultural showcases. The Ilderas family regularly invites scholars, poets, and artisans to present their work, reinforcing the Bastion’s role as a center of enlightenment.
 - The Bastion Archives – Containing records of ancient pacts, legal precedents, and the city's history. Chroniclers and scribes ensure that every decree and historical event is meticulously preserved.

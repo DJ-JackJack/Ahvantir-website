@@ -23,7 +23,7 @@ Beneath the opulence lies a web of quiet influence. House Ninetti is an unrivale
 
 ## Political Role
 
-While House Ninetti rarely makes loud declarations in Council chambers, their influence is felt in every negotiation. They often act as neutral mediators between rival houses and ministries, using their extensive network of informants to remain several moves ahead of political trends.
+While House Ninetti rarely makes loud declarations in Council Chambers, their influence is felt in every negotiation. They often act as neutral mediators between rival houses and ministries, using their extensive network of informants to remain several moves ahead of political trends.
 
 Their connections to the Far Farewell Trade Co-op give them a voice in nearly every major import, export, and commercial policy decision. They are also said to have more direct channels to the Crown’s private advisors than any other noble house—though such claims are difficult to verify.
 

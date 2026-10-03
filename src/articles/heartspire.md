@@ -11,17 +11,16 @@ The Heartspire is the central tower of Aru’Mas, serving as the administrative 
 
 ## Overview
 
-The Heartspire is the tallest structure in Aru’Mas, located at the core of [[Spireview]], with its spire reaching toward the heavens. It is a hub for the ruling council, the [[The Sunspear Legion]], [[The Church of the Threefold Path|the Church of the Threefold Path]], and the [[Runeguard]]. While the royal family operates from a separate palace, the Heartspire is where they meet with city officials, host diplomatic visitors, and oversee major decisions affecting the city and the broader archipelago.
+The Heartspire is the tallest structure in Aru’Mas, located at the core of [[Spireview]], with its spire reaching toward the heavens. It is a hub for the [[The Sunspear Legion]], [[The Church of the Threefold Path|the Church of the Threefold Path]], and the [[Runeguard]]. While the royal family operates from a separate palace, the Heartspire is where they meet with city officials, host diplomatic visitors, and oversee major decisions affecting the city and the broader archipelago.
 
 ## Structure and Layout
 
 The Heartspire is a multi-tiered tower, each level fulfilling specific roles in the governance, defense, and spiritual life of Aru’Mas:
 
-## 1. The Council Wing
+## 1. Administrative Offices
 
-- The Council Wing is situated at the base of the Heartspire, serving as the meeting place for the ruling council. This wing includes the Council Hall, where representatives from the noble houses, the Church, and the Merchants’ Guild convene to discuss laws, policies, and major decisions.
-- The Council Hall is a large, circular chamber designed to facilitate open debate and negotiation. Enchanted wards within the hall encourage truthfulness and deter hostile actions, ensuring that discussions remain productive and civil.
-- Adjacent to the Council Hall are the offices of key officials, such as the Grand Speaker of the Merchants’ Guild, the Runelord of the Runeguard, and other representatives who manage the city’s various affairs.
+- The base of the Heartspire holds the offices of key officials, such as the Grand Speaker of the Merchants’ Guild, the Runelord of the Runeguard, and other representatives who manage the city’s various affairs.
+- The [[Council of Aru'Mas|ruling council]] does not sit here. It convenes in the Council Chambers, its own building in [[Crowns Approach]].
 
 ## 2. The Sunspear Bastion
 
@@ -84,7 +83,7 @@ The Heartspire stands as a symbol of Aru’Mas’ unity, power, and commitment t
 
 ## 1. Center of Governance
 
-- As the seat of the ruling council and the headquarters of the Sunspear Legion, the Heartspire represents political authority and stability. It is where decisions are made that shape the city’s future, making it the heart of Aru’Mas’ governance.
+- As the headquarters of the Sunspear Legion, the Heartspire represents political authority and stability. It is where decisions are made that shape the city’s future, making it the heart of Aru’Mas’ governance.
 - Citizens see the Heartspire as a place of law and order, where the city’s leaders come together to uphold the values of Aru’Mas. Its height and visibility make it a constant reminder of the city’s leadership and its commitment to the safety and prosperity of its people.
 
 ## 2. Spiritual Significance

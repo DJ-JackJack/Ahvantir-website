@@ -15,7 +15,7 @@ The Ironshields are the backbone of the city’s ground defense, fulfilling seve
 
 ## 1. Defensive Stronghold Forces
 
-- The Ironshields are primarily stationed at the most important locations within Aru’Mas, including the [[Heartspire]], the Council Hall, and the [[Runeguard]] Citadel. They are tasked with fortifying these areas against spiritual incursions, enemy sieges, and multiversal breaches.
+- The Ironshields are primarily stationed at the most important locations within Aru’Mas, including the [[Heartspire]], the Council Chambers, and the [[Runeguard]] Citadel. They are tasked with fortifying these areas against spiritual incursions, enemy sieges, and multiversal breaches.
 - They serve as the last line of defense during sieges or large-scale assaults, using their heavy armor and shields to protect the most vulnerable positions, including magical wards, defensive runes, and key personnel.
 
 ## 2. Law Enforcement and Riot Control
@@ -73,7 +73,7 @@ The Ironshields are involved in various missions that highlight their role as st
 
 ## 1. Guarding Key Locations
 
-- The Ironshields are stationed at the most important locations in the city, including the Heartspire, the Council Hall, and the Runeguard Citadel. They are responsible for protecting these areas from spiritual incursions, magical attacks, and physical sieges.
+- The Ironshields are stationed at the most important locations in the city, including the Heartspire, the Council Chambers, and the Runeguard Citadel. They are responsible for protecting these areas from spiritual incursions, magical attacks, and physical sieges.
 - Their presence at these locations is a visible symbol of Aru’Mas’ strength, reinforcing the sense of security among the city’s inhabitants and government officials.
 
 ## 2. Suppressing Spiritual Incursions

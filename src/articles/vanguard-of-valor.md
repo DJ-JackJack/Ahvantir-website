@@ -77,7 +77,7 @@ The Vanguard of Valor are involved in a range of missions that emphasize their r
 
 ## 1. Palace Security and Royal Protection
 
-- The Vanguard maintain a constant presence within the royal palace, providing round-the-clock security for the Ilderas family. They are stationed at key points within the palace, including the royal chambers, council halls, and treasury, ready to respond to any threat at a moment’s notice.
+- The Vanguard maintain a constant presence within the royal palace, providing round-the-clock security for the Ilderas family. They are stationed at key points within the palace, including the royal chambers and the treasury, ready to respond to any threat at a moment’s notice.
 - During public appearances or official events, the Vanguard form a protective perimeter around the royal family, using their shields and combat skills to fend off potential attacks. Their presence is a visible symbol of strength and authority, ensuring that no one doubts the power of the monarchy.
 
 ## 2. High-Risk Combat Missions

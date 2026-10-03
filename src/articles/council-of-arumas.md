@@ -14,6 +14,11 @@ shorthand has it, nor a chamber open to every interested party. It is thirteen d
 distinct bodies, each of which selects its representatives by its own rules. Power in Aru'Mas is shared not
 between three people but between three constituencies, and the arithmetic of that sharing is deliberate.
 
+The Council sits in the Council Chambers, a building of its own in [[Crowns Approach]]. The thirteen
+meet in its Grand Assembly Hall. The building also holds quarters for every sitting delegate and
+guestrooms for visiting dignitaries and invited speakers, so a delegate called to the city for a session
+need not depend on a noble house for a bed.
+
 ---
 
 ## Composition

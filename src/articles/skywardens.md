@@ -15,7 +15,7 @@ The Skywardens play multiple critical roles in the defense and operations of Aru
 
 ## 1. Aerial Defense
 
-- The Skywardens serve as the primary defense force against threats from above, including rogue spirits, airborne attackers, and multiversal incursions. They patrol the skies over key areas such as the [[Heartspire]], Council Hall, and the [[Spiritsway Passage]] , maintaining Aru’Mas’ sovereignty over its airspace.
+- The Skywardens serve as the primary defense force against threats from above, including rogue spirits, airborne attackers, and multiversal incursions. They patrol the skies over key areas such as the [[Heartspire]], the Council Chambers, and the [[Spiritsway Passage]] , maintaining Aru’Mas’ sovereignty over its airspace.
 - In times of crisis, they are capable of launching rapid, coordinated strikes, using their mounts’ unique abilities to disrupt enemy formations or neutralize threats before they reach the ground.
 
 ## 2. Rapid Deployment and Support

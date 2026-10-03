@@ -53,7 +53,7 @@ The Tetherjump network in Aru’Mas is divided into different types of pylons, e
 
 ## 2. Restricted Tetherjumps
 
-- These pylons are reserved for official use, accessible only to government officials, the Runeguard, and authorized guild leaders. They are located in sensitive areas like the Council Hall, Runeguard Citadel, and military barracks.
+- These pylons are reserved for official use, accessible only to government officials, the Runeguard, and authorized guild leaders. They are located in sensitive areas like the Council Chambers, Runeguard Citadel, and military barracks.
 - Restricted Tetherjumps are equipped with additional security measures, including arcane wards, identity checks, and monitoring by the Runeguard. They allow for quick deployment of personnel to critical locations in times of emergency or diplomatic urgency.
 - Access requires a special arcane token encoded with the user’s rank, purpose, and permissions, preventing unauthorized use.
 
