@@ -107,7 +107,10 @@
       box = document.createElement('div');
       box.id = 'map-toast';
       box.setAttribute('role', 'status');
-      document.body.appendChild(box);
+      // Inside .map-page, not on <body>: fullscreen puts .map-page in the top
+      // layer, and anything outside it is not rendered. A save confirmation or
+      // a write error on <body> would simply never be seen in fullscreen.
+      (document.getElementById('map-page') || document.body).appendChild(box);
     }
     box.className = 'map-toast is-' + (kind || 'info');
     box.textContent = '';

@@ -1163,18 +1163,26 @@ hr {
   margin: 0;
 }
 
-/* ── Map Page ────────────────────────────────────── */
+/* ── Map Page ──────────────────────────────────────
+   The frame runs full width with the locations underneath it. The city image is
+   4962x3508, landscape by a wide margin, so a side column takes width from the
+   one axis the map needs most and squeezes 50 locations into a single long
+   scroll. Underneath, the frame keeps its width and the list gets room to lay
+   out in columns. */
 .map-page {
-  display: grid;
-  grid-template-columns: 1fr 18rem;
-  gap: 2rem;
-  max-width: var(--max-w);
+  max-width: 110rem;          /* wider than article pages: the map is the point */
   margin-inline: auto;
-  padding: 0 clamp(1rem, 4vw, 2.5rem) 4rem;
-  align-items: start;
+  padding: 0 clamp(1rem, 3vw, 2rem) 3.5rem;
 }
 
-.map-main { position: relative; min-width: 0; }
+.map-head { padding: 2rem 0 1rem; }
+.map-head__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--ink);
+  margin: 0 0 0.3rem;
+}
+.map-head__lead { font-size: 0.95rem; color: var(--ink-faded); margin: 0; max-width: 46rem; }
 
 .map-toolbar {
   display: flex;
@@ -1202,57 +1210,125 @@ hr {
   padding: 0.35rem 0.6rem;
 }
 
-.map-toggles { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.map-toggle {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--ink-faded);
-  background: var(--p-100);
-  border: 1px solid var(--br-light);
-  border-radius: 999px;
-  padding: 0.22rem 0.7rem;
-  cursor: pointer;
-}
-.map-toggle:hover { border-color: var(--br-mid); color: var(--ink); }
-.map-toggle[aria-pressed="false"] { opacity: 0.45; text-decoration: line-through; }
-
-/* The canvas carries its own height: Leaflet needs a sized container before it
-   will measure anything, so this cannot be left to the content. */
-.map-canvas {
-  height: clamp(420px, 68vh, 760px);
-  background: var(--p-300);
+/* ── The frame ─────────────────────────────────────── */
+.map-stage {
+  position: relative;
+  height: clamp(420px, 72vh, 900px);
   border: 1px solid var(--br-mid);
   box-shadow: var(--shadow-sm);
+  background: var(--p-300);
 }
-.map-canvas .leaflet-container { background: var(--p-300); font-family: var(--font-body); }
+.map-canvas { position: absolute; inset: 0; background: var(--p-300); }
+/* Leaflet adds .leaflet-container to the element it is constructed on, which is
+   #map-canvas itself. A descendant selector matched nothing here, so the frame
+   showed Leaflet's default grey rather than parchment. */
+.map-canvas.leaflet-container {
+  background: var(--p-300);
+  font-family: var(--font-body);
+}
+
+/* Fullscreen takes the frame only, not the list below it. */
+/* Fullscreen takes .map-page so the DM toolbar, properties panel and toasts
+   come with it; the list is hidden instead, which gives the same immersive
+   result without putting the editor's surfaces outside the top layer. */
+.map-page:fullscreen {
+  max-width: none;
+  padding: 0;
+  background: var(--p-200);
+  display: flex;
+  flex-direction: column;
+}
+.map-page:fullscreen .map-head { display: none; }
+.map-page:fullscreen .map-stage {
+  flex: 1 1 auto;
+  height: auto;
+  aspect-ratio: auto;
+  max-height: none;
+  border: 0;
+}
+.map-page:fullscreen .map-browser { display: none; }
+/* Except while editing, when the filters and the properties panel are the
+   point of being there. */
+.map-page:fullscreen.is-editing .map-browser { display: block; }
+
+/* Leaflet's own buttons plus ours, sharing one column. */
+.map-ctrl a {
+  font-size: 1.05rem;
+  line-height: 26px;
+  color: var(--ink);
+  text-align: center;
+}
+.map-ctrl a:hover { color: var(--burg-dark); }
+
+/* District names drawn on the map. Shown only where the district renders wide
+   enough to carry one; map.js decides that from the rendered width. */
+.leaflet-tooltip.map-label {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fdf8ed;
+  /* An outline rather than a panel: a filled label would hide the very thing it
+     is naming, and these sit over districts of every colour. */
+  text-shadow:
+     0 0 3px rgba(26, 14, 2, 0.95), 0 0 3px rgba(26, 14, 2, 0.95),
+     1px 1px 0 rgba(26, 14, 2, 0.8), -1px 1px 0 rgba(26, 14, 2, 0.8),
+     1px -1px 0 rgba(26, 14, 2, 0.8), -1px -1px 0 rgba(26, 14, 2, 0.8);
+  /* Wrap rather than run off the frame. Leaflet centres a label on its
+     district, so a long name over a district near the edge gets clipped by the
+     map container: "Upper and Lower Hearthstone" lost its first letter. A
+     bounded width turns the long ones into two short lines instead. */
+  white-space: normal;
+  width: max-content;
+  max-width: 11rem;
+  text-align: center;
+  line-height: 1.2;
+  pointer-events: none;
+}
+.leaflet-tooltip.map-label::before { display: none; }
 
 .map-status {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--p-200) 92%, transparent);
-  pointer-events: none;
   text-align: center;
   padding: 2rem;
+  background: var(--p-200);
+  /* Above Leaflet's control panes, which sit at 800. Below that, the zoom and
+     reset buttons painted on top of an opaque error panel and stayed clickable
+     over a map that had failed to load. */
+  z-index: 1000;
+  overflow: auto;
 }
+.map-status[hidden] { display: none; }
 .map-status__icon { font-size: 2.6rem; display: block; margin-bottom: 0.9rem; }
 .map-status__title {
   font-family: var(--font-display);
   font-size: 1.05rem;
   color: var(--ink-faded);
-  margin-bottom: 0.4rem;
+  margin: 0 0 0.4rem;
 }
 .map-status__text { font-size: 0.85rem; line-height: 1.6; color: var(--ink-ghost); max-width: 30rem; }
 
-/* Tooltips: Leaflet's own chrome is replaced so the card reads as parchment. */
+/* ── Hover summary ─────────────────────────────────── */
 .leaflet-tooltip.map-tip-wrap {
   background: var(--p-100);
   border: 1px solid var(--br-mid);
   border-radius: 2px;
   box-shadow: var(--shadow-md);
   padding: 0.6rem 0.75rem;
-  max-width: 19rem;
+  /* An explicit WIDTH, not max-width. Leaflet's .leaflet-tooltip-pane is a
+     zero-width absolutely positioned element and therefore the containing block
+     for this box, so shrink-to-fit resolves against 0 and max-width only caps a
+     preferred width that has already collapsed. Measured at 99px wide and 842px
+     tall before this: a column of single words, taller than the map. */
+  width: 19rem;
+  max-width: calc(100vw - 2rem);
   white-space: normal;
   color: var(--ink);
 }
@@ -1272,7 +1348,102 @@ hr {
   color: var(--ink-ghost);
 }
 
-.map-sidebar__hint { font-size: 0.85rem; line-height: 1.6; color: var(--ink-ghost); }
+/* ── Browser: search, layer filters, the list ──────── */
+.map-browser {
+  margin-top: 1rem;
+  border: 1px solid var(--br-light);
+  background: var(--p-100);
+}
+
+.map-browser__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--br-light);
+}
+
+.map-search { flex: 0 1 16rem; display: block; }
+.map-search__input {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--p-200);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  padding: 0.35rem 0.6rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.map-search__input::placeholder { color: var(--ink-ghost); }
+
+.map-toggles { display: flex; flex-wrap: wrap; gap: 0.35rem; flex: 1 1 auto; }
+.map-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--p-200);
+  border: 1px solid var(--br-light);
+  border-radius: 999px;
+  padding: 0.22rem 0.7rem;
+  cursor: pointer;
+}
+.map-toggle:hover { border-color: var(--br-mid); }
+.map-toggle__dot {
+  width: 0.6rem; height: 0.6rem; border-radius: 50%; flex: none;
+  border: 1px solid rgba(26, 14, 2, 0.35);
+}
+.map-toggle__count { color: var(--ink-ghost); font-size: 0.72rem; }
+/* Off reads as off without relying on colour alone. */
+/* Off state carries its own colours rather than a blanket opacity. At 0.5 the
+   label measured about 3.5:1 against parchment and the count about 1.8:1, both
+   under the 4.5:1 floor. The strike-through still signals state without colour. */
+.map-toggle[aria-pressed="false"] {
+  background: transparent;
+  border-style: dashed;
+  color: var(--ink-faded);
+  text-decoration: line-through;
+}
+.map-toggle[aria-pressed="false"] .map-toggle__count { color: var(--ink-faded); }
+.map-toggle[aria-pressed="false"] .map-toggle__dot { opacity: 0.45; }
+
+.map-browser__collapse {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  background: none;
+  border: 1px solid var(--br-light);
+  border-radius: 2px;
+  padding: 0.22rem 0.65rem;
+  cursor: pointer;
+}
+.map-browser__collapse:hover { color: var(--ink); border-color: var(--br-mid); }
+
+.map-sidebar { padding: 0.9rem; display: flex; flex-direction: column; }
+/* Hide the list, not the whole container: the editor appends its properties
+   panel in here, and collapsing the list is exactly what a DM does to get the
+   50 names out of the way before marking up a map. Hiding the container made
+   the panel for the marker they just clicked vanish with no sign it existed. */
+.map-page.is-list-collapsed .map-marker-list,
+.map-page.is-list-collapsed .map-sidebar__hint { display: none; }
+.map-page.is-list-collapsed .map-sidebar:not(:has(.map-props)) { display: none; }
+
+.map-sidebar__hint { font-size: 0.85rem; line-height: 1.6; color: var(--ink-ghost); margin: 0; }
+
+/* The payoff for moving the list under the frame: groups flow into columns
+   instead of one 50-item scroll. */
+.map-marker-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+  gap: 0.4rem 1.5rem;
+  align-items: start;
+}
+.map-group { break-inside: avoid; }
 
 .map-group-title {
   font-family: var(--font-display);
@@ -1280,9 +1451,9 @@ hr {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-faded);
-  margin: 1.1rem 0 0.35rem;
+  margin: 0.6rem 0 0.25rem;
 }
-.map-group-title:first-child { margin-top: 0; }
+.map-group:first-child .map-group-title { margin-top: 0; }
 
 .map-marker-group { list-style: none; padding: 0; margin: 0; }
 .map-marker-item {
@@ -1293,14 +1464,21 @@ hr {
   text-align: left;
   font-family: var(--font-body);
   font-size: 0.88rem;
-  color: var(--burg);
+  color: var(--ink);
   background: none;
   border: 0;
-  border-bottom: 1px solid var(--br-light);
-  padding: 0.32rem 0;
+  padding: 0.28rem 0.2rem;
   cursor: pointer;
+  border-radius: 2px;
 }
-.map-marker-item:hover { color: var(--burg-dark); }
+/* The grid track's minimum is the content's min-content width, so one very long
+   unbroken title would otherwise push the column wider than its share. */
+.map-marker-item { overflow-wrap: anywhere; min-width: 0; }
+.map-marker-item:hover { color: var(--burg-dark); background: var(--p-200); }
+.map-marker-item[aria-current="true"] {
+  background: var(--p-300);
+  color: var(--burg-dark);
+}
 .map-marker-item__dot {
   width: 0.6rem;
   height: 0.6rem;
@@ -1310,9 +1488,63 @@ hr {
 }
 .map-marker-item__dot.is-area { border-radius: 2px; }
 
+/* The keyboard route to an article. Quiet until the row is hovered or the link
+   itself is focused, so it does not turn the list into a wall of "Open". */
+.map-marker-group li { display: flex; align-items: center; gap: 0.3rem; }
+.map-marker-group li .map-marker-item { flex: 1 1 auto; }
+.map-marker-item__open {
+  flex: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  text-decoration: none;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  opacity: 0;
+}
+.map-marker-group li:hover .map-marker-item__open,
+.map-marker-item__open:focus-visible { opacity: 1; color: var(--burg-dark); }
+.map-marker-item__open:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; }
+@media (hover: none) {
+  /* No hover to reveal it on a touch screen. */
+  .map-marker-item__open { opacity: 1; }
+}
+
+/* Focus rings for the map's own controls.
+   This stylesheet has no global :focus-visible rule, only per-component ones,
+   so anything new has to bring its own or it keeps whatever the browser gives
+   it on a custom-styled control, which is often nothing. */
+.map-toggle:focus-visible,
+.map-browser__collapse:focus-visible,
+.map-marker-item:focus-visible,
+.map-search__input:focus-visible,
+.map-switch__select:focus-visible,
+.map-ctrl a:focus-visible {
+  outline: 2px solid var(--burg);
+  outline-offset: 2px;
+}
+.map-search__input:focus-visible { outline-offset: 0; }
+
 @media (max-width: 860px) {
-  .map-page { grid-template-columns: 1fr; }
-  .map-canvas { height: clamp(320px, 56vh, 520px); }
+  /* Match the frame to the map instead of to the viewport. A fixed height on a
+     phone left a landscape image floating in a tall box: at 375px wide the
+     Aru'Mas map renders 240px tall inside a 455px frame, so nearly half the
+     stage was empty. --map-aspect is set per map by map.js, so a differently
+     shaped map gets a differently shaped frame. */
+  .map-stage {
+    height: auto;
+    width: 100%;              /* explicit, so max-height cannot narrow it too */
+    aspect-ratio: var(--map-aspect, 3 / 2);
+    /* 180px rather than 240px: at 320px wide the Aru'Mas map wants 226px, and a
+       taller floor just reintroduced the letterboxing this rule removed. */
+    min-height: 180px;
+    /* Still needed for landscape phones, where the aspect alone would make the
+       frame taller than the screen. */
+    max-height: 70vh;
+  }
+  .map-search { flex: 1 1 100%; }
+  .map-browser__collapse { margin-left: 0; }
 }
 
 /* ── Map Page: DM editing ───────────────────────────
@@ -1364,12 +1596,17 @@ hr {
 .map-page.is-editing .map-tip-wrap { display: none; }
 
 /* ── Marker properties panel ───────────────────────── */
+/* The editor appends this into .map-sidebar, which now sits under the map with
+   the 50-name list in it. Ordered first so the panel for the marker you just
+   clicked is next to the frame rather than past the whole list. */
 .map-props {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--br-light);
+  order: -1;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--br-light);
   display: grid;
   gap: 0.6rem;
+  max-width: 26rem;
 }
 .map-props__head {
   font-family: var(--font-display);

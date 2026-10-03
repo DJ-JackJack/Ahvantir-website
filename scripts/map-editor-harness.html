@@ -11,21 +11,28 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
-<div class="map-page">
-  <div class="map-main">
-    <div class="map-toolbar" id="map-toolbar" hidden>
-      <label class="map-switch"><span class="map-switch__label">Map</span>
-        <select id="map-select" class="map-switch__select"></select></label>
-      <div class="map-toggles" id="map-toggles"></div>
-    </div>
+<div class="map-page" id="map-page">
+  <div class="map-toolbar" id="map-toolbar" hidden>
+    <label class="map-switch"><span class="map-switch__label">Map</span>
+      <select id="map-select" class="map-switch__select"></select></label>
+  </div>
+  <div class="map-stage">
     <div class="map-canvas" id="map-canvas"></div>
     <div class="map-status" id="map-status"></div>
   </div>
-  <aside class="map-sidebar">
-    <h2 class="sidebar-title">Locations</h2>
-    <p class="map-sidebar__hint" id="map-sidebar-hint"></p>
-    <div class="map-marker-list" id="map-marker-list"></div>
-  </aside>
+  <div class="map-browser">
+    <div class="map-browser__bar">
+      <label class="map-search"><span class="sr-only">Search locations</span>
+        <input type="search" id="map-search" class="map-search__input" placeholder="Search locations…"></label>
+      <div class="map-toggles" id="map-toggles"></div>
+      <button type="button" class="map-browser__collapse" id="map-list-toggle" aria-expanded="true">
+        <span class="map-browser__collapse-text">Hide list</span></button>
+    </div>
+    <aside class="map-sidebar" id="map-sidebar">
+      <p class="map-sidebar__hint" id="map-sidebar-hint"></p>
+      <div class="map-marker-list" id="map-marker-list"></div>
+    </aside>
+  </div>
 </div>
 
 <script>

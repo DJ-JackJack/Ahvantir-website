@@ -5,25 +5,37 @@ description: "Interactive maps of Ahvantir and the city of Aru'Mas."
 permalink: /map/
 ---
 
-<div class="page-header">
-  <div class="container">
-    <h1 class="page-title">Maps</h1>
-    <p class="page-lead">Hover a marker for a summary. Click to open its article.</p>
+{# Layout: the frame runs full width with the locations underneath it, rather
+   than a column down the right.
+
+   The city image is 4962x3508, so it is landscape by a wide margin. A side
+   column takes its width away from the one axis it needs most, and squeezes 50
+   locations across 10 groups into a single long scroll. Underneath, the frame
+   keeps the full width and the list gets horizontal room to lay out in columns.
+
+   The ids and class names map.js and map-editor.js attach to are unchanged:
+   #map-canvas, #map-toolbar, #map-select, #map-toggles, #map-status,
+   #map-marker-list, #map-sidebar-hint, .map-page and .map-sidebar. #}
+
+<div class="map-page" id="map-page">
+
+  {# Restoring these: the first pass at this layout dropped the page-header and
+     the sidebar's h2, which left /map/ shipping with no heading elements at all
+     and no statement of what the page is or how to use it. #}
+  <div class="map-head">
+    <h1 class="map-head__title">Maps</h1>
+    <p class="map-head__lead">Hover a marker for a summary, or open its article from the list below.</p>
   </div>
-</div>
 
-<div class="map-page">
-  <div class="map-main">
-    <div class="map-toolbar" id="map-toolbar" hidden>
-      <label class="map-switch">
-        <span class="map-switch__label">Map</span>
-        <select id="map-select" class="map-switch__select" aria-label="Choose a map"></select>
-      </label>
-      <div class="map-toggles" id="map-toggles" role="group" aria-label="Layer visibility"></div>
-    </div>
+  <div class="map-toolbar" id="map-toolbar" hidden>
+    <label class="map-switch">
+      <span class="map-switch__label">Map</span>
+      <select id="map-select" class="map-switch__select" aria-label="Choose a map"></select>
+    </label>
+  </div>
 
-    <div class="map-canvas" id="map-canvas" aria-label="Interactive map"></div>
-
+  <div class="map-stage">
+    <div class="map-canvas" id="map-canvas" aria-label="Interactive map of Ahvantir"></div>
     <div class="map-status" id="map-status" role="status">
       <div class="map-status__inner">
         <span class="map-status__icon" aria-hidden="true">🗺</span>
@@ -32,11 +44,30 @@ permalink: /map/
     </div>
   </div>
 
-  <aside class="map-sidebar">
-    <h2 class="sidebar-title" id="map-sidebar-title">Locations</h2>
-    <p class="map-sidebar__hint" id="map-sidebar-hint">Select a map to see what has been marked on it.</p>
-    <div class="map-marker-list" id="map-marker-list"></div>
-  </aside>
+  <div class="map-browser">
+    <div class="map-browser__bar">
+      <label class="map-search">
+        <span class="sr-only">Search locations</span>
+        <input type="search" id="map-search" class="map-search__input"
+               placeholder="Search locations…" autocomplete="off">
+      </label>
+      <div class="map-toggles" id="map-toggles" role="group" aria-label="Filter layers"></div>
+      <button type="button" class="map-browser__collapse" id="map-list-toggle"
+              aria-expanded="true" aria-controls="map-sidebar">
+        <span class="map-browser__collapse-text">Hide list</span>
+      </button>
+    </div>
+
+    <aside class="map-sidebar" id="map-sidebar" aria-labelledby="map-sidebar-title">
+      <h2 class="sr-only" id="map-sidebar-title">Locations on this map</h2>
+      {# Filtering changes the list silently for a screen reader: the visible
+         count is obvious to a sighted user and invisible to everyone else. #}
+      <p class="sr-only" id="map-filter-status" role="status" aria-live="polite"></p>
+      <p class="map-sidebar__hint" id="map-sidebar-hint">Select a map to see what has been marked on it.</p>
+      <div class="map-marker-list" id="map-marker-list"></div>
+    </aside>
+  </div>
+
 </div>
 
 {% block scripts %}
