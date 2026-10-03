@@ -20,8 +20,21 @@ module.exports = {
   backlinks: [],
 
   eleventyComputed: {
-    // No article sets its own permalink, so the default shape is reproduced
-    // here rather than inherited. If one ever needs a custom URL, add it here.
+    // Reproducing the default URL shape, because a computed permalink is the
+    // only way to stop a draft being written at all.
+    //
+    // This file governs EVERY file in src/articles/, and eleventyComputed beats
+    // a page's own frontmatter. The Articles index used to live here as
+    // index.njk, so it lost its declared `permalink: /articles/` and was
+    // rebuilt at /articles/articles/ — fileSlug for an index file being the
+    // directory name — which 404'd the site's main nav link while every
+    // individual article still worked. Guarding on the file extension instead
+    // only made it worse: reading data.permalink from inside the computed
+    // permalink is self-referential, and Eleventy then failed the build with
+    // "Having trouble writing to false" while still writing the draft.
+    //
+    // The index now lives at src/articles-index.njk, outside this directory, so
+    // this rule applies only to the generated articles and needs no exceptions.
     permalink: (data) =>
       data.draft ? false : `/articles/${data.page.fileSlug}/`,
 

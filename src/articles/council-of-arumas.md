@@ -1,7 +1,7 @@
 ---
 title: "Council of Aru'Mas"
 description: "The governing body of [[Aru'Mas]]. Thirteen voting delegates drawn from three bodies across seven organisations: the Crown, the Scepter, and the People. Consequential measures require nine votes, which means no single body can carry a measure alone and no single organisation can block one. Sessions are chaired by the Transcendent Voice, the ambassador of the King of Spirits, who speaks but does not vote."
-category: government
+category: factions
 tags: [government, council, politics, crown, pathite-faith, merchants-guild, adventurers-guild]
 aliases: ["The Council", "the ruling council", "Council of Aru’Mas", "the Council of Aru'Mas"]
 date_added: "2026-10-02"

@@ -28,7 +28,11 @@ layout: base
     <h1 class="article-title">{{ title }}</h1>
 
     {% if description %}
-    <p class="article-lead">{{ description }}</p>
+    {# stripWikilinks, like every other consumer of description. Without it the
+       site-wide wikilink transform expands a [[Target]] here AFTER the value has
+       been HTML-escaped, so [[Aru'Mas]] slugified through its escaped apostrophe
+       into a link to /articles/aru-39-mas/ with the text Aru&#39;Mas. #}
+    <p class="article-lead">{{ description | stripWikilinks }}</p>
     {% endif %}
 
     <div class="article-meta">

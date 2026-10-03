@@ -59,6 +59,17 @@ SKIP_FILES = {"Welcome.md", "welcome.md"}
 # survive every sync (they don't exist in the Obsidian vault files).
 PRESERVE_FIELDS = {"timeline_year", "timeline_date", "timeline_pending", "date_added"}
 
+# The eight category slugs src/_data/meta.js knows about. The Articles index
+# only renders an article inside a loop over these, so a category outside the
+# set is not an error anywhere: the page builds, the article is reachable by its
+# own URL, and it is simply absent from the index and from every category
+# filter. "government" slipped through exactly that way and left the new Council
+# of Aru'Mas article invisible on a page claiming to list 239 articles.
+VALID_CATEGORIES = {
+    "history", "locations", "factions", "characters",
+    "religion", "magic", "cosmology", "culture",
+}
+
 CATEGORY_MAP = {
     "article":           "history",
     "cosmology":         "cosmology",
@@ -67,6 +78,7 @@ CATEGORY_MAP = {
     "deity":             "religion",
     "document":          "history",
     "faction":           "factions",
+    "government":        "factions",
     "historical-figure": "characters",
     "history":           "history",
     "location":          "locations",
@@ -313,6 +325,13 @@ def build_frontmatter(fm: dict, description: str, preserved: dict = None) -> str
     title = fm.get("title", "")
     category_raw = fm.get("category", "")
     category = CATEGORY_MAP.get(category_raw, category_raw)
+    if category and category not in VALID_CATEGORIES:
+        print(
+            f"WARN unmapped category '{category_raw}' -> '{category}': not one of "
+            f"{sorted(VALID_CATEGORIES)}. The article will build but will not "
+            f"appear on /articles/. Add it to CATEGORY_MAP.",
+            file=sys.stderr,
+        )
     tags = fm.get("tags", [])
     aliases = fm.get("aliases", [])
 

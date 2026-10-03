@@ -58,7 +58,10 @@ module.exports = function (eleventyConfig) {
   // The alternation matches <script>...</script> blocks first (returned unchanged)
   // so wikilinks embedded in JSON data inside <script> elements are never expanded.
   eleventyConfig.addTransform("wikilinks", function (content, outputPath) {
-    if (!outputPath?.endsWith(".html")) return content;
+    // outputPath is `false`, not a string, for a page with permalink:false
+    // (how a draft is kept unwritten). Optional chaining does not guard a
+    // boolean, so `false?.endsWith` threw and failed the whole build.
+    if (typeof outputPath !== "string" || !outputPath.endsWith(".html")) return content;
     return content.replace(
       /(<script\b[\s\S]*?<\/script>)|\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
       (match, scriptBlock, target, alias) => {
@@ -91,7 +94,10 @@ module.exports = function (eleventyConfig) {
   // refresh, while unchanged assets keep their cached URL. Runs on HTML output;
   // external (CDN) URLs and anything already carrying a query string are skipped.
   eleventyConfig.addTransform("cacheBustAssets", function (content, outputPath) {
-    if (!outputPath?.endsWith(".html")) return content;
+    // outputPath is `false`, not a string, for a page with permalink:false
+    // (how a draft is kept unwritten). Optional chaining does not guard a
+    // boolean, so `false?.endsWith` threw and failed the whole build.
+    if (typeof outputPath !== "string" || !outputPath.endsWith(".html")) return content;
     return content.replace(
       /(href|src)="(\/assets\/(?:css|js)\/[^"?]+\.(?:css|js))"/g,
       (match, attr, url) => {
