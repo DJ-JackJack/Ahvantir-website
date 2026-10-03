@@ -172,8 +172,44 @@ Setup is one script:
 ```
 
 Notes are scoped per map, so a pin dropped on the city map does not appear on
-the Fend. Deleting is permanent, but the toast offers an Undo that writes the
-note back rather than making the player retype it.
+the Fend.
+
+**Deleting** works two ways: the Delete button in the panel, and a cross beside
+each entry in the My notes list under the map. The list matters — a pin can be
+awkward to hit on a busy map, and a note you cannot reach is a note you cannot
+remove. Deleting is permanent, but the toast offers an Undo that writes the note
+back, image and all, rather than making the player retype it.
+
+**A pin can be a colour or an image.** Six preset colours, plus a picker for any
+other. An uploaded image is downscaled in the browser to 96px on its longest
+side and re-encoded to PNG before it leaves the machine, so a photo straight off
+a phone becomes a few hundred bytes and no pin can dominate the map.
+
+Those images live in a **private** bucket, `player-markers`, not a public one.
+Storage policies key off the first path segment — every object is at
+`<player_id>/<file>` — so a player can only read, write or delete inside their
+own folder, and the client fetches them through short-lived signed URLs. A
+public bucket would have meant the picture attached to a private note was
+fetchable by anyone who guessed the path.
+
+### Two Leaflet behaviours this works around
+
+**A click on a layer never reaches the map.** Leaflet's `_findEventTargets`
+only falls back to the map when no layer matched, so a district polygon swallows
+the click and opens its own article instead. That made the inside of a district
+— most of the map — impossible to annotate. Placing mode now sets
+`pointer-events: none` on the other panes so the click lands on the map.
+
+**Vector layers draw in the order they were added**, and the viewer re-stacks
+its own markers whenever a filter changes, which could bury a player's pin under
+a district where it could not be clicked, opened or deleted. Player pins
+therefore live in their own pane at `z-index: 620`, above the overlay pane's
+400, where nothing can cover them.
+
+One more worth knowing: the site-wide `img { max-width: 100% }` resolves against
+the Leaflet pane, which is absolutely positioned with no width, so an image
+marker collapses to its border — measured 4px against a declared 36px.
+`.map-mine-icon` sets `max-width: none` for that reason.
 
 Players never download the drawing library. The DM editor needs Geoman for
 polygons; dropping a pin needs a map click, so `map-player-notes.js` is a few KB
@@ -280,6 +316,7 @@ is hoverable but not clickable.
 |---|---|
 | `scripts/supabase-maps-schema.sql` | Tables, RLS, Storage bucket |
 | `scripts/supabase-player-map-markers.sql` | Private per-player pins and notes |
+| migration `player_marker_icons` | Adds `icon_path` and the private `player-markers` bucket |
 | `src/assets/js/map-player-notes.js` | Player notes; inert unless signed in |
 | `scripts/seed-arumas-map.sql` | The Aru'Mas city map and its 50 markers |
 | `src/map.njk` | The page |

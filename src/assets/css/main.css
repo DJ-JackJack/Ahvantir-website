@@ -1717,6 +1717,89 @@ hr {
 .map-page.is-placing-note .map-canvas { cursor: crosshair; }
 .map-page.is-placing-note .map-stage { outline: 2px solid var(--teal-dark); outline-offset: 2px; }
 
+/* And every other layer lets the click through.
+   Leaflet hands a click to the map ONLY when no layer consumed it, so without
+   this a district polygon eats the click and opens its own article instead of a
+   pin being dropped — which made the inside of a district, most of the map,
+   impossible to annotate. */
+.map-page.is-placing-note .leaflet-overlay-pane,
+.map-page.is-placing-note .leaflet-marker-pane,
+.map-page.is-placing-note .leaflet-playerNotes-pane { pointer-events: none; }
+
+/* An uploaded pin image. Round, ringed, and sized the same whatever was
+   uploaded, so one player's photo cannot dominate the map. */
+.map-mine-icon {
+  /* Leaflet writes iconSize as the content box, so without this the 2px ring
+     would push every pin out to 40px and quietly break the anchor alignment. */
+  box-sizing: border-box;
+  /* The site-wide `img { max-width: 100% }` resolves against the Leaflet pane,
+     which is absolutely positioned with no width, so 100% computes to 0 and the
+     pin collapses to just its border: measured 4px wide against a declared
+     36px. Leaflet's inline width cannot win because max-width beats width. */
+  max-width: none;
+  border-radius: 50%;
+  border: 2px solid var(--p-100);
+  box-shadow: 0 0 0 1px rgba(26,14,2,0.55);
+  object-fit: cover;
+  background: var(--p-200);
+}
+
+/* My notes, listed. A pin can be awkward to hit on a busy map, so the list is
+   the reliable way to reach one — and to delete it. */
+.map-mynotes {
+  order: -1;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--br-light);
+}
+.map-mynotes[hidden] { display: none; }
+.map-mynotes__list { list-style: none; padding: 0; margin: 0.3rem 0 0; }
+.map-mynotes__list li { display: flex; align-items: center; gap: 0.3rem; }
+.map-mynotes__list .map-marker-item { flex: 1 1 auto; }
+.map-mynotes__del {
+  flex: none;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--ink-ghost);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0.25rem 0.4rem;
+  cursor: pointer;
+}
+.map-mynotes__del:hover { color: var(--burg-dark); border-color: var(--burg-pale); }
+.map-mynotes__del:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; }
+.map-marker-item__dot.is-image { border-radius: 3px; border-style: double; border-width: 3px; }
+
+/* Any colour, not just the six. */
+.map-swatch--custom {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: linear-gradient(135deg, #c2645a, #4da23e, #076cba, #9f34f8);
+}
+.map-swatch--custom input[type="color"] {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  border: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.map-mynote__icon { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.map-mynote__preview {
+  width: 2.4rem; height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--br-mid);
+  background: var(--p-200);
+}
+.map-mynote__noicon { font-size: 0.8rem; color: var(--ink-ghost); }
+.map-mynote__hint { display: block; font-size: 0.72rem; color: var(--ink-ghost); margin-top: 0.3rem; }
+
 /* A dashed ring, so a player's own pin is distinguishable from a DM marker at
    a glance and not only by its colour. */
 .leaflet-interactive.map-mine { filter: drop-shadow(0 0 2px rgba(253,248,237,0.8)); }

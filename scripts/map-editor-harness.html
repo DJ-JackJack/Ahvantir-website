@@ -132,6 +132,9 @@ window.__supabase = {
           '<rect width="4962" height="3508" fill="%23eedbb0"/></svg>') } }),
       upload: (p) => (LOG.push(['upload', p]), Promise.resolve({ data: { path: p }, error: null })),
       remove: (p) => (LOG.push(['remove', p]), Promise.resolve({ error: null })),
+      createSignedUrls: (paths) => Promise.resolve({
+        data: paths.map((p) => ({ path: p, signedUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' })),
+        error: null }),
     }),
   },
 };
