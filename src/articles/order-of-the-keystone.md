@@ -73,7 +73,7 @@ Under Archdruid Vale’s leadership, the Order has flourished, maintaining the S
 
 While the Spiritsway Passage does not facilitate trade or commerce, its value to Aru'Mas is immeasurable. By granting adventurers access to the broader archipelago, the passage enables exploration, discovery, and the resolution of threats or challenges beyond the city’s immediate borders. The Order of the Keystone ensures that this access remains secure and that the spiritual and magical systems supporting it remain stable.
 
-For the noble houses of Aru'Mas, the Order represents a proud tradition of service and stewardship, reflecting the city’s deep connection to the spirits and its commitment to harmony and balance. Through their vigilance and expertise, the members of the Order uphold one of the city’s most sacred responsibilities, ensuring that Aru’Mas remains a beacon of magical and spiritual excellence on the archipelago of Ahvantir. ..
+For the noble houses of Aru'Mas, the Order represents a proud tradition of service and stewardship, reflecting the city’s deep connection to the spirits and its commitment to harmony and balance. Through their vigilance and expertise, the members of the Order uphold one of the city’s most sacred responsibilities, ensuring that Aru’Mas remains a beacon of magical and spiritual excellence on the archipelago of Ahvantir.
 
 ---
 

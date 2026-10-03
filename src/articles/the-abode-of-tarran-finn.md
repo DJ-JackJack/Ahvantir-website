@@ -37,7 +37,11 @@ Left him bound to his bed,
 
 His friends had to leave him tucked in.
 
-— Clauchard Martenzel Type House Parent Location [[Hearthstone]] Owner Tarran Finn ..
+— Clauchard Martenzel
+
+- Type: House
+- Parent Location: [[Lower Hearthstone]]
+- Owner: [[Tarran Finn]]
 
 ---
 

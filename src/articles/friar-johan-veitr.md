@@ -45,7 +45,7 @@ Additionally, Johan struggles with feelings of inadequacy and doubt, questioning
 
 Though Friar Johan has yet to convert a single soul, his presence has undeniably impacted the city. He has sparked conversations about the nature of faith and the diversity of belief systems, enriching the cultural and intellectual fabric of Aru'Mas. Whether or not his mission succeeds, Johan’s story stands as a testament to resilience and the power of faith in the face of overwhelming odds.
 
-“Even if I am but a single candle in a storm, I shall burn as brightly as I can.”— Friar Johan Veitr Children ..
+“Even if I am but a single candle in a storm, I shall burn as brightly as I can.”— Friar Johan Veitr
 
 ---
 

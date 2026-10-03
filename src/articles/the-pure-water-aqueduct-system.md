@@ -76,7 +76,7 @@ To address these vulnerabilities, the city has implemented several measures:
 
 The Pure Water Aqueduct System is not just an engineering feat but also a symbol of the cooperation between magic, technology, and nature in Aru’Mas. It is a testament to the city's ability to blend practicality and spirituality, ensuring the well-being of its people while respecting the spirits and the environment.
 
-Whether as a point of pride or a source of intrigue for adventurers, the Pure Water Aqueduct System remains a cornerstone of life in Aru’Mas. ..
+Whether as a point of pride or a source of intrigue for adventurers, the Pure Water Aqueduct System remains a cornerstone of life in Aru’Mas.
 
 ---
 

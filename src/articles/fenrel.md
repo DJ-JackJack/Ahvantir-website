@@ -66,8 +66,6 @@ Fenrel’s influence is pervasive enough that his legend has spread widely throu
 
 Fenrel, the Bringer of Decay, is a deity who feeds on the slow erosion of life, spreading sickness, despair, and hopelessness among the people of Aru’Mas. Through his followers, the Rotbound, he sows physical and emotional decay, weakening the resolve and health of the city’s people. His influence is strongest in abandoned or decaying places, where the Rotbound create hidden shrines to honor their dark deity. Despite their efforts, the Church of the Threefold Path, particularly the Order of Harmony, works tirelessly to counter Fenrel’s influence, protecting the people from the creeping blight he represents. Through healing, community education, and protective blessings, they strive to keep the city of Aru’Mas resilient in the face of this ever-present shadow.
 
-Children ..
-
 ---
 
 > **Source**

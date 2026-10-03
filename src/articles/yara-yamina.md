@@ -74,7 +74,7 @@ Despite the lore surrounding her, Yara remains an enigma:
 - Is she still mortal, or has she become something more—something eternal?
 - Does she retain any part of the innocent child she once was?
 
-Yara Yamina, the Witch of Whispers, is not just a figure of fear but a symbol of unresolved grief, the consequences of ignoring suffering, and the mysteries that lurk in the shadows of Ahvantir. Her legend endures, as chilling and enigmatic as the woman herself. Children ..
+Yara Yamina, the Witch of Whispers, is not just a figure of fear but a symbol of unresolved grief, the consequences of ignoring suffering, and the mysteries that lurk in the shadows of Ahvantir. Her legend endures, as chilling and enigmatic as the woman herself.
 
 ---
 

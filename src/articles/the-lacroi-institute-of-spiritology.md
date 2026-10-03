@@ -44,7 +44,7 @@ The LaCroi Institute frequently collaborates with other organizations and schola
 
 The LaCroi Institute remains a beacon of scientific progress in Aru’Mas, embodying the values of its namesake by advancing understanding of the spiritual world. Its graduates, known as Spiritologists, are highly sought after as researchers, advisors, and diplomats, contributing to the city’s harmonious relationship with the [[Spirits of Ahvantir|spirits of Ahvantir]].
 
-“Understanding spirits is not an act of magic, but one of science, respect, and curiosity. Let us study them as we would the stars—endlessly and with wonder.”— Erand Frond Marsad Pinkerton LaCroi ..
+“Understanding spirits is not an act of magic, but one of science, respect, and curiosity. Let us study them as we would the stars—endlessly and with wonder.”— Erand Frond Marsad Pinkerton LaCroi
 
 ---
 

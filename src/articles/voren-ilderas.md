@@ -63,7 +63,8 @@ Towards Voren Ilderas
 
 Honest
 
-Family [[Ilderas Dynasty]] Parents Spouses Thara Ilderas (Spouse) Siblings Children ..
+- Family: [[Ilderas Dynasty]]
+- Spouse: [[Thara Ilderas]]
 
 ---
 

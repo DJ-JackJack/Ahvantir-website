@@ -51,7 +51,7 @@ Jujurot resides in a makeshift lair in the sewers beneath Ragmarket. His hideout
 
 While Jujurot’s schemes rarely succeed, his escapades have made him an unlikely folk hero among the downtrodden. Children in [[The Spillway|the Spillway]] tell exaggerated tales of “the Shaper’s great heists,” while his antics are a source of bemused frustration for the city’s law enforcement.
 
-Ultimately, Jujurot the Shaper may never rise to true greatness, but his messy, often hilarious attempts ensure he’ll never be forgotten. For better or worse, Aru'Mas wouldn’t be quite the same without its resident mud-slinging misfit. Children ..
+Ultimately, Jujurot the Shaper may never rise to true greatness, but his messy, often hilarious attempts ensure he’ll never be forgotten. For better or worse, Aru'Mas wouldn’t be quite the same without its resident mud-slinging misfit.
 
 ---
 

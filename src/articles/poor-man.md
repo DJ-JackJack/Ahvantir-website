@@ -48,8 +48,6 @@ The Poor Man serves as a reminder that strength and power are not always visible
 
 To the people of Aru’Mas, the Poor Man represents the values that keep their city harmonious. His blessing brings good fortune to those who show compassion, and his curse serves as a reminder that arrogance and greed are unwelcome in his presence. Through his presence, he quietly teaches the people of Aru’Mas that generosity and respect for others bring rewards far greater than gold, a lesson that lives on in every alleyway and corner where the Poor Man might sit, patiently waiting for the next person to offer him a simple act of kindness.
 
-Children ..
-
 ---
 
 > **Source**

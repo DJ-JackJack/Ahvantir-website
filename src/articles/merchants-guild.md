@@ -9,7 +9,7 @@ date_added: "2026-06-06"
 
 The Merchants’ Guild of Aru’Mas is a powerful organization that oversees the city’s commerce, trade, and economic policies, serving as one of the three pillars of the city’s government. As the sole entry point into the Ahvantir Archipelago, Aru’Mas is a vibrant hub of multiversal trade, making the Merchants’ Guild one of the most influential forces within the city’s political and social landscape. The guild ensures that trade flows smoothly and profitably, leveraging its power not only to enhance the city’s wealth but also to expand its connections across different realms.
 
-The Merchants’ Guild is not only a commercial entity but a political faction with a seat on the ruling council of Aru’Mas, represented by the Grand Speaker, who acts as the voice of the city’s working class, traders, artisans, and entrepreneurs.
+The Merchants’ Guild is not only a commercial entity but a political faction holding three of the thirteen seats on the [[Council of Aru'Mas|ruling council]], led by the Grand Speaker, who acts as the voice of the city’s working class, traders, artisans, and entrepreneurs.
 
 ## Structure and Organization
 
@@ -18,7 +18,7 @@ The Merchants’ Guild is a well-structured and hierarchical organization, desig
 ## 1. Grand Assembly
 
 - The Grand Assembly is the highest governing body of the guild, composed of influential merchants, ship captains, artisans’ representatives, and trade magnates. The assembly meets quarterly to discuss major economic policies, vote on trade agreements, and set the guild’s strategic goals.
-- The Grand Assembly also elects the Grand Speaker, who leads the guild and serves as its representative on the ruling council of Aru’Mas.
+- The Grand Assembly also elects the Grand Speaker, who leads the guild and heads its three-delegate bloc on the [[Council of Aru'Mas|ruling council]].
 
 ## 2. Guild Councils
 
@@ -84,7 +84,7 @@ The Merchants’ Guild not only manages the city’s economy but also provides a
 
 ## 2. Financial Services
 
-- The Merchants’ Guild operates a central Bank of Aru’Mas, offering financial services such as loans, investments, and currency exchange. This bank facilitates multiversal trade by allowing merchants to conduct transactions with diverse currencies from other realms.
+- The Merchants’ Guild offers banking services such as deposits, loans, investments, and currency exchange. These services are backed by [[The Anvilwrought Trust and Exchange]] and use its vault structure, with the guild acting as a middleman for clientele The Anvil will not deal with directly. Guild depositors receive stamped Ledger Slips. The service facilitates multiversal trade by allowing merchants to conduct transactions with diverse currencies from other realms.
 
 ## 3. Dispute Resolution
 
@@ -100,11 +100,11 @@ The Merchants’ Guild not only manages the city’s economy but also provides a
 
 ## Political Role and Influence
 
-As one of the three ruling bodies in Aru’Mas, the Merchants’ Guild plays a vital role not only in economic policy but in shaping the political landscape of the city. Its influence extends beyond commerce, affecting laws, social policies, and diplomatic relations.
+As the senior partner in the People, one of the three bodies that seat the [[Council of Aru'Mas|ruling council]], the Merchants’ Guild plays a vital role not only in economic policy but in shaping the political landscape of the city. Its influence extends beyond commerce, affecting laws, social policies, and diplomatic relations.
 
 ## 1. Seat on the Ruling Council
 
-- The Grand Speaker, currently Artrice Vanderbane, holds a permanent seat on the ruling council of Aru’Mas, representing the guild and its interests. This position allows the guild to directly influence key decisions, such as trade regulations, economic development, and even matters of diplomatic policy.
+- The Grand Speaker, currently Artrice Vanderbane, leads the guild’s three permanent delegates on the [[Council of Aru'Mas|ruling council]], representing the guild and its interests. This position allows the guild to directly influence key decisions, such as trade regulations, economic development, and even matters of diplomatic policy.
 - The guild uses its political clout to advocate for laws that favor commerce, such as relaxed tariffs, multiversal trade agreements, and policies that encourage entrepreneurship. It also works to maintain economic stability, particularly during crises that might affect trade routes or market confidence.
 
 ## 2. Diplomacy and Trade Relations

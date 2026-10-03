@@ -43,7 +43,7 @@ Due to their selective breeding, wild mimics cannot be easily tamed into satchel
 
 ## Conclusion
 
-Satchel mimics stand as a testament to Aru’Mas’ ingenuity in blending magic, nature, and practical utility. Their presence in the city’s bustling markets and adventurer’s guilds highlights the evolving relationship between civilization and the arcane. For those who can form a bond with one, a satchel mimic is more than just a storage device—it is a lifelong companion, a guardian of secrets, and a marvel of magical craftsmanship. ..
+Satchel mimics stand as a testament to Aru’Mas’ ingenuity in blending magic, nature, and practical utility. Their presence in the city’s bustling markets and adventurer’s guilds highlights the evolving relationship between civilization and the arcane. For those who can form a bond with one, a satchel mimic is more than just a storage device—it is a lifelong companion, a guardian of secrets, and a marvel of magical craftsmanship.
 
 ---
 

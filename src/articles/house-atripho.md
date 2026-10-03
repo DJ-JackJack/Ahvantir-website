@@ -10,7 +10,10 @@ timeline_year: 0
 
 The Veiled Court of [[Aru'Mas]]
 
-Motto: “Knowledge Is Power, Power Is Masked”Species: TieflingsDistrict Influence: [[Spireview]], Crowns ApproachAllied Orders: [[Order of Wisdom]], [[Arrandak Academy]]
+- Motto: “Knowledge Is Power, Power Is Masked”
+- Species: Tieflings
+- District Influence: [[Spireview]], Crowns Approach
+- Allied Orders: [[Order of Wisdom]], [[Arrandak Academy]]
 
 ## Overview
 
@@ -50,7 +53,7 @@ They also maintain minor properties in [[Crowns Approach]] for political and dip
 
 ## Cultural Symbolism
 
-The Atripho crest depicts an open eye upon a scroll, its pupil shaped like a keyhole. Their house colors—indigo, silver, and deep violet—represent mystery, intellect, and unseen depth. Their motto is often spoken in tandem with illusions that obscure the speaker’s voice or face, a tradition said to date back to their progenitor’s pact with a veiled spirit from beyond the stars. ..
+The Atripho crest depicts an open eye upon a scroll, its pupil shaped like a keyhole. Their house colors—indigo, silver, and deep violet—represent mystery, intellect, and unseen depth. Their motto is often spoken in tandem with illusions that obscure the speaker’s voice or face, a tradition said to date back to their progenitor’s pact with a veiled spirit from beyond the stars.
 
 ---
 

@@ -62,7 +62,7 @@ Additionally, differences between elven lineages can lead to internal conflicts,
 
 ## Conclusion
 
-The elves of Aru’Mas stand as living echoes of forgotten ages and distant worlds. Whether they seek power, knowledge, sanctuary, or artistry, their presence ensures that the city remains a bridge between past and future. Through their wisdom, magic, and unwavering traditions, elves continue to shape Aru’Mas, proving that even in a world of constant change, the echoes of eternity never truly fade. ..
+The elves of Aru’Mas stand as living echoes of forgotten ages and distant worlds. Whether they seek power, knowledge, sanctuary, or artistry, their presence ensures that the city remains a bridge between past and future. Through their wisdom, magic, and unwavering traditions, elves continue to shape Aru’Mas, proving that even in a world of constant change, the echoes of eternity never truly fade.
 
 ---
 

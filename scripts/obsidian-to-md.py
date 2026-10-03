@@ -15,6 +15,7 @@ Transformations:
   - Strips Templater syntax (<% tp... %>)
   - Skips _Templates, _Meta, .obsidian, Ahvantir V.2 folders
   - Skips articles with status: stub
+  - Skips notes with no title: frontmatter (working material, not articles)
 """
 
 import datetime
@@ -228,6 +229,25 @@ def _is_dm_note(title: str) -> bool:
     return any(re.search(pat, t) for pat in DM_NOTE_TITLES)
 
 
+DM_LINE_PREFIX = re.compile(
+    r"^(dm\s+(ruling|canon|note|resolution)|resolved|todo)\b",
+    re.IGNORECASE,
+)
+
+
+def _drop_dm_lines(lines):
+    """Remove DM-facing lines from a callout body that is otherwise published.
+
+    _is_dm_note() only inspects a callout's title. The vault appends rulings to
+    the body of each article's "Source" footer, whose title is innocuous, so
+    without this they ride along into the public page.
+
+    Matches only at the START of a line: a provenance sentence that mentions
+    `DM canon` as a source type is legitimate footer content and is kept.
+    """
+    return [ln for ln in lines if not DM_LINE_PREFIX.match(ln.strip())]
+
+
 def convert_note_callouts(body: str) -> str:
     """Convert [!note] callouts to styled blockquotes, dropping DM-facing ones."""
     def replacer(m):
@@ -236,10 +256,11 @@ def convert_note_callouts(body: str) -> str:
             return ""
         raw_body = m.group(2)
         inner_lines = _strip_blockquote_prefix(raw_body).strip()
-        # Re-prefix stripped lines as blockquote
-        bq_lines = "\n".join(
-            "> " + line for line in inner_lines.splitlines() if line.strip()
+        # Re-prefix stripped lines as blockquote, dropping DM-facing ones.
+        kept = _drop_dm_lines(
+            [line for line in inner_lines.splitlines() if line.strip()]
         )
+        bq_lines = "\n".join("> " + line for line in kept)
         if title and bq_lines:
             return f"> **{title}**\n{bq_lines}"
         elif title:
@@ -331,6 +352,16 @@ def process_file(src: Path, preserved_fm: dict = None):
 
     # Skip stubs and template files
     if fm.get("status") == "stub":
+        return None
+
+    # A note with no title is not an article. Every real article has one;
+    # the only vault file that does not is an internal map extraction, which
+    # was being published with an empty <title> and recreated by the next
+    # sync each time the generated copy was deleted. Fails safe: a skipped
+    # article is a visible absence, a published working document is not.
+    if not str(fm.get("title", "")).strip():
+        print(f"SKIP (no title, treated as working material): {src.name}",
+              file=sys.stderr)
         return None
     title = fm.get("title", src.stem)
     if "<%" in str(title):

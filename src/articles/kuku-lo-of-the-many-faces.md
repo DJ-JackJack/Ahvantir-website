@@ -68,8 +68,6 @@ Kuku-Lo of the Many Faces is not merely a spirit to be feared; she is an embodim
 
 In Aru’Mas, Kuku-Lo’s presence is a cautionary figure that warns against ambition and recklessness in dealing with spirits. Her legend remains a powerful, haunting tale that is as much a part of Aru'Mas as the mountains she overlooks, a reminder of the shadow that always accompanies the promise of power.
 
-Children ..
-
 ---
 
 > **Source**

@@ -46,7 +46,7 @@ The Roost is steeped in tales of legendary Skywardens and their mounts. Stories 
 
 ## A Place of Growth, Challenge, and Legacy
 
-For recruits, veterans, and citizens alike, the Roost represents transformation, courage, and commitment. Each bond between rider and mount is a testament to patience, empathy, and trust, ensuring that the skies of Aru’Mas remain vigilantly watched over. The sight of the Roost against the skyline, with wings launching from its platforms, serves as a constant reminder of the boundless spirit of Aru’Mas—a beacon of unity between sky and earth, guardian and people. ..
+For recruits, veterans, and citizens alike, the Roost represents transformation, courage, and commitment. Each bond between rider and mount is a testament to patience, empathy, and trust, ensuring that the skies of Aru’Mas remain vigilantly watched over. The sight of the Roost against the skyline, with wings launching from its platforms, serves as a constant reminder of the boundless spirit of Aru’Mas—a beacon of unity between sky and earth, guardian and people.
 
 ---
 

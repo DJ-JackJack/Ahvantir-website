@@ -62,7 +62,7 @@ Points of Conflict:
 - Clientele: Miss Blossom attracts scholars, responsible pet owners, and spirit binders. Kragg caters to gladiators, collectors, and mercenaries.
 - Public Perception: Miss Blossom’s Emporium is seen as a place of wonder and discovery. Kragg’s Menagerie is viewed as a necessary but morally dubious establishment.
 
-While the two rarely interact directly, their businesses exist in constant opposition. Some customers view them as two sides of the same coin—one representing compassion and care, the other raw power and commerce. Regardless of moral debates, Kragg’s Menagerie remains a force in Aru’Mas, proving that, for many, gold speaks louder than ethics. ..
+While the two rarely interact directly, their businesses exist in constant opposition. Some customers view them as two sides of the same coin—one representing compassion and care, the other raw power and commerce. Regardless of moral debates, Kragg’s Menagerie remains a force in Aru’Mas, proving that, for many, gold speaks louder than ethics.
 
 ---
 

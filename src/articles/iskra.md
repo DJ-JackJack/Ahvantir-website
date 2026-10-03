@@ -7,13 +7,13 @@ date_added: "2026-06-06"
 
 # Iskra
 
-Iskra, the Keeper of Greed and Deceit, is a dark and manipulative deity among the [[Eight Shadows]], representing the insatiable desire for wealth, power, and personal gain. Iskra encourages selfishness, jealousy, and deception, eroding the principles of compassion, charity, and unity that [[Vesira]] and [[The Church of the Threefold Path|the Church of the Threefold Path]] promote. Through his influence, Iskra seeks to turn the people of Aru’Mas inward, isolating them in their own ambitions and severing the connections of community and generosity that define the city.
+Iskra, the Keeper of Greed and Deceit, is a dark and manipulative deity among the [[Eight Shadows]], representing the insatiable desire for wealth, power, and personal gain. Iskra encourages selfishness, jealousy, and deception, eroding the principles of compassion, charity, and unity that [[Vesira]] and [[The Church of the Threefold Path|the Church of the Threefold Path]] promote. Through her influence, Iskra seeks to turn the people of Aru’Mas inward, isolating them in their own ambitions and severing the connections of community and generosity that define the city.
 
 Iskra’s followers view greed as the ultimate power—one that fuels ambition and ensures survival at any cost. Unlike other deities whose power lies in open hostility or corruption, Iskra’s power is subtle, appealing to those who may already feel dissatisfied with their circumstances, jealous of others, or driven by personal ambition.
 
 ## Symbolism and Appearance
 
-Iskra is often depicted as a faceless figure draped in luxurious robes, his hands covered in rings, clutching a set of scales tipped unevenly in his favor. His symbol is a coin stamped with an open eye, representing his unrelenting desire for more and his belief that wealth grants one the power to see through others. This coin is often worn as a charm by his followers or hidden in spaces where deals are made or wealth is stored, allowing his influence to subtly seep into the hearts of those who encounter it.
+Iskra is often depicted as a faceless figure draped in luxurious robes, her hands covered in rings, clutching a set of scales tipped unevenly in her favor. Her symbol is a coin stamped with an open eye, representing her unrelenting desire for more and her belief that wealth grants one the power to see through others. This coin is often worn as a charm by her followers or hidden in spaces where deals are made or wealth is stored, allowing her influence to subtly seep into the hearts of those who encounter it.
 
 ## Cults and Followers
 
@@ -26,11 +26,11 @@ The Gilded Hand is composed of merchants, moneylenders, and opportunists within 
 - Methods of Influence: The Gilded Hand uses monetary power and influence to achieve its goals. Members often work behind the scenes, bribing officials, swaying public opinion, and controlling resources to benefit their own interests. They see their manipulation as justified, viewing charity and compassion as illusions that lead to weakness.
 - Undermining Charitable Works: One of their main objectives is to undermine the charitable efforts of the [[Order of Harmony]]. They spread rumors that charity is a way to control the poor, discouraging people from seeking help and encouraging reliance on individual wealth rather than communal support.
 - Recruiting the Ambitious: The Gilded Hand carefully selects its members from ambitious individuals who feel dissatisfied or undervalued. They approach those who desire success, offering them “opportunities” that align with Iskra’s values, such as deals that promise quick profits or shortcuts to power.
-- Secret Shrines in Wealthy Districts: Shrines to Iskra are hidden in places associated with wealth, such as counting houses, high-end marketplaces, and private chambers of influential merchants. These shrines are often adorned with gold coins and precious gems as offerings to Iskra, reflecting the wealth that his followers worship.
+- Secret Shrines in Wealthy Districts: Shrines to Iskra are hidden in places associated with wealth, such as counting houses, high-end marketplaces, and private chambers of influential merchants. These shrines are often adorned with gold coins and precious gems as offerings to Iskra, reflecting the wealth that her followers worship.
 
 ## Goals and Methods
 
-Iskra’s ultimate goal is to fuel an obsession with wealth, jealousy, and self-interest among the people of Aru’Mas. He seeks to replace the city’s sense of community with a focus on personal gain, weakening the virtues of compassion and charity that the Pathite Pantheon promotes.
+Iskra’s ultimate goal is to fuel an obsession with wealth, jealousy, and self-interest among the people of Aru’Mas. She seeks to replace the city’s sense of community with a focus on personal gain, weakening the virtues of compassion and charity that the Pathite Pantheon promotes.
 
 ## Strategies to Undermine the Church
 
@@ -41,7 +41,7 @@ Iskra’s ultimate goal is to fuel an obsession with wealth, jealousy, and self-
 
 ## Iskra’s Temptations and Gifts
 
-Iskra offers his followers wealth and material gain in exchange for their loyalty and willingness to pursue power at any cost. His gifts often appear as “opportunities” that allow his followers to manipulate others, amass wealth, or avoid consequences for their actions. These gifts appeal to ambition and the desire for success, offering shortcuts to power and influence.
+Iskra offers her followers wealth and material gain in exchange for their loyalty and willingness to pursue power at any cost. Her gifts often appear as “opportunities” that allow her followers to manipulate others, amass wealth, or avoid consequences for their actions. These gifts appeal to ambition and the desire for success, offering shortcuts to power and influence.
 
 - Coin of Deception: Followers of Iskra may be granted a “Coin of Deception,” a small enchanted coin that allows them to lie convincingly without raising suspicion. This coin enhances their ability to manipulate others, ensuring that their deception goes unnoticed.
 - Touch of Avarice: Iskra’s devoted followers gain the power to instill greed in others with a mere touch. By briefly interacting with someone, they can amplify that person’s desire for wealth or power, making them more susceptible to Iskra’s influence.
@@ -65,9 +65,7 @@ Iskra’s influence has become woven into the folklore of Aru’Mas, serving as 
 
 ## Summary
 
-Iskra, the Keeper of Greed and Deceit, is a deity who thrives on selfishness, jealousy, and deception, seeking to corrupt the sense of unity and charity within Aru’Mas. Through his followers, the Gilded Hand, he uses wealth, influence, and manipulation to promote personal ambition over community well-being. The Gilded Hand subtly infiltrates the city’s markets and politics, sowing seeds of greed and distrust in public officials and citizens alike. Despite Iskra’s influence, the Church of the Threefold Path—particularly the Orders of Harmony and Wisdom—works diligently to protect the city from his corrosive influence. Through charity, transparency, and education, they seek to reinforce the values of compassion and unity, reminding the people of Aru’Mas that true strength lies in generosity and community, not in the pursuit of wealth at any cost.
-
-Children ..
+Iskra, the Keeper of Greed and Deceit, is a deity who thrives on selfishness, jealousy, and deception, seeking to corrupt the sense of unity and charity within Aru’Mas. Through her followers, the Gilded Hand, she uses wealth, influence, and manipulation to promote personal ambition over community well-being. The Gilded Hand subtly infiltrates the city’s markets and politics, sowing seeds of greed and distrust in public officials and citizens alike. Despite Iskra’s influence, the Church of the Threefold Path—particularly the Orders of Harmony and Wisdom—works diligently to protect the city from her corrosive influence. Through charity, transparency, and education, they seek to reinforce the values of compassion and unity, reminding the people of Aru’Mas that true strength lies in generosity and community, not in the pursuit of wealth at any cost.
 
 ---
 

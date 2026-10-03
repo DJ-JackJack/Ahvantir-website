@@ -66,7 +66,7 @@ To the people of Aru’Mas, Jack is not a man — he is a myth, a terror, a caut
 To Kristoff, he is a useful weapon with teeth that sometimes bite inward. To the rest of the city, he is a shadow waiting behind the next scream — a thing that cannot die and doesn’t want to live.
 
 “He don’t fear death. He fucks with it.”
-— — Ragmarket Smuggler, shortly before disappearing Children ..
+— Ragmarket Smuggler, shortly before disappearing
 
 ---
 

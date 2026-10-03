@@ -49,8 +49,6 @@ The Weeping Lass has become an inseparable part of the lore of Aru’Mas, a haun
 
 For the sailors and dock workers of Aru’Mas, the Weeping Lass is a symbol of the sacrifices that come with life at sea, the grief that haunts those who wait, and the resilience required to carry on. Though she is forever searching for the lover she will never again embrace, her story serves as a quiet but powerful reminder of the bonds that endure, even in death.
 
-Children ..
-
 ---
 
 > **Source**

@@ -10,7 +10,10 @@ timeline_year: 0
 
 The Hearth-Bound Blades of [[Aru'Mas]]
 
-Motto: “For Kin and Kind”Species: HalflingsDistrict Influence: [[The Spillway]], Aurora Song DistrictAllied Organizations: [[Adventurers Guild Association]], neighborhood councils
+- Motto: “For Kin and Kind”
+- Species: Halflings
+- District Influence: [[The Spillway]], Aurora Song District
+- Allied Organizations: [[Adventurers Guild Association]], neighborhood councils
 
 ## Overview
 

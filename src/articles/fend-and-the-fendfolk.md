@@ -7,11 +7,34 @@ date_added: "2026-06-06"
 
 # Fend and the Fendfolk
 
-To the west of [[Aru'Mas]] lies a sprawling area known as the Fend, a vast expanse of farmland, orchards, and small communities that fall under the city's jurisdiction but not its direct protection. This region serves as the primary source of food and raw materials for Aru'Mas, making it vital to the city’s economy. Despite this connection, the Fend is characterized by its distinct culture, driven by self-reliance, spiritual traditions, and a strong sense of independence from the city’s governance.
+The Fend is the land around [[Aru'Mas]]: thousands of acres of farmland, orchards, forest, plain and small communities lying between the city and the [[Mountain Wall]], and falling under the city’s jurisdiction but not its direct protection.
+
+It is also the only place on the Ahvantir Archipelago where a ship can land. The Mountain Wall rings the whole archipelago in sheer cliff and razor reef; the Fend is the single alcove where that barrier opens onto a shore. Marduk’s fleet came ashore here because there was nowhere else to come ashore, and the [[Drorn'Duur]] held it before them for the same reason.
+
+The Fend was **granted** to Marduk’s people at the close of the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], as a term of the [[First Pact]]. The grant confirmed them in land they were already occupying, and had been since they drove the [[Drorn'Duur]] off it. The terms are simple and have never changed: they may use and cultivate any land that does not cross the mountains into the archipelago proper. The Fend is what the settlers were given instead of what Marduk wanted.
+
+The spirits’ reasoning was not sentimental. A people with standing, a homeland, and room to grow comfortable press less hard at a border than a people with none. The grant was a calculated concession, and it has worked for four centuries.
+
+Much of it has never been properly surveyed. The Fend holds considerably more ruins than the city’s records account for.
+
+This region serves as the primary source of food and raw materials for Aru'Mas, making it vital to the city’s economy. Despite this connection, the Fend is characterized by its distinct culture, driven by self-reliance, spiritual traditions, and a strong sense of independence from the city’s governance.
 
 The Fend stretches across fertile plains, dotted with windmills, barns, and traditional homes built from locally sourced materials. The land is rich, but its productivity is not merely a result of good soil; the Fendfolk have forged pacts with the local spirits, ensuring the health of crops, the prosperity of livestock, and the protection of their settlements. These spiritual agreements are deeply woven into the daily lives of the Fendfolk, guiding everything from planting rituals to harvest celebrations.
 
 While only a short journey from the gates of Aru'Mas, the Fend feels like a world apart, filled with ancient traditions and a way of life that differs greatly from the cosmopolitan, multiversal hub of the city. Fendfolk are known for their stubborn independence, strong family ties, and deep commitment to honoring both their pacts and their neighbors.
+
+## Fendtowns and Autonomy
+
+The Fendfolk are not a separate people. They are simply those who choose not to live in the city proper, and the distinction is one of residence and temperament rather than ancestry or law.
+
+Their settlements, the **Fendtowns**, hold autonomy by grant of [[Aru'Mas]]. Two conditions attach:
+
+- they maintain good trade relations with the city
+- they pay nominal taxes toward the services the city furnishes them
+
+Those services are modest and material: the roadways and their upkeep, and patrols from the [[Lamplighters Guild]]. The [[Lamplighters Guild]] is the only organised force in the Fend, and it is chronically underfunded because the city and the Fendtowns have never agreed which of them is responsible for paying it. The arrangement is not generous and is not meant to be. It buys the city a reliable food supply and a settled hinterland, and it buys the Fendtowns the right to run their own affairs without a garrison in them.
+
+In practice the autonomy is real. A Fendtown keeps its own leaders, its own pacts and its own customs, and the city does not interfere so long as the grain moves and the levy is paid.
 
 ## Culture and Lifestyle of the Fendfolk
 

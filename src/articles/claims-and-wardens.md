@@ -43,7 +43,8 @@ Wardens are not simply rulers by force; they are expected to uphold the balance 
 - Breaking a pact within a Claim is regarded as a direct insult to the Warden, often triggering swift and violent retribution. The punishment varies depending on the severity of the offense and the Warden’s personality.
 - Benevolent Wardens may offer a chance for redemption, demanding a ritual of atonement, the fulfillment of a penitential quest, or a sacrifice of personal energy to appease the breach.
 - Malevolent Wardens, on the other hand, may inflict immediate consequences, ranging from crippling curses to spiritual possession or even physical harm.
-- In extreme cases, the Warden might declare a Blood Debt, a mystical obligation that must be paid either by the offender alone or by an entire community or family. This debt can manifest as bad luck, physical illness, or cursed land, persisting until the Warden is satisfied.
+- In extreme cases, the Warden might declare a [[Spirit Pacts|Blood Debt]], a mystical obligation that must be paid either by the offender alone or by an entire community or family. This debt can manifest as bad luck, physical illness, or cursed land, persisting until the Warden is satisfied.
+- A Warden’s declaration is only one of the ways a Blood Debt is incurred. A debt can also settle of its own accord where trust is breached in a place of high spiritual intensity, and in some Claims merely entering, or committing an act the Claim holds taboo, is enough. Those debts have no author and no one who can be satisfied of them. Mortal law does not distinguish between the two, which is a large part of why mortal law has never handled the subject well.
 
 ## The Relationship Between Claims and Mortals
 

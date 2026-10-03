@@ -78,4 +78,3 @@ What matters practically: do not assume that because something is called a spiri
 ---
 
 > **Source**
-> DM canon — established in conversation 2026-05-17. Covers the umbrella nature of "spirit," origins, persistence, scale, and the deity/spirit distinction as confirmed by Krys.

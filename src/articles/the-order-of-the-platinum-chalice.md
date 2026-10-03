@@ -66,7 +66,10 @@ Legacy: Marric purchased the hall that became the Platinum Chalice’s temple an
 
 ## Prospects
 
-The Order of the Platinum Chalice remains small but influential, particularly in districts underserved by civic authority. Their willingness to confront both gangs and corruption has won them admiration among common folk and suspicion among elites. Should their numbers continue to grow, the Chalice could become a decisive force in the civic and spiritual life of Aru’Mas, challenging the monopoly of Pathite Orders. Type Religious, Holy Order Location Temple Way ..
+The Order of the Platinum Chalice remains small but influential, particularly in districts underserved by civic authority. Their willingness to confront both gangs and corruption has won them admiration among common folk and suspicion among elites. Should their numbers continue to grow, the Chalice could become a decisive force in the civic and spiritual life of Aru’Mas, challenging the monopoly of Pathite Orders. 
+
+- Type: Religious, Holy Order
+- Location: [[Temple Way]]
 
 ---
 

@@ -83,8 +83,6 @@ The Painted Child is a poignant figure in the spiritual tapestry of Aru’Mas, a
 
 In the bustling streets of the Temple District, the Painted Child continues to inspire acts of creativity and care, their spectral light a quiet beacon for those willing to see beyond the mundane and into the heart of humanity’s shared struggles.
 
-Children ..
-
 ---
 
 > **Source**

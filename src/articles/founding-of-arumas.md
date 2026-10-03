@@ -6,7 +6,7 @@ date_added: "2026-06-06"
 timeline_year: 0
 ---
 
-# Founding of [[Aru’Mas]]
+# Founding of [[Aru'Mas]]
 
 Situated on the southeastern island of the archipelago of Ahvantir, Aru’Mas serves as the gateway to these mystical lands, with its harbor facing the open sea. The city’s founding story is woven from acts of courage, diplomacy, and a profound respect for Ahvantir’s powerful spiritual forces. [[Marduk Sunspear]], a famed warrior and explorer, led the first wave of settlers, establishing the framework for a city that would thrive in harmony with the spirits. It was his companion, [[Adobban Demoranza]], an elven cleric with a renewed faith, who laid the spiritual foundations of Aru’Mas by creating [[The Church of the Threefold Path|the Church of the Threefold Path]] after a life-changing vision on Ahvantir.
 

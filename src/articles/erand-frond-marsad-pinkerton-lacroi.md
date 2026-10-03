@@ -40,7 +40,7 @@ Erand LaCroi passed away peacefully in his adopted home of Aru’Mas at the age 
 
 Though remembered primarily for his scientific achievements, LaCroi’s warmth, humor, and culinary flair left an indelible mark on those who knew him. He exemplified the ideal of a life lived in pursuit of understanding and connection, both with the natural world and with his fellow beings.
 
-“The stars above, the spirits within, and the feast before us—let us explore them all.”— Motto inscribed on the helm of the Starbound Stag Children ..
+“The stars above, the spirits within, and the feast before us—let us explore them all.”— Motto inscribed on the helm of the Starbound Stag
 
 ---
 

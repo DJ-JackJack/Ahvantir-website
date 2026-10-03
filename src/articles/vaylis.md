@@ -70,8 +70,6 @@ Followers of Vaylis are often drawn to places of contrast—sunlit forests with 
 
 Through Vaylis, the Duskbound find strength in uncertainty, resilience in contradiction, and beauty in complexity. They honor their god by living lives that mirror the balance of light and shadow, embodying Vaylis’s teachings in everything they do. Whether in philosophy, art, or daily life, they seek to show that harmony is found not in absolutes but in the unity of opposites.
 
-Children ..
-
 ---
 
 > **Source**

@@ -103,8 +103,6 @@ These categories are not exhaustive, and the boundaries between them are often f
 
 Ahvantir’s spirits are as changeable as the land itself, adapting to the shifting tides of nature and the respect (or disregard) shown by mortals. Understanding them requires not only a grasp of these categories but also an appreciation for the complexity and interconnectedness of the spiritual world.
 
-Type Metaphysical, Supernatural ..
-
 ---
 
 > **Source**

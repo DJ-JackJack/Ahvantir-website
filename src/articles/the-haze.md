@@ -52,7 +52,7 @@ The Haze is tightly controlled by All Are One, produced in hidden alchemical lab
 
 ## Conclusion
 
-The Haze is a terrifying refinement of Crackle, transformed into a deliberate tool of control and corruption. Its targeted use by All Are One has made it a uniquely insidious force in Aru’Mas, threatening not only the city’s stability but the spiritual and mental autonomy of its people. As the gang expands its influence, the Haze stands as both a symbol and a weapon of their dangerous philosophy, demanding urgent action to counter its spread. ..
+The Haze is a terrifying refinement of Crackle, transformed into a deliberate tool of control and corruption. Its targeted use by All Are One has made it a uniquely insidious force in Aru’Mas, threatening not only the city’s stability but the spiritual and mental autonomy of its people. As the gang expands its influence, the Haze stands as both a symbol and a weapon of their dangerous philosophy, demanding urgent action to counter its spread.
 
 ---
 

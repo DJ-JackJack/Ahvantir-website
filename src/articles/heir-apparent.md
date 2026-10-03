@@ -80,8 +80,6 @@ Crown Prince Kaelen’s leadership is defined by both impressive strengths and n
 - Limited Diplomatic Skills: While Kaelen is a charismatic leader, his diplomatic skills are limited compared to his military prowess. He often struggles to navigate complex negotiations that require compromise, preferring direct action over prolonged diplomacy. This has led to friction with spiritual leaders and cautious factions within the city.
 - Family Tensions: Kaelen’s relationship with his father and younger brother is marked by unresolved tensions, particularly regarding their differing views on leadership. His perceived disdain for King Voren’s cautious approach and his critical attitude toward Jorran’s impulsiveness create internal conflicts within the royal family.
 
-Children ..
-
 ---
 
 > **Source**

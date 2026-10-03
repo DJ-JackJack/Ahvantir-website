@@ -68,8 +68,6 @@ Maldris, the Blade of Betrayal, is a malevolent deity who seeks to turn the peop
 
 However, through the efforts of the Church—particularly the Orders of Valor, Harmony, and Wisdom—the people of Aru’Mas are provided with support and guidance to resist his influence. Despite the constant threat posed by Maldris and his followers, the bonds within Aru’Mas remain strong, fortified by rituals, transparency, and mutual understanding.
 
-Children ..
-
 ---
 
 > **Source**

@@ -89,8 +89,6 @@ The Green Man is a popular figure among the people of Ahvantir, especially heale
 - Spiritual seekers often visit the Neverwood to make pacts with the Green Man, seeking his blessing for personal growth, protection, or guidance on spiritual matters. Pilgrims often spend days in meditation within the forest, leaving offerings and waiting for a sign of approval from the Warden.
 - The Green Man is also known to offer lessons through his mischief. Travelers who find themselves misled or confused are often encouraged to reflect on the lessons of humility, patience, and the need to honor nature as a force of both nurture and challenge.
 
-Children ..
-
 ---
 
 > **Source**

@@ -65,8 +65,6 @@ The Nomad’s Hovel and the Nyrbi represent the profound yet understated magic o
 
 Whether as unseen helpers in a humble home or as caretakers of the elusive Hovel, the Nyrbi remind the people of Aru’Mas to value the simple blessings of life and to always respect the quiet forces working tirelessly behind the scenes.
 
-Children ..
-
 ---
 
 > **Source**

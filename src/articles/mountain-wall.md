@@ -16,9 +16,13 @@ No known mortal has crossed the Mountain Wall by conventional means. The mountai
 
 ## Geography
 
-The Wall runs in an unbroken ring around the entirety of Ahvantir's inner island chain. It is not a single mountain range in any conventional sense — it includes volcanic peaks, sheer cliff faces, dense fog banks that never lift, and reef formations that extend miles into open water. The cumulative effect is a closed barrier with no natural gap except one.
+The Wall runs in an unbroken ring around the entirety of Ahvantir's inner island chain. It is not a single mountain range in any conventional sense — it includes volcanic peaks, sheer cliff faces, dense fog banks that never lift, and reef formations that extend miles into open water. The cumulative effect is a closed barrier. Nowhere along its length does the Wall open onto the interior, and no natural passage through it has ever been found.
 
-**The Fend** is that gap — the only natural break in the Mountain Wall. It is a long valley that cuts through the Wall's northern section, opening onto the outer shores where Aru'Mas was built. The [[Fend and the Fendfolk|Fendfolk]] who live there today have no idea that their home was once the territory of the [[Drorn'Duur]], the ancient dwarven civilization that predated Aru'Mas by centuries and whose stone-priests maintained deep relationships with Ahvantir's native spirits.
+What the Wall does have is one place where a ship can make landfall at all. The [[Fend and the Fendfolk|Fend]] is a single alcove on a single island: a sheltered pocket of coast where the reefs part and the cliffs give way to a landable shore. It is the only such place on the entire archipelago. Everywhere else, the Wall meets the sea in razor reef and sheer rock.
+
+The Fend is not a gap through the Wall. It is a gap in the Wall's seaward defences, and it opens onto land, not onto the interior. A ship that finds the Fend has reached the archipelago's doorstep and gone no further. This is the whole reason [[Aru'Mas]] stands where it does, and the reason every vessel bound for Ahvantir must still put in at [[Driftmoor Haven]].
+
+The [[Fend and the Fendfolk|Fendfolk]] who farm it today have no idea that their home was once the territory of the [[Drorn'Duur]], the ancient dwarven civilization that predated Aru'Mas by centuries and whose stone-priests maintained deep relationships with Ahvantir's native spirits.
 
 ---
 
@@ -44,6 +48,8 @@ Control of the Spiritsway is shared: the Order of the Keystone manages the morta
 
 The First Pact granted access to the interior but restricted and controlled it. Whether Marduk ever made it through in his lifetime is not recorded.
 
+The restriction is narrow and deliberate. A small number of mortals may pass, and only after being tested and found worthy by both man and spirit. They go through with no protection of any kind: the Pact grants passage and explicitly withholds safety. Whatever waits beyond the Wall is under no obligation to any of them.
+
 ---
 
 ## What Lies Beyond
@@ -56,7 +62,7 @@ The Drorn'Duur, who once moved freely through the Wall and into the deep caverns
 
 ## Connections
 - [[Spiritsway Passage]] — the only known safe crossing; a portal, not a physical gate
-- [[Fend and the Fendfolk]] — the only natural gap in the Mountain Wall; former Drorn'Duur territory
+- [[Fend and the Fendfolk]] — the archipelago's only landable shoreline; granted to Aru'Mas at the end of the Landing War; former Drorn'Duur territory
 - [[Drorn'Duur]] — the civilization that once knew the Wall and the interior most intimately
 - [[First Pact]] — the treaty that governs mortal access through the Mountain Wall
 - [[Marduk Sunspear]] — his desire to cross the Wall drove much of the Landing War's trajectory
@@ -65,4 +71,3 @@ The Drorn'Duur, who once moved freely through the Wall and into the deep caverns
 ---
 
 > **Source**
-> DM canon sessions 2026-05-12 and 2026-05-13. New article; no World Anvil source.

@@ -9,7 +9,7 @@ timeline_year: 0
 
 # First Pact
 
-The First Pact — formally the treaty that ended the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] — is the foundational agreement between the settler leadership and the spirit coalition of the Ahvantir Archipelago. Signed at Year 0 of the [[Marducian Calendar]], it established the legal existence of [[Aru’Mas]], set the terms of mortal-spirit coexistence for the centuries that followed, and created the [[Spiritsway Passage]] as the sole sanctioned crossing through the [[Mountain Wall]].
+The First Pact — formally the treaty that ended the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] — is the foundational agreement between the settler leadership and the spirit coalition of the Ahvantir Archipelago. Signed at Year 0 of the [[Marducian Calendar]], it established the legal existence of [[Aru'Mas]], set the terms of mortal-spirit coexistence for the centuries that followed, and created the [[Spiritsway Passage]] as the sole sanctioned crossing through the [[Mountain Wall]].
 
 The spirits who negotiated this pact are ancient beyond the reckoning of any mortal calendar — the same primordial forces of land, sky, and sea that once resisted the gods themselves in the Divine War, long before the city existed. Their willingness to negotiate with [[Marduk Sunspear]] at all was historically unusual; that they negotiated as equals with a people carrying divine faith reflects the depth of their claim to this land. [[Imwei, the Green Mother]], whose act of sacrifice ended the Divine War, is sometimes acknowledged in theological discussions of the Pact’s deeper origins.
 
@@ -19,7 +19,7 @@ The spirits who negotiated this pact are ancient beyond the reckoning of any mor
 
 The Pact was not a founding vision. It was a negotiated surrender following thirteen years of war.
 
-The [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] began when the native spirits of the archipelago — already bound by ancient pacts to the [[Drorn’Duur]] — responded to the desecration of Drorn’Duur spirit-temples by Marduk’s forces. The conflict lasted from -13 to 0 MC. The settler coalition was held together through [[Adobban Demoranza]]’s divine magic and the widespread use of resurrection magic; the spirit coalition was led by [[He Who Was Forgotten]], a master tactician who inspired loyalty rather than fear.
+The [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] began when the native spirits of the archipelago — already bound by ancient pacts to the [[Drorn'Duur]] — responded to the desecration of Drorn’Duur spirit-temples by Marduk’s forces. The conflict lasted from -13 to 0 MC. The settler coalition was held together through [[Adobban Demoranza]]’s divine magic and the widespread use of resurrection magic; the spirit coalition was led by [[He Who Was Forgotten]], a master tactician who inspired loyalty rather than fear.
 
 Near the war’s end, Marduk challenged He Who Was Forgotten to single combat. The spirit accepted, diminished himself to physical form to make the terms equal, and won. Rather than press his advantage, he honored the terms he had agreed to: the mortal army was permitted to retreat. That act of mercy opened the path to negotiation.
 
@@ -33,15 +33,27 @@ Two of the Pact’s terms are not publicly known:
 
 **The Erasure of He Who Was Forgotten.** The removal of the spirit general’s name from all records was written into the Pact as a condition. Whether this was demanded by Marduk’s side, agreed to by the spirit delegation, or some combination of both has never been documented. He Who Was Forgotten was not directly involved in the negotiations. The extent of what he knew before stepping willingly into the seal is unclear. The result: the man who won the war, chose mercy, and opened the path to peace has no name in any surviving record.
 
+### Why the Fend Was Granted
+
+The land the spirits handed over was land Marduk’s people already held, and had held since they drove the [[Drorn'Duur]] off it years before the war ended. The spirit delegation was not surrendering territory it controlled. It was formalising an occupation it had failed to reverse, and charging a price for the formality.
+
+What the concession bought was quiet. Giving the settlers standing, a homeland, and room to grow comfortable reduced the pull to breach the Wall and push into the Spirit King’s domain. A people with land of their own and a legal claim to it press less hard against a border than a people with neither. The explorer provision served the same end from the other direction: rather than deny mortal curiosity and let it build, the delegation licensed a trickle of it, tested at both ends, and explicitly refused the licensees any protection once they were through.
+
+Both terms are concessions in form and containment in function. Neither required the spirits to give up anything they had not already lost, and both made the Wall easier to hold.
+
 ### What the Pact Did Not Do
 
-The [[Drorn’Duur]] were not party to the negotiations. The peace made at Year 0 did not acknowledge them, restore their land, or recognize what had been done to them. The spirits agreed to terms that did not include the people whose mistreatment had started the conflict.
+The [[Drorn'Duur]] were not party to the negotiations. The peace made at Year 0 did not acknowledge them, restore their land, or recognize what had been done to them. The spirits agreed to terms that did not include the people whose mistreatment had started the conflict.
 
 ---
 
 ## The Pact’s Public Terms
 
 The following terms are publicly known and form the cultural and legal foundation of Aru’Mas:
+
+**The Grant of the Fend.** The Pact granted the settlers the Fend: the sheltered alcove that is the archipelago’s only landable shoreline, and the thousands of acres of farmland, forest and plain behind it. The terms have never changed. Marduk’s people may use and cultivate any land that does not cross the mountains into the archipelago proper. What the settlers received was the door, and explicitly not the house.
+
+**The Explorer Provision.** The Pact permits a small number of mortals to pass beyond the Wall. They must be tested and found worthy by **both man and spirit**, and the concession was made specifically to sate what the spirit delegation understood to be an innate mortal curiosity. It carries one explicit condition: those who pass are **granted no protection whatsoever** from the spirits or the beasts they meet beyond the Wall. The [[Horizon Watch Arena]] trials and the [[Adventurers Guild Association]]’s certification satisfy the mortal half of the test. The spirit half is administered on the spirits’ own terms.
 
 **City Boundaries.** The Pact established the boundaries within which Aru’Mas may exist and expand. These are enforced spiritually as well as physically; attempts to expand beyond sanctioned limits without spirit consent carry documented consequences. The [[Shattered Strand]] is the most visible historical example of such consequences.
 
@@ -85,7 +97,7 @@ A mythological account of the founding holds that the three moons — Miras, Tor
 - [[He Who Was Forgotten]] — led the spirit coalition; won the war; erased by the Pact’s terms
 - [[The Primordem]] — sealed simultaneous with or as part of the Pact’s signing
 - [[Marduk Sunspear]] — settler leader; negotiated and signed the Pact
-- [[Drorn’Duur]] — excluded from negotiations; their mistreatment precipitated the war the Pact ended
+- [[Drorn'Duur]] — excluded from negotiations; their mistreatment precipitated the war the Pact ended
 - [[Spiritsway Passage]] — built as the physical expression of the Pact’s access mandate
 - [[Mountain Wall]] — the geographical feature the Pact governs access through
 - [[Shattered Strand]] — consequence of a Pact breach in the city’s early history

@@ -75,8 +75,6 @@ A persistent tale tells of a child who became lost in the market late at night a
 
 Arielle the Lantern-Bearer is more than a ghost; she is a reminder of the strength found in compassion and sacrifice. Her presence in the Far-Farewell Market is a source of comfort to its bustling community, a quiet guardian who asks nothing in return for her service. Whether guiding the lost or shielding the vulnerable, Arielle continues to light the way for those who walk the vibrant, chaotic streets of Aru’Mas.
 
-Children ..
-
 ---
 
 > **Source**

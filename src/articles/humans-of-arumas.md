@@ -62,7 +62,7 @@ Despite their successes, humans do not always find smooth integration into Aru�
 
 The humans of Aru’Mas are a testament to the boundless potential of the multiverse. Their adaptability, ambition, and sheer variety ensure that no two humans in the city are quite the same. Whether they hail from doomed worlds, celestial heavens, or mundane material realms, humans continue to shape and be shaped by the city, adding to its endless story.
 
-Through their many triumphs and struggles, humans remain one of the most dynamic and influential forces within Aru’Mas, ensuring that the city’s ever-shifting heart beats with the pulse of a thousand different worlds. LIKE AWARD STICKER ADD TO READING LIST ..
+Through their many triumphs and struggles, humans remain one of the most dynamic and influential forces within Aru’Mas, ensuring that the city’s ever-shifting heart beats with the pulse of a thousand different worlds.
 
 ---
 

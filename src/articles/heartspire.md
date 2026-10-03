@@ -11,7 +11,7 @@ The Heartspire is the central tower of Aru’Mas, serving as the administrative 
 
 ## Overview
 
-The Heartspire is the tallest structure in Aru’Mas, located at the core of the Central District, with its spire reaching toward the heavens. It is a hub for the ruling council, the [[Sunspear Legion]], [[The Church of the Threefold Path|the Church of the Threefold Path]], and the [[Runeguard]]. While the royal family operates from a separate palace, the Heartspire is where they meet with city officials, host diplomatic visitors, and oversee major decisions affecting the city and the broader archipelago.
+The Heartspire is the tallest structure in Aru’Mas, located at the core of [[Spireview]], with its spire reaching toward the heavens. It is a hub for the ruling council, the [[Sunspear Legion]], [[The Church of the Threefold Path|the Church of the Threefold Path]], and the [[Runeguard]]. While the royal family operates from a separate palace, the Heartspire is where they meet with city officials, host diplomatic visitors, and oversee major decisions affecting the city and the broader archipelago.
 
 ## Structure and Layout
 

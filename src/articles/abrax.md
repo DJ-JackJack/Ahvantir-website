@@ -49,8 +49,6 @@ May the Guardian Dog come to light up your day.”
 
 This blessing has become a lullaby for little ones, a reminder that if they ever find themselves lost or afraid, there’s a loyal friend watching over them. Abrax may be a spirit now, but to the people of Ahvantir, he is as real and as loved as any living creature. With each little figurine, amulet, and prayer, they thank him for his watchful presence, knowing that Abrax, the Guardian Hound, is always near.
 
-Children ..
-
 ---
 
 > **Source**

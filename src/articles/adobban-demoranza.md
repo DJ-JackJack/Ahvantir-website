@@ -16,7 +16,7 @@ Adobban’s life before joining Marduk’s expedition remains shrouded in myster
 
 ## Arrival on Ahvantir and the Vision of the Threefold Path
 
-Upon arriving on the southeastern shores of Ahvantir, Adobban — without any deity to call on after his crisis of faith — found himself in a war. The [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] began within years of the fleet’s arrival, triggered by [[Marduk Sunspear|Marduk]]’s betrayal of the [[Drorn’Duur]]. Adobban’s divine magic sustained the settler coalition through thirteen years of conflict against spirit opponents that functioned like forces of nature.
+Upon arriving on the southeastern shores of Ahvantir, Adobban — without any deity to call on after his crisis of faith — found himself in a war. The [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] began within years of the fleet’s arrival, triggered by [[Marduk Sunspear|Marduk]]’s betrayal of the [[Drorn'Duur]]. Adobban’s divine magic sustained the settler coalition through thirteen years of conflict against spirit opponents that functioned like forces of nature.
 
 The vision came during the war years. Adobban was visited by three deities — [[Alor]] the Sentinel, [[Orenn]] the Keeper of Knowledge, and [[Vesira]] the Mother of Mercy — who offered him guidance and, critically, a source of divine power suited to what the war demanded. The specifics of the vision were never recorded, and Adobban spoke of it only in vague terms, describing seeing himself “wreathed in the light of the Three, their voices as clear as the stars.”
 

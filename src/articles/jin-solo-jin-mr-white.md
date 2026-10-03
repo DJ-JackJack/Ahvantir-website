@@ -36,7 +36,7 @@ The connection between Jin Sollo, Jin, and Mr. White has inspired numerous theor
 
 Whether Jin Sollo’s story is one of interplanar mystery or a legend born of embellishment, it has captured the imaginations of Aru'Mas’s citizens. The idea that one person—or entity—could traverse worlds, adopt identities, and manipulate entire factions is both awe-inspiring and deeply unsettling.
 
-Though Jin, or Mr. White, has vanished once again, the legend persists. The underworld of Aru'Mas watches the shadows closely, ever wary of the next identity this enigmatic figure may assume. Children ..
+Though Jin, or Mr. White, has vanished once again, the legend persists. The underworld of Aru'Mas watches the shadows closely, ever wary of the next identity this enigmatic figure may assume.
 
 ---
 

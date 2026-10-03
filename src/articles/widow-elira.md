@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Widow Elira
 
-Widow Elira is a malevolent Once-Was spirit tied to The Fend, the stretch of farmland and small communities west of Aru’Mas. Born of desperation and betrayal, Elira’s spirit embodies the bitterness of neglect and the despair of those abandoned in their time of greatest need. Her restless presence serves as both a warning and a curse, a grim reminder of the consequences of selfishness and greed in times of shared hardship.
+Widow Elira is a malevolent Once-Was spirit tied to The Fend, the farmland and small communities that surround Aru’Mas. Born of desperation and betrayal, Elira’s spirit embodies the bitterness of neglect and the despair of those abandoned in their time of greatest need. Her restless presence serves as both a warning and a curse, a grim reminder of the consequences of selfishness and greed in times of shared hardship.
 
 ## The Story of Widow Elira
 
@@ -92,8 +92,6 @@ Those who fear they have drawn Elira’s ire often perform acts of public genero
 Widow Elira is a spectral force of grief and retribution, her story a haunting reminder of the cost of neglect and selfishness. Though feared, she serves an essential role in maintaining the moral fabric of the Fend, ensuring that its people remember the value of generosity and the dangers of turning their backs on one another.
 
 Her presence looms over the Fend, a chilling wind that rustles the crops and carries the weight of forgotten promises. To the Fendfolk, she is both a curse and a lesson—one they dare not ignore.
-
-Children ..
 
 ---
 

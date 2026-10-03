@@ -28,7 +28,7 @@ The spirits who later negotiated the [[First Pact]] with Marduk Sunspear were he
 
 *Approximately two and a half centuries before the Marducian Calendar begins.*
 
-The land of Ahvantir was not wilderness when the settlers arrived. The [[Fend and the Fendfolk|Fend]] — the only natural gap in the [[Mountain Wall]] that rings the archipelago — was home to an ancient dwarven civilization known as the Drorn'Duur, whose name meant Keepers of the Deep Stone.
+The land of Ahvantir was not wilderness when the settlers arrived. The [[Fend and the Fendfolk|Fend]] — the single alcove in the [[Mountain Wall]] where the archipelago can be reached from the sea at all — was home to an ancient dwarven civilization known as the Drorn'Duur, whose name meant Keepers of the Deep Stone.
 
 Their dynasty lasted approximately two and a half centuries. They were a subterranean people whose halls rose to meet the surface in fortified terraces and stone sanctuaries. Their stone-priests maintained deep relationships with the native spirits of the archipelago, translating the shifting moods of the land's ancient guardians and codifying those relationships into formal pacts. The spiritual landscape of the Fend — the ancient agreements that still give spirits power and purpose across that territory today — was largely their creation.
 

@@ -52,7 +52,7 @@ To address these vulnerabilities, the following safeguards are in place:
 
 ## Conclusion
 
-The Arcanum Dispersal System is a testament to the ingenuity and collaborative spirit of Aru'Mas. While it has weaknesses, its careful design and robust safeguards ensure it remains a cornerstone of the city's magical infrastructure, elevating the lives of its citizens while embodying the balance between magic and technology. ..
+The Arcanum Dispersal System is a testament to the ingenuity and collaborative spirit of Aru'Mas. While it has weaknesses, its careful design and robust safeguards ensure it remains a cornerstone of the city's magical infrastructure, elevating the lives of its citizens while embodying the balance between magic and technology.
 
 ---
 

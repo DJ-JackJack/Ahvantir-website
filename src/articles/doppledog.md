@@ -45,7 +45,9 @@ Despite their adaptability, doppledog populations face challenges in urban areas
 
 ## Conclusion
 
-The doppledog is a remarkable testament to the unique biodiversity of Ahvantir. Its friendly disposition, cooperative nature, and extraordinary abilities make it a cherished part of the archipelago’s wildlife. Through understanding and coexistence, humans and doppledogs continue to share a mutually beneficial relationship, ensuring the survival of this extraordinary species for generations to come. Scientific Name Canis Geminus ..
+The doppledog is a remarkable testament to the unique biodiversity of Ahvantir. Its friendly disposition, cooperative nature, and extraordinary abilities make it a cherished part of the archipelago’s wildlife. Through understanding and coexistence, humans and doppledogs continue to share a mutually beneficial relationship, ensuring the survival of this extraordinary species for generations to come. 
+
+- Scientific Name: Canis Geminus
 
 ---
 

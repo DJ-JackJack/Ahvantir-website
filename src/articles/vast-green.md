@@ -80,7 +80,7 @@ While entering the Green is relatively easy, leaving is far more difficult.
 
 ## Final Thoughts
 
-The Vast Green is a place of wonder, beauty, and peril. While its emotional intensity can be intoxicating, it is also a dangerous trap for those who linger too long. Those who return are forever changed, and many spend the rest of their lives longing for the overwhelming sensations of the Green. To enter is to risk never wanting to leave. Type Dimensional plane ..
+The Vast Green is a place of wonder, beauty, and peril. While its emotional intensity can be intoxicating, it is also a dangerous trap for those who linger too long. Those who return are forever changed, and many spend the rest of their lives longing for the overwhelming sensations of the Green. To enter is to risk never wanting to leave.
 
 ---
 

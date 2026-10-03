@@ -16,6 +16,10 @@ have already shipped campaign secrets to players:
      previous one's body, because a callout's own first line is also a valid
      "> " line. A vault-organisation note sat nested inside a Source footer on
      the live site, invisible to every pass that went looking for callouts.
+  4. The title guard only reads a callout's TITLE, and the vault records rulings
+     by appending them to the body of each article's "Source" footer. The title
+     is innocuous, so 25 dated "DM ruling 2026-09-30: ..." lines were about to
+     ship on a sync. Lines are now filtered inside published callouts too.
 
 Each case below is one of those. Run: python3 scripts/test-sync-callouts.py
 """
@@ -62,6 +66,12 @@ SAMPLE = (
     "> [!note] True History\n"
     "> Lore structure, should survive.\n"
     "\n"
+    "> [!note] Source\n"
+    "> Source: `original` - anchored in `DM canon` - ChatGPT lore session 2026-05-12.\n"
+    "> DM ruling 2026-09-30: The Council does not hold the Primordem secret.\n"
+    "> Resolved - R3: renamed during the vault review.\n"
+    "> Trailing provenance sentence.\n"
+    "\n"
     "More public prose.\n"
 )
 
@@ -74,11 +84,15 @@ MUST_BE_GONE = [
     ("[!resolved] review artefact", "Review artefact"),
     ("DM Note - True Role", "He is the traitor"),
     ("raw callout syntax", "[!"),
+    ("DM ruling line inside a Source footer", "does not hold the Primordem"),
+    ("review artefact line inside a Source footer", "renamed during the vault review"),
     ("dmonly shortcode", "dmonly"),
 ]
 MUST_SURVIVE = [
     ("Source provenance footer", "provenance text"),
     ("lore-structure callout", "Lore structure"),
+    ("provenance that merely mentions DM canon", "ChatGPT lore session"),
+    ("trailing provenance line", "Trailing provenance sentence"),
     ("body prose before", "Public prose here"),
     ("body prose after", "More public prose"),
 ]

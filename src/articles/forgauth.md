@@ -68,8 +68,6 @@ Forgauth’s influence can be seen throughout Ahvantir in moments of extreme for
 
 Forgauth’s role as the Lucklord serves as a reminder of life’s chaotic beauty. For his followers, every coin flip, roll of the dice, and chance encounter is a divine experience, a testament to the mystery of fate. They live with the knowledge that fortune is fickle, yet they embrace this uncertainty, trusting that both joy and ruin are part of the Lucklord’s grand design. Through their devotion, the Fortuned seek not to control their lives but to surrender to the will of chance, finding meaning in the randomness that defines the world.
 
-Children ..
-
 ---
 
 > **Source**

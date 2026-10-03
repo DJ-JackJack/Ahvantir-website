@@ -1,6 +1,6 @@
 ---
 title: "Deification in Ahvantir"
-description: "In Ahvantir, a deity is not simply a powerful supernatural being — it is a specific category of entity whose existence, power, and continued survival are all fundamentally dependent on collective mortal worship. This distinguishes deities from spirits categorically, not merely in scale. A deity without worshippers does not weaken and persist. It dies."
+description: "In Ahvantir, a deity is not simply a powerful supernatural being — it is a specific category of entity whose existence, power, continued survival and very nature are all fundamentally dependent on collective mortal worship. This distinguishes deities from spirits categorically, not merely in scale. A deity without worshippers does not weaken and persist. It dies."
 category: cosmology
 tags: [cosmology, deities, divine-mechanics, pathite-pantheon, magic]
 aliases: ["Divine Mechanics", "How Gods Work", "Deification"]
@@ -15,13 +15,17 @@ A deity in Ahvantir is a living metaphysical construct sustained entirely by col
 
 This makes deities unique among supernatural entities. A spirit, a Warden, a Loci — these may be shaped by emotion, born from it, even fed by it, but they are not *constituted* by it. They exist independently of whether anything perceives or venerates them. A deity cannot make that claim. Every deity in existence is, in a real sense, a consensus — a shape that the faith of its followers has forced into being and continues to hold in place.
 
+That shape is not fixed. A deity is born from the expectations, beliefs and stories of those who pray to it, or who pray for the bounty of its domain, and its nature is dictated by them. When those beliefs move, the deity moves with them. A god worshipped for mercy by one generation and for vengeance by the next does not resist the shift or even register it as a shift. It simply becomes what it is now believed to be. This is the sharpest line between a deity and a spirit: a spirit is its nature and cannot be otherwise, while a deity's nature is on loan from its worshippers and is revised whenever they revise it.
+
 Theologians occasionally describe deities as the most powerful form of shared imagination in the world. Deities, unsurprisingly, do not appreciate the framing.
 
 ## How a Deity Comes Into Being
 
 Deification is not a process anyone initiates intentionally. It is something that happens when sufficient collective devotion crystallises around a concept, being, or figure with enough coherence and emotional weight to give it form.
 
-What this looks like in practice varies. A community that has venerated a protective ancestor-spirit for generations may find, after several centuries, that the spirit has changed — grown beyond its original nature, taken on a more expansive and less land-bound presence, begun responding to prayers in ways that exceed what a spirit should be capable of. This is deification in progress. What began as a spirit sustained by place has been slowly converted, by the accumulated faith of generations, into something that no longer requires a place to exist.
+What this looks like in practice varies. A community that has venerated a protective ancestor-spirit for generations may find, after several centuries, that the spirit has changed. It will present as growth: a more expansive and less land-bound presence, and responses to prayer that exceed what a spirit should be capable of. It is not growth. A spirit cannot grow, in the sense of becoming more than what it was by its own effort, and nothing about worship hands it that capacity. What worship does is work on the nature from outside, crudely and over a very long time, until what is left resembles a thing that grew. This is deification in progress. What began as a spirit sustained by place has been slowly converted, by the accumulated faith of generations, into something that no longer requires a place to exist.
+
+Not every spirit that begins this process finishes it. Worship can carry a spirit past what a spirit is and still leave it short of divinity, and a spirit held in that condition does not necessarily move again. It is no longer bounded the way a spirit is bounded, and it is not sustained the way a deity is sustained. Scholars have reached for names. **Earthbound Gods** and **Spirit Deities** are the two that have stuck, and neither is satisfactory; both are used mostly by people who are aware the term is doing less work than it appears to. The [[Primordial Lords Overview|Four Primordials]] are the standing example, and [[Nodd the Monarch of Dreams|Nodd]] is the one currently in motion.
 
 Not all spirits that receive worship become deities. The transformation requires a particular kind of collective devotion — broad, persistent, and emotionally coherent — rather than simply large numbers of casual reverence. A popular regional spirit with ten thousand worshippers who rarely think deeply about their faith may never deify. A small but intensely devoted cult of a few hundred might catalyse the process for a figure with sufficiently defined and emotionally resonant qualities.
 
@@ -73,4 +77,3 @@ The practical distinction is one of dependence. A deity cannot exist without wor
 ---
 
 > **Source**
-> DM canon — established in conversation 2026-05-17. Covers divine mechanics, portfolio theory, divine death, and the deity/spirit distinction as confirmed by Krys.

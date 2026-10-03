@@ -65,7 +65,7 @@ Driftmoor Haven is the lifeblood of Aru’Mas, embodying the city’s adventurou
 
 ## 2. Adventurous Spirit
 
-- Diftmoor Haven is known as the starting point for countless adventuring expeditions, with adventurers arriving daily in search of fame, fortune, or mysterious artifacts rumored to lie beyond the city’s borders. Notice boards covered with job postings, bounties, and calls for companions line the streets.
+- Driftmoor Haven is known as the starting point for countless adventuring expeditions, with adventurers arriving daily in search of fame, fortune, or mysterious artifacts rumored to lie beyond the city’s borders. Notice boards covered with job postings, bounties, and calls for companions line the streets.
 - The energy of the district is electric, with adventurers eager to prove themselves and merchants always on the lookout for rare goods. The docks are also a place where legends are born, as sailors and explorers return with stories of distant realms, powerful spirits, and treacherous seas.
 
 ## 3. The Rumors of the Deep

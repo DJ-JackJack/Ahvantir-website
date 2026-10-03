@@ -52,7 +52,7 @@ Miss Belliosa Blossom’s Emporium of Exotic Entities is more than a simple pet 
 
 The shop’s influence has also fueled ongoing discussions about the ethical treatment of magical and interplanar creatures. Some academics and religious figures question the morality of keeping such beings as pets, while others argue that the Emporium serves a crucial role in ensuring these creatures are placed in safe, knowledgeable hands.
 
-Despite occasional controversy, Miss Blossom and Frugg continue their work, maintaining the Emporium’s reputation as a place of wonder, mystery, and meticulous care. For those who seek a truly unique companion, there is no better place in Aru’Mas—if they can pass the test. ..
+Despite occasional controversy, Miss Blossom and Frugg continue their work, maintaining the Emporium’s reputation as a place of wonder, mystery, and meticulous care. For those who seek a truly unique companion, there is no better place in Aru’Mas—if they can pass the test.
 
 ---
 

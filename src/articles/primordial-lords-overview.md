@@ -1,13 +1,23 @@
 ---
 title: "Primordial Lords: Overview"
 category: religion
-tags: [deity, primordial-lords]
+tags: [deity, spirit, primordial-lords, earthbound-gods]
 date_added: "2026-06-06"
 ---
 
 # Primordial Lords: Overview
 
-Beyond the established pantheons of [[Aru'Mas]] lies a group of enigmatic deities, known collectively as the Four Primordials. These entities are neither allies nor enemies of the Pathite Pantheon, existing in a liminal space where they represent universal forces beyond mortal morality. They embody chaotic principles that influence the fabric of reality, such as luck, fate, change, and entropy. While the Pathite Pantheon aims to protect and uphold values in Aru'Mas, the Four Primordials act as arbiters of natural law, imparting their influence indiscriminately. Worship of the Primordials is rare, but their followers are ardent and often embrace lives that mirror the chaotic and primal nature of their chosen deity.
+Beyond the established pantheons of [[Aru'Mas]] lies a group of enigmatic powers, known collectively as the Four Primordials.
+
+They were not always this. The Primordials began as spirits, and as spirits they would have stayed, except that they were powerful enough that mortals took to worshipping them regardless of whether they wanted it. They did not want it. The indifference was never a pose and has never lifted. But the worship came anyway, in volume and over centuries, and it carried them past what a spirit is without quite delivering them into divinity.
+
+There is no good word for the result. Scholars have offered **Earthbound Gods** and **Spirit Deities**, and use both with visible discomfort. The Primordials are referred to as deities throughout this article and in most of the city’s writing on them, which is convenient and not strictly correct.
+
+None of this gave them the ability to change themselves. Worship does not confer that and never has. What it did was press on what was already there, bluntly and across centuries, until the shape shifted. The Four Primordials are not the Four Primordials the Drorn'Duur first knelt to. Whether any of them is aware of the difference is not a question that can be put to them in terms they are able to answer.
+
+Worship of them is rare now. It was not always. In the centuries before the founding it was commonplace, and nowhere more so than among the [[Drorn'Duur]], whose stone-priests held the Primordials in a regard the surface peoples never matched. The Drorn'Duur were destroyed around -15 MC. What remains of Primordial worship in Aru'Mas today is the four small cults described below.
+
+These entities are neither allies nor enemies of the Pathite Pantheon, existing in a liminal space where they represent universal forces beyond mortal morality. They embody chaotic principles that influence the fabric of reality, such as luck, fate, change, and entropy. While the Pathite Pantheon aims to protect and uphold values in Aru'Mas, the Four Primordials act as arbiters of natural law, imparting their influence indiscriminately. Worship of the Primordials is rare, but their followers are ardent and often embrace lives that mirror the chaotic and primal nature of their chosen deity.
 
 ## [[Forgauth]], the Lucklord
 

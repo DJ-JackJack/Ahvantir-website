@@ -71,7 +71,7 @@ For those willing to assist a Kuwatiki, the rewards can be significant. Successf
 
 ## Conclusion
 
-The Kuwatiki, born from the intersection of mortal emotion and fey magic, are both fascinating and enigmatic. Their unwavering devotion to their purpose, coupled with their unique abilities, makes them compelling figures in the ever-evolving tapestry of mortal and fey relations. Whether as allies, tragic figures, or sources of potent magical power, the Kuwatiki remain a testament to the enduring power of promises and the consequences of their breakage. ..
+The Kuwatiki, born from the intersection of mortal emotion and fey magic, are both fascinating and enigmatic. Their unwavering devotion to their purpose, coupled with their unique abilities, makes them compelling figures in the ever-evolving tapestry of mortal and fey relations. Whether as allies, tragic figures, or sources of potent magical power, the Kuwatiki remain a testament to the enduring power of promises and the consequences of their breakage.
 
 ---
 

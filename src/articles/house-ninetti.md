@@ -10,7 +10,10 @@ timeline_year: 0
 
 The Gilded Vein of [[Aru'Mas]]
 
-Motto: “All Secrets Flow to Us”Species: Officially Human and Elven LineageDistrict Influence: [[Driftmoor Haven]], Crowns ApproachAllied Organizations: Far Farewell Trade Co-op, select branches of the Crown’s Civil Service
+- Motto: “All Secrets Flow to Us”
+- Species: Officially Human and Elven Lineage
+- District Influence: [[Driftmoor Haven]], Crowns Approach
+- Allied Organizations: Far Farewell Trade Co-op, select branches of the Crown’s Civil Service
 
 ## Overview
 

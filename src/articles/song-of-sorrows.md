@@ -45,8 +45,6 @@ The Song of Sorrows is a constant, unchanging presence in the city of Aru’Mas,
 
 While the true meaning of the song may never be known, its mournful tune endures as part of the city’s character, weaving sorrow and mystery into the fabric of Aru’Mas. Those who hear it are left with an unshakable sense of empathy, as if they too have experienced some ancient loss, a feeling that binds the city’s people together in shared sorrow. As long as the Song of Sorrows echoes through the night, it will continue to haunt and inspire those who call Aru’Mas home, forever a mystery, forever mournful, and forever unforgettable.
 
-Children ..
-
 ---
 
 > **Source**

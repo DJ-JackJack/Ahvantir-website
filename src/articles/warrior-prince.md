@@ -59,8 +59,6 @@ At times, Jorran feels trapped in Kaelen’s shadow, struggling to earn the same
 
 Prince Jorran’s future is marked by both great potential and significant risks. His passion for the defense of Aru’Mas and his dedication to becoming a military leader could make him a vital asset to the city’s security. However, his deep-seated jealousy of Kaelen could lead to disastrous consequences if not checked.
 
-Children ..
-
 ---
 
 > **Source**

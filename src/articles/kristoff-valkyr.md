@@ -40,7 +40,7 @@ Despite his ruthless nature, Kristoff values loyalty and competence above all. T
 
 ## Legacy and Influence
 
-As "The King of Rags," Kristoff Valkyr’s shadow looms large over Aru’Mas. His control of Ragmarket ensures his place as one of the city’s most powerful and dangerous figures. While some see him as a necessary evil, others view him as a threat to the city’s stability. Regardless of perspective, Kristoff remains a force to be reckoned with, his influence extending far beyond the borders of Ragmarket into the very fabric of Aru’Mas’ underworld. Children ..
+As "The King of Rags," Kristoff Valkyr’s shadow looms large over Aru’Mas. His control of Ragmarket ensures his place as one of the city’s most powerful and dangerous figures. While some see him as a necessary evil, others view him as a threat to the city’s stability. Regardless of perspective, Kristoff remains a force to be reckoned with, his influence extending far beyond the borders of Ragmarket into the very fabric of Aru’Mas’ underworld.
 
 ---
 

@@ -50,4 +50,3 @@ The emotional residue of the Landing War — the grief, the fear, the righteousn
 ---
 
 > **Source**
-> DM canon session 2026-05-13. New article; no World Anvil source.

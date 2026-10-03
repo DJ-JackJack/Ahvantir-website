@@ -57,7 +57,7 @@ Agatha Chromewell’s life and disappearance remain a source of intrigue and deb
 
 Her estranged family remains deeply divided over her legacy. While House Chromewell officially distances itself from her actions, her story has sparked ongoing debates about tradition, individuality, and the role of nobility in a changing world. Meanwhile, Arthur and Elizabeth continue to carry the Chromewell name, quietly honoring Agatha’s memory while forging their own path in a city that both reveres and condemns her.
 
-Her disappearance remains one of Aru'Mas’s greatest unsolved mysteries, and her name is spoken with equal parts admiration and sorrow. Whether she will ever return, or if her legacy will remain an enigma, is a question that lingers in the hearts of those who knew her. Children ..
+Her disappearance remains one of Aru'Mas’s greatest unsolved mysteries, and her name is spoken with equal parts admiration and sorrow. Whether she will ever return, or if her legacy will remain an enigma, is a question that lingers in the hearts of those who knew her.
 
 ---
 

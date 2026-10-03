@@ -10,10 +10,10 @@ timeline_year: 0
 
 The Iron Mantle of [[Aru'Mas]]
 
-Motto: “Honor in Discipline, Strength in Unity”
-Species: Orcs (High-Orcs)
-District Influence: [[Stonegate]], [[Luminous Reach]]
-Allied Orders: [[Order of Valor]], [[Sunspear Legion]]
+- Motto: “Honor in Discipline, Strength in Unity”
+- Species: Orcs (High-Orcs)
+- District Influence: [[Stonegate]], [[Luminous Reach]]
+- Allied Orders: [[Order of Valor]], [[Sunspear Legion]]
 
 ## Overview
 
@@ -53,7 +53,7 @@ Beyond that, they maintain a close grip on Aru’Mas’ defensive infrastructure
 
 ## Cultural Symbolism
 
-The crest of House Der'Tagan displays a bronze gauntlet grasping a vertical spear, superimposed on a fortified city gate. Their colors—dark crimson, steel gray, and bronze—symbolize sacrifice, vigilance, and unyielding defense. The phrase “Stand, though the storm breaks all” is often whispered in the training yards, though it is not their official motto. ..
+The crest of House Der'Tagan displays a bronze gauntlet grasping a vertical spear, superimposed on a fortified city gate. Their colors—dark crimson, steel gray, and bronze—symbolize sacrifice, vigilance, and unyielding defense. The phrase “Stand, though the storm breaks all” is often whispered in the training yards, though it is not their official motto.
 
 ---
 

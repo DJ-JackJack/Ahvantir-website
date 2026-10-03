@@ -58,4 +58,3 @@ The site itself — Hallowed Hollow, within the Neverwood — is presumably stil
 ---
 
 > **Source**
-> DM canon session 2026-05-13. New article; no World Anvil source.

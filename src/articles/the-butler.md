@@ -41,7 +41,7 @@ For nobles of Aru’Mas, The Butler is more than a servant—he is a quiet symbo
 
 Young nobles are taught not just court manners, but Butler etiquette: when to call him, how to phrase a request, what not to ask. Etiquette books include phrases like “when the Butler takes the cup” or “as advised by the Ever-Attendant.” Entire plays and satirical comedies have been written about his presence, though never with mockery—only awe, curiosity, or cautious reverence.
 
-To some, he is the ideal servant. To others, an unsleeping witness. But to all, he is The Butler. And he is already waiting in the next room. Children ..
+To some, he is the ideal servant. To others, an unsleeping witness. But to all, he is The Butler. And he is already waiting in the next room.
 
 ---
 

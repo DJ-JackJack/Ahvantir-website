@@ -10,7 +10,10 @@ timeline_year: 0
 
 The Flamebound of [[Aru'Mas]]
 
-Motto: “We Keep the Fire”Species: DwarvesDistrict Influence: [[Temple Way]], Upper HearthstoneAllied Orders: [[Order of Wisdom]], [[Order of Harmony]]
+- Motto: “We Keep the Fire”
+- Species: Dwarves
+- District Influence: [[Temple Way]], [[Upper Hearthstone]], [[Crowns Approach]]
+- Allied Orders: [[Order of Wisdom]], [[Order of Harmony]]
 
 ## Overview
 
@@ -40,17 +43,26 @@ They view history as a living force that must be tended like fire: honored, prot
 
 House Athram’s estate in Upper Hearthstone is constructed in traditional dwarven style—solid stone, precise angles, and halls lined with etched histories. Their libraries are considered among the most complete in Aru’Mas outside the [[Ilderas Public Archive]], and their civic halls house many of the city’s foundational documents.
 
-They also maintain a quiet but meaningful presence in Temple Way, where their scribes assist in coordinating ceremonies between various religious groups and foreign temples. While their material holdings are modest compared to Ninetti or Cryxis, their cultural capital is vast.
+They also maintain a quiet but meaningful presence in Temple Way, where their scribes assist in coordinating ceremonies between various religious groups and foreign temples. Their cultural capital is vast, and through [[The Anvilwrought Trust and Exchange]] their material wealth places them among the richest houses in Aru’Mas.
+
+## Household Structure
+
+Like the other noble houses of Aru’Mas, House Athram is not bound by blood alone. The house name is an umbrella covering a network of adopted, married-in, and bought-in lesser families that operate under the primary household’s authority. Among them is the Silthro family, which has been entrusted with the operation of [[The Anvilwrought Trust and Exchange]].
+
+## The Anvilwrought Trust and Exchange
+
+House Athram owns and operates [[The Anvilwrought Trust and Exchange]], the official bank of Aru’Mas, commonly called The Anvil. Its clerks wear the Athram crest, its vaults are sealed with Athram-crafted runic wards, and the house discovered and stabilized the extradimensional Vault Works in which those vaults are carved. By controlling access to vaults, loans, and letters of exchange, House Athram holds quiet leverage over the other noble houses, the guilds, and even the crown.
 
 ## Notable Members
 
 - Archivist-Goldor Athram – Patriarch of the house and senior advisor on Council protocol. Known for his deep voice, methodical thinking, and reluctance to speak unless the matter is grave.
 - Cyndra Athram – Mistress of Civic Oaths, who oversees coronations and public holidays. A revered presence at every major citywide ritual.
 - Torim Athram – Junior historian and lecturer at the [[Arrandak Academy]], known for turning dry history into captivating tales for students and young nobles alike.
+- Garrod Balisong Varivance Silthro-Athram – Grand Chancellor of Holdings, who runs [[The Anvilwrought Trust and Exchange]]. Of the Silthro family, a lesser family held under the Athram name.
 
 ## Cultural Symbolism
 
-The crest of House Athram features a stone brazier with an eternal flame, encircled by a ring of engraved runes. Their house colors—burnished copper, ash gray, and deep ember-red—symbolize remembrance, duty, and quiet strength. Their ceremonial toast, “The fire does not forget,” is spoken at births, oaths, and partings alike. ..
+The crest of House Athram features a stone brazier with an eternal flame, encircled by a ring of engraved runes. Their house colors—burnished copper, ash gray, and deep ember-red—symbolize remembrance, duty, and quiet strength. Their ceremonial toast, “The fire does not forget,” is spoken at births, oaths, and partings alike.
 
 ---
 

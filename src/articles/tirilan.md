@@ -73,8 +73,6 @@ Tirilan’s influence is present in all of Ahvantir’s natural cycles—the cha
 
 Tirilan’s role as the Ever-Flowing serves as a reminder to embrace change, to see life’s fleeting moments as beautiful rather than mournful, and to live without attachment to any single stage of existence. Followers of Tirilan view their lives as part of a grander cycle, and through their devotion, they seek to live in harmony with the endless flow of transformation. Their practices, rites, and beliefs all center around this philosophy, helping those who follow Tirilan navigate the changing tides of their own lives.
 
-Children ..
-
 ---
 
 > **Source**

@@ -99,4 +99,3 @@ The debt against a land does not dissolve when its human perpetrators die. It do
 ---
 
 > **Source**
-> DM canon — created 2026-07-16.

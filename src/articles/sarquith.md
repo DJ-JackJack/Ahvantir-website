@@ -65,8 +65,6 @@ The Order of Wisdom and Order of Harmony are most active in combating Sarquith�
 
 Sarquith, the Whisperer of Doubt, is a dark, insidious force within Aru’Mas, quietly eroding the values of unity, purpose, and faith that the Pathite Pantheon upholds. His cults, the Silent Unseen and Veiled Seekers, work to undermine trust in the Church, preying on the vulnerable, spreading discord, and isolating individuals from their communities. Through the efforts of the Church, particularly the Orders of Wisdom and Harmony, Aru’Mas resists Sarquith’s influence, though his subtle, pervasive doubt remains a constant shadow over the city’s heart.
 
-Children ..
-
 ---
 
 > **Source**

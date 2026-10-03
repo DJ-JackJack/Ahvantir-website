@@ -63,7 +63,7 @@ The debate ended to thunderous applause, with the audience divided in their loya
 
 "Magic may yet hold answers, but for now, it holds our imaginations."
 
-- Scribe’s Note ..
+- Scribe’s Note
 
 ---
 

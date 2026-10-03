@@ -55,8 +55,6 @@ The people of Aru'Mas see Lira as a symbol of the city’s magical heritage and 
 
 Lira’s role in the royal family is not defined by ambitions of power but by a commitment to knowledge and harmony. While she has little interest in ruling, her influence over Aru'Mas’ magical policies is expected to grow, especially as the city faces new challenges related to the archipelago’s spirits and the evolving dynamics of the Old Pact. Should a crisis arise that requires deep spiritual diplomacy, many believe that it will be Lira’s wisdom and understanding of the Old Ways that will save Aru'Mas from the dangers of Ahvantir’s wild magic.
 
-Children ..
-
 ---
 
 > **Source**

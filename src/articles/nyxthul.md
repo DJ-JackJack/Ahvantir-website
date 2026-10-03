@@ -67,8 +67,6 @@ Nyxthul’s influence is reflected in numerous stories and warnings told among t
 
 Nyxthul, the Beast of Fury, is a deity who embodies unrestrained rage and the primal urge for destruction, seeking to erode the structure and peace within Aru’Mas. Through his followers, the Bloodtide, he spreads violence, chaos, and the rejection of discipline. The Bloodtide operates through physical aggression and open rebellion, inciting riots, promoting brutality, and attacking the symbols of order and control. Despite Nyxthul’s influence, the Orders of Valor and Harmony work to contain his followers and protect the city from the chaos he represents. Through public demonstrations, rites of tranquility, and mentorship programs, they strive to reinforce the values of self-control, unity, and peace, preserving the stability of Aru’Mas against Nyxthul’s relentless fury.
 
-Children ..
-
 ---
 
 > **Source**

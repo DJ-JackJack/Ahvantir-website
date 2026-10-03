@@ -29,7 +29,7 @@ Few enter the Faded Veil willingly, but those who do must prepare for more than 
 
 ## Exiting the Fade
 
-Leaving the Faded Veil is not as simple as finding a portal. Those who succumb to its effects may forget that they ever wanted to leave, resigning themselves to a fate of wandering endlessly in the gloom. Even those who escape often bring something back with them—the echo of a whisper, the lingering chill of the shadows, or an unsettling affinity for necrotic magic. Some become haunted by the plane, suffering visions or nightmares that slowly pull them back. The Call of the Fade—A terrible fate awaits those who have stayed too long: the Fade remembers them. Even after they leave, it calls to them in dreams, whispering secrets and luring them back. Few can resist the second call. "In the Fade, all roads lead to ruin. Walk carefully, and never listen too closely to the whispers." ..
+Leaving the Faded Veil is not as simple as finding a portal. Those who succumb to its effects may forget that they ever wanted to leave, resigning themselves to a fate of wandering endlessly in the gloom. Even those who escape often bring something back with them—the echo of a whisper, the lingering chill of the shadows, or an unsettling affinity for necrotic magic. Some become haunted by the plane, suffering visions or nightmares that slowly pull them back. The Call of the Fade—A terrible fate awaits those who have stayed too long: the Fade remembers them. Even after they leave, it calls to them in dreams, whispering secrets and luring them back. Few can resist the second call. "In the Fade, all roads lead to ruin. Walk carefully, and never listen too closely to the whispers."
 
 ---
 

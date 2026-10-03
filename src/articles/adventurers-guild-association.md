@@ -23,6 +23,7 @@ The Adventurers Guild Association serves multiple purposes:
 - Work Order Processing: The AGA acts as an intermediary between contractors and adventurers, managing contracts ranging from monster extermination to artifact recovery. Contractors submit job requests to the Association, which assigns the tasks based on the adventurers' ranks and availability.
 - Payment Security and Insurance: The AGA guarantees payment for all association-sanctioned contracts. If a contractor defaults, the Association covers the cost, ensuring adventurers are compensated for their work. Conversely, adventurers who fail to complete a job without just cause face penalties or suspension.
 - Resources and Support: Association Houses provide essential services, including training grounds, equipment rentals, and access to specialized resources like maps and alchemical supplies. Many houses also maintain basic lodgings for members.
+- Banking Services: Association Houses offer banking services to members, backed by [[The Anvilwrought Trust and Exchange]] and its vault structure. The Anvil deals directly only with elite clients; high-ranking members may apply to it for a private vault, subject to a review of their wealth.
 - Conflict Resolution: Disputes between adventurers, contractors, or other parties are mediated by the AGA, which acts as an impartial arbiter to resolve conflicts fairly and efficiently.
 - Storage and Containment of Dangerous Artifacts: The AGA is also responsible for the secure storage, containment, and, if necessary, disposal of hazardous artifacts retrieved during adventurers' missions. Specialized vaults and containment chambers are maintained within select Association Houses to ensure that dangerous relics do not pose a threat to the city or its inhabitants.
 
@@ -42,6 +43,22 @@ Each district in Aru'Mas features an Association House, tailored to the needs of
 
 While adventurers are free to accept non-AGA contracts, these jobs lack the benefits provided by the Association, including guaranteed payment and insurance. Independent adventurers must navigate greater risks, as they are solely responsible for negotiating terms, ensuring safety, and collecting payment. Additionally, non-certified adventurers are often viewed with suspicion and may face legal challenges if their actions disrupt public order.
 
+## Seats on the Council of Aru'Mas
+
+The AGA holds **four of the thirteen seats** on the [[Council of Aru'Mas]], the largest single delegation
+of any organisation in the city. Together with the [[Merchants Guild|Merchants' Guild]]'s three, the two
+guilds form the body known as the People, which controls seven votes.
+
+Consequential measures require nine votes. The arithmetic makes the AGA structurally important out of
+proportion to its size: the Crown and the Scepter together hold only six, so nothing passes without the
+People, and within the People the AGA is the larger partner. It cannot carry a measure alone, and it is
+one vote short of blocking one alone, which means almost every contested session turns on whether the
+Association and the Guild are holding together.
+
+That position is recent enough in institutional terms that a great deal of writing about Aru'Mas still
+describes the city as governed by three factions of Crown, Guild and Church, and omits the Association
+entirely.
+
 ## Impact on Aru'Mas
 
 The Adventurers Guild Association is integral to the stability and prosperity of Aru'Mas. By regulating adventuring activities, the AGA minimizes chaos and ensures that skilled individuals contribute positively to the city. The Association also fosters a sense of community among adventurers, creating a network of support and camaraderie.
@@ -50,7 +67,7 @@ Through its efforts, the AGA has established Aru'Mas as a haven for adventurers,
 
 ## Districts Without Association Houses
 
-The only districts in Aru'Mas that do not have Association Houses are [[Crowns Approach]], [[Temple Way]], and [[Ragmarket]]. The absence of an Association House in these areas is due to various factors: Crowns Approach is strictly regulated by the monarchy and its guards; Temple Way prioritizes religious institutions over adventuring organizations; and Ragmarket's ever-changing, lawless nature makes establishing a permanent guild presence unfeasible. ..
+The only districts in Aru'Mas that do not have Association Houses are [[Crowns Approach]], [[Temple Way]], and [[Ragmarket]]. The absence of an Association House in these areas is due to various factors: Crowns Approach is strictly regulated by the monarchy and its guards; Temple Way prioritizes religious institutions over adventuring organizations; and Ragmarket's ever-changing, lawless nature makes establishing a permanent guild presence unfeasible.
 
 ---
 

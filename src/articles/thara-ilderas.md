@@ -67,9 +67,10 @@ Towards Voren Ilderas
 
 Honest
 
-Family [[Ilderas Dynasty]] Spouses Voren Ilderas (Spouse) Siblings Children ..
+- Family: [[Ilderas Dynasty]]
+- Spouse: [[Voren Ilderas]]
 
 ---
 
 > **Source**
-> Source: `world-anvil` — imported from `wa_articl
+> Source: `world-anvil` — imported from `wa_articles_structured.json`

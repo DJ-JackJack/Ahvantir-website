@@ -49,7 +49,7 @@ Despite centuries of observation, much about Xethodes remains unknown. Their exa
 
 ## Conclusion
 
-Xethodes represent one of Ahvantir’s most defining characteristics, subtly shaping its society, medicine, and even warfare. Whether they are a blessing of the land, a product of forgotten pacts, or something yet undiscovered, their influence ensures that the people of Ahvantir live in a world where wounds may fade, but the mysteries surrounding them only deepen. ..
+Xethodes represent one of Ahvantir’s most defining characteristics, subtly shaping its society, medicine, and even warfare. Whether they are a blessing of the land, a product of forgotten pacts, or something yet undiscovered, their influence ensures that the people of Ahvantir live in a world where wounds may fade, but the mysteries surrounding them only deepen.
 
 ---
 

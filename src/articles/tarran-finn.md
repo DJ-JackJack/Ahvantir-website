@@ -62,8 +62,6 @@ Tarran lives by a simple creed: helping others succeed is the greatest success o
 - b]The All Are One Gang: Tarran has a wary awareness of this gang and their dangerous activities, particularly their use of the drug known as [[The Haze]] . His interactions with them often stem from protecting others rather than direct confrontations.
 - [[The Abode of Tarran Finn]]
 
-LIKE AWARD STICKER ADD TO READING LIST ..
-
 ---
 
 > **Source**

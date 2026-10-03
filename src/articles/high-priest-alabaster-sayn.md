@@ -9,7 +9,7 @@ date_added: "2026-06-06"
 
 - Title: High Priest of [[The Church of the Threefold Path|the Church of the Threefold Path]]
 - Age: 55
-- Affiliation: The Church of the Threefold Path, the ruling council of Aru’Mas
+- Affiliation: The Church of the Threefold Path. Holds no seat on the [[Council of Aru'Mas|ruling council]]; the Faith is represented there by the three Order heads, who speak his will.
 - Base of Operations: The [[Heartspire]], the spiritual center of the city, located near the inner sanctum of Aru’Mas.
 
 ## Overview
@@ -75,7 +75,7 @@ Alabaster’s influence is defined by a complex blend of strengths and weaknesse
 
 ## Political Alliances and Conflicts
 
-As a key member of the ruling council, Alabaster interacts closely with other political figures, both aligning with and opposing them based on the circumstances.
+Though he holds no seat on the ruling council, Alabaster interacts closely with other political figures, both aligning with and opposing them based on the circumstances. His influence runs through the three Order heads who carry the Faith’s votes, and through the fact that he is one of only three people alive who know what the [[First Pact]] actually cost.
 
 ## Alliances
 
@@ -85,4 +85,10 @@ As a key member of the ruling council, Alabaster interacts closely with other po
 ## Conflicts
 
 - Crown Prince Kaelen Ilderas: Alabaster’s diplomatic approach often puts him at odds with Kaelen, whose aggressive strategies prioritize military dominance over spiritual harmony. Their relationship is marked by frequent disagreements, particularly when it comes to expansionist tactics that could endanger the Old Pacts.
-- Grand Speaker Artrice Vande
+- Grand Speaker Artrice Vanderbane: Alabaster’s relationship with Artrice is both cooperative and tense. While he supports the economic growth Artrice champions, he remains wary of the Merchants’ Guild’s expansionist policies, which sometimes clash with spiritual boundaries. The two often engage in complex negotiations, seeking compromises that balance economic growth with spiritual obligations.
+
+---
+
+> **Source**
+> Source: `world-anvil` — imported from `wa_articles_structured.json`
+> Restored 2026-10-02: the file had been truncated mid-word at "Grand Speaker Artrice Vande", losing this final Conflicts entry and the source callout. Text recovered verbatim from the World Anvil export.

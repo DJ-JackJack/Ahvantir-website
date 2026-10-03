@@ -67,8 +67,6 @@ Silara is seen as a figure who lurks in the shadows of society, her influence fe
 
 Silara, the Veil of Secrets, is a deity who thrives on secrecy, isolation, and the control of knowledge. Through her followers, the Shrouded, she seeks to create a society where trust is eroded, knowledge is hoarded, and people live in fear of hidden motives. The Shrouded, operating as spies, informants, and manipulators, work behind the scenes to spread misinformation, blackmail key figures, and isolate communities. Despite Silara’s influence, the Order of Wisdom and Order of Valor strive to counter her effects by promoting transparency, shared knowledge, and open dialogue. Through ceremonies like the Ritual of Truth’s Light and efforts to uncover the Shrouded’s hidden cells, [[The Church of the Threefold Path|the Church of the Threefold Path]] continues to protect the values of trust, unity, and enlightenment from the shadowy grasp of Silara’s influence.
 
-Children ..
-
 ---
 
 > **Source**

@@ -67,8 +67,6 @@ Drakren is often portrayed in Aru’Mas folklore as a figure who lurks in the sh
 
 Drakren, the Architect of Fear, is a deity who thrives on paranoia, isolation, and the erosion of trust. Through his followers, the Silent Eyes, he seeks to foster a culture of fear and suspicion, where people are encouraged to question and distrust those around them. The Silent Eyes operate in secrecy, spreading rumors, instigating paranoia, and manipulating the truth to achieve Drakren’s goals. Despite Drakren’s influence, the Orders of Valor, Wisdom, and Harmony work tirelessly to counter his effects by promoting courage, unity, and mental resilience. Through ceremonies like the Vigil of Light and the Ritual of Clarity, as well as public displays of strength and trust-building initiatives, the Church of the Threefold Path strives to protect the people of Aru’Mas from the shadow of fear that Drakren casts over the city.
 
-Children ..
-
 ---
 
 > **Source**

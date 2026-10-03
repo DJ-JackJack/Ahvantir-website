@@ -89,8 +89,6 @@ The Yongrel is more than just a spirit of hunger; it is a manifestation of human
 
 For the people of Ahvantir, the Yongrel is a force to be respected and feared, its shadow casting a long, cold pall over the mountains. Through stories, rituals, and communal bonds, they strive to protect themselves not just from the elements, but from the insidious despair that the Yongrel embodies.
 
-Children ..
-
 ---
 
 > **Source**

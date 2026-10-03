@@ -67,6 +67,10 @@ A wide, open square at the district’s center, the Golden Plaza serves as a cer
 
 A stately building where diplomatic meetings and formal receptions are held. The Hall of Ambassadors is richly decorated, showcasing artifacts and gifts from Aru’Mas’s allies and trade partners across the multiverse.
 
+## The Anvil’s Grand Hall
+
+The headquarters of [[The Anvilwrought Trust and Exchange]] resides in the Crowns Approach. The structure resembles a fortress more than a counting house, with walls of black granite and doors reinforced with dwarven runes. Beneath its facade lies the largest secured gateway into the Vault Works, the extradimensional space in which The Anvil’s vaults are carved.
+
 ## Cultural and Social Significance
 
 ## Symbol of Authority

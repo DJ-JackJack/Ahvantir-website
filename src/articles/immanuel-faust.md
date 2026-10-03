@@ -32,7 +32,7 @@ Now in his Automaton form, Immanuel Faust adapted to his new existence, leveragi
 
 ## Legacy
 
-Faust’s transformation into "The Eternal Engineer" became a defining story in Aru’Mas. His Automaton body, crafted from [[Runic Steel]] and adorned with glowing arcane inscriptions, serves as a symbol of his enduring commitment to progress. His story is taught widely as a lesson in ambition, ethics, and resilience. Many view his rebirth as a miracle, while others regard it as a cautionary tale of the dangers of unchecked experimentation. Regardless, Immanuel Faust's contributions continue to shape Aru'Mas, embodying the ideal that innovation can illuminate even the darkest of times. Children ..
+Faust’s transformation into "The Eternal Engineer" became a defining story in Aru’Mas. His Automaton body, crafted from [[Runic Steel]] and adorned with glowing arcane inscriptions, serves as a symbol of his enduring commitment to progress. His story is taught widely as a lesson in ambition, ethics, and resilience. Many view his rebirth as a miracle, while others regard it as a cautionary tale of the dangers of unchecked experimentation. Regardless, Immanuel Faust's contributions continue to shape Aru'Mas, embodying the ideal that innovation can illuminate even the darkest of times.
 
 ---
 

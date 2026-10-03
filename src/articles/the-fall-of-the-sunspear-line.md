@@ -99,5 +99,4 @@ What Asgoraviel accomplished, in destroying Dammadan's court, was this: he ended
 ---
 
 > **Source**
-> DM canon — synthesized from [[Sunspear Legion]] (Command Structure section, 2026-06-14 expansion), [[Asgoraviel]] spirit article (WA import), and DM-confirmed facts (2026-06-14): Dammadan Sunspear; Nishta Ilderas-Sunspear; Galligan Ilderas (Nishta's son; father's identity historically unknown); siege dates ~330–339 MC; nine-year duration; Shattered Strand as point of severity comparison; dynasty ~100 years old at 439 MC. Article created 2026-06-14.
 > Spelling note: "Asgoraviel" is confirmed canonical. "Azgoraviel" appearing in the Sunspear Legion article (2026-06-14) was a DM error — corrected in both articles simultaneously.

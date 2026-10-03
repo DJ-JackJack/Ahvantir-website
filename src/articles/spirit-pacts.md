@@ -29,7 +29,19 @@ A spirit pact is a magical agreement between a mortal and one or more of the [[S
 
 ## The Consequences of Breaking Pacts: Blood Debt
 
-When a pact is broken, something deeper than anger stirs. Blood Debt is not retribution handed down by an offended spirit — it is the land itself registering an imbalance, a wound in the spiritual fabric that the islands exert pressure to heal. It is older than any mortal institution, older than [[The Church of the Threefold Path]], older than the city of [[Aru’Mas]]. It does not require acknowledgment to exist, nor enforcement to take effect. The weight of it simply falls, the way a stone falls — inevitable, indifferent to whether anyone is watching.
+Blood Debt is a spirit term, and a deliberately broad one. Among the spirits it means, loosely, the consequence that follows when someone fails to keep their word. It is also the specific mechanism by which pacts and oaths are enforced. The two senses are not separated in spirit usage and are not meant to be. Mortal scholarship has spent centuries trying to make the term precise and has produced only competing systems, none of which the spirits recognise. The concept is not built for mortal comprehension and was never offered as such.
+
+A debt can arrive by more than one road.
+
+- A **[[Claims and Wardens|Warden]] may bestow one directly**, when a pact or an oath is broken to them, or broken by anyone within their Claim.
+- It can **attach on its own**, with no one to hand it down, when trust is breached in a place of high spiritual intensity.
+- In some Claims it is enough **simply to enter**, or to perform an act the Claim holds taboo, for a debt to settle on the offender whether or not any promise was ever made.
+
+The distinction matters at the point of resolution rather than the point of incurrence. A debt a Warden declared is a debt that Warden can be satisfied of. A debt that fell on its own has no one to satisfy.
+
+What follows describes that second kind, the one that arrives unbidden, because it is the form mortal records most often mistake for the whole.
+
+When a pact is broken, something deeper than anger stirs. A Blood Debt of this kind is not retribution handed down by an offended spirit — it is the land itself registering an imbalance, a wound in the spiritual fabric that the islands exert pressure to heal. It is older than any mortal institution, older than [[The Church of the Threefold Path]], older than the city of [[Aru'Mas]]. It does not require acknowledgment to exist, nor enforcement to take effect. The weight of it simply falls, the way a stone falls — inevitable, indifferent to whether anyone is watching.
 
 The scale of a Blood Debt reflects the scale of the wound. A personal violation draws a personal reckoning; a community’s transgressions ripple outward through the community; a wound dealt to the islands themselves reverberates across the whole. This is not categorization — it is cause and consequence, as natural and as remorseless as the tide.
 
@@ -46,15 +58,15 @@ The debt endures until balance is restored — until the original terms of the p
 
 When a whole group or settlement has broken faith with the spirits, the imbalance scales accordingly. Failed ventures, broken equipment, unreliable magic — luck curdles across all who are marked. In severe cases, spirit-bound creatures turn hostile, and the land’s protections thin in ways that become hard to ignore.
 
-Communities in this state feel it before they can name it. Spiritual mediators and the [[Fadu-Asai]] are often drawn in not because they hold authority over such things, but because they can read the signs and know, from generations of accumulated practice, what the land requires to begin healing. There is no procedure that resolves a Blood Debt — only the work of restoration, patiently undertaken.
+Communities in this state feel it before they can name it. Spiritual mediators and the [[Fadu-Asai]] are often drawn in not because they hold authority over such things, but because they can read the signs and know, from generations of accumulated practice, what the land requires to begin healing. There is no procedure that resolves a debt of this kind — only the work of restoration, patiently undertaken. Where a Warden declared the debt, there is at least someone to treat with; where it fell of its own weight, there is not.
 
 ## 3. Blood Debt at Scale
 
-At its most devastating, a broken pact can open an imbalance that spreads across an entire city or region. Such debts are rare — the Old Pact affords [[Aru’Mas]] a degree of insulation — but they have occurred, most often when the city or its leaders moved against the archipelago’s spiritual nature in large and careless ways: pushing the city’s boundaries without proper offering, extracting from the land without reciprocity, breaking agreements that were never fully understood.
+At its most devastating, a broken pact can open an imbalance that spreads across an entire city or region. Such debts are rare — the Old Pact affords [[Aru'Mas]] a degree of insulation — but they have occurred, most often when the city or its leaders moved against the archipelago’s spiritual nature in large and careless ways: pushing the city’s boundaries without proper offering, extracting from the land without reciprocity, breaking agreements that were never fully understood.
 
 The manifestations are unmistakable: unseasonal storms, magical blight, plagues, the withdrawal of spiritual protections that normally go unnoticed until they vanish.
 
-When debt reaches this scale, [[The Church of the Threefold Path|the Church of the Threefold Path]] and the ruling council are moved to act — not because they govern Blood Debt, but because the reality of it demands response. No one governs Blood Debt. The Church carries deep institutional knowledge of grand rituals of atonement, accumulated over centuries of watching the land heal and refuse to heal; what they bring is practical wisdom, not jurisdiction. Such rituals may take days or weeks. What determines their duration is not procedure — it is how long the land requires.
+When debt reaches this scale, [[The Church of the Threefold Path|the Church of the Threefold Path]] and the ruling council are moved to act — not because they govern Blood Debt, but because the reality of it demands response. No mortal institution governs Blood Debt, and no mortal institution can lift one. The Church carries deep institutional knowledge of grand rituals of atonement, accumulated over centuries of watching the land heal and refuse to heal; what they bring is practical wisdom, not jurisdiction. Such rituals may take days or weeks. What determines their duration is not procedure — it is how long the land requires.
 
 ## Spirit Pacts in Daily Life
 
@@ -75,8 +87,6 @@ Spirit pacts are woven into the culture and laws of Ahvantir, influencing not on
 ## 3. Spiritual Mediators
 
 - Spiritual mediators play a key role in Ahvantir society. These individuals have the ability to communicate directly with spirits, interpret their will, and negotiate pacts on behalf of others. They are respected figures, often associated with the Church of the Threefold Path, particularly the [[Order of Harmony]], which focuses on maintaining peaceful relations with the spirits.
-
-Type Metaphysical, Supernatural ..
 
 ---
 

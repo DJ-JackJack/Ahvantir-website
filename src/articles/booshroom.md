@@ -54,7 +54,7 @@ Because of its extreme rarity and potent effects, a single Booshroom commands an
 
 Consumption of a Booshroom is never without risk. The delayed, unavoidable descent into unconsciousness makes it a dangerous gamble, and many who partake in its effects do not return. Some who have barely survived report that their spirits lingered too long in the afterlife, leaving them forever haunted by whispers and visions of what lies beyond.
 
-Despite its dangers, the Booshroom remains one of Ahvantir’s most enigmatic and sought-after natural wonders, its spectral glow a beacon for the curious and the foolhardy alike. ..
+Despite its dangers, the Booshroom remains one of Ahvantir’s most enigmatic and sought-after natural wonders, its spectral glow a beacon for the curious and the foolhardy alike.
 
 ---
 

@@ -8,7 +8,7 @@ timeline_year: 0
 
 # Marduk Sunspear
 
-Marduk Sunspear is the founder of [[Aru’Mas]] and the figure around whom the city’s origin mythology is constructed. The [[Marducian Calendar]] is named after him. Statues, songs, and official histories present him as a visionary explorer of noble lineage whose diplomatic genius and spiritual humility won the Ahvantir spirits’ respect and secured the city’s existence.
+Marduk Sunspear is the founder of [[Aru'Mas]] and the figure around whom the city’s origin mythology is constructed. The [[Marducian Calendar]] is named after him. Statues, songs, and official histories present him as a visionary explorer of noble lineage whose diplomatic genius and spiritual humility won the Ahvantir spirits’ respect and secured the city’s existence.
 
 The documented history is more complicated.
 
@@ -34,7 +34,7 @@ The Astral Sea sustained life but did not satisfy it. There was no biological ne
 
 ### The Drorn’Duur Betrayal
 
-The land was not wilderness when they arrived. The [[Fend and the Fendfolk|Fend]] — the only natural gap in the [[Mountain Wall]] — was home to the [[Drorn’Duur]], an ancient dwarven civilization who met Marduk’s fleet with open arms, offering food, shelter, and guidance through spirit diplomacy.
+The land was not wilderness when they arrived. The [[Fend and the Fendfolk|Fend]] — the archipelago's only landable shoreline — was home to the [[Drorn'Duur]], an ancient dwarven civilization who met Marduk’s fleet with open arms, offering food, shelter, and guidance through spirit diplomacy.
 
 Marduk’s subsequent assault on the Drorn’Duur was sudden and brutal. His calculation appears to have been that a people who understood Ahvantir’s spiritual landscape better than he did represented an unacceptable risk to his claim on this land. The Drorn’Duur’s above-ground civilization was destroyed. Their spirit-temples were defiled. Their clans were eradicated or scattered.
 
@@ -72,7 +72,7 @@ Marduk’s wife Edona was a beloved figure known for her compassionate nature an
 
 Marduk died defending his people from a rampaging spirit — a heroic sacrifice remembered with reverence. His spear, believed to have been blessed by Yan Bo Tog, is one of the city’s treasured relics.
 
-The [[Drorn’Duur]] are not mentioned. The official history treats Ahvantir as untamed wilderness at the time of settlement.
+The [[Drorn'Duur]] are not mentioned. The official history treats Ahvantir as untamed wilderness at the time of settlement.
 
 ---
 
@@ -85,7 +85,7 @@ Long-lived elves from the founding generation may still be alive in 439 MC. Anyo
 ---
 
 ## Connections
-- [[Drorn’Duur]] — the people Marduk betrayed; their mistreatment triggered the Landing War
+- [[Drorn'Duur]] — the people Marduk betrayed; their mistreatment triggered the Landing War
 - [[He Who Was Forgotten]] — defeated Marduk in single combat; his mercy ended the war; erased by the First Pact
 - [[First Pact]] — the treaty that ended the Landing War; Marduk’s role was negotiating from a position of defeat
 - [[Adobban Demoranza]] — spiritual advisor and war priest; his divine magic sustained the settler coalition

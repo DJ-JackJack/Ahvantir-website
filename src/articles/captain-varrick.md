@@ -92,8 +92,6 @@ Captain Varrick the Undaunted is both a relic of Aru’Mas’s turbulent history
 
 To the people of Aru’Mas, Varrick’s legacy is complex: a ghost of vengeance and honor, whose undying watch ensures that the harbor remains a place of prosperity—and a place where wrongs are never forgotten.
 
-Children ..
-
 ---
 
 > **Source**

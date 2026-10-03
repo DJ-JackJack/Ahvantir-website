@@ -19,7 +19,7 @@ The air is filled with murmurs—children pointing at the glowing runes, traders
 
 ## The Ritual Begins
 
-As the appointed hour arrives, the mages of the Order of the Keystone take their positions around the base of the gate. Wardweavers kneel at each corner, their hands raised toward the glowing runes, chanting in low, rhythmic tones that resonate deeply within the stones. Their incantations are a blend of old Ahvantirian dialects, known only to those intimately familiar with the Old Pacts.
+As the appointed hour arrives, the druids of the Order of the Keystone take their positions around the base of the gate. Wardweavers kneel at each corner, their hands raised toward the glowing runes, chanting in low, rhythmic tones that resonate deeply within the stones. Their incantations are a blend of old Ahvantirian dialects, known only to those intimately familiar with the Old Pacts.
 
 The Gatecallers, clad in robes adorned with the sigils of the passage, stand directly in front of the towering stone doors. They form a precise line, each extending a hand toward the massive keystone above. As their voices rise in unison, a sudden surge of arcane energy ripples through the air, causing the runes to glow brighter and the ground beneath to tremble gently. The surrounding crowd falls silent, transfixed by the raw power of the ritual.
 
@@ -41,7 +41,7 @@ The citizens of Aru’Mas react to the opening of the Spiritsway Passage with a 
 - Anticipation and Excitement: For adventurers and members of the various guilds, the moment the gate opens is a call to action and glory. They gather near the front, ready to step into Ahvantir, some to test their mettle, others in search of lost knowledge or powerful artifacts. Their hearts beat faster, eyes filled with excitement, even as they grasp the potential dangers awaiting them on the other side.
 - Fear and Apprehension: There are those among the crowd who bow their heads or make signs of protection and warding, murmuring prayers to the spirits for the safe return of those about to cross. For some, the passage represents an ominous risk—an opening not only for brave adventurers but also for unforeseen dangers that might cross back into the city.
 
-The mages of the Order, though composed and focused, remain acutely aware of the significance of this moment. They are the guardians of the threshold, tasked not only with ensuring safe passage but also with holding back the potential chaos that could breach the Veil.
+The druids of the Order, though composed and focused, remain acutely aware of the significance of this moment. They are the guardians of the threshold, tasked not only with ensuring safe passage but also with holding back the potential chaos that could breach the Veil.
 
 ## Crossing the Passage
 
@@ -57,7 +57,7 @@ The keystone sigil pulses one final time, its glow dimming as the stone doors co
 
 The people of Aru’Mas linger for a moment, watching as the gates close, the energy of the event still palpable in the air. Some depart with renewed purpose, ready to share stories of the event; others remain a bit longer, contemplating the mysteries that lie beyond and the heroes who have dared to venture there.
 
-For the mages of the Order, it is another successful ritual completed, a day of duty fulfilled. For the citizens, it is a reminder of the city’s strength and its place at the boundary of worlds—a gate both to the unknown and to the heart of the city’s enduring spirit.
+For the druids of the Order, it is another successful ritual completed, a day of duty fulfilled. For the citizens, it is a reminder of the city’s strength and its place at the boundary of worlds—a gate both to the unknown and to the heart of the city’s enduring spirit.
 
 ---
 

@@ -30,14 +30,14 @@ Above the doors sits a massive keystone sigil crafted from orichalcum, a rare, s
 
 ## The Order of the Keystone
 
-The Order of the Keystone is a highly specialized group of mages responsible for the maintenance, operation, and defense of the Spiritsway Passage. They are not merely gatekeepers, but spiritual stewards, entrusted with preserving the balance between Aru’Mas and Ahvantir.
+The Order of the Keystone is a highly specialized group of druids responsible for the maintenance, operation, and defense of the Spiritsway Passage. They are not merely gatekeepers, but spiritual stewards, entrusted with preserving the balance between Aru’Mas and Ahvantir.
 
 ## Roles and Training
 
-To join the Order of the Keystone, mages must undergo rigorous training in runic magic, spiritual diplomacy, and the arcane rituals required to manage the complex energies of the Spiritsway Passage. The order is divided into three primary roles:
+To join the Order of the Keystone, druids must undergo rigorous training in runic magic, spiritual diplomacy, and the arcane rituals required to manage the complex energies of the Spiritsway Passage. The order is divided into three primary roles:
 
-- Wardweavers: These mages are responsible for maintaining the protective wards that shield the Spiritsway Passage. They regularly inspect the runes, repairing any disruptions and reinforcing the wards to repel spiritual attacks or rogue magic.
-- Gatecallers: These mages are the only ones capable of opening and closing the passage. The ritual is a complex and draining process that requires precise coordination, as the runes must be perfectly aligned to ensure a safe transition. Gatecallers are often regarded as some of the most powerful mages in the city, capable of channeling immense magical energy.
+- Wardweavers: These druids are responsible for maintaining the protective wards that shield the Spiritsway Passage. They regularly inspect the runes, repairing any disruptions and reinforcing the wards to repel spiritual attacks or rogue magic.
+- Gatecallers: These druids are the only ones capable of opening and closing the passage. The ritual is a complex and draining process that requires precise coordination, as the runes must be perfectly aligned to ensure a safe transition. Gatecallers are often regarded as some of the most powerful spellcasters in the city, capable of channeling immense magical energy.
 - Pactkeepers: Specialists in spiritual diplomacy, Pactkeepers maintain the spiritual agreements that allow the Spiritsway to function without inciting the anger of the spirits. They perform regular rituals of appeasement and serve as mediators when new spirits seek to approach the gateway.
 
 The Order of the Keystone is led by Archdruid Elarion Vale, a veteran druid known for his expertise in spiritual negotiation and ritual magic. Elarion’s role involves both overseeing the passage’s daily operations and guiding the Order’s interactions with the spirits, ensuring that the Old Pacts are respected while keeping the passage secure.

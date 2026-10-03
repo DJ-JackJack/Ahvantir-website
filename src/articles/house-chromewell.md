@@ -10,7 +10,10 @@ timeline_year: 0
 
 The Verdant Wardens of [[Aru'Mas]]
 
-Motto: “In Harmony, We Endure”Species: ElvesDistrict Influence: [[Temple Way]], SpireviewAllied Organizations: [[Order of the Keystone]], [[Order of Wisdom]]
+- Motto: “In Harmony, We Endure”
+- Species: Elves
+- District Influence: [[Temple Way]], Spireview
+- Allied Organizations: [[Order of the Keystone]], [[Order of Wisdom]]
 
 ## Overview
 
@@ -50,7 +53,7 @@ In [[Spireview]], they maintain a quiet spire that functions as both a library a
 
 ## Cultural Symbolism
 
-The Chromewell crest features a silver tree with roots tangled in a knot of sky blue and moss green—representing balance between spirit and soil. Their house colors—moss green, slate silver, and sky blue—evoke natural serenity and quiet wisdom. Their parting phrase, “Walk with the root-bound path,” is considered both blessing and gentle reminder of their ancestral duty. ..
+The Chromewell crest features a silver tree with roots tangled in a knot of sky blue and moss green—representing balance between spirit and soil. Their house colors—moss green, slate silver, and sky blue—evoke natural serenity and quiet wisdom. Their parting phrase, “Walk with the root-bound path,” is considered both blessing and gentle reminder of their ancestral duty.
 
 ---
 

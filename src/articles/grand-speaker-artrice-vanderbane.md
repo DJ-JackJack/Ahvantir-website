@@ -14,7 +14,7 @@ date_added: "2026-06-06"
 
 ## Overview
 
-Grand Speaker Artrice Vanderbane is the current head of the Merchants’ Guild of Aru’Mas and one of the three ruling council members of the city. A shrewd negotiator and skilled strategist, Artrice is known for her decisive leadership, keen understanding of multiversal trade dynamics, and her ability to navigate the complex politics of Aru’Mas. As Grand Speaker, she represents the economic interests of the city’s working class, traders, artisans, and entrepreneurs, making her one of the most powerful figures in the city.
+Grand Speaker Artrice Vanderbane is the current head of the Merchants’ Guild of Aru’Mas and leader of its three-delegate bloc on the [[Council of Aru'Mas]]. A shrewd negotiator and skilled strategist, Artrice is known for her decisive leadership, keen understanding of multiversal trade dynamics, and her ability to navigate the complex politics of Aru’Mas. As Grand Speaker, she represents the economic interests of the city’s working class, traders, artisans, and entrepreneurs, making her one of the most powerful figures in the city.
 
 Artrice has played a pivotal role in establishing Aru’Mas as a premier multiversal trading hub, pushing for aggressive economic growth and expanding the guild’s influence within and beyond the city’s boundaries. Her tenure as Grand Speaker has been marked by both significant successes and notable controversies, as her ambition to make Aru’Mas an unrivaled commercial center sometimes conflicts with the spiritual laws and Old Pacts that govern the archipelago.
 
@@ -85,8 +85,6 @@ Artrice’s position as Grand Speaker puts her in constant interaction with othe
 
 - High Priest Alabaster Sayn: Artrice’s relationship with Alabaster Sayn is marked by frequent tension, as the High Priest’s spiritual priorities often clash with her economic ambitions. While the two collaborate when necessary, Alabaster’s cautious approach to spiritual diplomacy often frustrates Artrice, who views it as an obstacle to progress.
 - [[Scholar Princess|Princess Lira]] Ilderas: Artrice respects Princess Lira’s arcane expertise but finds her focus on spiritual harmony restrictive. The two have clashed over magical policies, especially when Lira’s research suggests potential dangers from trade-based rituals that could affect the Old Pacts.
-
-Children ..
 
 ---
 

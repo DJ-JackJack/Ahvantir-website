@@ -62,8 +62,6 @@ Aikesh the Threshold Keeper is a mysterious figure who resides in the twilight b
 
 To the people of Aru’Mas, Aikesh is an ever-present force, both comforting and unsettling. They offer guidance in times of uncertainty, gently steering those willing to make choices, but they do not forgive those who waver too long. In every step across a threshold and in every journey embarked upon, Aikesh is there—a subtle, silent figure, watching and waiting for the next transition.
 
-Children ..
-
 ---
 
 > **Source**

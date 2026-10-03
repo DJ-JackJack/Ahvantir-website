@@ -18,7 +18,7 @@ The Church of the Threefold Path is organized to ensure that each Order can perf
 
 ## The High Priest — Arbiter of the Threefold Path
 
-At the apex of the Church’s hierarchy sits the High Priest (or High Priestess), who holds the title of **Arbiter**. The Arbiter is not aligned to any single Order but serves as the direct voice of the consensus of all three deities — Vesira, Orenn, and Alor — speaking as one unified divine will. Where the three Order heads each champion their own deity’s domain, the Arbiter mediates between them, ensures doctrinal unity, and speaks on behalf of the Church as a whole before the Council of Aru’Mas and in matters of spiritual governance.
+At the apex of the Church’s hierarchy sits the High Priest (or High Priestess), who holds the title of **Arbiter**. The Arbiter holds no seat on the [[Council of Aru'Mas]]; the Faith is represented there by the three Order heads, who speak the Arbiter’s will. The Arbiter is not aligned to any single Order but serves as the direct voice of the consensus of all three deities — Vesira, Orenn, and Alor — speaking as one unified divine will. Where the three Order heads each champion their own deity’s domain, the Arbiter mediates between them, ensures doctrinal unity, and speaks on behalf of the Church as a whole before the Council of Aru’Mas and in matters of spiritual governance.
 
 The current Arbiter is **[[High Priest Alabaster Sayn]]**, who rose to the position after leading the Restoration of the [[Heartspire]] — a ritual that renewed the city’s central spiritual wards and reaffirmed the Old Pacts. His predecessor, **High Priestess Elendra Vale**, held the role before him.
 
@@ -92,4 +92,16 @@ The Church of the Threefold Path organizes annual festivals, rituals, and commun
 
 - Education and Training: The Church offers educational services, providing classes and apprenticeships on topics ranging from philosophy and ethics to practical skills in medicine and combat. Each Order provides knowledge aligned with its mission, making the Church a vital educational resource for the people of Aru’Mas.
 - Dispute Resolution: The Order of Wisdom and Order of Valor collaborate in public dispute resolution, using their teachings of fairness and integrity to mediate conflicts. This service helps promote harmony within the city, allowing citizens to resolve disputes peacefully.
-- Healing and Sanctuary: The Church, through the Order of Harmony, provides free healthcare and emotional support to the city’s residents, especially during times of crisis. The Church is s
+- Healing and Sanctuary: The Church, through the Order of Harmony, provides free healthcare and emotional support to the city’s residents, especially during times of crisis. The Church is seen as a place of safety, a refuge for all those seeking comfort or guidance.
+
+## The Church’s Influence in Aru’Mas
+
+The Church of the Threefold Path is more than a place of worship; it is a central institution that shapes the social, moral, and spiritual life of Aru’Mas. The teachings of Vesira, Orenn, and Alor permeate the city, influencing its laws, values, and cultural practices. Through the collective efforts of the three Orders, the Church creates a sense of community, fosters moral responsibility, and maintains peace within the city.
+
+The Church’s presence reminds the people of Aru’Mas that they are part of something greater—a community bound by shared virtues and responsibilities, guided by the wisdom, compassion, and courage of the divine. The Church of the Threefold Path stands as the spiritual heart of Aru’Mas, embodying the ideals of mercy, knowledge, and protection, and guiding its citizens toward a life of purpose, harmony, and unity.
+
+---
+
+> **Source**
+> Source: `world-anvil` — imported from `wa_articles_structured.json`
+> Restored 2026-10-02: the file had been truncated mid-word at "The Church is s", losing roughly 339 words including the whole closing section. Text recovered verbatim from the World Anvil export.

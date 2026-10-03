@@ -10,7 +10,10 @@ timeline_pending: Shattered Strand era (~100-400 MC) — needs specific year for
 
 The Crownforged of [[Aru'Mas]]
 
-Motto: “We Rise from Ash and Blade”Species: DragonbornDistrict Influence: [[Lower Hearthstone]], Driftmoor HavenAllied Organizations: Crown's Infrastructure Bureau, Galvantis Arms, Armor and Automatons
+- Motto: “We Rise from Ash and Blade”
+- Species: Dragonborn
+- District Influence: [[Lower Hearthstone]], Driftmoor Haven
+- Allied Organizations: Crown's Infrastructure Bureau, Galvantis Arms, Armor and Automatons
 
 ## Overview
 
@@ -50,7 +53,7 @@ They maintain collaborative laboratories in partnership with Galvantis Arms, wor
 
 ## Cultural Symbolism
 
-The crest of House Cryxis shows a broken sword reforged into a flame, surrounded by seven stars—one for each house, with the Cryxis star subtly offset. Their house colors—obsidian black, molten gold, and crimson—symbolize sacrifice, rebirth, and controlled fury. The Cryxis salute involves a clenched fist over the chest, followed by an open hand, symbolizing strength tempered with service. ..
+The crest of House Cryxis shows a broken sword reforged into a flame, surrounded by seven stars—one for each house, with the Cryxis star subtly offset. Their house colors—obsidian black, molten gold, and crimson—symbolize sacrifice, rebirth, and controlled fury. The Cryxis salute involves a clenched fist over the chest, followed by an open hand, symbolizing strength tempered with service.
 
 ---
 

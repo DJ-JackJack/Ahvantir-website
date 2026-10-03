@@ -89,8 +89,6 @@ Kadrin the Duelist is more than a ghost; he is a legend and a guardian. His stor
 
 In the Horizon Watch Arena, Kadrin’s legacy looms large, a reminder that even in death, the ideals of courage, discipline, and respect endure. His presence inspires fighters, comforts spectators, and ensures that the arena remains a place where honor shines brightest—even in the heat of battle.
 
-Children ..
-
 ---
 
 > **Source**

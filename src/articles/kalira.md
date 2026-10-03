@@ -67,8 +67,6 @@ Kalira’s influence has become woven into Aru’Mas’s folklore, where she is 
 
 Kalira, the Mistress of Indulgence, is a deity who embodies hedonism, vanity, and self-centered pleasure, seeking to lure the people of Aru’Mas into cycles of excess and dependency. Through her followers, the Velvet Hand, she establishes social hubs of decadence, glamour, and temptation, where citizens are encouraged to indulge in their desires without restraint. The Velvet Hand preys on the vulnerable and influential alike, spreading addiction, vanity, and selfishness, and undermining the values of compassion and community. In response, the Order of Harmony works tirelessly to counter her influence, offering outreach, support, and education on the importance of balance and health. Through the Rite of Purification, youth mentorship, and rehabilitation programs, the Church of the Threefold Path endeavors to protect the people of Aru’Mas from the alluring yet destructive power of Kalira’s excess.
 
-Children ..
-
 ---
 
 > **Source**

@@ -45,7 +45,7 @@ Though Samael is not inherently malicious, dealing with him carries inherent ris
 
 ## Final Thoughts
 
-Samael of the House of Untold Stories is one of the most enigmatic fey figures known to scholars. While his own motivations remain obscure, his cheerful servant ensures that his master’s name is whispered far and wide, always seeking the next soul willing to trade a part of themselves for knowledge they may one day wish they had never sought. Children ..
+Samael of the House of Untold Stories is one of the most enigmatic fey figures known to scholars. While his own motivations remain obscure, his cheerful servant ensures that his master’s name is whispered far and wide, always seeking the next soul willing to trade a part of themselves for knowledge they may one day wish they had never sought.
 
 ---
 

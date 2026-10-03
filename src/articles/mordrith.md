@@ -70,8 +70,6 @@ Mordrith’s power is most keenly felt during times of loss, change, and letting
 
 Through Mordrith, the Ashbound find a sense of purpose in simplicity and humility, choosing to live without fear of death or decay. They serve as guides to those in mourning, healers for the suffering, and gentle reminders that even as all things fade, there is beauty and wisdom in each stage of life.
 
-Children ..
-
 ---
 
 > **Source**
