@@ -11,7 +11,7 @@ The Fend is the land around [[Aru'Mas]]: thousands of acres of farmland, orchard
 
 It is also the only place on the Ahvantir Archipelago where a ship can land. The Mountain Wall rings the whole archipelago in sheer cliff and razor reef; the Fend is the single alcove where that barrier opens onto a shore. Marduk’s fleet came ashore here because there was nowhere else to come ashore, and the [[Drorn'Duur]] held it before them for the same reason.
 
-The Fend was **granted** to Marduk’s people at the close of the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], as a term of the [[First Pact]]. The grant confirmed them in land they were already occupying, and had been since they drove the [[Drorn'Duur]] off it. The terms are simple and have never changed: they may use and cultivate any land that does not cross the mountains into the archipelago proper. The Fend is what the settlers were given instead of what Marduk wanted.
+The Fend was **granted** to Marduk’s people at the close of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], as a term of the [[First Pact]]. The grant confirmed them in land they were already occupying, and had been since they drove the [[Drorn'Duur]] off it. The terms are simple and have never changed: they may use and cultivate any land that does not cross the mountains into the archipelago proper. The Fend is what the settlers were given instead of what Marduk wanted.
 
 The spirits’ reasoning was not sentimental. A people with standing, a homeland, and room to grow comfortable press less hard at a border than a people with none. The grant was a calculated concession, and it has worked for four centuries.
 

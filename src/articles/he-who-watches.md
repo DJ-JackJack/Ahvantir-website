@@ -41,7 +41,7 @@ A speaking glyph is set into the chamber wall, activated once per approach. It p
 > *For what is named is beckoned, and what is beckoned wakes —*
 > *and stillness breaks.*
 
-The poem encodes the [[The Primordem Naming Mechanic|naming mechanic]] without explaining it directly. This was deliberate: a full explanation, spoken aloud in proximity to the seal, would itself constitute dangerous instruction.
+The poem encodes the [[The Primordem#The Naming Mechanic|naming mechanic]] without explaining it directly. This was deliberate: a full explanation, spoken aloud in proximity to the seal, would itself constitute dangerous instruction.
 
 ## Aura and Escalation
 

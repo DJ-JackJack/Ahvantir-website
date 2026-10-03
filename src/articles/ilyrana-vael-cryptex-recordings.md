@@ -154,7 +154,7 @@ Her expression in both recordings has been described by the scholars who have ac
 - Author: Ilyrana Vael (Third Circle Pact Scholar; identity of this role is flexible in the present day)
 - Subject: [[The Primordem]]
 - Container type: [[Arcanum Cryptex]]
-- Referenced in: [[The Primordem Ilyrana Vael Cryptex]]
+- Referenced in: [[The Primordem#The Ilyrana Vael Cryptex]]
 - See also: [[He Who Was Forgotten]] (Recording 17's central concern); [[He Who Suffers the Darkness]] (flagged as the most dangerous case)
 
 ## Source Notes

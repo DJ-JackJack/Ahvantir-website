@@ -32,7 +32,7 @@ Nyhexus's relationship to its neighboring planes is not uniform, and the relatio
 
 The [[Faded Veil]] runs alongside the material as a dark mirror — the same geography, warped and suffused with negative energy. The two planes press most acutely against each other at the [[Shattered Strand]], where a historical catastrophe thinned the boundary to its current partial permeability. The Veil is close enough that some of what passes on one side is visible from the other.
 
-The [[Vast Green]] occupies a different kind of proximity — less a mirror than an overflow. Its fey energy bleeds into Ahvantir at points of natural intensity: places where emotion runs high, where beauty exceeds its expected proportion, where time moves with the quality of elsewhere. The [[Fendfolk]] have words for these places that do not require the vocabulary of planar theory, because for most of their history they haven't needed it.
+The [[Vast Green]] occupies a different kind of proximity — less a mirror than an overflow. Its fey energy bleeds into Ahvantir at points of natural intensity: places where emotion runs high, where beauty exceeds its expected proportion, where time moves with the quality of elsewhere. The [[Fend and the Fendfolk|Fendfolk]] have words for these places that do not require the vocabulary of planar theory, because for most of their history they haven't needed it.
 
 [[The Dreaming]] runs parallel at a remove accessible by anyone who sleeps. It is the most intimate planar relationship Nyhexus has: not a plane one travels to, but one the entire mortal population of the archipelago inhabits in fragments every night.
 

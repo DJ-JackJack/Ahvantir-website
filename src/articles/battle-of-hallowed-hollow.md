@@ -8,7 +8,7 @@ timeline_year: -7
 
 # Battle of Hallowed Hollow
 
-The Battle of Hallowed Hollow was a named event of the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] in which a settler militia engaged the Green Man — the spirit of what is now the [[Neverwood]] — and his forces at one of the Greenwood's sacred sites.
+The Battle of Hallowed Hollow was a named event of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]] in which a settler militia engaged the Green Man — the spirit of what is now the [[Neverwood]] — and his forces at one of the Greenwood's sacred sites.
 
 ---
 

@@ -64,7 +64,7 @@ See: [[Ilyrana Vael Cryptex Recordings]]
 
 ## Distinction: Primordem vs. Primordial Lords
 
-The Primordem are **entirely distinct** from the [[Primordial Lords]]. The Primordial Lords are four active cosmic deities with cults in the present day. Different origin, different status, different role in the world. Do not conflate them.
+The Primordem are **entirely distinct** from the [[Primordial Lords Overview|Primordial Lords]]. The Primordial Lords are four active cosmic deities with cults in the present day. Different origin, different status, different role in the world. Do not conflate them.
 
 ## The Twelve
 
@@ -86,7 +86,7 @@ The Primordem are **entirely distinct** from the [[Primordial Lords]]. The Primo
 ## Connections
 - Leader: [[He Who Was Forgotten]]
 - Last sealed (original eleven): [[He Who Suffers the Darkness]]
-- Related (but distinct): [[Primordial Lords]]
+- Related (but distinct): [[Primordial Lords Overview|Primordial Lords]]
 - In-world document: [[Ilyrana Vael Cryptex Recordings]]
 - Key conflict: [[Marduk Sunspear]] was defeated in honorable combat by [[He Who Was Forgotten]] (per Primordem Doc)
 

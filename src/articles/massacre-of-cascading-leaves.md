@@ -8,7 +8,7 @@ timeline_year: -7
 
 # Massacre of Cascading Leaves
 
-The Massacre of Cascading Leaves was a named event of the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], occurring during the conflict's middle years. An unnamed spirit struck a small settler encampment in the night. Sixty-six people were killed — primarily women, children, and the infirm.
+The Massacre of Cascading Leaves was a named event of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], occurring during the conflict's middle years. An unnamed spirit struck a small settler encampment in the night. Sixty-six people were killed — primarily women, children, and the infirm.
 
 ---
 

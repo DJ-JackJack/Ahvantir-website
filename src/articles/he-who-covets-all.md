@@ -77,7 +77,7 @@ He is an anomaly even among the Primordem themselves. The original eleven share 
 ## Connections
 - Group: [[The Primordem]] (anomalous member — sealed separately)
 - See also: [[He Who Was Forgotten]] (led the original eleven)
-- Open question resolution: [[Open Questions]]
+- Open question resolution: [[Open Questions#R3]]
 
 ## Source Notes
 > **Source**

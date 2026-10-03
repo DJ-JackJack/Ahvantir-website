@@ -38,7 +38,7 @@ The land was not wilderness when they arrived. The [[Fend and the Fendfolk|Fend]
 
 Marduk’s subsequent assault on the Drorn’Duur was sudden and brutal. His calculation appears to have been that a people who understood Ahvantir’s spiritual landscape better than he did represented an unacceptable risk to his claim on this land. The Drorn’Duur’s above-ground civilization was destroyed. Their spirit-temples were defiled. Their clans were eradicated or scattered.
 
-This act triggered the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]]: the desecration of Drorn’Duur spirit-temples activated ancient pact obligations the spirits held with the Drorn’Duur, and the surviving Drorn’Duur allied with the spirit coalition against the settlers.
+This act triggered the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]]: the desecration of Drorn’Duur spirit-temples activated ancient pact obligations the spirits held with the Drorn’Duur, and the surviving Drorn’Duur allied with the spirit coalition against the settlers.
 
 ### The Landing War and the Duel
 

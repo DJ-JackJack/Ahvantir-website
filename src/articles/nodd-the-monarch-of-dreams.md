@@ -55,7 +55,7 @@ While some Chosen use their powers to inspire and protect, others succumb to per
 
 ## Worship and Reverence
 
-Nodd does not demand worship, and their existence does not depend on it — this is one of the clearest markers of their nature as a spirit rather than a deity. Nevertheless, they are venerated by dreamers, artists, seers, and those who seek wisdom through introspection. Shrines to the Monarch of Dreams are common throughout Ahvantir, particularly in the Temple District and among the [[Fendfolk]].
+Nodd does not demand worship, and their existence does not depend on it — this is one of the clearest markers of their nature as a spirit rather than a deity. Nevertheless, they are venerated by dreamers, artists, seers, and those who seek wisdom through introspection. Shrines to the Monarch of Dreams are common throughout Ahvantir, particularly in the Temple District and among the [[Fend and the Fendfolk|Fendfolk]].
 
 That veneration is growing, and it is growing quickly enough that spirit-scholars have begun saying so out loud. The [[Primordial Lords Overview|Four Primordials]] were spirits once, and were carried past what a spirit is by exactly this: accumulated worship they neither sought nor refused. Nodd neither seeks nor refuses it either. Whether the Monarch is early in the same transition, and what it would mean for the sovereign of an entire plane to undergo it, is a live question among those paying attention. See [[Deification in Ahvantir]].
 
@@ -89,7 +89,7 @@ Nodd's relationship with the [[Pathite Pantheon]] is distant but amicable. The P
 - Domain: [[The Dreaming]] (plane — Nodd is its Warden-sovereign)
 - Spirit type: [[Loci]] (exceptional scale)
 - The Chosen: [[Dreamwalkers]]
-- See also: [[Once-Was]] (drift into the Dreaming), [[Pathite Pantheon]] (distant relationship), [[Fendfolk]] (significant worshippers)
+- See also: [[Once-Was]] (drift into the Dreaming), [[Pathite Pantheon]] (distant relationship), [[Fend and the Fendfolk|Fendfolk]] (significant worshippers)
 
 ---
 

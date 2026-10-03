@@ -44,7 +44,7 @@ Control of the Spiritsway is shared: the Order of the Keystone manages the morta
 
 ## Role in the Founding Era
 
-[[Marduk Sunspear]]'s stated objective throughout the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]] — never recorded in official histories — was expansion beyond the Mountain Wall. The Wall was, for a man who had spent forty-nine years adrift in the Astral Sea, an intolerable reminder of limitation. He had found a land large enough to hold everyone he had rescued, and then discovered it had a wall around its best parts.
+[[Marduk Sunspear]]'s stated objective throughout the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]] — never recorded in official histories — was expansion beyond the Mountain Wall. The Wall was, for a man who had spent forty-nine years adrift in the Astral Sea, an intolerable reminder of limitation. He had found a land large enough to hold everyone he had rescued, and then discovered it had a wall around its best parts.
 
 The First Pact granted access to the interior but restricted and controlled it. Whether Marduk ever made it through in his lifetime is not recorded.
 

@@ -22,17 +22,17 @@ What makes it distinctive — beyond the novelty of its origins — is the way t
 
 ## Origins
 
-The food's origins are a matter of ongoing and largely unresolved speculation. The general consensus among those who have thought about it seriously — primarily students at [[Arrandak Academy for the Gifted Few]] who considered it worth a semester of inquiry — is that it arrived via the port in [[Driftmoor Haven]], likely carried by a traveler from a distant world who either brought the technique intentionally or simply needed to eat.
+The food's origins are a matter of ongoing and largely unresolved speculation. The general consensus among those who have thought about it seriously — primarily students at [[Arrandak Academy|Arrandak Academy for the Gifted Few]] who considered it worth a semester of inquiry — is that it arrived via the port in [[Driftmoor Haven]], likely carried by a traveler from a distant world who either brought the technique intentionally or simply needed to eat.
 
 The world of origin is unknown. Several have been proposed. None have been confirmed. One popular theory holds that it arrived aboard a vessel transiting through the Far-Farewell Market District's unofficial lanes; another suggests it was reconstructed from memory by someone who had eaten it elsewhere and missed it badly enough to start making it themselves.
 
-What is known: the recipe spread rapidly once it entered the port district's street food economy. Within a year, at least a dozen vendors were selling recognizable variants. Within three, it had crossed into [[Luminous Reach]] and found a second home near the gates of [[Arrandak Academy for the Gifted Few]], where students on shortened meal schedules discovered it was possible to eat one while walking between lectures without dropping it, provided sufficient experience.
+What is known: the recipe spread rapidly once it entered the port district's street food economy. Within a year, at least a dozen vendors were selling recognizable variants. Within three, it had crossed into [[Luminous Reach]] and found a second home near the gates of [[Arrandak Academy|Arrandak Academy for the Gifted Few]], where students on shortened meal schedules discovered it was possible to eat one while walking between lectures without dropping it, provided sufficient experience.
 
 ## Cultural Footprint
 
 The bread bowl occupies an unusual social position in [[Aru'Mas]]. It costs little, travels well, and requires no utensils, which made it an immediate staple among the working population of [[Driftmoor Haven]] — dockworkers, warehouse crews, courier runs, and evening market traffic all adopted it without ceremony. It feeds people quickly and without pretension, and in a district that values both of those things, it found fertile ground.
 
-Its subsequent adoption by the student population of [[Arrandak Academy for the Gifted Few]] surprised some observers who expected the Academy to maintain a more curated relationship with its food. In practice, proximity to the Luminous Reach vendors and the reliable demands of a hungry student body proved stronger than institutional preference, and the bread bowl became quietly embedded in the Academy's social life — eaten between seminars, during late study sessions, and at the low tables outside the library where the informal work gets done.
+Its subsequent adoption by the student population of [[Arrandak Academy|Arrandak Academy for the Gifted Few]] surprised some observers who expected the Academy to maintain a more curated relationship with its food. In practice, proximity to the Luminous Reach vendors and the reliable demands of a hungry student body proved stronger than institutional preference, and the bread bowl became quietly embedded in the Academy's social life — eaten between seminars, during late study sessions, and at the low tables outside the library where the informal work gets done.
 
 It is, in the estimation of many who eat it regularly, *exactly* the right food for a city that is always in the middle of something.
 
@@ -54,7 +54,7 @@ The debate shows no signs of resolution. Aru'Masians have long memories and stro
 
 No single vendor holds a monopoly on the bread bowl trade, and attempts by the Merchants Guild to formalize the market have met with limited success — the food's origins are murky enough that no one can credibly claim an authentic lineage worth protecting. The result is a competitive and loosely regulated vendor landscape in both [[Driftmoor Haven]] and the Luminous Reach approaches.
 
-The quality varies accordingly. Dockside regulars have strong opinions about which carts are worth the walk. Students near [[Arrandak Academy for the Gifted Few]] tend to develop loyalty to whichever vendor they discovered first and defend that loyalty with the conviction of people who haven't had time to reconsider.
+The quality varies accordingly. Dockside regulars have strong opinions about which carts are worth the walk. Students near [[Arrandak Academy|Arrandak Academy for the Gifted Few]] tend to develop loyalty to whichever vendor they discovered first and defend that loyalty with the conviction of people who haven't had time to reconsider.
 
 ---
 

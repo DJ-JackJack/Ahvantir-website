@@ -29,6 +29,27 @@ function escHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
+/* The id markdown-it-anchor gives a heading, using its default slugify so
+   the anchors we emit match the ids actually in the HTML. Deliberately NOT
+   toSlug: that strips punctuation, while these ids keep parentheses and
+   percent-encode non-ASCII, e.g. "The Landing War (-13 to 0 MC)" becomes
+   the-landing-war-(-13-to-0-mc). */
+function toHeadingId(str) {
+  return encodeURIComponent(
+    String(str).trim().toLowerCase().replace(/\s+/g, "-")
+  );
+}
+
+/* Split an Obsidian wikilink target into page and heading.
+   [[Page#Heading]] points at a section of Page, not at a page named
+   "Page#Heading". Flattening the two was turning correct vault links into
+   404s on the site. */
+function splitTarget(target) {
+  const i = String(target).indexOf("#");
+  if (i === -1) return { page: target, heading: "" };
+  return { page: target.slice(0, i), heading: target.slice(i + 1) };
+}
+
 function toSlug(str) {
   return String(str)
     .toLowerCase()
@@ -66,9 +87,17 @@ module.exports = function (eleventyConfig) {
       /(<script\b[\s\S]*?<\/script>)|\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
       (match, scriptBlock, target, alias) => {
         if (scriptBlock !== undefined) return scriptBlock;
-        const text = alias || target;
-        const slug = toSlug(target);
-        return `<a href="/articles/${slug}/" class="wikilink" data-target="${slug}">${escHtml(text)}</a>`;
+        const { page, heading } = splitTarget(target);
+        // With no alias, read it as Obsidian does: "Page > Heading",
+        // rather than the raw "Page#Heading".
+        const text = alias || (heading ? page + " \u203a " + heading : page);
+        const slug = toSlug(page);
+        const anchor = heading ? "#" + toHeadingId(heading) : "";
+        // [[#Heading]] with no page is a link inside the current article.
+        if (!slug) {
+          return `<a href="${anchor}" class="wikilink">${escHtml(text)}</a>`;
+        }
+        return `<a href="/articles/${slug}/${anchor}" class="wikilink" data-target="${slug}">${escHtml(text)}</a>`;
       }
     );
   });
@@ -85,7 +114,11 @@ module.exports = function (eleventyConfig) {
     if (!str) return "";
     return String(str).replace(
       /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
-      (m, target, alias) => alias || target
+      (m, target, alias) => {
+        if (alias) return alias;
+        const { page, heading } = splitTarget(target);
+        return heading ? page + " \u203a " + heading : page;
+      }
     );
   });
 
@@ -180,7 +213,10 @@ module.exports = function (eleventyConfig) {
       }
       const links = [...raw.matchAll(/\[\[([^\]|]+?)(?:\|[^\]]+?)?\]\]/g)];
       for (const [, title] of links) {
-        const slug = toSlug(title);
+        // Same split as the transform: a section link belongs to its PAGE.
+        // Without this every [[Page#Heading]] counted as a link to a
+        // nonexistent "page-heading" article and warned on every build.
+        const slug = toSlug(splitTarget(title).page);
         const target = pageMap.get(slug);
         if (target) {
           const already = target.data.backlinks.some(

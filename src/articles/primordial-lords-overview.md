@@ -2,6 +2,7 @@
 title: "Primordial Lords: Overview"
 category: religion
 tags: [deity, spirit, primordial-lords, earthbound-gods]
+aliases: ["Primordial Lords"]
 date_added: "2026-06-06"
 ---
 

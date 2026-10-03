@@ -152,7 +152,25 @@ def strip_dataview(content: str) -> str:
 
 
 def strip_inline_tags(content: str) -> str:
-    return re.sub(r"(?<!\[)#([a-zA-Z][\w/-]*)", "", content)
+    """Remove #tags from body text, but never from inside a [[wikilink]].
+
+    The lookbehind alone only protected a "#" that immediately followed a "[",
+    so an Obsidian SECTION link lost its heading:
+
+        [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]]
+        -> [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]]
+
+    which the website then resolved to a page that does not exist. Fourteen
+    links broke that way, and the vault looked innocent because the damage
+    happened here in the pipeline rather than in the note.
+
+    Splitting on wikilinks first means tags are only stripped from the text
+    between them.
+    """
+    parts = re.split(r"(\[\[[^\]]*\]\])", content)
+    for i in range(0, len(parts), 2):   # even indexes are the text between links
+        parts[i] = re.sub(r"(?<!\[)#([a-zA-Z][\w/-]*)", "", parts[i])
+    return "".join(parts)
 
 
 def strip_templater(content: str) -> str:

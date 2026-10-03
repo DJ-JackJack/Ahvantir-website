@@ -14,7 +14,7 @@ The Passage is formed from colossal stone doors set within a frame of obsidian-v
 
 ## Origin and Purpose
 
-The Spiritsway Passage was erected at Year 0 MC, simultaneous with the signing of the [[First Pact]] that ended the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]]. The Pact’s terms mandated that access to the interior of the archipelago must be granted but also restricted and protected — the Spiritsway was built as the physical expression of that mandate.
+The Spiritsway Passage was erected at Year 0 MC, simultaneous with the signing of the [[First Pact]] that ended the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]]. The Pact’s terms mandated that access to the interior of the archipelago must be granted but also restricted and protected — the Spiritsway was built as the physical expression of that mandate.
 
 It was a joint construction: the mortal side contributed the stonework, the runic sealing, and the institutional infrastructure of the Order of the Keystone; the spirit side contributed the passage itself — the actual transit mechanism that carries travelers through the [[Mountain Wall]] to the interior of Ahvantir. Neither side could have built it alone. Neither side controls it alone.
 

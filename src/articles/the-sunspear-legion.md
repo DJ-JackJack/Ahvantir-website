@@ -39,7 +39,7 @@ When [[Marduk Sunspear]] arrived on Ahvantir's shores with the remnants of a ref
 
 ### The Spear
 
-In the earliest years of the [[History of Ahvantir Landing War (-13 to 0 MC)|Landing War]], Marduk's closest fighting retinue had no formal name. They were simply *the people who guarded him* — the inner ring of warriors who had been with him longest, trusted most, and were never far from his side. Somewhere in those early years of conflict, before the settler coalition had cohered into anything resembling a military institution, this retinue acquired a name: **The Spear**.
+In the earliest years of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], Marduk's closest fighting retinue had no formal name. They were simply *the people who guarded him* — the inner ring of warriors who had been with him longest, trusted most, and were never far from his side. Somewhere in those early years of conflict, before the settler coalition had cohered into anything resembling a military institution, this retinue acquired a name: **The Spear**.
 
 The name was a direct reference to Marduk's artifact weapon — the spear he carried throughout the war, already legendary among the settlers who watched him fight. To be part of The Spear was to be part of his instrument. It was a personal guard in the truest sense: not an institution, not a command hierarchy, but an extension of the man himself.
 
