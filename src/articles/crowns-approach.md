@@ -19,7 +19,7 @@ The palace is the crown jewel of the Crowns Approach, located on its own island 
 
 - Architecture: The palace is a dazzling structure of white stone and gold, with spires that gleam in the sunlight. Its intricate carvings and gilded details depict the city’s history, its founding, and the glory of the royal family.
 - Private Grounds: Surrounding the palace are lush gardens, fountains, and secluded courtyards, providing a serene escape for the royal family. The grounds are meticulously tended and inaccessible to the general public.
-- Security: The [[Sunspear Legion]]’s [[Vanguard of Valor]] guards the palace at all times, ensuring the safety of the royal family and their advisors.
+- Security: The [[The Sunspear Legion]]’s [[Vanguard of Valor]] guards the palace at all times, ensuring the safety of the royal family and their advisors.
 
 ## Avenues and Shops
 
@@ -47,7 +47,7 @@ The Crowns Approach is not home to a typical population; its residents are exclu
 
 ## Guards and Staff
 
-- The Vanguard of Valor: Elite soldiers of the [[Sunspear Legion]] are stationed here, ensuring the district’s security and the safety of its residents and visitors.
+- The Vanguard of Valor: Elite soldiers of the [[The Sunspear Legion]] are stationed here, ensuring the district’s security and the safety of its residents and visitors.
 - Servants and Attendants: The district employs a discreet and highly skilled staff who manage the daily operations of the manors and shops, as well as catering to the needs of its distinguished residents.
 
 ## Key Landmarks

@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Skywardens
 
-The Skywardens are an elite aerial division within the [[Sunspear Legion]] , renowned for their mastery of high-altitude combat and rapid-response tactics. Tasked with defending Aru’Mas from aerial threats, performing reconnaissance, and offering rapid deployment in emergencies, the Skywardens embody the valor and daring of the [[Sunspear Legion]] . With specialized training and a deep bond with their mounts, they are among the most feared and respected warriors in the skies above Aru’Mas.
+The Skywardens are an elite aerial division within the [[The Sunspear Legion]] , renowned for their mastery of high-altitude combat and rapid-response tactics. Tasked with defending Aru’Mas from aerial threats, performing reconnaissance, and offering rapid deployment in emergencies, the Skywardens embody the valor and daring of the [[The Sunspear Legion]] . With specialized training and a deep bond with their mounts, they are among the most feared and respected warriors in the skies above Aru’Mas.
 
 ## Role and Purpose
 

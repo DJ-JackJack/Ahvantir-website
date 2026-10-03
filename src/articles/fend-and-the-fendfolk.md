@@ -75,7 +75,7 @@ The people of Aru'Mas often view the Fendfolk through a mix of curiosity, respec
 ## 3. "Too Independent for Their Own Good"
 
 - City officials and members of the ruling council often regard the Fend as a place that lacks the structure and security provided by Aru’Mas’ governance. They worry about the potential dangers of rogue spirits, Blood Debts, or magical incursions going unchecked and potentially spilling over into the city’s territory.
-- There is a fear that the Fend’s reliance on spiritual pacts might invite trouble, leading to events that could destabilize the delicate balance maintained by the Old Pacts. The [[Runeguard]] and the [[Sunspear Legion]] often find themselves intervening in the Fend during particularly volatile spiritual disturbances, which can create tension between the protectors of the city and the independent Fendfolk.
+- There is a fear that the Fend’s reliance on spiritual pacts might invite trouble, leading to events that could destabilize the delicate balance maintained by the Old Pacts. The [[Runeguard]] and the [[The Sunspear Legion]] often find themselves intervening in the Fend during particularly volatile spiritual disturbances, which can create tension between the protectors of the city and the independent Fendfolk.
 
 ---
 

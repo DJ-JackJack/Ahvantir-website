@@ -70,7 +70,7 @@ Hearthstone’s proximity to Temple Way allows its residents to participate in t
 
 ## Spireview
 
-Hearthstone’s skilled laborers and artisans often work on contracts for the [[Sunspear Legion]] and other military operations in Spireview, creating weapons, armor, and other supplies.
+Hearthstone’s skilled laborers and artisans often work on contracts for the [[The Sunspear Legion]] and other military operations in Spireview, creating weapons, armor, and other supplies.
 
 ## The Spillway
 

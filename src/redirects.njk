@@ -1,0 +1,31 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+permalink: "{{ redirect.from }}index.html"
+eleventyExcludeFromCollections: true
+layout: null
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved</title>
+{# rel=canonical is what search engines follow; the refresh is for people.
+   Both point at the same place, so the old URL never competes with the new. #}
+<link rel="canonical" href="{{ redirect.to }}">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url={{ redirect.to }}">
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f7edcd;
+         color: #2d1e0e; margin: 0; display: grid; place-items: center;
+         min-height: 100vh; padding: 1rem; text-align: center; }
+  a { color: #7b1d2a; }
+</style>
+</head>
+<body>
+  {# Shown only if the refresh is blocked or JavaScript-free clients linger. #}
+  <p>This page has moved to <a href="{{ redirect.to }}">{{ redirect.to }}</a>.</p>
+</body>
+</html>

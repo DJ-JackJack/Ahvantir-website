@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Spireview
 
-Spireview is the militarized heart of Aru’Mas, a district steeped in discipline, order, and purpose. It serves as the headquarters for the [[Sunspear Legion]], the city’s military force, and the hub for strategic planning, law enforcement, and governance. Unlike the artistic vibrance of the [[Aurora Song District]] or the mercantile chaos of [[Driftmoor Haven]], Spireview is defined by its strict organization and unyielding focus on efficiency. Its residents, a mix of soldiers, administrators, and support staff, embody the spirit of duty that ensures Aru’Mas remains secure and resilient.
+Spireview is the militarized heart of Aru’Mas, a district steeped in discipline, order, and purpose. It serves as the headquarters for the [[The Sunspear Legion]], the city’s military force, and the hub for strategic planning, law enforcement, and governance. Unlike the artistic vibrance of the [[Aurora Song District]] or the mercantile chaos of [[Driftmoor Haven]], Spireview is defined by its strict organization and unyielding focus on efficiency. Its residents, a mix of soldiers, administrators, and support staff, embody the spirit of duty that ensures Aru’Mas remains secure and resilient.
 
 ## District Layout
 
@@ -17,7 +17,7 @@ Spireview is divided into several subdistricts, each serving a distinct purpose.
 
 The Command Quarter lies at the heart of Spireview, dominated by the towering [[Heartspire]], the district’s most iconic landmark.
 
-- The Heartspire: Rising high above the city, the Heartspire serves as the command center for the [[Sunspear Legion]] and houses its leadership, war rooms, and training facilities. Its grandeur reflects the unity and strength of Aru’Mas, with banners displaying the Sunspear Legion’s crest fluttering from its walls.
+- The Heartspire: Rising high above the city, the Heartspire serves as the command center for the [[The Sunspear Legion]] and houses its leadership, war rooms, and training facilities. Its grandeur reflects the unity and strength of Aru’Mas, with banners displaying the Sunspear Legion’s crest fluttering from its walls.
 - Administrative Offices: Surrounding the Heartspire are a series of administrative buildings where strategic plans are devised, citywide security is coordinated, and relations with other districts are managed. These offices are staffed by bureaucrats and strategists who work tirelessly to ensure the city runs smoothly.
 
 ## 2. The Barracks District

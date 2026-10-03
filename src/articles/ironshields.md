@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Ironshields
 
-The Ironshields are the elite heavy infantry of the [[Sunspear Legion]] , tasked with defending the fortified heart of Aru’Mas and its critical infrastructure. These warriors serve as the unbreakable bulwark of the city’s defenses, renowned for their ability to withstand direct assaults, secure key positions, and hold the line even in the face of overwhelming odds. As the embodiment of the Legion’s values of strength, discipline, and unyielding resolve, the Ironshields are one of the most respected units within the military forces of Aru’Mas.
+The Ironshields are the elite heavy infantry of the [[The Sunspear Legion]] , tasked with defending the fortified heart of Aru’Mas and its critical infrastructure. These warriors serve as the unbreakable bulwark of the city’s defenses, renowned for their ability to withstand direct assaults, secure key positions, and hold the line even in the face of overwhelming odds. As the embodiment of the Legion’s values of strength, discipline, and unyielding resolve, the Ironshields are one of the most respected units within the military forces of Aru’Mas.
 
 ## Role and Purpose
 
@@ -49,7 +49,7 @@ The Ironshields are defined by their distinctive, heavily fortified armor, power
 
 ## Training and Organization
 
-Ironshields undergo one of the most grueling training regimens in the [[Sunspear Legion]] , designed to build both physical endurance and unyielding resolve.
+Ironshields undergo one of the most grueling training regimens in the [[The Sunspear Legion]] , designed to build both physical endurance and unyielding resolve.
 
 ## 1. Recruitment and Selection
 

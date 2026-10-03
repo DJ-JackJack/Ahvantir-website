@@ -46,7 +46,7 @@ The Merchants’ Guild is not merely an economic institution—it is a formidabl
 
 - Commerce & Trade – Virtually all trade in Aru’Mas flows through the Merchants’ Guild, ensuring that every merchant, from street vendors to elite traders, adheres to the guild’s policies.
 - Legal & Political Authority – The guild can challenge laws that negatively impact trade, and the Guild Council has been known to sway political decisions in favor of merchant interests.
-- Military Contracting – The [[Sunspear Legion]] relies on the Guild for weapons, armor, and logistical support, making it a vital cog in the city’s defense.
+- Military Contracting – The [[The Sunspear Legion]] relies on the Guild for weapons, armor, and logistical support, making it a vital cog in the city’s defense.
 - Magical & Technological Innovation – The Guild funds numerous magical and technological advancements, ensuring Aru’Mas remains at the cutting edge of commerce and industry.
 - Foreign Relations – The guild’s vast trade network gives it leverage in negotiations with outside powers, solidifying Aru’Mas’s position as an economic juggernaut.
 

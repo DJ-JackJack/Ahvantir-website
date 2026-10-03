@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Skyblades
 
-The Skyblades are the most commonly used mounts among the [[Skywardens]] of Aru’Mas, prized for their agility, loyalty, and keen senses. Unlike the other mounts of the [[Sunspear Legion]], Skyblades are not known for magical qualities or impressive size; rather, they are celebrated for their natural athleticism, ease of handling, and reliability. Skyblades serve as the primary mounts for new recruits and veterans alike, making them the backbone of the Skywardens’ aerial forces.
+The Skyblades are the most commonly used mounts among the [[Skywardens]] of Aru’Mas, prized for their agility, loyalty, and keen senses. Unlike the other mounts of the [[The Sunspear Legion]], Skyblades are not known for magical qualities or impressive size; rather, they are celebrated for their natural athleticism, ease of handling, and reliability. Skyblades serve as the primary mounts for new recruits and veterans alike, making them the backbone of the Skywardens’ aerial forces.
 
 ## Physical Attributes and Appearance
 
@@ -53,7 +53,7 @@ A legend that resonates deeply within Aru’Mas is that of the Dawnwing, a Skybl
 
 ## Skyblades as Guardians of the City
 
-To the Skywardens and citizens of Aru’Mas, Skyblades represent vigilance, loyalty, and the enduring dedication of the Legion. They are the tireless watchers of the skies, ever-present and ever-vigilant, keeping Aru’Mas safe through their dedication and precision. Although they lack the magical abilities of other mounts, their natural skill and unwavering loyalty make them indispensable to the [[Sunspear Legion]].
+To the Skywardens and citizens of Aru’Mas, Skyblades represent vigilance, loyalty, and the enduring dedication of the Legion. They are the tireless watchers of the skies, ever-present and ever-vigilant, keeping Aru’Mas safe through their dedication and precision. Although they lack the magical abilities of other mounts, their natural skill and unwavering loyalty make them indispensable to the [[The Sunspear Legion]].
 
 Whether scouting the borders, patrolling the streets, or training alongside the Skywardens, Skyblades bring a dependable strength to the city’s defense. Their loyalty and intelligence make them not only partners in battle but cherished symbols of Aru’Mas’s strength and unity. To see a Skyblade soaring through the city is a reminder of the commitment and protection offered by the Skywardens, guardians who watch over the people with unbreakable loyalty and precision.
 

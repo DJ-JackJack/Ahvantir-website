@@ -13,7 +13,7 @@ date_added: "2026-06-14"
 
 ## The Sunspear Dynasty
 
-When [[Marduk Sunspear]] died in the post-founding period, the throne passed to his elder son Darod — and from Darod downward, generation by generation, to Dammadan. By the time Dammadan Sunspear ruled, the line was old enough that the dynasty and the city's founding mythology had become functionally the same thing. Aru'Mas existed because Marduk had built it. Marduk's blood was on the throne. The [[Marducian Calendar]] bore his name. The [[Sunspear Legion]] bore his name. No one alive could remember a version of Aru'Mas that was not a Sunspear city.
+When [[Marduk Sunspear]] died in the post-founding period, the throne passed to his elder son Darod — and from Darod downward, generation by generation, to Dammadan. By the time Dammadan Sunspear ruled, the line was old enough that the dynasty and the city's founding mythology had become functionally the same thing. Aru'Mas existed because Marduk had built it. Marduk's blood was on the throne. The [[Marducian Calendar]] bore his name. The [[The Sunspear Legion]] bore his name. No one alive could remember a version of Aru'Mas that was not a Sunspear city.
 
 That depth of identification made what happened to Dammadan's court more than a military disaster. It was a break in the city's story of itself.
 
@@ -25,7 +25,7 @@ Asgoraviel was not native to Ahvantir. He was a Usurper — one of the cast-down
 
 What he found was a functional city with a standing army, a governing council, three established factions in an uneasy balance, and a spiritual landscape already shaped by a pact older than the dynasty on the throne. To a being whose version of order required absolute submission, this was precisely the kind of chaos he had come to correct.
 
-His forces were celestial legions — corrupted spirits and mortals coerced into his service — wielding divine magic bent into instruments of control. They assaulted the city's defenses relentlessly, striking against the [[Sunspear Legion]] at every wall.
+His forces were celestial legions — corrupted spirits and mortals coerced into his service — wielding divine magic bent into instruments of control. They assaulted the city's defenses relentlessly, striking against the [[The Sunspear Legion]] at every wall.
 
 The siege that followed was, until that point, considered the most terrifying event Aru'Mas had faced since the loss of the Shattered Strand. It lasted nine years.
 
@@ -47,9 +47,9 @@ Nishta Ilderas-Sunspear claimed the throne before the siege was over.
 
 With Dammadan dead, his heirs dead, and no one remaining from the Sunspear bloodline with standing to lead, the city needed someone to govern it through the ongoing assault. Nishta provided that — not through formal coronation, which the circumstances did not permit, but through a claim grounded in her standing as queen consort, her presence in the capital, and her demonstrated capacity to act when the governing structure had been decapitated.
 
-The [[Sunspear Legion]]'s command situation in this period was severe. The Magister of Defense's role had previously been filled by whoever the Sunspear line trusted — a matter of personal loyalty to the dynasty rather than formalized authority. When the dynasty was killed, that informal chain lost its anchor. The offices that had relied on personal relationships to the Sunspear kings were suddenly operating without their appointed heads. Nishta stabilized the command structure that held through the remaining years of the siege.
+The [[The Sunspear Legion]]'s command situation in this period was severe. The Magister of Defense's role had previously been filled by whoever the Sunspear line trusted — a matter of personal loyalty to the dynasty rather than formalized authority. When the dynasty was killed, that informal chain lost its anchor. The offices that had relied on personal relationships to the Sunspear kings were suddenly operating without their appointed heads. Nishta stabilized the command structure that held through the remaining years of the siege.
 
-The siege's conclusion (~339 MC) came through coalition. [[Sunspear Legion|Legionnaires]], [[Runeguard]], and a group of legendary adventurers were able to confront Asgoraviel directly, exploit the arrogance that was the defining flaw of his theology, and trap him within a cavern deep beneath the city. The [[Order of Wisdom]] designed the wards. The chains were forged from [[Runic Steel]]. The sealing held. What became known as the **Cavern of Chains**, beneath the [[Heartspire]], has held Asgoraviel since.
+The siege's conclusion (~339 MC) came through coalition. [[The Sunspear Legion|Legionnaires]], [[Runeguard]], and a group of legendary adventurers were able to confront Asgoraviel directly, exploit the arrogance that was the defining flaw of his theology, and trap him within a cavern deep beneath the city. The [[Order of Wisdom]] designed the wards. The chains were forged from [[Runic Steel]]. The sealing held. What became known as the **Cavern of Chains**, beneath the [[Heartspire]], has held Asgoraviel since.
 
 Nishta ruled through that sealing. She was the reason there was a functional government to govern through it.
 
@@ -87,7 +87,7 @@ What Asgoraviel accomplished, in destroying Dammadan's court, was this: he ended
 
 ## Connections
 - [[Asgoraviel]] — the fallen archangel whose siege triggered the dynastic rupture; sealed beneath the [[Heartspire]] since ~339 MC
-- [[Sunspear Legion]] — bore the full weight of the nine-year siege; the institution's command structure collapsed and was rebuilt during the transition
+- [[The Sunspear Legion]] — bore the full weight of the nine-year siege; the institution's command structure collapsed and was rebuilt during the transition
 - [[Ilderas Dynasty]] — the line born from the transition; currently ruling in 439 MC
 - [[Heartspire]] — location of the Cavern of Chains where Asgoraviel remains sealed
 - [[Runeguard]] — co-participants in the coalition that sealed Asgoraviel

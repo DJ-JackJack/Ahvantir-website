@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Hand of Throk
 
-In the shadowed alleys and hidden corners of Aru’Mas, whispers tell of a group known as the Hand of Throk. They are not your typical criminal organization but rather a network of thieves, spies, and rogues bound by a common purpose: to protect the people of Aru’Mas from the city's unseen corruption. The Hand of Throk operates in defiance of crooked officials, treacherous [[Sunspear Legion|Sunspear Legionnaires]], and the forces that seek to exploit or harm the innocent. They walk a fine line between lawlessness and justice, performing what some call "altruistic crimes" with a strict code that forbids murder and harm to commonfolk.
+In the shadowed alleys and hidden corners of Aru’Mas, whispers tell of a group known as the Hand of Throk. They are not your typical criminal organization but rather a network of thieves, spies, and rogues bound by a common purpose: to protect the people of Aru’Mas from the city's unseen corruption. The Hand of Throk operates in defiance of crooked officials, treacherous [[The Sunspear Legion|Sunspear Legionnaires]], and the forces that seek to exploit or harm the innocent. They walk a fine line between lawlessness and justice, performing what some call "altruistic crimes" with a strict code that forbids murder and harm to commonfolk.
 
 ## Origins and Philosophy
 
@@ -22,7 +22,7 @@ The Hand of Throk is structured as a loose network of cells, each led by a “Fi
 Each cell specializes in particular types of operations:
 
 - The Fingers: These are the pickpockets, burglars, and infiltrators who excel in sleight of hand, disguise, and breaking into secure locations. They’re the ones who steal incriminating documents, take valuable items from corrupt officials, and even redistribute wealth in clever ways.
-- The Eyes: The information gatherers and spies, tasked with identifying targets, monitoring corrupt officials, and gathering information on [[Sunspear Legion]] activities. They often operate under deep cover and work closely with informants and whistleblowers.
+- The Eyes: The information gatherers and spies, tasked with identifying targets, monitoring corrupt officials, and gathering information on [[The Sunspear Legion]] activities. They often operate under deep cover and work closely with informants and whistleblowers.
 - The Veil: Skilled in obfuscation and concealment, the Veil members specialize in erasing evidence, destroying dangerous documents, and covering the tracks of informants and whistleblowers. They are known for their deftness in making information vanish without a trace.
 
 ## Operations and Activities

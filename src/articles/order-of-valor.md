@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Order of Valor
 
-The Order of Valor is one of the three primary branches of [[The Church of the Threefold Path|the Church of the Threefold Path]] in [[Aru'Mas]], dedicated to [[Alor]], the Sentinel and Shield of the People. This Order is charged with the defense of the city, the protection of its people, and the upholding of justice. They operate as both elite defenders and moral guides, instilling a sense of duty, honor, and courage in their members. The Order of Valor is integral to the security of Aru'Mas, supporting both the city guard and the [[Sunspear Legion]], and is often called upon during times of crisis or conflict.
+The Order of Valor is one of the three primary branches of [[The Church of the Threefold Path|the Church of the Threefold Path]] in [[Aru'Mas]], dedicated to [[Alor]], the Sentinel and Shield of the People. This Order is charged with the defense of the city, the protection of its people, and the upholding of justice. They operate as both elite defenders and moral guides, instilling a sense of duty, honor, and courage in their members. The Order of Valor is integral to the security of Aru'Mas, supporting both the city guard and the [[The Sunspear Legion]], and is often called upon during times of crisis or conflict.
 
 ## Role and Responsibilities
 

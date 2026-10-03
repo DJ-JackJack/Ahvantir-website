@@ -36,7 +36,7 @@ The Luminous Reach is home to a variety of influential individuals who shape the
 
 - Nobility: Esteemed noble families reside in the district, many of whom trace their lineage back to the founding of Aru’Mas. These families are deeply involved in the city’s governance, philanthropy, and cultural preservation.
 - Adventurers and Heroes: Celebrated adventurers who have earned great renown through acts of valor often settle here. Their homes often double as museums, showcasing relics and trophies from their exploits.
-- Military Officers: High-ranking officers of the [[Sunspear Legion]] and other military branches are prominent residents, symbolizing the district’s close ties to the city’s defense.
+- Military Officers: High-ranking officers of the [[The Sunspear Legion]] and other military branches are prominent residents, symbolizing the district’s close ties to the city’s defense.
 
 ## Daily Life
 

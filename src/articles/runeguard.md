@@ -26,7 +26,7 @@ The Runeguard play multiple critical roles in the defense and administration of 
 ## 3. Arcane Defense and Combat
 
 - The Runeguard are the primary arcane combat specialists in Aru'Mas , deployed to counter magical threats ranging from rogue wizards to spiritual entities. They are often called upon to handle magical breaches, rogue summoners, and dangerous spellcasters who pose a threat to the city.
-- During major conflicts, the Runeguard act as the arcane artillery of the [[Sunspear Legion]] , capable of launching devastating runic attacks from a distance while protecting allied forces with powerful wards.
+- During major conflicts, the Runeguard act as the arcane artillery of the [[The Sunspear Legion]] , capable of launching devastating runic attacks from a distance while protecting allied forces with powerful wards.
 
 ## Runeguard Gear and Equipment
 
@@ -53,7 +53,7 @@ The Runeguard’s training regimen is one of the most demanding and versatile in
 
 ## 1. Recruitment and Selection
 
-- Potential Runeguard members are selected from among the most talented battlemages, spellcasters, and magically inclined warriors of the [[Sunspear Legion]] and various adventurers’ guilds. Candidates must demonstrate proficiency in both combat and magic, with a focus on discipline and versatility.
+- Potential Runeguard members are selected from among the most talented battlemages, spellcasters, and magically inclined warriors of the [[The Sunspear Legion]] and various adventurers’ guilds. Candidates must demonstrate proficiency in both combat and magic, with a focus on discipline and versatility.
 - Recruits undergo a rigorous initiation called the Trial of the Runes, which tests their ability to channel runic magic in high-stress combat scenarios. These trials often include fighting against summoned spirits, dispelling complex magical traps, and maintaining wards while under attack.
 
 ## 2. Training Regimen

@@ -32,7 +32,7 @@ Residents organise frequent events — harvest festivals, artisan showcases, and
 ## Relationships with Other Districts
 
 - [[Temple Way]] — Proximity allows residents to participate in [[Aru'Mas]]'s spiritual life. Many frequent the temples for blessings and guidance.
-- [[Spireview]] — Upper Hearthstone's artisans frequently work on contracts for the [[Sunspear Legion]] and other military operations.
+- [[Spireview]] — Upper Hearthstone's artisans frequently work on contracts for the [[The Sunspear Legion]] and other military operations.
 - [[Lower Hearthstone]] — Complicated. Shared roots, divergent choices. Community efforts still cross the divide, but the wall is a daily reminder of the split.
 - [[The Spillway]] — The reason for the split. Upper Hearthstone's relationship with the Spillway is one of guarded distance.
 

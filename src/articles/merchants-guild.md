@@ -41,7 +41,7 @@ The Merchants’ Guild exerts significant influence over Aru’Mas’ economic l
 ## 1. Control of Trade Routes
 
 - The guild controls the city’s access to major multiversal trade routes, negotiating with merchants from various realms to establish mutually beneficial trade agreements. These routes bring exotic goods, magical artifacts, and rare resources into Aru’Mas, making the city one of the most diverse marketplaces in the multiverse.
-- The Merchants’ Guild is also responsible for port security and the regulation of ships entering and leaving the harbor, working closely with the [[Sunspear Legion]] to ensure that both legal and illicit trade are managed to the guild’s advantage.
+- The Merchants’ Guild is also responsible for port security and the regulation of ships entering and leaving the harbor, working closely with the [[The Sunspear Legion]] to ensure that both legal and illicit trade are managed to the guild’s advantage.
 
 ## 2. Regulation of Markets
 

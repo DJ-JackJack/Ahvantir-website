@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Vanguard of Valor
 
-The Vanguard of Valor are the elite warriors of the [[Sunspear Legion]] , known for their unmatched skill in close-quarters combat and their unwavering dedication to the defense of [[Aru'Mas]] and its ruling royal family, the [[Ilderas Dynasty]] . As the personal guards of the royal family, the Vanguard of Valor represent the highest ideals of honor, loyalty, and courage. They serve as both the first line of defense in times of crisis and the last line of protection for the monarchy, making them one of the most prestigious and respected units in the city’s military forces.
+The Vanguard of Valor are the elite warriors of the [[The Sunspear Legion]] , known for their unmatched skill in close-quarters combat and their unwavering dedication to the defense of [[Aru'Mas]] and its ruling royal family, the [[Ilderas Dynasty]] . As the personal guards of the royal family, the Vanguard of Valor represent the highest ideals of honor, loyalty, and courage. They serve as both the first line of defense in times of crisis and the last line of protection for the monarchy, making them one of the most prestigious and respected units in the city’s military forces.
 
 ## Role and Purpose
 
@@ -21,7 +21,7 @@ The Vanguard of Valor fulfill multiple roles in defense, protection, and direct 
 
 ## 2. Elite Strike Force
 
-- The Vanguard of Valor are the shock troops of the [[Sunspear Legion]] , deployed in situations where decisive and overwhelming force is required. They excel in close-quarters combat, breaching fortified positions, and leading charges in both urban and open-field engagements.
+- The Vanguard of Valor are the shock troops of the [[The Sunspear Legion]] , deployed in situations where decisive and overwhelming force is required. They excel in close-quarters combat, breaching fortified positions, and leading charges in both urban and open-field engagements.
 - They often lead the charge in major battles, breaking through enemy lines and securing critical objectives. Their presence on the battlefield serves as a rallying symbol for allied troops, boosting morale and reinforcing the city’s military might.
 - During sieges or defensive actions, the Vanguard are the first to respond to breaches, using their superior training and enchanted weapons to hold key positions and repel enemy incursions.
 

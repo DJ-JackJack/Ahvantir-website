@@ -15,7 +15,7 @@ date_added: "2026-06-06"
 
 ## Background
 
-Prince Jorran Ilderas, the youngest member of the royal family, is still finding his place within the complex dynamics of Aru’Mas. Growing up in the shadows of his older siblings—[[Heir Apparent|Crown Prince Kaelen]] and [[Scholar Princess|Princess Lira]]—Jorran has always been eager to prove himself as a warrior and a potential leader in the city’s defense forces. From a young age, Jorran exhibited a natural talent for combat and tactics, focusing his energies on the martial training offered by the Order of Valor and the [[Sunspear Legion]].
+Prince Jorran Ilderas, the youngest member of the royal family, is still finding his place within the complex dynamics of Aru’Mas. Growing up in the shadows of his older siblings—[[Heir Apparent|Crown Prince Kaelen]] and [[Scholar Princess|Princess Lira]]—Jorran has always been eager to prove himself as a warrior and a potential leader in the city’s defense forces. From a young age, Jorran exhibited a natural talent for combat and tactics, focusing his energies on the martial training offered by the Order of Valor and the [[The Sunspear Legion]].
 
 Unlike Lira’s focus on scholarship or Kaelen’s political ambitions, Jorran’s goals are more direct: he wants to be recognized as a champion of Aru’Mas, an unyielding protector who can stand on the front lines of the city’s defense. His enthusiasm and bravery are well-regarded, but his inexperience and impulsive nature often lead him into risky situations that have earned both praise and rebuke from the senior members of the Order of Valor.
 
@@ -37,7 +37,7 @@ However, Jorran’s impulsiveness and occasional disregard for protocol have ear
 
 ## Major Achievements and Contributions
 
-- The Siege of Ashenrock Hold: One of Jorran’s most notable achievements came during the Siege of Ashenrock Hold, a remote outpost near the city’s outer borders. When the outpost came under attack by a group of rogue spirits and bandits, Jorran led a small contingent of the [[Sunspear Legion]] to break the siege. His swift actions and decisive command helped turn the tide of the battle, earning him recognition from both the Order of Valor and his brother Kaelen, who praised Jorran’s courage and tactical acumen.
+- The Siege of Ashenrock Hold: One of Jorran’s most notable achievements came during the Siege of Ashenrock Hold, a remote outpost near the city’s outer borders. When the outpost came under attack by a group of rogue spirits and bandits, Jorran led a small contingent of the [[The Sunspear Legion]] to break the siege. His swift actions and decisive command helped turn the tide of the battle, earning him recognition from both the Order of Valor and his brother Kaelen, who praised Jorran’s courage and tactical acumen.
 - The Flamewrought Tournament: Jorran recently won the prestigious Flamewrought Tournament, a martial competition held annually in Aru’Mas to test the city’s most skilled warriors. His victory not only earned him public acclaim but also solidified his reputation as a formidable combatant, capable of standing toe-to-toe with Aru’Mas’ finest fighters.
 - The Defensive Wards Initiative: Though less magical than Lira’s contributions, Jorran has been actively involved in the Defensive Wards Initiative, a citywide effort to strengthen the physical and magical barriers around Aru’Mas. His efforts have focused on organizing and training the [[Vanguard of Valor]], the city’s heavy infantry division, to work in coordination with the [[Runeguard]] to maintain the city's defensive perimeters.
 

@@ -59,7 +59,7 @@ The Tetherjump network in Aru’Mas is divided into different types of pylons, e
 
 ## 3. Emergency Tetherjumps
 
-- Designed for rapid evacuation or emergency response, these pylons are located in areas prone to danger, such as the [[Sunspear Legion]] barracks, the [[Order of Valor]] headquarters, and certain key outposts along the city’s borders.
+- Designed for rapid evacuation or emergency response, these pylons are located in areas prone to danger, such as the [[The Sunspear Legion]] barracks, the [[Order of Valor]] headquarters, and certain key outposts along the city’s borders.
 - Emergency Tetherjumps can be activated by designated personnel and are designed for quick deployment of troops, medical evacuations, or urgent responses to spiritual breaches. They are equipped with powerful stabilizers to ensure safe transit even during magical anomalies.
 
 ## Tetherjump Tokens

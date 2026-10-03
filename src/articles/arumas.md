@@ -30,7 +30,7 @@ The city's districts, running broadly from south to north and from poverty to po
 
 **[[Hearthstone]]** — divided into [[Upper Hearthstone]] and [[Lower Hearthstone]] after a political split over how to respond to Spillway overflow — runs up the centre-left of the city. Upper Hearthstone walled itself off; Lower Hearthstone did not. Both are primarily middle-class residential, home to skilled labourers and artisans. The [[Ilderas Public Archive]] is in Upper Hearthstone.
 
-**[[Spireview]]** is the military and administrative core. The [[Heartspire]] — the tallest structure in Aru'Mas — rises from this district, serving as the headquarters of the [[Sunspear Legion]] and the symbolic centre of the city's institutional power. The district is orderly, heavily staffed, and deliberately unwelcoming to anyone without a reason to be there.
+**[[Spireview]]** is the military and administrative core. The [[Heartspire]] — the tallest structure in Aru'Mas — rises from this district, serving as the headquarters of the [[The Sunspear Legion]] and the symbolic centre of the city's institutional power. The district is orderly, heavily staffed, and deliberately unwelcoming to anyone without a reason to be there.
 
 **[[Aurora Song District]]** is the largest district by area and the liveliest in character — artisans, performers, inventors, and a strong adventuring culture concentrated around the [[Horizon Watch Arena]] and the Oasis of Spirits park. It is also where the city's contradictions are most visible: genuine creative energy in one street, sharp poverty in the next.
 
@@ -68,7 +68,7 @@ The economy has a persistent tension. The city's gatekeeping role keeps prices h
 
 ## Military
 
-The [[Sunspear Legion]] is Aru'Mas's standing military force, headquartered at the [[Heartspire]] in Spireview. It operates through specialised units: the [[Skywardens]] (aerial cavalry, flying mounts, airspace patrol), the [[Nightcloaks]] (covert operations and intelligence), and the [[Vanguard of Valor]] (heavy infantry for large-scale engagements). The Legion handles both internal security and external defence, and draws recruits from adventurers' guilds and the Order of Valor among others.
+The [[The Sunspear Legion]] is Aru'Mas's standing military force, headquartered at the [[Heartspire]] in Spireview. It operates through specialised units: the [[Skywardens]] (aerial cavalry, flying mounts, airspace patrol), the [[Nightcloaks]] (covert operations and intelligence), and the [[Vanguard of Valor]] (heavy infantry for large-scale engagements). The Legion handles both internal security and external defence, and draws recruits from adventurers' guilds and the Order of Valor among others.
 
 The [[Runeguard]] operates separately as the city's arcane enforcement body — responsible for issuing Tetherjump access tokens, monitoring magical activity, and coordinating with the Legion on supernatural threats. It is less visible than the Legion and considerably more feared by those who understand what it actually does. The Skywardens maintain the [[Roost]] in Stonegate as a forward outpost.
 

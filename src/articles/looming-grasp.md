@@ -36,9 +36,9 @@ The Looming Grasp’s rule is deceptively simple: Do Not Get Caught. Members are
 
 Anyone who is captured by the city’s guards and happens to know significant information about the Grasp’s operations is swiftly silenced. Those in custody who might reveal critical details are often targeted by assassins sent to remove them before they can talk. The organization views its members as assets—and liabilities—and will protect itself from exposure at any cost.
 
-## Relationship with the [[Hand of Throk]] and the [[Sunspear Legion]]
+## Relationship with the [[Hand of Throk]] and the [[The Sunspear Legion]]
 
-The Looming Grasp is frequently at odds with the Hand of Throk, Aru’Mas’s more altruistic underground organization. The Grasp sees the Hand as idealistic meddlers who threaten their operations by targeting corrupt officials and members of the [[Sunspear Legion]]—people the Grasp often has in their own pocket. Skirmishes and covert clashes between members of the Hand and the Grasp are common, with each group viewing the other as a direct impediment to their work.
+The Looming Grasp is frequently at odds with the Hand of Throk, Aru’Mas’s more altruistic underground organization. The Grasp sees the Hand as idealistic meddlers who threaten their operations by targeting corrupt officials and members of the [[The Sunspear Legion]]—people the Grasp often has in their own pocket. Skirmishes and covert clashes between members of the Hand and the Grasp are common, with each group viewing the other as a direct impediment to their work.
 
 The Sunspear Legion, tasked with keeping the city’s peace, is constantly aware of the Grasp’s activities, though the organization’s high level of secrecy makes it difficult to pin down. Corruption within the Legion itself further complicates matters, as certain officials on the Grasp’s payroll turn a blind eye or obstruct investigations. However, loyal members of the Legion view the Grasp as a plague on the city, and there are units dedicated to dismantling its influence wherever possible.
 

@@ -23,9 +23,9 @@ Operating a guild in Aru’Mas without [[Adventurers Guild Association]] (AGA) r
 - Loss of City Rights and Protections: Members of unregistered guilds lose certain rights and protections typically granted to recognized guild members. This includes denial of access to AGA resources, barring from AGA training grounds and facilities, and loss of support in legal disputes related to their guild activities. The city also withholds any liability protections, meaning members are held personally accountable for any damages or injuries resulting from their actions.
 - Public Listing and Reputation Penalties: The AGA may post a notice in public areas listing the names of unregistered guild members and their actions. This serves as a warning to other guilds, clients, and citizens of Aru’Mas. Such listings severely damage a member’s reputation, making it challenging to secure work or find reputable allies willing to associate with them.
 
-## Enforcement by the [[Sunspear Legion]] and AGA Inspectors
+## Enforcement by the [[The Sunspear Legion]] and AGA Inspectors
 
-The [[Sunspear Legion]] and Guild Inspectors within the AGA collaborate closely to enforce laws against unregistered guilds. The Legion, particularly its [[Runeguard]] unit, often assists in identifying and apprehending unregistered guild members, especially when they pose an active threat to public safety. The AGA’s Guild Inspectors conduct investigations and surveillance on suspicious guilds or groups, reporting their findings to the High Council and coordinating with the Legion for raids or arrests when necessary.
+The [[The Sunspear Legion]] and Guild Inspectors within the AGA collaborate closely to enforce laws against unregistered guilds. The Legion, particularly its [[Runeguard]] unit, often assists in identifying and apprehending unregistered guild members, especially when they pose an active threat to public safety. The AGA’s Guild Inspectors conduct investigations and surveillance on suspicious guilds or groups, reporting their findings to the High Council and coordinating with the Legion for raids or arrests when necessary.
 
 In cases of large-scale, organized unregistered guilds, the city may even deploy elite units, like the [[Ironshields]] or [[Nightcloaks]], to ensure the swift and decisive shutdown of the group.
 

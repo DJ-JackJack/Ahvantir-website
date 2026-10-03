@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Roost
 
-The Roost is one of the most iconic and imposing structures in Aru’Mas, second only to the [[Heartspire]] in stature and significance. Situated within the city’s military district, it serves as the primary base of operations for the [[Skywardens]], the elite aerial unit of the [[Sunspear Legion]]. The Roost stands as both a sanctuary and a proving ground, where riders forge unbreakable bonds with their mounts and hone their skills in aerial combat, reconnaissance, and patrols. As one of the defining landmarks of Aru’Mas, the Roost embodies the city’s strength, resilience, and connection with the skies.
+The Roost is one of the most iconic and imposing structures in Aru’Mas, second only to the [[Heartspire]] in stature and significance. Situated within the city’s military district, it serves as the primary base of operations for the [[Skywardens]], the elite aerial unit of the [[The Sunspear Legion]]. The Roost stands as both a sanctuary and a proving ground, where riders forge unbreakable bonds with their mounts and hone their skills in aerial combat, reconnaissance, and patrols. As one of the defining landmarks of Aru’Mas, the Roost embodies the city’s strength, resilience, and connection with the skies.
 
 ## Architecture and Design
 
@@ -26,7 +26,7 @@ The Sky Stables also connect to launch platforms, which extend outward from the 
 
 ## The Barracks of Aspiring Skywardens
 
-The lower levels of the Roost serve as barracks for new recruits. These aspiring Skywardens, a mix of young hopefuls and experienced soldiers from the [[Sunspear Legion]], undergo rigorous training to earn their place among the elite. Life in the barracks is demanding, with recruits adhering to a strict regimen of physical training, aerial maneuvers, and combat strategy lessons. Each day consists of endurance exercises, flight drills, and lectures on aerial combat tactics, animal bonding, and Skywarden traditions. Meditation and reflection are encouraged to hone mental discipline and strengthen the rider’s connection with their future mount.
+The lower levels of the Roost serve as barracks for new recruits. These aspiring Skywardens, a mix of young hopefuls and experienced soldiers from the [[The Sunspear Legion]], undergo rigorous training to earn their place among the elite. Life in the barracks is demanding, with recruits adhering to a strict regimen of physical training, aerial maneuvers, and combat strategy lessons. Each day consists of endurance exercises, flight drills, and lectures on aerial combat tactics, animal bonding, and Skywarden traditions. Meditation and reflection are encouraged to hone mental discipline and strengthen the rider’s connection with their future mount.
 
 ## The Ritual of Bonding
 

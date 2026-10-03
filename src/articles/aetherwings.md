@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Aetherwings
 
-Among the esteemed mounts of the [[Skywardens]] in Aru’Mas, the Aetherwings are the swiftest and most graceful creatures in the skies. Revered for their unmatched speed and agility, Aetherwings are essential to the [[Sunspear Legion]], especially for missions that require precision, stealth, and finesse. These stunningly beautiful mounts are renowned not only for their elegance but also for their near-mystical ability to blend with the air around them, becoming almost translucent as they soar through the skies.
+Among the esteemed mounts of the [[Skywardens]] in Aru’Mas, the Aetherwings are the swiftest and most graceful creatures in the skies. Revered for their unmatched speed and agility, Aetherwings are essential to the [[The Sunspear Legion]], especially for missions that require precision, stealth, and finesse. These stunningly beautiful mounts are renowned not only for their elegance but also for their near-mystical ability to blend with the air around them, becoming almost translucent as they soar through the skies.
 
 ## Physical Attributes and Appearance
 

@@ -19,7 +19,7 @@ The Red Masquerade is organized with a strict hierarchy, operating much like a s
 
 - At the top of the hierarchy is the Crimson Council, a small group of ancient vampires and powerful blood mages who dictate the cult’s strategy and oversee its broader operations. The council consists of five members, each with their own specific role:
 - The Blood Regent: The nominal leader of the Red Masquerade, responsible for maintaining the pact with the Blood Spirit of Thirst, an entity believed to empower the cult’s rituals.
-- The Veilmaster: The master of secrecy, responsible for managing the cult’s network of spies, informants, and disguised agents. The Veilmaster ensures the cult’s activities remain hidden from the ruling council and the [[Sunspear Legion]].
+- The Veilmaster: The master of secrecy, responsible for managing the cult’s network of spies, informants, and disguised agents. The Veilmaster ensures the cult’s activities remain hidden from the ruling council and the [[The Sunspear Legion]].
 - The Bloodwright: The head of the cult’s magical practices, overseeing the rituals and ceremonies that enhance the members’ vampiric powers. The Bloodwright is also responsible for recruiting and training new blood mages.
 - The Keeper of Masks: The controller of the cult’s masquerade events, using them as both a recruitment tool and a means to seduce influential figures in Aru’Mas. These events are elaborate affairs marked by opulence, secrecy, and the underlying threat of blood rituals.
 - The Nightblade: The commander of the cult’s assassins and enforcers, responsible for carrying out covert killings, kidnappings, and silencing those who threaten the Red Masquerade’s existence.
@@ -63,7 +63,7 @@ The Red Masquerade has established several methods to operate within Aru’Mas w
 ## 2. Covert Manipulation of Politics
 
 - The cult uses its resources to infiltrate the nobility, Merchants’ Guild, and even the lower ranks of [[The Church of the Threefold Path|the Church of the Threefold Path]]. It seeks to corrupt officials who can aid its goals or protect it from investigation.
-- Members of the Crimson Council have been known to bribe officials to divert investigations or to provide false reports to the [[Sunspear Legion]]. In some cases, the cult has used blackmail to silence potential whistleblowers, using the threat of exposure or ruin to keep its operations hidden.
+- Members of the Crimson Council have been known to bribe officials to divert investigations or to provide false reports to the [[The Sunspear Legion]]. In some cases, the cult has used blackmail to silence potential whistleblowers, using the threat of exposure or ruin to keep its operations hidden.
 
 ## 3. Blood Trade and the Black Market
 

@@ -1,6 +1,6 @@
 ---
 title: "Feldmarch Derrivus Calcinius"
-description: "Magister of Defense of the [[Sunspear Legion]] — born outside the city's walls, shaped by a paramilitary gang, and appointed over every more obvious candidate by a king who understood that loyalty to a gate and loyalty to a house are not the same thing."
+description: "Magister of Defense of the [[The Sunspear Legion]] — born outside the city's walls, shaped by a paramilitary gang, and appointed over every more obvious candidate by a king who understood that loyalty to a gate and loyalty to a house are not the same thing."
 category: characters
 tags: [npc, sunspear-legion, military, ragmarket, iron-boots, all-are-one]
 date_added: "2026-06-14"
@@ -12,7 +12,7 @@ date_added: "2026-06-14"
 |---|---|
 | Race | Human |
 | Gender | Male |
-| Affiliation | [[Sunspear Legion]] |
+| Affiliation | [[The Sunspear Legion]] |
 | Role | Magister of Defense |
 | Location | [[Citadel of Solara]], [[Stonegate]] |
 | Status | Living |
@@ -109,7 +109,7 @@ He learned to read political terrain in Ragmarket, where the consequences of mis
 
 ## Connections
 
-- [[Sunspear Legion]] — The institution he now leads; effectively the organizing structure of his entire adult life
+- [[The Sunspear Legion]] — The institution he now leads; effectively the organizing structure of his entire adult life
 - [[Ragmarket]] — Where he was born and formed; the conditions his character grew from
 - [[Iron Boots]] — The gang he ran with before the gate; shaped his understanding of loyalty, discipline, and what order actually costs
 - [[All Are One]] — The cult whose attack on the southern gate defined the moment that brought him to the Legion's attention
@@ -122,4 +122,4 @@ He learned to read political terrain in Ragmarket, where the consequences of mis
 ---
 
 > **Source**
-> Source: `DM canon` — Assembled from the Current State section of [[Sunspear Legion]] (primary characterization, DM-authored) and cross-referenced against [[Ragmarket]], [[Iron Boots]], [[All Are One]], [[House Der'Tagan]], and [[Voren Ilderas]] vault articles.
+> Source: `DM canon` — Assembled from the Current State section of [[The Sunspear Legion]] (primary characterization, DM-authored) and cross-referenced against [[Ragmarket]], [[Iron Boots]], [[All Are One]], [[House Der'Tagan]], and [[Voren Ilderas]] vault articles.

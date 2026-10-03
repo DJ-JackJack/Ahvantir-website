@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Stormtalons
 
-Among the renowned mounts of the [[Skywardens]] of [[Aru'Mas]], Stormtalons are celebrated for their sheer strength, resilience, and an affinity for stormy weather that few other creatures can match. Known for their ability to endure even the fiercest elements, these powerful, eagle-like mounts are indispensable to the [[Sunspear Legion]] and are often chosen for missions that demand raw strength, determination, and the ability to navigate challenging weather. With their fierce appearance and storm-tempered resilience, Stormtalons are as much symbols of Aru'Mas's indomitable spirit as they are allies in battle.
+Among the renowned mounts of the [[Skywardens]] of [[Aru'Mas]], Stormtalons are celebrated for their sheer strength, resilience, and an affinity for stormy weather that few other creatures can match. Known for their ability to endure even the fiercest elements, these powerful, eagle-like mounts are indispensable to the [[The Sunspear Legion]] and are often chosen for missions that demand raw strength, determination, and the ability to navigate challenging weather. With their fierce appearance and storm-tempered resilience, Stormtalons are as much symbols of Aru'Mas's indomitable spirit as they are allies in battle.
 
 ## Physical Attributes and Appearance
 
@@ -37,7 +37,7 @@ In battle, Stormtalons serve as the Skywardens’ heavy combatants and frontline
 
 ## Role in the Culture of Aru'Mas
 
-In the culture of Aru'Mas, Stormtalons are revered as symbols of resilience, loyalty, and the city’s spirit of endurance. Their steadfast, unyielding nature has made them icons of Aru'Mas’s strength, especially during difficult times. Citizens see Stormtalons as protectors, representing the stability and safety the [[Sunspear Legion]] brings to the city.
+In the culture of Aru'Mas, Stormtalons are revered as symbols of resilience, loyalty, and the city’s spirit of endurance. Their steadfast, unyielding nature has made them icons of Aru'Mas’s strength, especially during difficult times. Citizens see Stormtalons as protectors, representing the stability and safety the [[The Sunspear Legion]] brings to the city.
 
 Legends of Stormtalons are woven into the folklore of Aru'Mas, and many tales feature these mounts as loyal companions who guide lost travelers, protect families, or even intervene in times of great crisis. Artists and sculptors often depict Stormtalons in poses that convey both their power and their calm dignity, and statues of Stormtalons are displayed around the city to honor their role as defenders.
 

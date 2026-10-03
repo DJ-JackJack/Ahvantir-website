@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Drakehawks
 
-Among the elite mounts of the [[Skywardens]] of Aru’Mas, the Drakehawks are revered for their sheer power, durability, and commanding presence. These colossal, dragon-like birds serve as the heavy artillery of the [[Sunspear Legion]], providing the Skywardens with both strength and resilience in the most challenging of conflicts. Known for their raw physical strength and imposing appearance, Drakehawks are a formidable sight in the skies, embodying the might and endurance that the [[Sunspear Legion]] is known for.
+Among the elite mounts of the [[Skywardens]] of Aru’Mas, the Drakehawks are revered for their sheer power, durability, and commanding presence. These colossal, dragon-like birds serve as the heavy artillery of the [[The Sunspear Legion]], providing the Skywardens with both strength and resilience in the most challenging of conflicts. Known for their raw physical strength and imposing appearance, Drakehawks are a formidable sight in the skies, embodying the might and endurance that the [[The Sunspear Legion]] is known for.
 
 ## Physical Attributes and Appearance
 

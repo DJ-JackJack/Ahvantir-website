@@ -26,7 +26,7 @@ Asgoraviel’s entry into Ahvantir tore through the spiritual fabric of the arch
 
 Asgoraviel’s war on Aru’Mas was swift and brutal. His celestial legions, formed from corrupted spirits and mortals coerced into his service, assaulted the city’s defenses relentlessly. His forces wielded divine magic twisted into instruments of tyranny, striking fear into the hearts of even the bravest defenders.
 
-The conflict reached its peak when a coalition of [[Sunspear Legion]]naires, [[Runeguard]], and a group of legendary adventurers confronted Asgoraviel directly. Though his power was overwhelming, the adventurers exploited his arrogance and managed to trap him within a cavern deep beneath the city, sealing him away with powerful wards.
+The conflict reached its peak when a coalition of [[The Sunspear Legion]]naires, [[Runeguard]], and a group of legendary adventurers confronted Asgoraviel directly. Though his power was overwhelming, the adventurers exploited his arrogance and managed to trap him within a cavern deep beneath the city, sealing him away with powerful wards.
 
 ## Asgoraviel’s Imprisonment
 

@@ -20,7 +20,7 @@ Solara is the larger sun and the more dominant one in practical terms. Her light
 
 The name is older than any surviving written record — it predates the [[Marducian Calendar]] and the [[First Pact]], and almost certainly predates the settler fleet's arrival entirely. Whether the [[Drorn'Duur]] or the Ahvantiri spirits used the same name is unrecorded. The settlers adopted it, or found it already in use, and it has not changed since.
 
-Solara's name is everywhere in Aru'Mas. The [[Sunspear Legion]]'s signature weapons — enchanted spears issued to Ironshield soldiers — are warded to emit a light that Legion records describe as *matching Solara's character*: steady, warm, and capable of holding a line. The [[Citadel of Solara]], the Legion's headquarters in Stonegate, takes her name. The first day of the Marducian week, Solkir, is named after her and associated with vitality and new beginnings. The **Dawn of Solara** is the Legion's primary civic festival. When Aru'Mas wants to mark peacekeeping and civic order, it reaches for Solara.
+Solara's name is everywhere in Aru'Mas. The [[The Sunspear Legion]]'s signature weapons — enchanted spears issued to Ironshield soldiers — are warded to emit a light that Legion records describe as *matching Solara's character*: steady, warm, and capable of holding a line. The [[Citadel of Solara]], the Legion's headquarters in Stonegate, takes her name. The first day of the Marducian week, Solkir, is named after her and associated with vitality and new beginnings. The **Dawn of Solara** is the Legion's primary civic festival. When Aru'Mas wants to mark peacekeeping and civic order, it reaches for Solara.
 
 ### Nystara
 
@@ -28,7 +28,7 @@ Nystara is smaller in apparent disc size and burns hotter. She is blue-white —
 
 She is not, by most measures, the lesser of the pair. Solara dominates the visual impression of Ahvantir's sky by disc size alone; a smaller disc does not mean a smaller contribution. What Nystara lacks in breadth she makes up in intensity.
 
-The [[Vanguard of Valor]] — the [[Sunspear Legion]]'s heavy-assault division, called upon when peacekeeping has already failed — bear Nystara's emblem on their armor. The symbolism is explicit in Legion records: Ironshields carry weapons that glow with Solara's light; the Vanguard carry a mark that does not glow and is not meant to comfort. Nystara's association in Aru'Mas is with resolve, endurance under pressure, and the kind of refusal to yield that does not make for comfortable festivals. She is invoked quietly. She does not parade.
+The [[Vanguard of Valor]] — the [[The Sunspear Legion]]'s heavy-assault division, called upon when peacekeeping has already failed — bear Nystara's emblem on their armor. The symbolism is explicit in Legion records: Ironshields carry weapons that glow with Solara's light; the Vanguard carry a mark that does not glow and is not meant to comfort. Nystara's association in Aru'Mas is with resolve, endurance under pressure, and the kind of refusal to yield that does not make for comfortable festivals. She is invoked quietly. She does not parade.
 
 ---
 
@@ -68,7 +68,7 @@ The equivalent period for Solara alone — Nystara below the horizon, Solara sti
 
 ## Connections
 - [[Marducian Calendar]] — the year's structure, the equinox observances, and Solkir all derive from the twin suns
-- [[Sunspear Legion]] — both suns embedded in Legion iconography; Ironshields (Solara's light), Vanguard of Valor (Nystara's emblem)
+- [[The Sunspear Legion]] — both suns embedded in Legion iconography; Ironshields (Solara's light), Vanguard of Valor (Nystara's emblem)
 - [[Citadel of Solara]] — Legion headquarters in Stonegate; gap article, named but not yet written
 - [[History of Ahvantir]] — Landing War references to Pale Hour military practice
 - [[Drorn'Duur]] — whether the name "Solara" predates the settler fleet's arrival is unrecorded
@@ -76,4 +76,4 @@ The equivalent period for Solara alone — Nystara below the horizon, Solara sti
 ---
 
 > **Source**
-> Source: `original` — new lore article. Anchored in canonical sources: twin suns named in [[Marducian Calendar]] (world-anvil); Solara/Nystara symbolism established in [[Sunspear Legion]] (original, 2026-06-14). Physical characteristics, orbital mechanics, the Pale Hour, and the Pairing are original worldbuilding consistent with the established calendar structure.
+> Source: `original` — new lore article. Anchored in canonical sources: twin suns named in [[Marducian Calendar]] (world-anvil); Solara/Nystara symbolism established in [[The Sunspear Legion]] (original, 2026-06-14). Physical characteristics, orbital mechanics, the Pale Hour, and the Pairing are original worldbuilding consistent with the established calendar structure.

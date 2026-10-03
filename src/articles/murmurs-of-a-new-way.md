@@ -72,7 +72,7 @@ The Murmurings are generally tolerated by the authorities and the general public
 
 ## 2. Relationship with Authorities
 
-- The [[Sunspear Legion]] and [[The Church of the Threefold Path|the Church of the Threefold Path]] do not consider the Murmurings a major threat, as the cult’s activities are non-violent and generally confined to public rituals and spiritual gatherings.
+- The [[The Sunspear Legion]] and [[The Church of the Threefold Path|the Church of the Threefold Path]] do not consider the Murmurings a major threat, as the cult’s activities are non-violent and generally confined to public rituals and spiritual gatherings.
 - The [[Runeguard]] occasionally monitors the Murmurings, particularly during large rituals, to ensure that their activities do not unintentionally disrupt the city’s wards or pacts. However, there have been no confirmed cases of dangerous magic associated with the Murmurings, leading to a general attitude of benign neglect by the authorities.
 
 ---

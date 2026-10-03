@@ -13,13 +13,13 @@ The Iron Mantle of [[Aru'Mas]]
 - Motto: “Honor in Discipline, Strength in Unity”
 - Species: Orcs (High-Orcs)
 - District Influence: [[Stonegate]], [[Luminous Reach]]
-- Allied Orders: [[Order of Valor]], [[Sunspear Legion]]
+- Allied Orders: [[Order of Valor]], [[The Sunspear Legion]]
 
 ## Overview
 
 House Der'Tagan is one of the six noble lineages descending from the companions of [[Marduk Sunspear]]. Formed from a cadre of high-orc warriors known for their tactical brilliance and ironclad discipline, the house remains synonymous with the defense and order of Aru’Mas to this day.
 
-Nicknamed “The Iron Mantle,” their name evokes both armor and burden—the weight of duty worn proudly. The house maintains a deep and formal relationship with the Order of Valor, and their blood runs thick in the ranks of the [[Sunspear Legion]]. In the city’s collective imagination, Der'Tagan represents the shield that holds firm when all else breaks.
+Nicknamed “The Iron Mantle,” their name evokes both armor and burden—the weight of duty worn proudly. The house maintains a deep and formal relationship with the Order of Valor, and their blood runs thick in the ranks of the [[The Sunspear Legion]]. In the city’s collective imagination, Der'Tagan represents the shield that holds firm when all else breaks.
 
 ## Political Role
 

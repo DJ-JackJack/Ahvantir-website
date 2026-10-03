@@ -79,7 +79,7 @@ Though Yarudvic’s past is shrouded in mystery, it is clear that he views redem
 Yarudvic’s presence is both a source of fascination and unease in Aru’Mas.
 
 - Admiration and Fear: To some, Yarudvic is a symbol of hope and healing, proof that even the darkest beings can choose a different path. To others, he is a reminder of the dangers of trusting a demon, no matter how benevolent they appear.
-- A Quiet Ally: Yarudvic has earned the reluctant respect of the city’s rulers, including the Order of Harmony and the [[Sunspear Legion]], who recognize the good he does for the city. However, his nature as a Usurper ensures that his relationships remain cautious and distant.
+- A Quiet Ally: Yarudvic has earned the reluctant respect of the city’s rulers, including the Order of Harmony and the [[The Sunspear Legion]], who recognize the good he does for the city. However, his nature as a Usurper ensures that his relationships remain cautious and distant.
 
 ## In Summary: The Paradox of Yarudvic
 

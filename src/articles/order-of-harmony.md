@@ -62,7 +62,7 @@ The Order of Harmony works closely with other organizations within Aru’Mas, in
 
 - Council Representation: The High Hierophant sits on the Council of Aru’Mas, ensuring that the city’s decisions prioritize the well-being of its people. In Council debates, the High Hierophant often speaks for policies that support the poor, the sick, and those in need, aligning the Order’s values with Vesira’s teachings.
 - Collaboration with the Merchants’ Guild: The Order often works with the Merchants’ Guild to secure resources, such as rare herbs, medicines, and supplies for their healing practices. The current Grand Speaker, [[Grand Speaker Artrice Vanderbane|Artrice Vanderbane]], has developed a professional but amicable relationship with the High Hierophant, ensuring both organizations can cooperate in times of need.
-- Relationship with Other Religious Orders: The Order of Harmony collaborates closely with the other branches of the Church of the Threefold Path, working with the [[Order of Wisdom]] to educate the people about health practices and with the [[Order of Valor]] to provide medical support to the city guard and [[Sunspear Legion]].
+- Relationship with Other Religious Orders: The Order of Harmony collaborates closely with the other branches of the Church of the Threefold Path, working with the [[Order of Wisdom]] to educate the people about health practices and with the [[Order of Valor]] to provide medical support to the city guard and [[The Sunspear Legion]].
 
 ## The Order’s Role in the Daily Lives of Aru’Mas’ People
 

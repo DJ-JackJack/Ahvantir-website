@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Nightcloaks
 
-The Nightcloaks are the clandestine operatives of the [[Sunspear Legion]] , tasked with gathering intelligence, conducting covert operations, and neutralizing threats to Aru’Mas through stealth, sabotage, and precision strikes. As the shadows of the Legion, the Nightcloaks specialize in espionage, assassination, and infiltration, often working beyond the city’s borders to ensure the safety and stability of Aru’Mas. Though their existence is widely known, their activities are shrouded in mystery and secrecy, contributing to their fearsome reputation both within and beyond the city’s walls.
+The Nightcloaks are the clandestine operatives of the [[The Sunspear Legion]] , tasked with gathering intelligence, conducting covert operations, and neutralizing threats to Aru’Mas through stealth, sabotage, and precision strikes. As the shadows of the Legion, the Nightcloaks specialize in espionage, assassination, and infiltration, often working beyond the city’s borders to ensure the safety and stability of Aru’Mas. Though their existence is widely known, their activities are shrouded in mystery and secrecy, contributing to their fearsome reputation both within and beyond the city’s walls.
 
 ## Role and Purpose
 
@@ -15,7 +15,7 @@ The Nightcloaks fulfill several critical roles in Aru’Mas’ intelligence and 
 
 ## 1. Intelligence Gathering and Espionage
 
-- The Nightcloaks are the eyes and ears of the [[Sunspear Legion]] , responsible for collecting intelligence on both internal and external threats. They specialize in infiltrating hostile territories, gathering information from multiversal visitors, and spying on rival factions within Aru’Mas.
+- The Nightcloaks are the eyes and ears of the [[The Sunspear Legion]] , responsible for collecting intelligence on both internal and external threats. They specialize in infiltrating hostile territories, gathering information from multiversal visitors, and spying on rival factions within Aru’Mas.
 - They use a combination of disguises, magical illusions, and mundane stealth techniques to move undetected through the city and the wilds beyond. This intelligence is relayed back to the ruling council, guiding both military strategy and political decisions.
 
 ## 2. Assassination and Sabotage
