@@ -147,6 +147,45 @@ discarding the first tab's work. Reload and redo the change.
 
 ---
 
+## Player notes
+
+Any signed-in visitor gets an **Add a note** button on the map toolbar. Clicking
+it arms the map; the next click drops a pin and opens a panel for a label, a
+note and a colour.
+
+**These are private to the player who made them, including from the DM.** That
+is enforced by RLS, not by the interface: `player_map_markers` has one policy,
+`auth.uid() = player_id`, for every command, so a row cannot be read or written
+by anyone else even through the API directly with the site's anon key. There is
+deliberately no `is_dm()` exception. If you ever want the DM to see them, that
+should be a considered change to the policy rather than something that arrives
+by accident.
+
+It is a separate table from `map_markers` for the same reason: that table is
+world-readable by design, and the surest way to keep a private row out of a
+public response is for it never to live in the public table.
+
+Setup is one script:
+
+```sql
+-- scripts/supabase-player-map-markers.sql
+```
+
+Notes are scoped per map, so a pin dropped on the city map does not appear on
+the Fend. Deleting is permanent, but the toast offers an Undo that writes the
+note back rather than making the player retype it.
+
+Players never download the drawing library. The DM editor needs Geoman for
+polygons; dropping a pin needs a map click, so `map-player-notes.js` is a few KB
+and inert for anyone not signed in — it checks for a session and stops before
+issuing a single query.
+
+Note-placing mode and DM edit mode both want the map's clicks, so they are
+mutually exclusive. Each announces itself on a custom event and the other stands
+down.
+
+---
+
 ## Testing the coordinate conversion
 
 ```bash
@@ -240,6 +279,8 @@ is hoverable but not clickable.
 | Path | Purpose |
 |---|---|
 | `scripts/supabase-maps-schema.sql` | Tables, RLS, Storage bucket |
+| `scripts/supabase-player-map-markers.sql` | Private per-player pins and notes |
+| `src/assets/js/map-player-notes.js` | Player notes; inert unless signed in |
 | `scripts/seed-arumas-map.sql` | The Aru'Mas city map and its 50 markers |
 | `src/map.njk` | The page |
 | `scripts/backup-map-data.sql` | Export every map and marker; restore notes |

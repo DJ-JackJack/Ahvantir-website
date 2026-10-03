@@ -381,6 +381,10 @@
     editing = on;
     api.setEditing(on);
     document.querySelector('.map-page').classList.toggle('is-editing', on);
+    // Edit mode and a player's note-placing mode both want the map's clicks.
+    // Announce the change so map-player-notes.js can stand down; it announces
+    // the reverse, handled below.
+    document.dispatchEvent(new CustomEvent('ahvantir:dm-editing', { detail: { on: on } }));
     if (ui) ui.querySelector('#dm-edit').setAttribute('aria-pressed', String(on));
     if (!map || !map.pm) return;
 
@@ -560,6 +564,12 @@
     });
     window.addEventListener('beforeunload', (e) => {
       if (inFlight.size) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    // A player turning on their own note-placing mode takes the map's clicks,
+    // so edit mode has to yield rather than both handlers firing on one click.
+    document.addEventListener('ahvantir:player-notes', (e) => {
+      if (e.detail && e.detail.on && editing) setEditing(false);
     });
 
     document.addEventListener('ahvantir:map-loaded', attach);

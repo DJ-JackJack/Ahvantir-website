@@ -50,6 +50,7 @@ const DB = {
     sort_order: 1, is_published: false,
     created_at: '2026-01-01T00:00:00Z', updated_at: '2026-01-01T00:00:00Z',
   }],
+  player_map_markers: [],
   map_markers: [{
     id: 'mk-1', map_id: 'map-1', kind: 'area', title: 'Temple District',
     article_slug: 'temple-district', snippet_override: null,
@@ -86,6 +87,7 @@ function qb(table) {
   q.order = () => q;
   q.insert = (vals) => { q._mode = 'insert'; q._patch = vals; return q; };
   q.update = (vals) => { q._mode = 'update'; q._patch = vals; return q; };
+  q.delete = () => { q._mode = 'delete'; return q; };
   q._run = function () {
     const t = DB[q._t];
     if (q._mode === 'insert') {
@@ -97,6 +99,12 @@ function qb(table) {
       t.push(row);
       LOG.push(['insert', q._t, row.id, row.title]);
       return { data: [row], error: null };
+    }
+    if (q._mode === 'delete') {
+      const hit = t.filter((r) => matches(r, q._f));
+      hit.forEach((r) => t.splice(t.indexOf(r), 1));
+      LOG.push(['delete', q._t, hit.length]);
+      return { data: hit, error: null };
     }
     if (q._mode === 'update') {
       const hit = t.filter((r) => matches(r, q._f));
@@ -133,5 +141,6 @@ window.__DB = DB;
 <script src="/assets/js/map-coords.js"></script>
 <script src="/assets/js/map.js"></script>
 <script src="/assets/js/map-editor.js"></script>
+<script src="/assets/js/map-player-notes.js"></script>
 </body>
 </html>

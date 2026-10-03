@@ -88,4 +88,7 @@ permalink: /map/
 {# Inert for visitors: it checks is_dm() first and only then fetches the
    drawing library, so a reader never downloads the editor's 290 KB. #}
 <script src="/assets/js/map-editor.js"></script>
+{# A signed-in player's own pins and notes. Private to them, enforced by RLS;
+   inert for anonymous visitors, and it needs no drawing library. #}
+<script src="/assets/js/map-player-notes.js"></script>
 {% endblock %}

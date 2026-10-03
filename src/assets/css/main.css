@@ -1694,6 +1694,81 @@ hr {
   .map-dm { margin-left: 0; padding-left: 0; border-left: 0; }
 }
 
+/* ── Map Page: a player's own notes ─────────────────
+   Injected by map-player-notes.js, which only runs for a signed-in visitor.
+   These pins are private to the player who made them; the styling says so
+   without relying on colour alone. */
+.map-mine-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding-left: 1rem;
+  border-left: 1px solid var(--br-light);
+}
+.map-mine-bar__badge {
+  font-size: 0.8rem;
+  color: var(--p-100);
+  background: var(--teal-dark);
+  border-radius: 2px;
+  padding: 0.18rem 0.42rem;
+}
+/* While placing, the cursor says what the next click will do. */
+.map-page.is-placing-note .map-canvas { cursor: crosshair; }
+.map-page.is-placing-note .map-stage { outline: 2px solid var(--teal-dark); outline-offset: 2px; }
+
+/* A dashed ring, so a player's own pin is distinguishable from a DM marker at
+   a glance and not only by its colour. */
+.leaflet-interactive.map-mine { filter: drop-shadow(0 0 2px rgba(253,248,237,0.8)); }
+
+.map-mynote {
+  order: -2;                 /* above the DM panel and the locations list */
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--br-light);
+  display: grid;
+  gap: 0.6rem;
+  max-width: 26rem;
+}
+.map-mynote[hidden] { display: none; }
+.map-mynote__head {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.map-mynote__private {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--teal-dark);
+}
+.map-mynote input[type="text"],
+.map-mynote textarea {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: var(--p-100);
+  border: 1px solid var(--br-mid);
+  border-radius: 2px;
+  padding: 0.3rem 0.45rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.map-mynote textarea { resize: vertical; }
+.map-btn--danger { color: var(--burg-dark); border-color: var(--burg-pale); }
+.map-btn--danger:hover:not(:disabled) { background: var(--burg-pale); }
+
+@media (max-width: 860px) {
+  .map-mine-bar { margin-left: 0; padding-left: 0; border-left: 0; }
+}
+
 /* ── Graph Page ─────────────────────────────────────────────────── */
 .graph-page {
   max-width: var(--max-w);
