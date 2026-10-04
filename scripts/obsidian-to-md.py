@@ -433,7 +433,7 @@ def write_sync_log(added: list, updated: list, log_lines: list):
     now   = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     log_path = log_dir / f"{today}.md"
 
-    lines = ["<!-- ahvantir-sync-log-v1 -->", "", f"# Ahvantir Vault Sync — {now}", "", "## Summary", ""]
+    lines = [f"# Ahvantir Vault Sync — {now}", "", "## Summary", ""]
     total = len(added) + len(updated)
     if total:
         lines.append(f"{total} article(s) changed in this sync.")
