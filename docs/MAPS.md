@@ -244,25 +244,51 @@ boot and refuses to enable editing if it fails.
 
 ### Exercising the editor without a database
 
-`scripts/map-editor-harness.html` stands up the real `map.js` and
-`map-editor.js` against an in-memory stand-in for Supabase, so the DM paths can
-be driven without signing in or touching live data.
+`scripts/map-editor-harness.html` stands up the real `map.js`, `map-editor.js`
+and `map-player-notes.js` against an in-memory stand-in for Supabase, so both
+the DM and the player paths can be driven without signing in or touching live
+data.
 
 ```bash
 npm start
 cp scripts/map-editor-harness.html _site/
 ```
 
-Then open `http://localhost:8080/map-editor-harness.html`. It reports as the DM,
-serves two maps (one unpublished) and two markers, and logs every write to
+Then open one of:
+
+| URL | What it does |
+| --- | --- |
+| `/map-editor-harness.html` | Manual playground, reporting as the DM |
+| `/map-editor-harness.html?player` | Manual playground, as a plain player |
+| `/map-editor-harness.html?test` | Runs the assertions and reports pass/fail |
+
+It serves two maps (one unpublished) and two markers, and logs every write to
 `window.__LOG` with the resulting rows in `window.__DB`.
 
-It is not wired into `npm test`: it needs a browser and a hand on it. It is kept
-because it found two faults that reading the code did not. The first was that
-`pmIgnore` has to be a constructor option, not a property set afterwards. The
-second was worse: Geoman attaches through Leaflet init hooks, so loading it
-lazily after the map had already rendered left `map.pm` undefined and every
-marker uneditable. Both looked correct on the page until something was clicked.
+`?test` prints a strip along the bottom of the page and leaves the outcome in
+`window.__TEST` (`{results, failed}`), with the page title set to `PASS …` or
+`FAIL …` so it can be read without scrolling. It needs a window at least
+200×150, and it covers both sizes — run it once wide and once at phone width,
+since the note editor changes shape at 680px.
+
+It is not wired into `npm test`, which is Node-only: these cases are about click
+routing and layout, and there is no DOM there to route clicks through.
+
+It is kept because it keeps finding faults that reading the code did not:
+
+- `pmIgnore` has to be a constructor option, not a property set afterwards.
+- Geoman attaches through Leaflet init hooks, so loading it lazily after the map
+  had already rendered left `map.pm` undefined and every marker uneditable.
+- Placing a player's private note inside a district also opened that district's
+  article, because a click reaches the layer *and* the map (issue #9).
+
+All three looked correct on the page until something was clicked.
+
+The third is why `?test` asserts what it does. An earlier manual check of the
+same feature passed while the bug was live, because it confirmed the pin landed
+in the right Leaflet pane — which was never the thing at risk. The cases now
+assert the failure directly (no `window.open` call), and case 4 is a control
+that fails if the guard ever disables article links outright.
 
 ---
 

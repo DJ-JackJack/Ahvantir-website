@@ -1,10 +1,20 @@
 <!doctype html>
-<!-- Throwaway integration harness. Lives in _site only, never committed.
-     Stands up the real map.js + map-editor.js against an in-memory stand-in for
-     Supabase so the DM paths can be exercised without touching the database. -->
+<!-- Integration harness. Stands up the real map.js, map-editor.js and
+     map-player-notes.js against an in-memory stand-in for Supabase, so both the
+     DM and the player paths can be exercised without touching the database.
+
+     Serve the site (npm start) and open:
+       /map-editor-harness.html           - manual playground, as the DM
+       /map-editor-harness.html?player    - manual playground, as a player
+       /map-editor-harness.html?test      - run the assertions and report
+     ?test implies ?player. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Without this a phone lays the page out at 980px and every narrow-screen
+     rule is skipped, so the harness silently cannot test them. The real page
+     gets it from the site layout. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>map editor harness</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -117,9 +127,12 @@ function qb(table) {
   q.then = (res, rej) => Promise.resolve(q._run()).then(res, rej);
   return q;
 }
+/* ?player drops the DM claim, so the player-facing paths can be exercised as a
+   player actually meets them rather than alongside the editor. */
+const AS_PLAYER = location.search.includes('player') || location.search.includes('test');
 window.__supabase = {
   from: qb,
-  rpc: (name) => Promise.resolve({ data: name === 'is_dm', error: null }),
+  rpc: (name) => Promise.resolve({ data: name === 'is_dm' && !AS_PLAYER, error: null }),
   auth: {
     getSession: () => Promise.resolve({ data: { session: { user: { id: 'dm' } } } }),
     onAuthStateChange: () => ({ data: { subscription: { unsubscribe() {} } } }),
@@ -145,5 +158,194 @@ window.__DB = DB;
 <script src="/assets/js/map.js"></script>
 <script src="/assets/js/map-editor.js"></script>
 <script src="/assets/js/map-player-notes.js"></script>
+
+<script>
+/* ---- assertions (?test) ----------------------------------------------------
+   Regression cover for issue #9: placing a private note inside a district also
+   opened that district's article.
+
+   The earlier manual check passed for the wrong reason — it confirmed the pin
+   landed in the right Leaflet pane, which was never what was broken. These
+   cases assert the thing that actually failed: that NO article opened. Case 3 is
+   the control, without which a guard that simply disabled every article link
+   would look like a pass.
+--------------------------------------------------------------------------- */
+if (location.search.includes('test')) (async () => {
+  const results = [];
+  const strip = document.createElement('div');
+  strip.id = 'harness-results';
+  strip.style.cssText =
+    'position:fixed;inset:auto 0 0 0;z-index:99999;max-height:45vh;overflow:auto;' +
+    'font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;background:#1b140c;' +
+    'color:#fdf8ed;padding:0.6rem 0.9rem;border-top:2px solid #c9a227';
+  document.body.appendChild(strip);
+
+  const check = (name, pass, detail) => {
+    results.push({ name, pass, detail });
+    const line = document.createElement('div');
+    line.textContent = (pass ? 'PASS  ' : 'FAIL  ') + name + (detail ? '  — ' + detail : '');
+    line.style.color = pass ? '#9ad68a' : '#ff9b8a';
+    strip.appendChild(line);
+  };
+
+  // window.open is how the district handler opens an article. Counting calls is
+  // the only direct way to see the bug: the pin saved correctly either way.
+  let opened = [];
+  window.open = (url) => { opened.push(url); return null; };
+
+  const until = async (label, fn, ms = 8000) => {
+    const t0 = performance.now();
+    for (;;) {
+      let v; try { v = fn(); } catch (e) { v = null; }
+      if (v) return v;
+      if (performance.now() - t0 > ms) throw new Error('timed out waiting for ' + label);
+      await new Promise((r) => setTimeout(r, 50));
+    }
+  };
+
+  const districtPath = () =>
+    document.querySelector('.leaflet-overlay-pane path.leaflet-interactive');
+  const centreOf = (el) => {
+    const r = el.getBoundingClientRect();
+    return { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) };
+  };
+  const clickAt = (el, pt) => el.dispatchEvent(new MouseEvent('click', {
+    bubbles: true, cancelable: true, view: window, clientX: pt.x, clientY: pt.y,
+  }));
+  const page = document.getElementById('map-page');
+  const addBtn = () => document.getElementById('mine-add');
+  const panel = () => document.querySelector('.map-mynote');
+
+  try {
+    const stageEl = document.querySelector('.map-stage');
+    const sr0 = stageEl.getBoundingClientRect();
+    /* Fail loudly on a collapsed viewport. Otherwise every case below times out
+       on a sub-pixel polygon and the report blames the wrong thing.
+
+       Low on purpose: on a phone .map-stage takes the map's own aspect ratio, so
+       339x226 at 375px wide is correct and must still run. This only has to
+       catch a stage with no room at all. */
+    if (sr0.width < 200 || sr0.height < 150) {
+      throw new Error('the map stage is ' + Math.round(sr0.width) + 'x' +
+        Math.round(sr0.height) + '; widen the window to at least 200x150');
+    }
+
+    await until('the district polygon', districtPath);
+    await until('the player-notes toolbar', addBtn);
+
+    /* Frame the district before clicking it. The map opens at ZOOM_FLOOR, where
+       the whole image is sub-pixel and the polygon has no area to hit — a
+       player clicks something they can see, so the test should too. */
+    const area = await until('the district layer', () =>
+      (window.AhvantirMap.entries || []).find((e) => e.marker.kind === 'area'));
+    window.AhvantirMap.leaflet.fitBounds(area.layer.getBounds(),
+      { animate: false, padding: [40, 40] });
+    const path = await until('the polygon to have area on screen', () => {
+      const el = districtPath();
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return r.width > 8 && r.height > 8 ? el : null;
+    });
+
+    const before = DB.player_map_markers.length;
+
+    /* 1. Placing a note inside a district must not open its article.
+          The click is dispatched straight at the polygon, so this holds even
+          where CSS hit-testing would have spared it — the JS guard is the
+          guarantee, and this is what proves it. */
+    opened = [];
+    addBtn().click();
+    check('placing mode engages', page.classList.contains('is-placing-note'));
+    clickAt(path, centreOf(path));
+    await until('the pin to save', () => DB.player_map_markers.length > before);
+    check('a click inside a district drops exactly one pin',
+      DB.player_map_markers.length === before + 1,
+      DB.player_map_markers.length - before + ' inserted');
+    check('and opens NO article',
+      opened.length === 0,
+      opened.length ? 'window.open(' + opened.join(', ') + ')' : '');
+
+    /* 2. The editor has to be visible, and in the frame. */
+    const p = await until('the note editor', panel);
+    check('the editor opens inside .map-stage', !!p.closest('.map-stage'));
+    check('the editor is not inside .map-browser', !p.closest('.map-browser'));
+    const stage = document.querySelector('.map-stage').getBoundingClientRect();
+    const pr = p.getBoundingClientRect();
+    check('the editor is on screen, over the map',
+      pr.width > 0 && pr.height > 0 &&
+      pr.top < stage.bottom && pr.bottom > stage.top &&
+      pr.left < stage.right && pr.right > stage.left,
+      Math.round(pr.width) + 'x' + Math.round(pr.height) +
+      ' at ' + Math.round(pr.left) + ',' + Math.round(pr.top));
+    check('the Label field has focus',
+      document.activeElement && document.activeElement.id === 'mn-label',
+      'focus on ' + (document.activeElement && (document.activeElement.id || document.activeElement.tagName)));
+
+    /* 3. Neither sidebar rule can hide it any more. */
+    page.classList.add('is-list-collapsed');
+    check('still visible with the list collapsed',
+      getComputedStyle(p).display !== 'none' && p.getBoundingClientRect().height > 0);
+    page.classList.remove('is-list-collapsed');
+
+    /* 4. Control: with placing off, the district must still open its article.
+          Without this a guard that always returned early would pass case 1. */
+    opened = [];
+    const countBefore = DB.player_map_markers.length;
+    clickAt(path, centreOf(path));
+    await new Promise((r) => setTimeout(r, 150));
+    check('with placing off, a district DOES open its article',
+      opened.length === 1, opened.length + ' window.open call(s)');
+    check('and drops no pin',
+      DB.player_map_markers.length === countBefore,
+      DB.player_map_markers.length - countBefore + ' inserted');
+
+    /* 5. The CSS affordance, separately from the guard. Leaflet sets
+          pointer-events on the shapes themselves, so a rule aimed at the pane
+          does nothing — that was the original misdiagnosis. Hit-test it. */
+    // Shut the editor first. On a phone it is a sheet across the bottom of the
+    // frame, and leaving it open would put it under the hit test below — which
+    // would then pass without telling us anything about the district.
+    const closeBtn = document.getElementById('mn-close');
+    if (closeBtn) closeBtn.click();
+
+    addBtn().click();
+    // setTimeout, not requestAnimationFrame: rAF does not fire in a tab that
+    // is not painting, which hangs the run in a hidden or background window.
+    await new Promise((r) => setTimeout(r, 50));
+
+    /* Read the computed value off the polygon itself. This is the precise
+       claim, and the one that was wrong: a rule on the pane left the element's
+       own `pointer-events: auto` from leaflet.css standing, so the shape
+       stayed clickable however the pane was styled. */
+    const pe = getComputedStyle(path).pointerEvents;
+    check('while placing, the polygon is click-through',
+      pe === 'none', 'computed pointer-events: ' + pe);
+
+    /* And end to end. Offset from the centre, because the pin dropped in case 1
+       sits there — hit-testing the centre would find that instead and pass
+       whatever the district is doing. */
+    const pb = path.getBoundingClientRect();
+    const off = { x: Math.round(pb.left + pb.width * 0.2), y: Math.round(pb.top + pb.height * 0.2) };
+    const hit = document.elementFromPoint(off.x, off.y);
+    const hitClass = hit ? String((hit.className && hit.className.baseVal) || hit.className || '') : '';
+    check('and is not what a click at that point would hit',
+      hit !== path && !/leaflet-interactive/.test(hitClass),
+      'elementFromPoint gave ' + (hit ? hit.tagName + '.' + hitClass : 'null'));
+  } catch (e) {
+    check('harness ran to completion', false, e.message);
+  }
+
+  const failed = results.filter((r) => !r.pass).length;
+  const head = document.createElement('div');
+  head.textContent = failed
+    ? failed + ' of ' + results.length + ' FAILED'
+    : 'all ' + results.length + ' passed';
+  head.style.cssText = 'font-weight:700;margin-bottom:0.3rem;color:' +
+    (failed ? '#ff9b8a' : '#9ad68a');
+  strip.prepend(head);
+  window.__TEST = { results, failed };
+  document.title = (failed ? 'FAIL ' : 'PASS ') + 'map harness';
+})();
+</script>
 </body>
 </html>

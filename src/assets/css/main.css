@@ -1717,14 +1717,22 @@ hr {
 .map-page.is-placing-note .map-canvas { cursor: crosshair; }
 .map-page.is-placing-note .map-stage { outline: 2px solid var(--teal-dark); outline-offset: 2px; }
 
-/* And every other layer lets the click through.
-   Leaflet hands a click to the map ONLY when no layer consumed it, so without
-   this a district polygon eats the click and opens its own article instead of a
-   pin being dropped — which made the inside of a district, most of the map,
-   impossible to annotate. */
-.map-page.is-placing-note .leaflet-overlay-pane,
-.map-page.is-placing-note .leaflet-marker-pane,
-.map-page.is-placing-note .leaflet-playerNotes-pane { pointer-events: none; }
+/* And every other layer lets the click through, so the inside of a district —
+   most of the map — can be annotated at all.
+
+   Target the SHAPES, not their panes. leaflet.css sets `pointer-events: auto`
+   on `.leaflet-pane > svg path.leaflet-interactive` and on interactive marker
+   icons, i.e. on the elements themselves; a declaration on the element always
+   beats a value it would otherwise inherit from an ancestor, so setting the
+   pane to `none` has no effect whatever its specificity.
+
+   Four classes here (0,4,0) against Leaflet's two classes and two types
+   (0,2,2), so this wins on its own and needs no !important.
+
+   This is the affordance, not the guarantee: isPlacingNote() in map.js is what
+   actually stops a district opening its article, because a click reaches the
+   district AND the map regardless of what the cursor hit. */
+.map-page.is-placing-note .leaflet-pane .leaflet-interactive { pointer-events: none; }
 
 /* An uploaded pin image. Round, ringed, and sized the same whatever was
    uploaded, so one player's photo cannot dominate the map. */
@@ -1804,16 +1812,50 @@ hr {
    a glance and not only by its colour. */
 .leaflet-interactive.map-mine { filter: drop-shadow(0 0 2px rgba(253,248,237,0.8)); }
 
+/* The note editor floats INSIDE the map frame.
+
+   It used to be appended to .map-sidebar, which sits below the map: on a wide
+   screen the panel opened off-screen, and two rules meant for the sidebar hid
+   it altogether (the .is-list-collapsed exception tests for .map-props, which
+   this is not, and :fullscreen hides .map-browser outright). In the stage it
+   opens where the player is looking and neither rule can reach it.
+
+   z-index clears Leaflet's own furniture, which goes up to 1000 for the corner
+   control containers. */
 .map-mynote {
-  order: -2;                 /* above the DM panel and the locations list */
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--br-light);
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1100;
+  width: 22rem;
+  max-width: calc(100% - 1.2rem);
+  max-height: calc(100% - 1.2rem);
+  overflow-y: auto;
+  padding: 0.9rem;
+  border: 1px solid var(--br-mid);
+  background: var(--p-100);
+  box-shadow: var(--shadow-lg);
   display: grid;
   gap: 0.6rem;
-  max-width: 26rem;
 }
 .map-mynote[hidden] { display: none; }
+
+/* Narrow screens: a sheet across the bottom of the frame instead of a box over
+   half of it. 22rem on a 600px-wide map leaves nothing to annotate. */
+@media (max-width: 680px) {
+  .map-mynote {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    max-width: none;
+    max-height: 70%;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+}
 .map-mynote__head {
   font-family: var(--font-display);
   font-size: 0.8rem;
