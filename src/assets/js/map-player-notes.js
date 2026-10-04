@@ -11,11 +11,18 @@
  *
  * Two Leaflet details this file exists around:
  *
- *   1. A click on an interactive layer never reaches the map. Leaflet's
- *      _findEventTargets only falls back to the map when NO layer matched, so a
- *      district polygon swallows the click and opens its own article. Placing
- *      mode therefore makes every other layer click-through, which is what lets
- *      a player drop a pin inside a district at all.
+ *   1. A click on an interactive layer reaches the layer AND the map, both.
+ *      Leaflet registers the map container in _targets alongside each layer, so
+ *      _findEventTargets walks up from the clicked element and returns
+ *      [district, map]; _fireDOMEvent then fires on every entry in turn. (The
+ *      `if (!targets.length)` fallback in that function is a different path, for
+ *      a click that hit no layer at all — not the only way the map hears one.)
+ *
+ *      So placing a pin inside a district used to open the district's article at
+ *      the same moment. The guard that prevents it is isPlacingNote() in map.js,
+ *      which makes the district handler stand down while placing; the
+ *      pointer-events rule in main.css is the cursor affordance, not the fix.
+ *      Anything relying on a layer click NOT reaching the map is wrong here.
  *   2. Vector layers draw in the order they were added, and the viewer
  *      re-stacks its own markers whenever a filter changes. Player pins
  *      therefore live in their OWN PANE above the overlay pane, rather than in
@@ -312,17 +319,43 @@
   /* ---------- the editor panel ---------- */
 
   function closePanel() {
-    if (panel) { panel.innerHTML = ''; panel.hidden = true; delete panel.dataset.id; }
+    if (!panel) return;
+    // Hand focus back before emptying the panel, or closing with Esc from
+    // inside it would drop focus to the document and lose keyboard position.
+    const inside = panel.contains(document.activeElement);
+    panel.innerHTML = '';
+    panel.hidden = true;
+    delete panel.dataset.id;
+    if (inside && toggleBtn) toggleBtn.focus({ preventScroll: true });
   }
 
   function openPanel(row) {
-    const host = document.querySelector('.map-sidebar');
+    /* Inside the map frame, NOT in the sidebar.
+
+       The sidebar sits below the map since the layout change, so a panel opened
+       there appeared off-screen on a wide display — and worse, two existing
+       rules hid it outright: `.is-list-collapsed .map-sidebar:not(:has(.map-props))`
+       (this panel is .map-mynote, so the exception missed it) and
+       `:fullscreen .map-browser { display: none }`. Mounting in the stage puts
+       the editor where the player is looking and takes it out of the scope of
+       both rules, rather than carving a third and fourth exception into them. */
+    const host = document.querySelector('.map-stage');
     if (!host) return;
     if (!panel) {
       panel = document.createElement('div');
       panel.className = 'map-mynote';
+      // Bound once, on the element rather than the document: openPanel replaces
+      // innerHTML on every re-render, so anything bound inside would stack up a
+      // fresh listener per call.
+      panel.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { e.stopPropagation(); closePanel(); }
+      });
       host.appendChild(panel);
     }
+    // Only move focus when this is a fresh open. openPanel also re-renders in
+    // place after a save or an image upload, and focusing then would pull the
+    // cursor out of whatever the player was typing.
+    const fresh = panel.hidden || panel.dataset.id !== String(row.id);
     panel.hidden = false;
     panel.dataset.id = row.id;
 
@@ -375,6 +408,13 @@
 
     panel.querySelector('#mn-close').addEventListener('click', closePanel);
     panel.querySelector('#mn-delete').addEventListener('click', () => removeNote(row));
+
+    // A pin the player just dropped is unlabelled, so the Label field is where
+    // they need to be. Guarded by `fresh` so a re-render does not steal focus.
+    if (fresh) {
+      const first = panel.querySelector('#mn-label');
+      if (first) first.focus({ preventScroll: true });
+    }
 
     panel.querySelector('#mn-icon').addEventListener('change', async (e) => {
       const file = e.target.files && e.target.files[0];

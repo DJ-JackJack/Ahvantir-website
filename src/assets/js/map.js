@@ -93,6 +93,23 @@
     return a ? a.url : '/articles/' + m.article_slug + '/';
   }
 
+  /* Is a player part-way through dropping one of their own pins?
+
+     A click inside a district reaches BOTH the district and the map. Leaflet
+     registers the map container as an event target as well, so
+     _findEventTargets returns [district, map] and _fireDOMEvent fires on each
+     in turn. Without this guard the district opens its article at the same
+     moment the pin lands.
+
+     Read off the DOM rather than through a shared variable: map-player-notes.js
+     owns placing mode and already marks it on #map-page, so this needs no
+     plumbing between the two files and cannot drift from the class the CSS is
+     keyed to. */
+  function isPlacingNote() {
+    const page = document.getElementById('map-page');
+    return !!page && page.classList.contains('is-placing-note');
+  }
+
   /* ---------- rendering ---------- */
   function tooltipHtml(m) {
     const wrap = document.createElement('div');
@@ -229,6 +246,7 @@
     layer.__markerId = m.id;
     layer.on('click', () => {
       if (state.editing) return;          // the editor handles clicks in edit mode
+      if (isPlacingNote()) return;        // the player is dropping a pin, not browsing
       const url = articleUrlFor(m);
       if (url) window.open(url, '_blank', 'noopener');
     });
