@@ -18,7 +18,7 @@ timeline_year: 0
 
 ## Nature
 
-He was not born from conflict. He was born from the attempt to end it. In the middle years of the [[Landing War]], he was the moment when genuine understanding crossed the divide — when a settler, reaching out, truly felt what a spirit had suffered, or when a spirit paused long enough to carry the weight of a mortal's grief. He was the accumulated evidence that coexistence was not impossible. He was the reason anyone tried.
+He was not born from conflict. He was born from the attempt to end it. In the middle years of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], he was the moment when genuine understanding crossed the divide — when a settler, reaching out, truly felt what a spirit had suffered, or when a spirit paused long enough to carry the weight of a mortal's grief. He was the accumulated evidence that coexistence was not impossible. He was the reason anyone tried.
 
 He made the [[First Pact]] possible. It is likely that without him — without the brief, genuine moments of cross-species empathy that he embodied — neither side would have found the will to negotiate at all.
 

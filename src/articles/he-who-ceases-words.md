@@ -22,7 +22,7 @@ He was not born from hatred. He was born from the moment a negotiation stopped �
 
 He does not shout. He does not threaten. He simply arrives at the end of things. Conversations that continue in his presence begin to feel hollow, their words arriving without weight. Speakers find themselves trailing off. Listening becomes impossible — not because sound is gone, but because sound no longer carries meaning. Whatever was trying to be said no longer seems worth saying.
 
-He believes this is clarity, not cruelty. Words, in his reckoning, were what the mortals and spirits used before they understood each other well enough to stop pretending. The [[Landing War]] stripped that pretense. What was revealed underneath was not hatred — it was truth. And truth, he holds, does not require language.
+He believes this is clarity, not cruelty. Words, in his reckoning, were what the mortals and spirits used before they understood each other well enough to stop pretending. The [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]] stripped that pretense. What was revealed underneath was not hatred — it was truth. And truth, he holds, does not require language.
 
 ## History & Binding
 

@@ -20,7 +20,7 @@ timeline_year: 0
 
 He was not born from hatred. He was born from the specific moment when caution stopped being reasonable and became consuming — when watching for danger transformed into seeing danger everywhere, whether it was present or not.
 
-During the [[Landing War]], vigilance saved lives. Communities posted sentinels. Spirit territories mapped every approach. Scouts catalogued each other's movements until catalogue became obsession. He condensed from the accumulated fear of being caught unaware, the certainty that the moment one stopped watching, the blow would come.
+During the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], vigilance saved lives. Communities posted sentinels. Spirit territories mapped every approach. Scouts catalogued each other's movements until catalogue became obsession. He condensed from the accumulated fear of being caught unaware, the certainty that the moment one stopped watching, the blow would come.
 
 His form is not monstrous. He is simply present, attentive, still. His eyes move. Whatever is happening in the room with him becomes the subject of that attention, and the sensation of being watched — truly watched, in a way that assumes guilt — is enough to alter behavior. Under his gaze, people begin checking their own motives, questioning alliances, interpreting consideration as concealment.
 

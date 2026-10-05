@@ -10,7 +10,7 @@ date_added: "2026-06-06"
 
 ## The Gateway to Ahvantir
 
-Aru'Mas is a city built on access. It stands on the southeastern island of the [[Ahvantir]] Archipelago, occupying the only navigable approach through the treacherous reefs and coastal ranges that ring the islands, and for as long as anyone has kept records, that position has defined everything about it: its wealth, its politics, its culture, and its contradictions.
+Aru'Mas is a city built on access. It stands on the southeastern island of the [[Nyhexus (The Material Plane)#The Ahvantir Archipelago|Ahvantir]] Archipelago, occupying the only navigable approach through the treacherous reefs and coastal ranges that ring the islands, and for as long as anyone has kept records, that position has defined everything about it: its wealth, its politics, its culture, and its contradictions.
 
 The city is large, dense, and expensive. It draws people from across the multiverse — traders seeking rare goods, scholars chasing lost knowledge, adventurers looking for a commission, refugees with nowhere else to go — and it absorbs them in varying degrees. Some stay permanently. Some spend a season and leave richer or poorer. Some never make it past the harbour district. Entry to Ahvantir proper, the archipelago beyond the city's walls, is a separate matter governed by a centuries-old agreement between the city's leadership and the spirits of the land.
 

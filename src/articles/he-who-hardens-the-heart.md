@@ -18,7 +18,7 @@ timeline_year: 0
 
 ## Nature
 
-He understands self-preservation. He was, in the early years of the [[Landing War]], the natural result of a people — both mortal and spirit — learning to stop feeling things that would slow them down. Grief is a liability in a siege. Mercy is a luxury during a retreat. He formed from the accumulated decisions to set feeling aside, just for now, just until it was safe again.
+He understands self-preservation. He was, in the early years of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], the natural result of a people — both mortal and spirit — learning to stop feeling things that would slow them down. Grief is a liability in a siege. Mercy is a luxury during a retreat. He formed from the accumulated decisions to set feeling aside, just for now, just until it was safe again.
 
 The problem is that it never became safe. "Just for now" extended through seasons, then years. The protective distance between self and the suffering of others hardened into something structural. And he hardened with it.
 

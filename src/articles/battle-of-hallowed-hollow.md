@@ -54,7 +54,3 @@ The site itself — Hallowed Hollow, within the Neverwood — is presumably stil
 - [[Massacre of Cascading Leaves]] — the other named major event of the Landing War
 - [[The Primordem]] — formed from the Landing War's accumulated emotional residue; the moral weight of Hallowed Hollow may be present in one or more of their domains
 - [[First Pact]] — the treaty that ended the war; the Green Man's role in post-Pact Aru'Mas reflects this history
-
----
-
-> **Source**

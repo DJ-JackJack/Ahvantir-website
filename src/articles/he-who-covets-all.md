@@ -58,7 +58,7 @@ He has not suggested this interpretation himself. He does not need to. The schol
 >
 > He is not dangerous in the way that [[He Who Burns]] is dangerous, or [[He Who Watches]], or [[He Who Breaks the Walls]]. He does not pursue an agenda. He does not want anything in particular to happen. He simply is what he is, and what he is makes certain things unavoidable in his vicinity.
 >
-> We record his case separately because his classification requires it. He is a Primordem in that he is sealed, and sealed for reasons related to the First Pact, and is numbered among the spirits bound beneath Ahvantir. He is not a Primordem in origin or nature — he did not form from the emotional residue of the [[Landing War]], and his ideology, if one can call it that, is not the separationism of the eleven.
+> We record his case separately because his classification requires it. He is a Primordem in that he is sealed, and sealed for reasons related to the First Pact, and is numbered among the spirits bound beneath Ahvantir. He is not a Primordem in origin or nature — he did not form from the emotional residue of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], and his ideology, if one can call it that, is not the separationism of the eleven.
 >
 > He told the delegation, at the close of his sealing: *"Nothing truly belongs to anyone. Ownership is merely the strength of one's desire, measured against all others. I do not create that desire. I only make it visible."*
 >
@@ -77,7 +77,6 @@ He is an anomaly even among the Primordem themselves. The original eleven share 
 ## Connections
 - Group: [[The Primordem]] (anomalous member — sealed separately)
 - See also: [[He Who Was Forgotten]] (led the original eleven)
-- Open question resolution: [[Open Questions#R3]]
 
 ## Source Notes
 > **Source**

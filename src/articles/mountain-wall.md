@@ -67,7 +67,3 @@ The Drorn'Duur, who once moved freely through the Wall and into the deep caverns
 - [[First Pact]] — the treaty that governs mortal access through the Mountain Wall
 - [[Marduk Sunspear]] — his desire to cross the Wall drove much of the Landing War's trajectory
 - [[History of Ahvantir]] — full context for the Wall's role in the founding era
-
----
-
-> **Source**

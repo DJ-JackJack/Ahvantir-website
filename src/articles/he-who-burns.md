@@ -20,7 +20,7 @@ timeline_year: 0
 
 He is not chaos. He has direction. He has, if anything, an excess of purpose — a list of what was done, who did it, and what is owed. The anger that drives him was never undiscriminating. It was always aimed. That is what makes it dangerous.
 
-He was born from the moment during the [[Landing War]] when someone who had genuinely been wronged decided that justice was no longer an acceptable substitute for retribution. Justice acknowledges the harm and attempts repair. He was born from the decision that repair was insufficient. That what was done required an answer in kind. That the only appropriate response to what had been taken was to take back exactly that much — and perhaps a little more, to account for the waiting.
+He was born from the moment during the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]] when someone who had genuinely been wronged decided that justice was no longer an acceptable substitute for retribution. Justice acknowledges the harm and attempts repair. He was born from the decision that repair was insufficient. That what was done required an answer in kind. That the only appropriate response to what had been taken was to take back exactly that much — and perhaps a little more, to account for the waiting.
 
 His form is fire given structure: a blazing core, surrounded by multiple arms, the whole figure caught mid-eruption as though perpetually in the act of breaking free. He looks like something that should not be contained. He looks, if one is being direct, like something that was sealed precisely because it was correct and that correctness was inconvenient to everyone around it.
 

@@ -74,7 +74,3 @@ What matters practically: do not assume that because something is called a spiri
 - Major spirit entities: [[The Primordem]] · [[Nodd the Monarch of Dreams]] · [[Spirits of the Land]]
 - Related article: [[Deification in Ahvantir]] (how deities work and how they differ from spirits)
 - See also: [[The Ranjergon]] (where deities reside, behind the Divine Gate)
-
----
-
-> **Source**

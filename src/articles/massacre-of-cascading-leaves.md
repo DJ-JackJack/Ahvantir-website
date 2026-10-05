@@ -46,7 +46,3 @@ The emotional residue of the Landing War — the grief, the fear, the righteousn
 - [[Marduk Sunspear]] — whose decision to betray the Drorn'Duur triggered the war
 - [[Drorn'Duur]] — whose mistreatment and alliance with the spirits gave the spirit coalition cause and structure
 - [[The Primordem]] — formed from the Landing War's accumulated emotional residue
-
----
-
-> **Source**

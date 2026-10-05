@@ -274,8 +274,45 @@ def _drop_dm_lines(lines):
 
     Matches only at the START of a line: a provenance sentence that mentions
     `DM canon` as a source type is legitimate footer content and is kept.
+
+    A match drops that line AND the rest of its sentence. Dropping single lines
+    decapitated hard-wrapped rulings and published the remainder as prose — the
+    Lamplighters Guild footer was shipping
+
+        > **the Board**, which operates from **Lamplight Tower** in the Fend.
+
+    because "DM ruling 2026-10-02: squads are led by a Squad Commander who
+    liaises with the guild's leadership," matched and went, while the lines
+    continuing that sentence did not match and stayed. Three such fragments were
+    live across two articles.
+
+    Sentence end, not paragraph end: a Source footer often interleaves rulings
+    with provenance line by line, and each is its own complete sentence. Treating
+    the whole paragraph as DM-facing would take the provenance with it.
     """
-    return [ln for ln in lines if not DM_LINE_PREFIX.match(ln.strip())]
+    out = []
+    dropping = False
+
+    def ends_sentence(text):
+        # ':' and ',' continue onto the next line; '.', '!', '?' close it.
+        return text.rstrip().endswith((".", "!", "?"))
+
+    for ln in lines:
+        body = ln.strip()
+        if not body:
+            # A blank line always ends the run, so an unterminated ruling can
+            # never swallow the paragraph after it.
+            dropping = False
+            continue
+        if dropping:
+            if ends_sentence(body):
+                dropping = False
+            continue
+        if DM_LINE_PREFIX.match(body):
+            dropping = not ends_sentence(body)
+            continue
+        out.append(ln)
+    return out
 
 
 def convert_note_callouts(body: str) -> str:
@@ -287,14 +324,17 @@ def convert_note_callouts(body: str) -> str:
         raw_body = m.group(2)
         inner_lines = _strip_blockquote_prefix(raw_body).strip()
         # Re-prefix stripped lines as blockquote, dropping DM-facing ones.
-        kept = _drop_dm_lines(
-            [line for line in inner_lines.splitlines() if line.strip()]
-        )
+        # Blank lines go in deliberately: _drop_dm_lines needs them to tell one
+        # paragraph from the next, and drops them on the way out.
+        kept = _drop_dm_lines(inner_lines.splitlines())
         bq_lines = "\n".join("> " + line for line in kept)
         if title and bq_lines:
             return f"> **{title}**\n{bq_lines}"
         elif title:
-            return f"> **{title}**"
+            # Everything in the callout was DM-facing, so the title is all that
+            # is left. A bare "Source" heading with nothing under it is not
+            # provenance, it is a dangling label — drop the whole block.
+            return ""
         else:
             return bq_lines
 
@@ -416,6 +456,11 @@ def process_file(src: Path, preserved_fm: dict = None):
     body = separate_blockquotes(body)
     body = strip_inline_tags(body)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
+    # Articles separate their Source footer with a rule. When everything in that
+    # footer was DM-facing the footer goes, and the rule is left pointing at
+    # nothing — a line across the bottom of eight articles. Trim any trailing
+    # separators left behind.
+    body = re.sub(r"(?:\n\s*(?:---+|\*\*\*+|___+)\s*)+$", "", body).strip()
 
     fm_out = build_frontmatter(fm, description, preserved=preserved_fm)
     output = f"{fm_out}\n\n{body}\n"

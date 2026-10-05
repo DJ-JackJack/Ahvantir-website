@@ -14,7 +14,7 @@ timeline_year: 0
 
 The Primordem are twelve spirits sealed beneath Ahvantir during the [[First Pact]]. Their existence is not public knowledge. The [[Council of Aru'Mas]] does not hold it. The sealing predates that structure entirely: at the time, matters of state were settled between [[Marduk Sunspear]], his cleric [[Adobban Demoranza]], and his financial advisor. Those three went on to found the Crown, the Pathite Faith and the Merchants' Guild, and each passed the account down his own line. It is held today by three people: the Monarch, the Arbiter, and the Grand Speaker. The secret is treated as foundational: revealing it would not merely embarrass the city. It would challenge the legitimacy of the Pact itself.
 
-The original eleven were not summoned or designed. They condensed from the emotional residue of the [[Landing War]], the thirteen-year conflict between the settlers who became Aru'Mas and the native spirits of Ahvantir. Where fear ran thick, where mistrust turned lethal, where retaliation followed rumor, the land accumulated meaning. From those accumulated pressures, the Primordem formed.
+The original eleven were not summoned or designed. They condensed from the emotional residue of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], the thirteen-year conflict between the settlers who became Aru'Mas and the native spirits of Ahvantir. Where fear ran thick, where mistrust turned lethal, where retaliation followed rumor, the land accumulated meaning. From those accumulated pressures, the Primordem formed.
 
 They are not gods. They are not demons. They are, as one early Pact scholar recorded, consequences.
 

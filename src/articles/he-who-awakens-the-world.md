@@ -28,7 +28,7 @@ He is not cruel in his framing. He does not hate the mortals of Aru'Mas. He simp
 
 ## History & Binding
 
-He formed during the late stages of the [[Landing War]], from the accumulated weight of displaced spirit-land — the territories overwritten, the pacts unmade, the sacred grounds claimed for settlement that had no relationship to what those grounds had meant. He was the land's answer to the question of what happens when you keep taking.
+He formed during the late stages of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]], from the accumulated weight of displaced spirit-land — the territories overwritten, the pacts unmade, the sacred grounds claimed for settlement that had no relationship to what those grounds had meant. He was the land's answer to the question of what happens when you keep taking.
 
 He was sealed ninth because by the time of the [[First Pact]], he had already begun acting — not through attacks on settlements, but through environmental effects. Crops failing in patterns. Water tables shifting. Soil that would not hold structure. The scholars who negotiated the Pact concluded that even without direct violence, his continued freedom would make settlement of the archipelago impossible.
 

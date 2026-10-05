@@ -72,6 +72,14 @@ SAMPLE = (
     "> Resolved - R3: renamed during the vault review.\n"
     "> Trailing provenance sentence.\n"
     "\n"
+    # A ruling hard-wrapped across several lines. Only its first line matches
+    # the prefix, so dropping line by line left the remainder as public prose.
+    "> [!note] Source\n"
+    "> DM ruling 2026-10-02: squads are led by a Squad Commander who liaises\n"
+    "> with the Board, which operates from Lamplight Tower in the Fend. The\n"
+    "> Sigil Posts are built magical technology.\n"
+    "> Kept provenance after the wrapped ruling.\n"
+    "\n"
     "More public prose.\n"
 )
 
@@ -86,6 +94,9 @@ MUST_BE_GONE = [
     ("raw callout syntax", "[!"),
     ("DM ruling line inside a Source footer", "does not hold the Primordem"),
     ("review artefact line inside a Source footer", "renamed during the vault review"),
+    ("first line of a hard-wrapped ruling", "squads are led by"),
+    ("continuation of a wrapped ruling", "operates from Lamplight Tower"),
+    ("tail of a wrapped ruling", "built magical technology"),
     ("dmonly shortcode", "dmonly"),
 ]
 MUST_SURVIVE = [
@@ -93,6 +104,7 @@ MUST_SURVIVE = [
     ("lore-structure callout", "Lore structure"),
     ("provenance that merely mentions DM canon", "ChatGPT lore session"),
     ("trailing provenance line", "Trailing provenance sentence"),
+    ("provenance after a wrapped ruling", "Kept provenance after the wrapped ruling"),
     ("body prose before", "Public prose here"),
     ("body prose after", "More public prose"),
 ]

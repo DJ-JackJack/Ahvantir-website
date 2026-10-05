@@ -14,7 +14,7 @@ Other material planes exist. Other mortal civilizations exist on them. What Nyhe
 
 ## The Ahvantir Archipelago
 
-Everything mortals know of Nyhexus is filtered through one lens: the [[Ahvantir Archipelago]], the only known permanent land mass on the planet. Nyhexus is an ocean world — a vast, largely unmapped expanse of sea, storm, and depth — and the Ahvantir Archipelago is the only part of it that has been settled, studied, and named in any surviving record. Whether other permanent land masses exist somewhere beyond the charted sea is a question Starleaper Fleet navigators have not answered; they travel the Astral, not the world ocean.
+Everything mortals know of Nyhexus is filtered through one lens: the Ahvantir Archipelago, the only known permanent land mass on the planet. Nyhexus is an ocean world — a vast, largely unmapped expanse of sea, storm, and depth — and the Ahvantir Archipelago is the only part of it that has been settled, studied, and named in any surviving record. Whether other permanent land masses exist somewhere beyond the charted sea is a question Starleaper Fleet navigators have not answered; they travel the Astral, not the world ocean.
 
 This means that Nyhexus-as-a-planet is, for practical scholarly purposes, understood through what is known of the Archipelago. The two should not be conflated — the world is larger than the Archipelago, and what lies beyond it is unknown — but all surviving lore is the lore of Ahvantir.
 
@@ -47,7 +47,7 @@ That this is the case — that currents in the Astral Sea bend toward Nyhexus, t
 What drove Marduk Sunspear's fleet here after forty-nine years in the Astral Sea was, by his own account, the currents. Whether the currents chose Nyhexus or whether Nyhexus drew the currents is the oldest open question in Aru'Mas's philosophical tradition, and there is no indication it is close to resolution.
 
 ## Connections
-- The known land mass: [[Ahvantir Archipelago]] — the only confirmed permanent land mass on Nyhexus
+- The known land mass: the Ahvantir Archipelago — the only confirmed permanent land mass on Nyhexus
 - The land's spiritual fabric: [[Spirits of Ahvantir]] — the native entities whose power predates mortal civilization
 - The governing treaty: [[First Pact]] — the agreement that structures mortal-spirit coexistence
 - Adjacent planes: [[Faded Veil]], [[Vast Green]], [[The Dreaming]], [[The Astral Sea|Astral Sea]]

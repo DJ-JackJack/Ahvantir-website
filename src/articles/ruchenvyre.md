@@ -95,7 +95,3 @@ The debt against a land does not dissolve when its human perpetrators die. It do
 ## Connections
 - See also: [[Spirit Pacts]] · [[Fadu-Asai]] · [[The LaCroi Institute of Spiritology]] · [[The Church of the Threefold Path]] · [[Order of Harmony]]
 - Spirit context: [[Spirits of Ahvantir — An Overview]]
-
----
-
-> **Source**

@@ -28,7 +28,7 @@ He is not an ideologue. He does not hold that destruction is inherently good or 
 
 ## History & Binding
 
-He crystallized from the accumulated weight of the [[Landing War]]'s sieges — not from the decision to fight, but from the act of fighting once that decision was already made. He is the shape that forms when violence stops being a choice and becomes a profession. When the ethics are settled. When the body simply moves.
+He crystallized from the accumulated weight of the [[History of Ahvantir#The Landing War (-13 to 0 MC)|Landing War]]'s sieges — not from the decision to fight, but from the act of fighting once that decision was already made. He is the shape that forms when violence stops being a choice and becomes a profession. When the ethics are settled. When the body simply moves.
 
 The Pact Scholars who catalogued him at the time of the [[First Pact]] noted he was the hardest to characterize because he had no stated grievance of his own. He did not feel wronged. He did not seek revenge. He was simply the capacity for force, concentrated into a form, waiting to be aimed.
 
