@@ -62,8 +62,11 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
     <div id="cryptex-result" class="cryptex-result" aria-live="polite"></div>
 
     <div class="cryptex-discoveries" id="cryptex-discoveries">
-      <button class="discoveries-toggle" type="button" aria-expanded="false" title="Rune sequences you have unlocked">Your Discoveries (0)</button>
-      <ul class="discoveries-list" role="list"></ul>
+      {# aria-expanded says the control is collapsible; aria-controls says what
+         it collapses. Without the pair a screen reader announces the state of
+         something it cannot point the user at. #}
+      <button class="discoveries-toggle" type="button" aria-expanded="false" aria-controls="discoveries-list" title="Rune sequences you have unlocked">Your Discoveries (0)</button>
+      <ul class="discoveries-list" id="discoveries-list" role="list"></ul>
     </div>
   </div>
 </section>

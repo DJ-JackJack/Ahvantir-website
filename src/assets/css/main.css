@@ -1831,6 +1831,26 @@ hr {
 
 .graph-placeholder span { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
 
+/* The graph is keyboard-navigable, so the focused node needs to be findable.
+   SVG ignores `outline` in some engines, so the ring is drawn on the circle
+   itself rather than on the group. */
+.graph-container svg g[role="link"]:focus { outline: none; }
+.graph-container svg g[role="link"]:focus-visible circle {
+  stroke: var(--burg);
+  stroke-width: 3;
+  r: 7;
+}
+
+/* How to drive the graph from the keyboard. Visible, not sr-only: a sighted
+   keyboard user needs it just as much, and it is the only place the arrow-key
+   behaviour is stated. */
+.graph-hint {
+  font-size: 0.82rem;
+  color: var(--ink-ghost);
+  margin: 0 0 0.75rem;
+  max-width: 48ch;
+}
+
 .graph-tooltip {
   position: fixed;
   display: none;
@@ -2643,7 +2663,14 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
   color: var(--br-mid);
   font-size: 0.7rem;
   line-height: 1;
+  /* min-height rather than more padding, so the arrows keep their spacing
+     against the rune while the target itself reaches 24px. */
   padding: 4px 8px;
+  min-width: 24px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: color 0.12s, transform 0.1s;
 }
@@ -2834,8 +2861,9 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
   background: rgba(30,10,5,0.8);
   border: none;
   color: var(--p-200);
-  width: 22px;
-  height: 22px;
+  /* WCAG 2.5.8 wants at least 24x24 for a pointer target. This was 22. */
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   font-size: 0.7rem;
   line-height: 1;
