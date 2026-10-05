@@ -202,14 +202,25 @@ module.exports = function (eleventyConfig) {
     }
 
     for (const page of all) {
-      let raw;
+      /* Read the body from disk via page.inputPath, which is public, documented
+         Eleventy API. The previous fallback reached into
+         page.template.frontMatter.content — an internal that no version promise
+         covers, and which an Eleventy upgrade could change or remove without
+         warning. Worse, it was silent: if it ever returned something different
+         from the file, backlinks would quietly go missing with no sign why.
+
+         An unreadable article is a real problem, so say so and carry on with an
+         empty body rather than guessing at the content. */
+      let raw = "";
       try {
         const src = fs.readFileSync(page.inputPath, "utf8");
         // Strip YAML frontmatter (--- ... ---) to get the markdown body
         const m = src.match(/^---[\r\n][\s\S]*?[\r\n]---[\r\n]?([\s\S]*)$/);
         raw = m ? m[1] : src;
-      } catch (_) {
-        raw = String(page.template?.frontMatter?.content || "");
+      } catch (err) {
+        console.warn(
+          `[backlinks] could not read ${page.inputPath}: ${err.message}. ` +
+          `Links out of this article will be missing.`);
       }
       const links = [...raw.matchAll(/\[\[([^\]|]+?)(?:\|[^\]]+?)?\]\]/g)];
       for (const [, title] of links) {

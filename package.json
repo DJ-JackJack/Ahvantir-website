@@ -11,10 +11,12 @@
     "sync": "python3 scripts/obsidian-to-md.py",
     "test": "npm run test:coords && npm run test:callouts",
     "test:coords": "node scripts/test-map-coords.js",
-    "test:callouts": "python3 scripts/test-sync-callouts.py"
+    "test:callouts": "python3 scripts/test-sync-callouts.py",
+    "test:backlinks": "node scripts/test-backlinks.js",
+    "test:built": "npm run build && npm run test:backlinks"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy": "2.0.1",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0",
     "pagefind": "^1.1.0"
