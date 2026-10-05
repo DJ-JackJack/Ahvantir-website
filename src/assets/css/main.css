@@ -16,7 +16,27 @@
   --ink:       #1a0e02;
   --ink-soft:  #2d1e0e;
   --ink-faded: #5c3d20;
-  --ink-ghost: #9a7a60;
+  /* Darkened from #9a7a60, which was 3.72:1 on the page and 3.37:1 on the body
+     background — under the 4.5:1 WCAG AA needs for body text, and this token
+     dresses ~70 pieces of real text (map hints and counts, captions, dates,
+     placeholders), not decoration. #816650 clears it on both: 5.02 and 4.54. */
+  --ink-ghost: #816650;
+
+  /* Muted text on a dark panel. --ink-ghost is tuned for parchment and goes the
+     wrong way against a dark background, so the two cannot be one token: the
+     value that passes on parchment drops the cryptex band to 3.03:1. */
+  --ink-muted-dark: #a1836b;
+
+  /* The cryptex band is dark in BOTH themes. It used to paint with
+     var(--ink-soft), a TEXT token, which flips to #d4c4a8 in dark mode — so the
+     band's soft edges inverted to light there while its gradient core stayed
+     dark. Pinned to a literal so the band means the same thing in either theme. */
+  --cryptex-band: #2d1e0e;
+
+  /* Nav "Player" link. Sits on the header gradient, not the page, so it is
+     measured against --p-300/--p-400 rather than the parchment. */
+  --nav-player:       #674e11;
+  --nav-player-hover: #4a3708;
 
   /* Burgundy accent */
   --burg:      #7b1d2a;
@@ -1944,9 +1964,14 @@ hr {
 
 .hidden { display: none !important; }
 
-/* Nav "Player" link — dark gold, meets WCAG AA 4.5:1 on parchment */
-.nav__player-link { color: #8c6a18 !important; font-weight: 600; }
-.nav__player-link:hover { color: var(--gold-dark) !important; }
+/* Nav "Player" link — gold, via a token so it follows the theme.
+   The previous #8c6a18 was measured against the page parchment, but this link
+   never sits there: the header is its own gradient, --p-300 to --p-400. Against
+   the darker stop it was 2.92:1 in light mode — and, because it was a hardcoded
+   literal rather than a token, 2.4:1 in dark mode, where the header is dark and
+   a dark gold all but disappears. Both stops of both gradients now clear 4.5:1. */
+.nav__player-link { color: var(--nav-player) !important; font-weight: 600; }
+.nav__player-link:hover { color: var(--nav-player-hover) !important; }
 
 /* Nav sign-out button — styled like a nav link */
 .nav__signout {
@@ -2514,8 +2539,25 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
    ================================================================ */
 
 .cryptex-section {
+  /* This band is dark in BOTH themes, so the tokens used inside it must not
+     follow the theme — otherwise the text inverts while the background does
+     not. That is exactly what happened: .cryptex-heading is var(--p-200),
+     which is parchment in light mode but #231a0f in dark, leaving the heading
+     at 1.06:1 against the band.
+
+     Pinning the tokens here rather than rewriting each rule means anything
+     added to this section later inherits colours that already work, instead of
+     reintroducing the same bug. --ink-ghost and --br-mid are redirected to the
+     muted-on-dark value because their own values are tuned for parchment and
+     land at 3.03:1 and 4.05:1 here. */
+  --p-200:     #f7edcd;
+  --p-300:     #eedbb0;
+  --ink-ghost: var(--ink-muted-dark);
+  --br-mid:    var(--ink-muted-dark);
+  --br-light:  #c4a878;
+
   background: linear-gradient(180deg, #12090300 0%, #180e04cc 18%, #1c1108 45%, #180e04cc 82%, #12090300 100%),
-              var(--ink-soft);
+              var(--cryptex-band);
   border-top: 2px solid var(--br-dark);
   border-bottom: 2px solid var(--br-dark);
   padding: 3.5rem 0 3rem;
@@ -2560,7 +2602,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
 .cryptex-subheading {
   font-family: var(--font-body);
   font-style: italic;
-  color: var(--ink-ghost);
+  color: var(--ink-muted-dark);
   font-size: 0.95rem;
   max-width: 38ch;
   margin: 0 0 2.2rem;
@@ -2709,7 +2751,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
 .discoveries-toggle {
   background: none;
   border: 1px solid var(--br-dark);
-  color: var(--ink-ghost);
+  color: var(--ink-muted-dark);
   font-family: var(--font-head);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -2744,7 +2786,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
 .discoveries-empty {
   padding: 1rem;
   text-align: center;
-  color: var(--ink-ghost);
+  color: var(--ink-muted-dark);
   font-style: italic;
   font-size: 0.85rem;
 }
@@ -2777,7 +2819,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
 .discoveries-link:hover { color: var(--gold-pale); text-decoration: underline; }
 
 .discoveries-date {
-  color: var(--ink-ghost);
+  color: var(--ink-muted-dark);
   font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
@@ -4829,7 +4871,19 @@ html.dark {
   --ink:       #e8d8c0;
   --ink-soft:  #d4c4a8;
   --ink-faded: #a89070;
-  --ink-ghost: #6a5540;
+  /* Lightened from #6a5540, which was 2.59:1 on the dark page background — the
+     worst contrast anywhere on the site. #908171 clears 4.5:1 on both dark
+     surfaces this token actually lands on: 4.82 and 4.54. */
+  --ink-ghost: #908171;
+
+  /* The band is dark in both themes, so the muted colour on it does not flip. */
+  --ink-muted-dark: #a1836b;
+  --cryptex-band: #2d1e0e;
+
+  /* The header is dark here, so the gold inverts: a dark gold on a dark header
+     was 1.75:1 and effectively invisible. */
+  --nav-player:       #ab9256;
+  --nav-player-hover: #c9b074;
 
   --burg:      #c04060;
   --burg-dark: #e05070;

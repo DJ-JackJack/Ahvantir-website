@@ -9,9 +9,10 @@
     "start": "eleventy --serve",
     "dev": "eleventy --serve --incremental",
     "sync": "python3 scripts/obsidian-to-md.py",
-    "test": "npm run test:coords && npm run test:callouts",
+    "test": "npm run test:coords && npm run test:callouts && npm run test:contrast",
     "test:coords": "node scripts/test-map-coords.js",
-    "test:callouts": "python3 scripts/test-sync-callouts.py"
+    "test:callouts": "python3 scripts/test-sync-callouts.py",
+    "test:contrast": "node scripts/test-contrast.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
