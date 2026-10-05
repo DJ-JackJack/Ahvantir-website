@@ -24,7 +24,15 @@ permalink: /graph/
     <div id="graph-filter-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
   </div>
 
-  <div id="graph-container" class="graph-container" aria-label="Relationship graph">
+  {# The graph is one tab stop with arrow-key movement inside it, rather than 239
+     separate ones. That is only discoverable if we say so. #}
+  <p id="graph-keys" class="graph-hint">
+    Tab into the graph, then use the arrow keys to move between articles and
+    Enter to open one.
+  </p>
+
+  <div id="graph-container" class="graph-container" aria-label="Relationship graph"
+       aria-describedby="graph-keys">
     <div class="graph-placeholder">
       <span aria-hidden="true">◎</span>
       <p>Loading graph&hellip;</p>

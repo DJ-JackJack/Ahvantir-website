@@ -135,6 +135,16 @@ window.addEventListener('DOMContentLoaded', function () {
     .attr('stroke', '#fdf8ed')
     .attr('stroke-width', 1);
 
+  /* Each node is a link, and now says so. The accessible name carries the
+     category as well, because "Heartspire" on its own does not tell a
+     screen-reader user what kind of thing they are about to open. */
+  node
+    .attr('role', 'link')
+    .attr('aria-label', function (d) {
+      var cat = LABELS[d.category || 'default'] || d.category || '';
+      return cat ? d.title + ' — ' + cat : d.title;
+    });
+
   // ── Tooltip ───────────────────────────────────────────────────
   var tooltip = document.getElementById('graph-tooltip');
 
@@ -159,6 +169,102 @@ window.addEventListener('DOMContentLoaded', function () {
       if (tooltip) tooltip.style.display = 'none';
     })
     .on('click', function (e, d) { window.location.href = d.url; });
+
+  /* ── Keyboard access ──────────────────────────────────────────
+     The graph was mouse-only: no tabindex, no key handling, so every one of
+     these articles was unreachable without a pointer.
+
+     Roving tabindex rather than tabindex="0" on each node. There are 239 of
+     them, and putting all 239 in the tab sequence would trade one barrier for
+     another — anyone tabbing to the footer would have to pass the entire graph.
+     So the graph is ONE tab stop, and arrow keys move between nodes inside it,
+     which is the usual pattern for a composite widget.
+
+     Movement follows data order, not screen position: the layout is a live
+     force simulation, so "the node to the right" is not stable from one second
+     to the next, while data order is the same on every visit. */
+  var focusIdx = 0;
+
+  function visibleNodes() {
+    // The filter dims rather than removes, so "visible" means not dimmed.
+    return node.nodes().filter(function (el) {
+      return parseFloat(el.getAttribute('opacity') || '1') > 0.5;
+    });
+  }
+
+  function setRoving(target) {
+    var els = node.nodes();
+    for (var i = 0; i < els.length; i++) {
+      els[i].setAttribute('tabindex', els[i] === target ? '0' : '-1');
+    }
+  }
+
+  /* Only one node is tabbable at a time; the rest are reachable by arrow key. */
+  function resetRoving() {
+    var vis = visibleNodes();
+    var first = vis.length ? vis[0] : node.nodes()[0];
+    focusIdx = 0;
+    setRoving(first);
+  }
+  resetRoving();
+
+  function showTipFor(el, d) {
+    if (!tooltip) return;
+    var cat = d.category || 'default';
+    tooltip.innerHTML = '<span class="graph-tooltip__title"></span><span class="graph-tooltip__cat"></span>';
+    tooltip.querySelector('.graph-tooltip__title').textContent = d.title || '';
+    tooltip.querySelector('.graph-tooltip__cat').textContent   = LABELS[cat] || cat;
+    // Anchor to the node itself. A keyboard user has no pointer to anchor to,
+    // and the mouse path's clientX/clientY would leave the tip wherever the
+    // mouse happened to be sitting.
+    var r = el.getBoundingClientRect();
+    tooltip.style.display = 'block';
+    tooltip.style.left = (r.right + 10) + 'px';
+    tooltip.style.top  = (r.top - 6) + 'px';
+  }
+
+  function moveFocus(delta) {
+    var vis = visibleNodes();
+    if (!vis.length) return;
+    focusIdx = (focusIdx + delta + vis.length) % vis.length;
+    var el = vis[focusIdx];
+    setRoving(el);
+    el.focus();
+  }
+
+  node
+    .on('focus', function (e, d) {
+      var vis = visibleNodes();
+      var i = vis.indexOf(this);
+      if (i !== -1) focusIdx = i;
+      setRoving(this);
+      showTipFor(this, d);
+    })
+    .on('blur', function () {
+      if (tooltip) tooltip.style.display = 'none';
+    })
+    .on('keydown', function (e, d) {
+      switch (e.key) {
+        case 'Enter':
+        case ' ':
+        case 'Spacebar':
+          e.preventDefault();
+          window.location.href = d.url;
+          break;
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault(); moveFocus(1); break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault(); moveFocus(-1); break;
+        case 'Home':
+          e.preventDefault(); focusIdx = -1; moveFocus(1); break;
+        case 'End':
+          e.preventDefault(); focusIdx = 0; moveFocus(-1); break;
+        default:
+          break;
+      }
+    });
 
   // ── Custom cluster force ──────────────────────────────────────
   function clusterForce(alpha) {
@@ -248,6 +354,10 @@ window.addEventListener('DOMContentLoaded', function () {
       hullLayer.selectAll('path').attr('opacity', function (d) {
         return val === 'all' || d.cat === val ? 1 : 0.1;
       });
+
+      // Filtering dims nodes, so the tabbable one may now be a dimmed node the
+      // keyboard should skip. Put the tab stop back on the first visible node.
+      resetRoving();
 
       var statusEl = document.getElementById('graph-filter-status');
       if (statusEl) {
