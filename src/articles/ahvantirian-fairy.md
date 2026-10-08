@@ -24,6 +24,9 @@ The places that birth fairies are seldom kind, and not every adventurer leaves t
 
 Most fey are bound to their courts, their groves, or their bargains. Ahvantirian fairies are bound to nothing. They wander as naturally as they breathe and are drawn to adventurers the way moths are drawn to light, often attaching themselves to a passing band of explorers with a quick eye, a sharp tongue, or simply their company. They do not always ask permission. Many adventuring companies can name the night a fairy "joined" them and the morning they realized it was not leaving.
 
+## Connections
+- [[Spirits of Ahvantir — An Overview]] — in Ahvantir "spirit" is an umbrella term rather than a kind of creature, covering anything alive, not mortal, and running on rules the ordinary world does not. Fairies fall under it as readily as anything else.
+
 ## Source Notes
 > **Source**
 > Source: `original` — D&D Beyond homebrew species "Ahvantirian Fairy" (M4st3r0fG4m3s), transcribed 2026-10-08. Descriptive text reproduced as written. The species' mechanical traits (Fairy Forms, Fairy Tongue, Ire of the Fairfolk) are homebrew rules and are tracked separately from the lore vault.
