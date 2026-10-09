@@ -1,0 +1,100 @@
+---
+layout: base
+title: Sky Almanac
+description: "Every day of the Marducian year under Solara, Nystara, Miras, Toris and Keltas."
+permalink: /almanac/
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Sky Almanac</h1>
+    <p class="page-lead">Every day of the year under Solara, Nystara, Miras, Toris and Keltas. Pick a day to read its sky.</p>
+  </div>
+</div>
+
+<div class="almanac">
+
+  <div class="alm-yearbar">
+    <label class="alm-yearbar__label" for="alm-year">Year</label>
+    <button type="button" class="map-btn" id="alm-prev-year" aria-label="Previous year">&lsaquo;</button>
+    <input id="alm-year" class="alm-yearbar__input" type="number" min="0" max="9999" value="439" inputmode="numeric">
+    <button type="button" class="map-btn" id="alm-next-year" aria-label="Next year">&rsaquo;</button>
+    <span class="alm-yearbar__era">MC</span>
+    <p class="alm-status sr-only" id="alm-status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+
+  {# The ribbon is one tab stop with arrow-key movement inside it, rather than 386
+     separate ones. Same pattern as the relationship graph, and equally invisible
+     unless we say so. #}
+  <p class="alm-hint" id="alm-keys">
+    Tab to the year ribbon, then use the arrow keys to move a day at a time and
+    Home or End to jump to the ends of the year. Every day in the month grids
+    below is also a button.
+  </p>
+
+  <section class="alm-ribbon-wrap" aria-labelledby="alm-ribbon-head">
+    <h2 class="sr-only" id="alm-ribbon-head">Year ribbon</h2>
+    <div class="alm-ribbon-scroll">
+      <svg class="alm-ribbon" id="alm-ribbon" tabindex="0" role="application"
+           aria-describedby="alm-keys" aria-label="Moon phases and sun separation across the year"></svg>
+    </div>
+    <ul class="alm-legend" role="list">
+      <li><i class="alm-sw" data-moon="miras" aria-hidden="true"></i>Miras &middot; 24 days</li>
+      <li><i class="alm-sw" data-moon="toris" aria-hidden="true"></i>Toris &middot; 43 days</li>
+      <li><i class="alm-sw" data-moon="keltas" aria-hidden="true"></i>Keltas &middot; 66 days</li>
+      <li><i class="alm-sw alm-sw--suns" aria-hidden="true"></i>Distance between the suns</li>
+      <li><i class="alm-sw alm-sw--two" aria-hidden="true"></i>Two moons full</li>
+      <li><i class="alm-sw alm-sw--three" aria-hidden="true"></i>All three full</li>
+      <li><i class="alm-sw alm-sw--dark" aria-hidden="true"></i>All three new</li>
+    </ul>
+  </section>
+
+  <div class="alm-split">
+    <section class="alm-panel" aria-labelledby="alm-day-head">
+      <div class="alm-dayhead">
+        <p class="alm-eyebrow" id="alm-day-eyebrow">Selected day</p>
+        <h2 class="alm-dayhead__title" id="alm-day-head"></h2>
+        <p class="alm-dayhead__sub" id="alm-day-sub"></p>
+      </div>
+      <div id="alm-moons"></div>
+      <div class="alm-suns">
+        <p class="alm-eyebrow">Solara and Nystara</p>
+        <div class="alm-sepbar"><i id="alm-sepfill"></i></div>
+        <p id="alm-suntext"></p>
+        <p class="alm-note">Counted from the first recorded Pairing in 0&nbsp;MC, on a cycle of about eight years.</p>
+      </div>
+      <div class="alm-daynav">
+        <button type="button" class="map-btn" id="alm-prev-day">&lsaquo; Previous day</button>
+        <button type="button" class="map-btn" id="alm-next-day">Next day &rsaquo;</button>
+      </div>
+    </section>
+
+    <section class="alm-panel" id="alm-events" aria-labelledby="alm-events-head">
+      <h2 class="sr-only" id="alm-events-head">Notable skies this year</h2>
+    </section>
+  </div>
+
+  <section class="alm-months-wrap" aria-labelledby="alm-months-head">
+    <p class="alm-eyebrow">Nine months &middot; two days outside the Turn &middot; eight-day Turn</p>
+    <h2 id="alm-months-head">The Months</h2>
+    <div class="alm-months" id="alm-months"></div>
+  </section>
+
+  <section class="alm-notes" aria-labelledby="alm-notes-head">
+    <p class="alm-eyebrow">Sources and rulings</p>
+    <h2 id="alm-notes-head">Calendar notes</h2>
+    <p>Months, weekdays and moon phases follow the Marducian calendar as configured in the Ahvantir Foundry world. All three moons begin new on 1 Varenthal, Year&nbsp;1, so the phases here match the table's own moon widget.</p>
+    <ol>
+      <li><strong>Month lengths.</strong> Six months of 43 days and three of 42, plus two days outside the Turn, for 386. Every year opens on Solkir.</li>
+      <li><strong>The drift.</strong> The two days outside the Turn were once the equinoxes, Equinara and Umbrivale. The calendar has drifted, so they keep their places and now carry names fit for where they fall: Cindrafel at the turn from summer heat to harvest, Noctharis at the bottom of winter.</li>
+      <li><strong>Era.</strong> Years are counted in the Marducian Calendar, abbreviated MC.</li>
+      <li><strong>The Pairing.</strong> The first recorded Pairing of Solara and Nystara fell in 0 MC. The ribbon counts the roughly eight-year cycle from there.</li>
+    </ol>
+    <p class="alm-note">Phase windows follow the Foundry phase-length tables: Miras 3 days per phase; Toris 6/5/6/5/6/5/6/4; Keltas 8 days per phase with a 10-day waning crescent. See <a href="/articles/marducian-calendar/" class="wikilink">Marducian Calendar</a> and <a href="/articles/solara-and-nystara/" class="wikilink">Solara and Nystara</a>.</p>
+  </section>
+
+</div>
+
+{% block scripts %}
+<script src="/assets/js/almanac.js"></script>
+{% endblock %}

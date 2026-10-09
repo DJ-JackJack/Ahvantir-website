@@ -74,6 +74,7 @@ Because the three cycles share no common factor smaller than their product, the 
 [[Solara and Nystara]] orbit one another on a cycle of roughly eight Marducian years. At its close the two discs appear nearly adjacent, a convergence astronomers call **the Pairing**. The first recorded Pairing fell in 0 MC, and the count runs from there.
 
 ## Connections
+- [Sky Almanac](/almanac/) — this calendar as a working tool: any year from 0 MC, the phase of all three moons on any day, and the convergences and dark skies of the year
 - [[Solara and Nystara]] — the twin suns the year is built around, and the Pairing
 - [[Aru'Mas]] — the city whose markets, courts and councils run on the Turn
 

@@ -35,6 +35,14 @@
 
   /* Nav "Player" link. Sits on the header gradient, not the page, so it is
      measured against --p-300/--p-400 rather than the parchment. */
+  /* Sky Almanac. Moon colours are used for text as well as swatches, so they
+     are tuned to clear 4.5:1 on both parchment surfaces, not taken from the
+     artifact's own dark palette. */
+  --moon-miras:  #257394;
+  --moon-toris:  #a1561b;
+  --moon-keltas: #5c5c69;
+  --alm-moon-dark: #e0d8c5;
+
   --nav-player:       #674e11;
   --nav-player-hover: #4a3708;
 
@@ -1800,6 +1808,196 @@ hr {
 
 @media (max-width: 860px) {
   .map-mine-bar { margin-left: 0; padding-left: 0; border-left: 0; }
+}
+
+/* ── Sky Almanac ────────────────────────────────────────────────
+   An interactive year under the two suns and three moons. Built from the same
+   tokens as the rest of the site, so it reads as part of the encyclopedia
+   rather than as an embedded tool. */
+.almanac {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 3vw, 2rem) 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.alm-eyebrow {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin: 0;
+}
+.alm-mono { font-variant-numeric: tabular-nums; }
+.alm-muted { color: var(--ink-ghost); }
+.alm-note { font-size: 0.82rem; color: var(--ink-ghost); margin: 0; }
+
+/* Moon colour, wherever a name, dot or swatch stands for a moon. */
+[data-moon="miras"]  { color: var(--moon-miras); }
+[data-moon="toris"]  { color: var(--moon-toris); }
+[data-moon="keltas"] { color: var(--moon-keltas); }
+.alm-sw[data-moon], .alm-cell__dots b[data-moon], .alm-k[data-moon] { background: currentColor; }
+
+/* year control */
+.alm-yearbar { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.alm-yearbar__label {
+  font-family: var(--font-head); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-ghost); margin-right: 0.2rem;
+}
+.alm-yearbar__input {
+  width: 7ch; height: 40px; text-align: center;
+  background: var(--p-100); border: 1px solid var(--br-light); border-radius: 2px;
+  font-family: var(--font-body); font-size: 1.05rem; font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.alm-yearbar__input:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; }
+.alm-yearbar__era { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink-faded); }
+
+.alm-hint { font-size: 0.82rem; color: var(--ink-ghost); margin: 0; max-width: 60ch; }
+
+/* ribbon */
+.alm-ribbon-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
+.alm-ribbon-scroll {
+  overflow-x: auto;
+  border-top: 1px solid var(--br-light);
+  border-bottom: 1px solid var(--br-light);
+  padding-block: 0.4rem;
+}
+.alm-ribbon { display: block; width: 100%; min-width: 720px; height: auto; cursor: crosshair; }
+.alm-ribbon text { font-size: 10px; fill: var(--ink-ghost); font-variant-numeric: tabular-nums; }
+.alm-ribbon .alm-ribbon__row { font-family: var(--font-display); font-size: 13px; fill: var(--ink); }
+.alm-ribbon .alm-ribbon__ic { fill: var(--gold-dark); }
+.alm-ribbon:focus { outline: none; }
+.alm-ribbon:focus-visible { outline: 2px solid var(--burg); outline-offset: 2px; }
+
+.alm-legend {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem;
+  font-size: 0.85rem; color: var(--ink-ghost);
+  list-style: none; padding: 0; margin: 0;
+}
+.alm-legend li { display: inline-flex; align-items: center; gap: 0.5rem; }
+.alm-sw { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
+.alm-sw--suns  { background: linear-gradient(90deg, var(--gold-dark), var(--teal-dark)); }
+.alm-sw--two   { background: transparent; border: 2px solid var(--teal-dark); border-radius: 2px; }
+.alm-sw--three { background: transparent; border: 3px solid var(--gold-dark); border-radius: 2px; }
+.alm-sw--dark  { background: var(--alm-moon-dark); border: 1px dashed var(--ink-ghost); border-radius: 2px; }
+
+/* day + events */
+.alm-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.75rem; align-items: start; }
+.alm-panel {
+  background: var(--p-100); border: 1px solid var(--br-light);
+  padding: 1.25rem; display: flex; flex-direction: column; gap: 1.1rem; min-width: 0;
+}
+.alm-dayhead { display: flex; flex-direction: column; gap: 0.2rem; }
+.alm-dayhead__title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin: 0; }
+.alm-dayhead__sub { font-size: 0.8rem; color: var(--ink-ghost); font-variant-numeric: tabular-nums; margin: 0; }
+
+.alm-moonrow {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 0.85rem;
+  align-items: center; padding-block: 0.6rem; border-top: 1px solid var(--br-light);
+}
+.alm-moonrow:first-child { border-top: 0; }
+.alm-moonrow__name { font-family: var(--font-display); font-size: 1.1rem; }
+.alm-moonrow__ph { font-size: 0.92rem; }
+.alm-moonrow__meta {
+  font-size: 0.76rem; color: var(--ink-ghost); text-align: right; font-variant-numeric: tabular-nums;
+}
+
+.alm-suns { display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid var(--br-light); padding-top: 0.9rem; }
+.alm-sepbar {
+  position: relative; height: 10px; background: var(--p-300);
+  border: 1px solid var(--br-light); border-radius: 5px; overflow: hidden;
+}
+.alm-sepbar i {
+  position: absolute; inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--gold-dark), var(--teal-dark)); border-radius: 5px;
+}
+.alm-daynav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.alm-evgroup { display: flex; flex-direction: column; gap: 0.5rem; }
+.alm-evgroup h3 {
+  font-family: var(--font-display); font-size: 1.1rem; margin: 0;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+}
+.alm-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.alm-chip {
+  font-family: var(--font-body); font-size: 0.8rem; font-variant-numeric: tabular-nums;
+  border: 1px solid var(--br-light); background: var(--p-200); color: var(--ink);
+  border-radius: 2px; padding: 0.25rem 0.5rem; cursor: pointer; min-height: 24px;
+}
+.alm-chip:hover { border-color: var(--br-mid); }
+.alm-chip:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; }
+.alm-chip--three { border-color: var(--gold-dark); }
+.alm-k { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 2px; vertical-align: 1px; }
+.alm-fullrow { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 0.5rem; align-items: start; }
+.alm-fullrow__nm { font-family: var(--font-display); padding-top: 0.1rem; }
+.alm-callout {
+  border-left: 3px solid var(--gold-dark); padding: 0.25rem 0 0.25rem 0.85rem;
+  display: flex; flex-direction: column; gap: 0.15rem;
+}
+
+/* months */
+.alm-months-wrap { display: flex; flex-direction: column; gap: 0.9rem; }
+.alm-months-wrap h2 { font-family: var(--font-display); margin: 0; }
+.alm-months { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 1.4rem; }
+.alm-month { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.alm-month__head {
+  display: flex; flex-direction: column; gap: 0.1rem;
+  border-bottom: 1px solid var(--br-light); padding-bottom: 0.5rem;
+}
+.alm-month__row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; }
+.alm-month__row h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0; }
+.alm-month__row .alm-mono { font-size: 0.76rem; }
+.alm-month__desc { font-size: 0.85rem; color: var(--ink-ghost); font-style: italic; margin: 0; }
+
+.alm-grid8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; }
+.alm-wd {
+  font-family: var(--font-head); font-size: 0.6rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-ghost); text-align: center; padding-bottom: 2px;
+}
+.alm-cell {
+  aspect-ratio: 1 / 1.05; min-height: 24px; border: 1px solid var(--br-light);
+  background: var(--p-100); border-radius: 2px; padding: 3px 0 4px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  min-width: 0; color: var(--ink);
+}
+.alm-cell:hover { border-color: var(--br-mid); }
+.alm-cell:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; position: relative; z-index: 1; }
+.alm-cell__n { font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+.alm-cell__dots { display: flex; gap: 2px; }
+.alm-cell__dots b { width: 6px; height: 6px; border-radius: 50%; display: block; }
+.alm-cell.is-two   { border: 2px solid var(--teal-dark); }
+.alm-cell.is-three { border: 3px solid var(--gold-dark); }
+.alm-cell.is-dark  { background: var(--alm-moon-dark); border-style: dashed; }
+.alm-cell.is-sel   { background: var(--ink); color: var(--p-100); border-color: var(--ink); }
+.alm-cell.is-sel .alm-cell__dots b { outline: 1px solid var(--p-100); }
+.alm-blank { aspect-ratio: 1 / 1.05; }
+
+.alm-inter {
+  grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 0.6rem 1.5rem; border: 1px solid var(--br-light);
+  border-radius: 2px; background: var(--p-200); padding: 0.85rem 1rem; cursor: pointer;
+  text-align: left; color: var(--ink); width: 100%;
+}
+.alm-inter:hover { border-color: var(--br-mid); }
+.alm-inter:focus-visible { outline: 2px solid var(--burg); outline-offset: 1px; }
+.alm-inter.is-sel { outline: 2px solid var(--ink); }
+.alm-inter__t { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.alm-inter__name { font-family: var(--font-display); font-size: 1.15rem; }
+.alm-inter__ms { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--ink-ghost); flex-wrap: wrap; }
+.alm-inter__m { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+.alm-notes { display: flex; flex-direction: column; gap: 0.75rem; max-width: 78ch; }
+.alm-notes h2 { font-family: var(--font-display); margin: 0; }
+.alm-notes ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 0.5rem; }
+
+@media (max-width: 860px) {
+  .alm-split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .alm-sepbar i { transition: width 0.25s ease; }
 }
 
 /* ── Graph Page ─────────────────────────────────────────────────── */
@@ -4910,6 +5108,13 @@ html.dark {
 
   /* The header is dark here, so the gold inverts: a dark gold on a dark header
      was 1.75:1 and effectively invisible. */
+  /* The unlit face of a moon is a surface here, not text, so it tracks the
+     theme while the three moon colours invert to light-on-dark. */
+  --moon-miras:  #87cbe6;
+  --moon-toris:  #d08a45;
+  --moon-keltas: #c6c6cf;
+  --alm-moon-dark: #2a2117;
+
   --nav-player:       #ab9256;
   --nav-player-hover: #c9b074;
 

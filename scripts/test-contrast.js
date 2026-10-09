@@ -115,6 +115,13 @@ function cases(t, mode) {
       t['--nav-player'], t['--p-300'], AA_NORMAL],
     [`${mode}: nav Player on header bottom (--p-400)`,
       t['--nav-player'], t['--p-400'], AA_NORMAL],
+
+    // Almanac moon colours. These are swatches AND text — the moon's name in
+    // the day panel and the full-moon rows is set in its own colour — so they
+    // carry a text requirement, not a decorative one.
+    [`${mode}: --moon-miras on --p-100`,  t['--moon-miras'],  t['--p-100'], AA_NORMAL],
+    [`${mode}: --moon-toris on --p-100`,  t['--moon-toris'],  t['--p-100'], AA_NORMAL],
+    [`${mode}: --moon-keltas on --p-100`, t['--moon-keltas'], t['--p-100'], AA_NORMAL],
   ];
 }
 
