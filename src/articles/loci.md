@@ -7,7 +7,9 @@ date_added: "2026-06-06"
 
 # Loci
 
-Loci are unique spirits born not from living creatures but from the places themselves—enchanted sites where magic, intention, and natural forces converge so powerfully that the location gains a form of sentience and agency. A Locus is not a guardian spirit but rather a place with such significance and mystical resonance that it manifests a spiritual presence, capable of enforcing its will and affecting those who enter its domain.
+Loci are highly spiritual places that have developed a presence and a mind of their own. Some do so slowly, over a long enough span of reverence and use; others wake all at once, where a powerfully magical event has taken place. Either way a Locus is not born from a living creature. It is born from the place.
+
+A Locus is not a guardian spirit. It is the land itself given will, and a voice — though not always a literal one — capable of enforcing that will on those who enter its domain.
 
 Each Locus has its own personality, aligned with the nature of the place itself, and acts to preserve its sanctity, balance, or purpose. Revered and respected by the people of Ahvantir, Loci are seen as essential to maintaining the magical and spiritual integrity of the land, embodying the profound connection between Ahvantir’s natural and spiritual worlds.
 
@@ -25,10 +27,10 @@ Loci are diverse in nature, reflecting the character and purpose of the location
 - Control Over Terrain: Within their bounds, Loci have near-complete control over the landscape. They can alter paths, change the density of foliage, summon natural phenomena like fog or storms, and even obscure or illuminate their surroundings. This power is often used to protect the Locus from those who would misuse or disrespect it.
 - Enchantment and Ward Effects: Many Loci have innate warding powers that make spells or hostile entities difficult to maintain within their domain. Travelers often find their own magic stunted or influenced by the presence of the Locus, as the place’s magic naturally interferes with external forces.
 
-## 3. Guardians of Balance and Sanctity
+## 3. Self-Preservation and Local Bonds
 
 - Self-Preservation: Loci protect themselves and the natural integrity of their environment, acting swiftly to repel intruders who show disrespect or harm. This self-preservation can manifest as minor irritations, like lost trails or illusions, or escalate to more severe deterrents such as thorn-covered paths, sudden floods, or aggressive animal inhabitants.
-- Alignment with Local Spirits: While Loci are not necessarily guardians, they have strong connections with the spirits and minor entities that inhabit their domains. Many spirits look to Loci as protectors and sources of stability, forming an unspoken bond to help maintain the land’s balance.
+- Alignment with Local Spirits: While Loci are not guardians, they have strong connections with the spirits and minor entities that inhabit their domains. Many spirits look to Loci as protectors and sources of stability, forming an unspoken bond to help maintain the land’s balance.
 
 ## Examples of Loci in Ahvantir
 
@@ -76,7 +78,7 @@ Loci are revered and respected across Ahvantir, treated as sacred sites that dem
 ## 2. Pact-Bound Relationships
 
 - Loci and Pacts: In some cases, mortals and Loci form pacts to ensure mutual respect and benefit. Travelers, spiritualists, or healers who frequently interact with a Locus may establish an unspoken agreement where the Locus grants them safe passage or favors in exchange for regular offerings or acts of reverence.
-- Guardians of Local Communities: Loci occasionally serve as the spiritual backbone of a community, acting as unseen protectors. Villages near powerful Loci treat them as patrons, leaving seasonal offerings and inviting the Loci’s blessings on special occasions. In return, the Loci grant bountiful harvests, clear weather, or safe journeys.
+- Patrons of Local Communities: Loci occasionally serve as the spiritual backbone of a community, and are treated as unseen protectors whether or not that is what they are. Villages near powerful Loci treat them as patrons, leaving seasonal offerings and inviting the Loci’s blessings on special occasions. In return, the Loci grant bountiful harvests, clear weather, or safe journeys.
 
 ## 3. Relations with Other Spirits and Wardens
 
@@ -85,7 +87,7 @@ Loci are revered and respected across Ahvantir, treated as sacred sites that dem
 
 ## Summary of Loci in Ahvantir
 
-Loci are living, sentient places that form when a location’s magical significance and natural harmony become so profound that it achieves a spiritual presence. These places embody the essence of Ahvantir’s landscapes, protecting their sanctity and maintaining the island’s delicate balance. With unique powers, personalities, and connections to both mortals and spirits, Loci stand as guardians of Ahvantir’s mystical terrain, offering wisdom, guidance, or peril to those who enter their domains.
+Loci are living, sentient places that form when a location’s magical significance and natural harmony become so profound that it achieves a spiritual presence. These places embody the essence of Ahvantir’s landscapes, protecting their sanctity and maintaining the island’s delicate balance. With unique powers, personalities, and connections to both mortals and spirits, Loci are Ahvantir’s mystical terrain given will, offering wisdom, guidance, or peril to those who enter their domains.
 
 ---
 

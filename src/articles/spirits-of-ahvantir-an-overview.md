@@ -49,11 +49,11 @@ The spiritual taxonomy of Ahvantir is incomplete and contested, but the most com
 
 **[[Hearth Spirits]]** — Minor spirits tied to domestic spaces and the life of households. Among the most common spirits encountered by ordinary mortals, and often the most benign. Their power is modest and their concerns are narrow, but their presence is woven through the daily life of Ahvantir in ways that are easy to overlook.
 
-**[[Loci]]** — Spirits born from places rather than creatures — sites where magical, emotional, or conceptual significance has accumulated so densely that the location itself achieves sentience and agency. Loci are guardians and expressions of their domains simultaneously. Nodd is the most extreme known example: a Loci whose domain is not a grove or a shrine but an entire plane.
+**[[Loci]]** — Highly spiritual places that have developed a presence and a mind, either slowly over time or all at once where something powerfully magical happened. A Locus is not a guardian of its domain; it is the land itself given will, and a voice, though not always a literal one. Nodd is the most extreme known example: a Locus whose domain is not a grove or a shrine but an entire plane.
 
 **[[Omens]]** — Spirits of a particular kind of symbolic weight, associated with events, signs, and thresholds. Their nature is difficult to characterise precisely, as they tend to resist examination.
 
-**[[Once-Was]]** — The remnants of spirits that have died or lost coherence — echoes of former selves that drift through the world carrying the residue of what they were. Not wholly alive in the way other spirits are, but not gone either.
+**[[Once-Was]]** — People, and sometimes animals, who became spirits at their deaths — usually through the force of whatever circumstances killed them. They stay tied to the place, the person or the cause of their death, and to the grief, rage or longing that outlasted them.
 
 **[[Usurpers]]** — Entities from outside Ahvantir that have broken through the islands' spiritual boundaries by force. Foreign in nature and energy, they establish Claims through conquest rather than arising organically from the land. Their presence corrupts: Rootrot Crystals mark the places they have touched.
 
