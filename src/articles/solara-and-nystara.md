@@ -67,7 +67,7 @@ The equivalent period for Solara alone — Nystara below the horizon, Solara sti
 ---
 
 ## Connections
-- [[Marducian Calendar]] — the year's structure, the equinox observances, and Solkir all derive from the twin suns
+- [[Marducian Calendar]] — the year's structure, the two days outside the Turn, and Solkir all derive from the twin suns
 - [[The Sunspear Legion]] — both suns embedded in Legion iconography; Ironshields (Solara's light), Vanguard of Valor (Nystara's emblem)
 - [[Citadel of Solara]] — Legion headquarters in Stonegate; gap article, named but not yet written
 - [[History of Ahvantir]] — Landing War references to Pale Hour military practice
