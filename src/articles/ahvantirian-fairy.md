@@ -53,7 +53,7 @@ choice they are making and declining to revisit. It is what they are. A fairy
 that settled in the Green would have to stop wanting the next unexplored thing,
 and wanting it is the whole of what gathered it into being.
 
-## Minor, and Unhurried
+## Minor and Unhurried
 
 Fairies are minor spirits. They are spirits nonetheless, and the word in
 Ahvantir does not sort things by power — Nodd is a spirit, and outmatches most
@@ -63,7 +63,7 @@ They do not age. Left alone, a fairy simply continues; what ends one is always
 something that ended it, never time. Since nothing holds them anywhere for long,
 a fairy's history is a list of places rather than years.
 
-## In Aru'Mas
+## Reaching the City
 
 They reach the city the way they reach anywhere: attached to someone who was
 going there. A company comes back from the Fend or somewhere further out, and
