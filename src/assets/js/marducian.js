@@ -50,7 +50,6 @@
   var ILL = [0, 0.25, 0.5, 0.75, 1, 0.75, 0.5, 0.25];
   var YEAR_LEN = 386;
   var TURN_LEN = 8;
-  var PAIR_YEAR = 0, PAIR_PERIOD = 8;   // first recorded Pairing: 0 MC
 
   function mod(a, b) { return ((a % b) + b) % b; }
 
@@ -110,18 +109,11 @@
     return x.ic ? m.n : (x.d + ' ' + m.a);
   }
 
-  /* The suns swing apart and back on an eight-year cycle; |sin| gives one full
-     approach-and-separate per period, zero at the Pairing. Returns 0..1, a
-     fraction of the widest separation rather than an angle — the angle itself
-     is a model choice and belongs to whatever is drawing it. */
-  function sunSep(Y, doy) {
-    var t = Y + (doy - 1) / YEAR_LEN - PAIR_YEAR;
-    return Math.abs(Math.sin(Math.PI * t / PAIR_PERIOD));
-  }
-  function nextPairing(Y, doy) {
-    var t = Y + (doy - 1) / YEAR_LEN - PAIR_YEAR;
-    return PAIR_YEAR + Math.ceil(t / PAIR_PERIOD - 1e-9) * PAIR_PERIOD;
-  }
+  /* The suns used to be placed here by a sine with an eight-year period. That
+     model is retired: it could never let the two discs touch, and on 2026-10-10
+     Krys ruled that they do converge. Where the suns actually are now comes out
+     of orbits.js, which solves the real circumbinary geometry. This file stays
+     what it says it is — the calendar. */
 
   function fullCount(x) { return x.ph.filter(function (p) { return p.i === 4; }).length; }
   function isDark(x) { return x.ph.every(function (p) { return p.i === 0; }); }
@@ -137,11 +129,9 @@
   window.Marducian = {
     MONTHS: MONTHS, WEEK: WEEK, WABBR: WABBR, MOONS: MOONS, PH: PH, ILL: ILL,
     YEAR_LEN: YEAR_LEN, TURN_LEN: TURN_LEN,
-    PAIR_YEAR: PAIR_YEAR, PAIR_PERIOD: PAIR_PERIOD,
     mod: mod, phaseOf: phaseOf, absDay: absDay, fromAbs: fromAbs,
     doyOf: doyOf, dayInfo: dayInfo, buildYear: buildYear,
     fmtLong: fmtLong, fmtShort: fmtShort,
-    sunSep: sunSep, nextPairing: nextPairing,
     fullCount: fullCount, isDark: isDark, normalise: normalise
   };
 })();

@@ -122,14 +122,11 @@ ok('three New phases overlap again well before the cycles realign',
    firstOverlapAfterEpoch !== null && firstOverlapAfterEpoch < LCM,
    'next all-new day is ' + firstOverlapAfterEpoch);
 
-console.log('\nThe Pairing');
-eq('the first recorded Pairing is 0 MC', M.PAIR_YEAR, 0);
-eq('the cycle is eight years', M.PAIR_PERIOD, 8);
-ok('the suns are together in 0 MC', M.sunSep(0, 1) < 1e-9, String(M.sunSep(0, 1)));
-ok('and again in 8 MC', M.sunSep(8, 1) < 1e-9, String(M.sunSep(8, 1)));
-ok('and widest four years after', Math.abs(M.sunSep(4, 1) - 1) < 1e-6, String(M.sunSep(4, 1)));
-eq('the next Pairing after 439 MC is 440', M.nextPairing(439, 1), 440);
-eq('the next Pairing from 440 MC itself is 440', M.nextPairing(440, 1), 440);
+// The Pairing used to live here as a sine with an eight-year period. It is now
+// solved from real orbits in orbits.js and tested by scripts/test-orbits.js;
+// this file is the calendar and nothing else.
+ok('the calendar no longer carries a sun model',
+   M.sunSep === undefined && M.nextPairing === undefined && M.PAIR_PERIOD === undefined);
 
 console.log('\nYear boundaries');
 eq('day 0 rolls back a year', JSON.stringify(M.normalise(439, 0)), JSON.stringify({ Y: 438, doy: 386 }));

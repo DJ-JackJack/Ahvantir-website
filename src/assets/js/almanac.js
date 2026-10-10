@@ -32,8 +32,14 @@
       PH = M.PH, ILL = M.ILL, YEAR_LEN = M.YEAR_LEN;
   var phaseOf = M.phaseOf, absDay = M.absDay, fromAbs = M.fromAbs,
       buildYear = M.buildYear, fmtLong = M.fmtLong, fmtShort = M.fmtShort,
-      sunSep = M.sunSep, nextPairing = M.nextPairing,
       fullCount = M.fullCount, isDark = M.isDark;
+
+  // The suns are no longer a formula in the calendar. orbits.js solves the
+  // real geometry, which is what lets a Pairing be deep one year and barely
+  // worth the name the next.
+  var O = window.Orbits;
+  if (!O) return;
+  var sunSep = O.sepFraction;
 
   /* ---------- drawing ---------- */
 
@@ -174,14 +180,16 @@
     var sep = sunSep(Y, sel);
     var prevSep = sel === 1 ? sunSep(Y - 1, YEAR_LEN) : sunSep(Y, sel - 1);
     $('alm-sepfill').style.width = (sep * 100).toFixed(1) + '%';
-    var np = nextPairing(Y, sel);
-    var state = sep < 0.1 ? 'The suns are in the Pairing, less than a sun-width apart.'
+    /* The Pairing is annual: the planet carries the observer right around the
+       pair every year, so they close once a year and then open again. What
+       varies is how close, and that rides a rhythm of about eight years. */
+    var tp = O.pairingOf(Y);
+    var state = sep < 0.05 ? 'The suns are at their Pairing.'
               : (sep - prevSep < 0 ? 'The suns are drawing together.' : 'The suns are drawing apart.');
-    var away = np - (Y + (sel - 1) / YEAR_LEN);
-    $('alm-suntext').innerHTML = esc(state) + ' Separation is <span class="alm-mono">' +
-      Math.round(sep * 100) + '%</span> of the widest.' +
-      (sep < 0.1 ? '' : ' Next Pairing peaks in <span class="alm-mono">' + esc(fmtYearNum(np)) +
-        ' MC</span>, about <span class="alm-mono">' + away.toFixed(1) + '</span> years away.');
+    $('alm-suntext').innerHTML = esc(state) + ' They stand <span class="alm-mono">' +
+      Math.round(sep * 100) + '%</span> of the widest apart. This year they close on <span class="alm-mono">' +
+      esc(fmtShort(Y, tp.doy)) + '</span>, to <span class="alm-mono">' + tp.sepDeg.toFixed(1) +
+      '&deg;</span>' + (tp.close ? ' &mdash; inside a sun-width, a near Pairing.' : '.');
 
     var old = page.querySelector('.alm-cell.is-sel, .alm-inter.is-sel');
     if (old) { old.classList.remove('is-sel'); old.removeAttribute('aria-current'); }
@@ -195,7 +203,6 @@
     $('alm-status').textContent = fmtLong(Y, sel) + '. ' + (eyebrow === 'Selected day' ? '' : eyebrow + '. ') +
       MOONS.map(function (mo, k) { return mo.n + ' ' + PH[x.ph[k].i]; }).join(', ') + '.';
   }
-  function fmtYearNum(n) { return Number.isInteger(n) ? String(n) : n.toFixed(1); }
 
   /* ---------- notable skies ---------- */
 
@@ -254,12 +261,26 @@
       }).join('');
     }
 
-    var pairNow = days.some(function (x) { return sunSep(Y, x.doy) < 0.1; });
+    var tpair = O.pairingOf(Y);
+    // An eclipse is a Pairing deep enough that one disc crosses the other.
+    // Only worth hunting in a year whose Pairing already comes close.
+    var ecl = null;
+    if (tpair.close) {
+      var e = O.nextEclipse(absDay(Y, 1), 1);
+      if (e && e.Y === Y) ecl = e;
+    }
 
     $('alm-events').innerHTML =
       '<h2 class="sr-only">Notable skies this year</h2>' +
       '<div class="alm-evgroup"><p class="alm-eyebrow">Notable skies</p><h3>' + Y + ' MC</h3>' +
-        (pairNow ? '<div class="alm-callout"><p class="alm-eyebrow">The Pairing</p><p>Solara and Nystara come within a sun-width of each other this year.</p></div>' : '') +
+        '<div class="alm-callout"><p class="alm-eyebrow">The Pairing</p><p>Solara and Nystara close on <strong>' +
+          esc(fmtShort(Y, tpair.doy)) + '</strong>, to ' + tpair.sepDeg.toFixed(1) + '&deg;' +
+          (tpair.close ? ' &mdash; inside a sun-width. A near Pairing.' : '. They stay well apart this year.') +
+          '</p></div>' +
+        (ecl ? '<div class="alm-callout"><p class="alm-eyebrow">' + (ecl.total ? 'Total eclipse' : 'Partial eclipse') +
+          '</p><p><strong>' + esc(fmtShort(Y, ecl.doy)) + '</strong> &mdash; ' + esc(ecl.front) +
+          ' passes in front of ' + (ecl.front === 'Solara' ? 'Nystara' : 'Solara') + (ecl.total ? ', covering it entirely' : '') +
+          ', for about ' + Math.round(ecl.hours) + '&nbsp;hours.</p></div>' : '') +
         next3Html +
       '</div>' +
       '<div class="alm-evgroup"><h3>Convergences <span class="alm-mono alm-muted">' + runs.length + '</span></h3>' +

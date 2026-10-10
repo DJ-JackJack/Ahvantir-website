@@ -11,16 +11,17 @@
  * What IS canon, from /articles/solara-and-nystara/:
  *   - Solara is the larger disc and warm yellow; Nystara is smaller, blue-white
  *     and hotter.
- *   - They orbit each other on roughly eight Marducian years, the first
- *     recorded Pairing in 0 MC.
- *   - Neither star ever passes in front of the other, and at the Pairing they
- *     sit "separated by less than a sun-width". Those two sentences together
- *     pin the closest approach: wider than the two radii summed, or one would
- *     eclipse the other, and narrower than a disc. See MODEL.meet.
+ *   - They orbit each other, and Nyhexus orbits them both. The pair converges
+ *     once a year — that is the Pairing — and how close it gets rides a rhythm
+ *     of about eight years. Where they actually are is solved in orbits.js.
+ *   - They DO occasionally cross. Krys ruled on 2026-10-10 that the old "neither
+ *     star passes in front of the other" could not survive the geometry, since
+ *     a planet orbiting the pair must see them edge-on twice a year.
  *   - Every lit object casts two shadows, Solara's warm and soft, Nystara's
  *     sharper and edged toward pale blue. That is the Two Shadows dial.
- *   - The Pale Hour is Nystara up with Solara down, twenty minutes to nearly
- *     two hours. Solara alone is just "the warm light" and has no other name.
+ *   - The Pale Hour is Nystara up with Solara down. It is named for the quality
+ *     of its light, not its length, and runs from minutes to nearly two hours.
+ *     Solara alone is just "the warm light" and has no other name.
  *
  * Differences from the artifact, all deliberate:
  *   - No inline script. The site's CSP is script-src 'self'.
@@ -40,6 +41,8 @@
   if (!page) return;
   var M = window.Marducian;
   if (!M) return;
+  var O = window.Orbits;
+  if (!O) return;
 
   var $ = function (id) { return document.getElementById(id); };
   var DEG = Math.PI / 180;
@@ -52,9 +55,11 @@
    * stops all three sharing one path across the sky. Any moon seen crossing a
    * sun's face is therefore a result of these numbers, not a lore event.
    */
+  // Discs are sized by orbits.js, which knows how far away each one is at the
+  // moment of asking. These carry only the name and the colour.
   var SUNS = [
-    { n: 'Solara',  r: 0.45, key: 'solara',  tone: 'Warm, yellow' },
-    { n: 'Nystara', r: 0.28, key: 'nystara', tone: 'Blue-white' }
+    { n: 'Solara',  key: 'solara',  tone: 'Warm, yellow' },
+    { n: 'Nystara', key: 'nystara', tone: 'Blue-white' }
   ];
   var MOON_MODEL = {
     miras:  { r: 0.50, inc: 5.0, nodeP: 940,  node0: 40 },
@@ -70,17 +75,12 @@
     return m;
   });
 
+  /* What is left here is the observer, not the orbits. Where the suns are now
+     comes from orbits.js; these two only decide how that sky looks from a
+     particular spot on the ground. */
   var MODEL = {
     lat: 40,        // Aru'Mas's latitude. Sets day length and how high the suns climb.
-    tilt: 23,       // Axial tilt.
-    spread: 19,     // Widest separation of the suns, in degrees.
-    // Closest approach at the Pairing. Must exceed 0.73 (the summed radii, where
-    // one disc would start to cover the other) and stay under 0.90 (Solara's
-    // full width), which is the window canon leaves open.
-    meet: 0.80,
-    alpha: 32,      // Tilt of the pair's separation against the ecliptic.
-    q: 0.35,        // Mass split, so the two swing about a common centre.
-    solstice: 152   // Longest day: mid-Cindralis, matching the month descriptions.
+    tilt: 23        // Axial tilt.
   };
 
   // Canvas body colours. Fixed rather than read from tokens: these are the
@@ -147,24 +147,32 @@
 
   // The whole sky for one moment. Y in MC, doy 1..386, h in hours 0..24.
   function skyAt(Y, doy, h) {
-    var df = doy - 1 + h / 24;
-    var lb = 2 * Math.PI * (df - (MODEL.solstice - 0.5)) / YEAR + Math.PI / 2;
-    var t = Y + df / YEAR;
-    var a = MODEL.alpha * DEG,
-        sp = Math.sin(Math.PI * t / M.PAIR_PERIOD) * MODEL.spread * DEG,
-        mt = Math.cos(Math.PI * t / M.PAIR_PERIOD) * MODEL.meet * DEG;
-    var sx = sp * Math.cos(a) - mt * Math.sin(a), sy = sp * Math.sin(a) + mt * Math.cos(a);
+    var D = M.absDay(Y, doy);
+    var t = D + h / 24;
+
+    // The suns come from the real circumbinary solution in orbits.js, not from
+    // a curve fitted to look right. That is what lets them actually meet.
+    var S = O.sunsAt(t);
+    var lb = S.bary.lon;
     var bary = eclToEq(lb, 0);
     var lst = Math.atan2(bary[1], bary[0]) + (h - 12) * 15 * DEG;
-    var out = { lst: lst, t: t, sepDeg: Math.hypot(sx, sy) / DEG, bodies: [] };
-    var w = [-MODEL.q, 1 - MODEL.q];
-    SUNS.forEach(function (s, i) {
-      var eq = eclToEq(lb + w[i] * sx, w[i] * sy), hor = eqToHor(eq, lst);
-      out.bodies.push({ kind: 'sun', n: s.n, r: s.r, key: s.key, tone: s.tone,
-                        eq: eq, hor: hor, alt: altOf(hor), az: azOf(hor) });
+
+    var out = {
+      lst: lst, t: Y + (doy - 1 + h / 24) / YEAR,
+      sepDeg: S.sepDeg, touching: S.touching, totalEclipse: S.total,
+      front: S.front, bodies: []
+    };
+
+    [[S.solara, SUNS[0], S.rhoS], [S.nystara, SUNS[1], S.rhoN]].forEach(function (e) {
+      var ecl = e[0], s = e[1];
+      var eq = eclToEq(ecl.lon, ecl.lat), hor = eqToHor(eq, lst);
+      out.bodies.push({
+        kind: 'sun', n: s.n, key: s.key, tone: s.tone,
+        r: e[2] / DEG,                       // angular radius, degrees
+        eq: eq, hor: hor, alt: altOf(hor), az: azOf(hor)
+      });
     });
     out.baryHor = eqToHor(bary, lst);
-    var D = M.absDay(Y, doy);
     MOONS.forEach(function (m) {
       var pc = mod(D, m.c) + h / 24;
       var e = 2 * Math.PI * (pc - m.ph[0] / 2) / m.c;
@@ -254,9 +262,12 @@
       ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big'].forEach(function (k) {
         if (saved[k] !== undefined) st[k] = saved[k];
       });
-      if (saved.model) ['lat', 'tilt', 'spread'].forEach(function (k) {
-        if (isFinite(saved.model[k])) MODEL[k] = saved.model[k];
-      });
+      if (saved.model) {
+        ['lat', 'tilt'].forEach(function (k) {
+          if (isFinite(saved.model[k])) MODEL[k] = saved.model[k];
+        });
+        if (isFinite(saved.model.beta)) O.setBeta(saved.model.beta);
+      }
     }
   } catch (e) { /* private window, blocked storage — defaults are fine */ }
   function save() {
@@ -264,7 +275,7 @@
       localStorage.setItem('ahv-sky', JSON.stringify({
         Y: st.Y, doy: st.doy, h: st.h, view: st.view, facing: st.facing,
         domeRot: st.domeRot, big: st.big,
-        model: { lat: MODEL.lat, tilt: MODEL.tilt, spread: MODEL.spread }
+        model: { lat: MODEL.lat, tilt: MODEL.tilt, beta: O.EL.BETA / DEG }
       }));
     } catch (e) {}
   }
@@ -628,7 +639,7 @@
 
   var table = null, tableKey = '';
   function ensureTable() {
-    var k = st.Y + '|' + st.doy + '|' + MODEL.lat + '|' + MODEL.tilt + '|' + MODEL.spread;
+    var k = st.Y + '|' + st.doy + '|' + MODEL.lat + '|' + MODEL.tilt + '|' + O.EL.BETA;
     if (k !== tableKey) { table = dayTable(st.Y, st.doy); tableKey = k; drawLightBand(); renderEph(); }
   }
 
@@ -689,6 +700,11 @@
     var fulls = sky.bodies.filter(function (b) { return b.kind === 'moon' && b.phase === 4; }).length;
     var extra = up ? ' · ' + up + ' moon' + (up > 1 ? 's' : '') + ' up' : '';
     if (fulls === 3) extra += ' · three full moons';
+    // The rarest thing this sky can show, so it leads the rest.
+    if (sky.touching) {
+      var behind = sky.front === 'Solara' ? 'Nystara' : 'Solara';
+      extra = ' · ' + sky.front + (sky.totalEclipse ? ' covers ' : ' crosses ') + behind + extra;
+    }
     sky.bodies.filter(function (b) { return b.kind === 'moon'; }).forEach(function (m) {
       sky.bodies.filter(function (b) { return b.kind === 'sun'; }).forEach(function (s) {
         var c = m.hor[0] * s.hor[0] + m.hor[1] * s.hor[1] + m.hor[2] * s.hor[2];
@@ -896,11 +912,13 @@
 
   $('sky-lat').value = MODEL.lat;
   $('sky-tilt').value = MODEL.tilt;
-  $('sky-spread').value = MODEL.spread;
+  $('sky-spread').value = (O.EL.BETA / DEG).toFixed(0);
   $('sky-big').checked = st.big;
   $('sky-lat').addEventListener('change', function (e) { MODEL.lat = clamp(+e.target.value || 0, -80, 80); tableKey = ''; render(); save(); });
   $('sky-tilt').addEventListener('change', function (e) { MODEL.tilt = clamp(+e.target.value || 0, 0, 60); tableKey = ''; render(); save(); });
-  $('sky-spread').addEventListener('change', function (e) { MODEL.spread = clamp(+e.target.value || 2, 2, 40); tableKey = ''; render(); save(); });
+  $('sky-spread').addEventListener('change', function (e) {
+    O.setBeta(clamp(+e.target.value || 45, 0, 89)); tableKey = ''; render(); save();
+  });
   $('sky-big').addEventListener('change', function (e) { st.big = e.target.checked; render(); save(); });
 
   // A link a reader can hand to someone else, pinned to what they are looking at.

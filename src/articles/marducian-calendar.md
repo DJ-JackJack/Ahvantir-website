@@ -71,7 +71,7 @@ Because the three cycles share no common factor smaller than their product, the 
 
 ## The Suns
 
-[[Solara and Nystara]] orbit one another on a cycle of roughly eight Marducian years. At its close the two discs appear nearly adjacent, a convergence astronomers call **the Pairing**. The first recorded Pairing fell in 0 MC, and the count runs from there.
+Ahvantir circles [[Solara and Nystara]] once a year, so the gap between the two suns opens and closes once a year. That closing is **the Pairing**. How close it comes varies on a slower rhythm of about eight years: most years the pair never closes nearer than ten degrees, but every eighth or so they come to a finger's width or less. The deep ones are what the count is kept in. The first recorded deep Pairing fell in 0 MC, and the years run from there.
 
 ## Connections
 - [Sky Almanac](/almanac/) — this calendar as a working tool: any year from 0 MC, the phase of all three moons on any day, and the convergences and dark skies of the year
