@@ -619,37 +619,72 @@
     }
   }
 
-  /* The bright layer, drawn one at a time because each is meant to be noticed:
-     its own colour, a halo, and for the fiercest a cross of light. */
+  /* A four-armed glint: two tapered spindles crossed. Drawn as a path rather
+     than as bars so the arms come to a point, which is what makes the shape
+     read as a star instead of a plus sign. */
+  function glint(x, y, len, w, rot) {
+    ctx.save();
+    ctx.translate(x, y);
+    if (rot) ctx.rotate(rot);
+    ctx.beginPath();
+    ctx.moveTo(0, -len); ctx.lineTo(w, 0); ctx.lineTo(0, len); ctx.lineTo(-w, 0);
+    ctx.closePath();
+    ctx.moveTo(-len, 0); ctx.lineTo(0, -w); ctx.lineTo(len, 0); ctx.lineTo(0, w);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /* The bright layer, drawn one at a time because each is meant to be noticed.
+   *
+   * These used to carry a solid core up to six pixels across with a wide halo,
+   * which at any normal field of view is indistinguishable from a small moon —
+   * Keltas is about eight. The fix is the true difference between the two: a
+   * star is a point source and has no disc to resolve, while a moon is an
+   * actual face in the sky. So the core here is a dot that barely grows with
+   * brightness, and everything else a bright star has — long arms, a tight
+   * halo, a hard shimmer — is light spilling off a point. Moons keep their
+   * disc, their phase and their broad soft glow, and never twinkle.
+   *
+   * It falls out of this that zooming in grows the moons and leaves the stars
+   * alone, which is also what a real sky does.
+   */
   function drawBright(sky, L) {
     for (var i = 0; i < BRIGHT.length; i++) {
       var s = BRIGHT[i], h = eqToHor(s.v, sky.lst);
       if (h[2] < -0.02) continue;
       var alt = altOf(h), p = P.f(alt, azOf(h));
       if (!p.ok) continue;
-      var tw = 0.82 + 0.18 * Math.sin(s.t * 40 + st.h * 11);
+
+      // Scintillation, and much harder than the faint layer's. A moon sitting
+      // beside one of these is conspicuously steady.
+      var tw = 0.62 + 0.38 * Math.sin(s.t * 40 + st.h * 23);
       var a = L.starA * s.b * tw * smooth(-2, 7, alt);
       if (a < 0.02) continue;
       var c = TINTS[s.c];
-      var core = (0.8 + s.b * 2.2) * DPR;
 
-      var halo = core * 7;
+      // A dot. Brightness is in the arms, not in the area.
+      var core = (0.45 + s.b * 0.8) * DPR;
+      var arm = (2.5 + s.b * s.b * 16) * DPR * (0.85 + 0.15 * tw);
+
+      // Tight halo: a star's bloom clings to the point. A moon's is broad.
+      var halo = core * 3.5;
       var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, halo);
-      g.addColorStop(0, rgb(c, (a * 0.5).toFixed(3)));
-      g.addColorStop(0.35, rgb(c, (a * 0.11).toFixed(3)));
+      g.addColorStop(0, rgb(c, (a * 0.55).toFixed(3)));
       g.addColorStop(1, rgb(c, 0));
       ctx.fillStyle = g;
       ctx.fillRect(p.x - halo, p.y - halo, halo * 2, halo * 2);
 
-      // Only the fiercest get spikes, or the sky turns into a pincushion.
-      if (s.b > 0.88) {
-        var len = core * (4 + s.b * 5), w = Math.max(0.5 * DPR, core * 0.16);
-        ctx.fillStyle = rgb(c, (a * 0.4).toFixed(3));
-        ctx.fillRect(p.x - len, p.y - w / 2, len * 2, w);
-        ctx.fillRect(p.x - w / 2, p.y - len, w, len * 2);
+      // Every star in this layer gets arms; that is the mark of the layer.
+      ctx.fillStyle = rgb(c, (a * 0.5).toFixed(3));
+      glint(p.x, p.y, arm, Math.max(0.35 * DPR, core * 0.5), 0);
+      // The fiercest get a second, shorter pair on the diagonal.
+      if (s.b > 0.86) {
+        ctx.fillStyle = rgb(c, (a * 0.22).toFixed(3));
+        glint(p.x, p.y, arm * 0.5, Math.max(0.3 * DPR, core * 0.4), Math.PI / 4);
       }
 
-      ctx.fillStyle = rgb(c, Math.min(1, a * 1.25).toFixed(3));
+      ctx.fillStyle = rgb(c, Math.min(1, a * 1.4).toFixed(3));
       ctx.beginPath();
       ctx.arc(p.x, p.y, core, 0, 2 * Math.PI);
       ctx.fill();
