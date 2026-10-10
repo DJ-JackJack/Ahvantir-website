@@ -445,6 +445,85 @@
            1.4 * Math.pow(Math.max(0, Math.sin(a - 0.6)), 6) * 2;
   }
 
+  /* Names, kept apart.
+   *
+   * Every label used to sit at a fixed offset up and to the right of its disc,
+   * which collided the moment two bodies came close — and that is precisely
+   * when a reader needs to know which is which: a moon crossing a sun, or
+   * Solara and Nystara in the year either side of a Pairing, when they are
+   * about a degree apart and the two names land on top of each other.
+   *
+   * So: lay the boxes out, push any that collide clear, and draw a leader line
+   * for the ones that had to move so a displaced name still points at its own
+   * disc. There are never more than five, so the quadratic pass is free.
+   */
+  function drawLabels(placed) {
+    var LH = 15 * DPR, PAD = 3 * DPR, GAP = 6 * DPR;
+    ctx.font = (13 * DPR) + 'px ' + (cssv('--font-display') || 'serif');
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+
+    var labels = placed.filter(function (e) {
+      var b = e[0];
+      if (b.alt < -1) return false;
+      return !(st.view === 'dome' && b.alt < 0);
+    }).map(function (e) {
+      var b = e[0], r = e[1], w = ctx.measureText(b.n).width;
+      // Flip to the left of the disc rather than run off the right edge.
+      var flip = r.x + r.r + GAP + w > W - PAD;
+      return {
+        b: b, w: w, flip: flip,
+        home: r.y - r.r - PAD,
+        x: flip ? r.x - r.r - GAP - w : r.x + r.r + GAP,
+        y: r.y - r.r - PAD,
+        ax: r.x, ay: r.y, ar: r.r
+      };
+    });
+
+    // Suns settle first and keep their natural spot, so when a sun and a moon
+    // compete it is the moon that steps aside.
+    labels.sort(function (p, q) {
+      if ((p.b.kind === 'sun') !== (q.b.kind === 'sun')) return p.b.kind === 'sun' ? -1 : 1;
+      return p.y - q.y;
+    });
+
+    var done = [];
+    var clashes = function (L) {
+      return done.some(function (o) {
+        return L.x < o.x + o.w + PAD && o.x < L.x + L.w + PAD &&
+               L.y - LH < o.y + PAD && o.y - LH < L.y + PAD;
+      });
+    };
+    labels.forEach(function (L) {
+      var n = 0;
+      while (clashes(L) && n++ < 10) L.y += LH;      // step down out of the way
+      if (clashes(L)) {                               // no room below, try above
+        L.y = L.home; n = 0;
+        while (clashes(L) && n++ < 10) L.y -= LH;
+      }
+      L.y = clamp(L.y, LH, H - PAD);
+      L.moved = Math.abs(L.y - L.home) > LH * 0.5;
+      done.push(L);
+    });
+
+    done.forEach(function (L) {
+      if (L.moved) {
+        // From the label's inner edge to the rim of its own disc.
+        ctx.strokeStyle = rgb(COL[L.b.n], 0.55);
+        ctx.lineWidth = 1 * DPR;
+        ctx.beginPath();
+        ctx.moveTo(L.flip ? L.x + L.w + PAD : L.x - PAD, L.y - LH * 0.3);
+        ctx.lineTo(L.ax + (L.flip ? L.ar : -L.ar), L.ay);
+        ctx.stroke();
+      }
+      ctx.fillStyle = rgb(COL[L.b.n], 0.95);
+      ctx.shadowColor = 'rgba(0,0,0,.7)';
+      ctx.shadowBlur = 4 * DPR;
+      ctx.fillText(L.b.n, L.x, L.y);
+      ctx.shadowBlur = 0;
+    });
+  }
+
   function render() {
     if (!W) return;
     setupProj();
@@ -540,17 +619,7 @@
       ctx.textBaseline = 'alphabetic';
     }
 
-    ctx.font = (13 * DPR) + 'px ' + (cssv('--font-display') || 'serif');
-    ctx.textAlign = 'left';
-    placed.forEach(function (e) {
-      var b = e[0], r = e[1];
-      if (b.alt < -1) return;
-      if (st.view === 'dome' && b.alt < 0) return;
-      ctx.fillStyle = rgb(COL[b.n], 0.95);
-      ctx.shadowColor = 'rgba(0,0,0,.7)'; ctx.shadowBlur = 4 * DPR;
-      ctx.fillText(b.n, r.x + r.r + 6 * DPR, r.y - r.r - 2 * DPR);
-      ctx.shadowBlur = 0;
-    });
+    drawLabels(placed);
 
     updateText(sky, L);
   }
