@@ -262,6 +262,10 @@
     }
 
     var tpair = O.pairingOf(Y);
+    /* Every moon that passes over a sun or over another moon this year, and
+       that anyone in Aru'Mas was actually awake and above ground to see. The
+       Paradox Seekers keep the moon-over-moon ones; see [[Vaylis]]. */
+    var crossings = O.eventsInYear(Y).filter(function (e) { return e.visible; });
     // An eclipse is a Pairing deep enough that one disc crosses the other.
     // Only worth hunting in a year whose Pairing already comes close.
     var ecl = null;
@@ -283,6 +287,15 @@
           ', for about ' + Math.round(ecl.hours) + '&nbsp;hours.</p></div>' : '') +
         next3Html +
       '</div>' +
+      '<div class="alm-evgroup"><h3>Crossings <span class="alm-mono alm-muted">' + crossings.length + '</span></h3>' +
+        '<p class="alm-note">When one body passes in front of another. A total crossing hides the far one outright; the rest take a bite out of it.</p>' +
+        '<div class="alm-chips">' + (crossings.map(function (e) {
+          var what = esc(fmtShort(Y, e.doy)) + ' &middot; ' + esc(e.a) + ' over ' + esc(e.b);
+          var mins = Math.round(e.hours * 60);
+          var dur = mins >= 120 ? Math.round(mins / 60) + ' h' : mins + ' min';
+          return chip(e.doy, e.total ? 'alm-chip--three' : '',
+                      what + ' &middot; ' + dur + (e.total ? ' &middot; total' : ''));
+        }).join('') || '<span class="alm-muted">None this year.</span>') + '</div></div>' +
       '<div class="alm-evgroup"><h3>Convergences <span class="alm-mono alm-muted">' + runs.length + '</span></h3>' +
         '<p class="alm-note">Spans when two or three moons share the Full phase.</p>' +
         '<div class="alm-chips">' + (runs.map(function (r) {

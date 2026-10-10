@@ -48,40 +48,23 @@
   var DEG = Math.PI / 180;
   var YEAR = M.YEAR_LEN, mod = M.mod;
 
-  /* ---------- the model: everything here is invented ----------
+  /* ---------- what this file still owns ----------
    *
-   * r is an angular radius in degrees. The moons' inc/nodeP/node0 give each one
-   * a slightly tilted orbit with a slowly turning line of nodes, which is what
-   * stops all three sharing one path across the sky. Any moon seen crossing a
-   * sun's face is therefore a result of these numbers, not a lore event.
+   * Nothing about where anything is. Every position, disc size and crossing
+   * now comes from orbits.js; this file draws the result. What is left is the
+   * names and the colours they are painted in.
    */
-  // Discs are sized by orbits.js, which knows how far away each one is at the
-  // moment of asking. These carry only the name and the colour.
   var SUNS = [
     { n: 'Solara',  key: 'solara',  tone: 'Warm, yellow' },
     { n: 'Nystara', key: 'nystara', tone: 'Blue-white' }
   ];
-  var MOON_MODEL = {
-    miras:  { r: 0.50, inc: 5.0, nodeP: 940,  node0: 40 },
-    toris:  { r: 0.42, inc: 3.4, nodeP: 1630, node0: 200 },
-    keltas: { r: 0.34, inc: 7.2, nodeP: 2710, node0: 310 }
-  };
-  // Canon moons, each given its drawing parameters. Order follows marducian.js.
-  var MOONS = M.MOONS.map(function (mo) {
-    var m = {};
-    for (var k in mo) if (Object.prototype.hasOwnProperty.call(mo, k)) m[k] = mo[k];
-    var p = MOON_MODEL[mo.key];
-    m.r = p.r; m.inc = p.inc; m.nodeP = p.nodeP; m.node0 = p.node0;
-    return m;
-  });
+  // The moons' elements live in orbits.js with the suns'. A second copy here
+  // is exactly the drift the shared core exists to stop.
+  var MOONS = O.MOONS;
 
-  /* What is left here is the observer, not the orbits. Where the suns are now
-     comes from orbits.js; these two only decide how that sky looks from a
-     particular spot on the ground. */
-  var MODEL = {
-    lat: 40,        // Aru'Mas's latitude. Sets day length and how high the suns climb.
-    tilt: 23        // Axial tilt.
-  };
+  // The observer lives in orbits.js alongside everything else that decides
+  // what the sky looks like. This is the same object, not a copy.
+  var MODEL = O.OBS;
 
   // Canvas body colours. Fixed rather than read from tokens: these are the
   // objects' own colours seen against a sky, not UI colour, and must stay
@@ -130,19 +113,9 @@
   /* ---------- where everything is ---------- */
 
   // Ecliptic longitude/latitude to equatorial, then to the observer's horizon.
-  function eclToEq(lon, lat) {
-    var e = MODEL.tilt * DEG, cb = Math.cos(lat);
-    var x = cb * Math.cos(lon), y0 = cb * Math.sin(lon), z0 = Math.sin(lat);
-    return [x, y0 * Math.cos(e) - z0 * Math.sin(e), y0 * Math.sin(e) + z0 * Math.cos(e)];
-  }
-  // returns [East, North, Up]
-  function eqToHor(v, lst) {
-    var phi = MODEL.lat * DEG, c = Math.cos(lst), s = Math.sin(lst);
-    var xp = v[0] * c + v[1] * s, yp = -v[0] * s + v[1] * c, z = v[2];
-    return [yp, z * Math.cos(phi) - xp * Math.sin(phi), z * Math.sin(phi) + xp * Math.cos(phi)];
-  }
-  var altOf = function (h) { return Math.asin(clamp(h[2], -1, 1)) / DEG; };
-  var azOf = function (h) { return mod(Math.atan2(h[0], h[1]) / DEG, 360); };
+  // One copy of the horizon trig, in orbits.js, because the event finder there
+  // needs the same answers to say whether a crossing was above the horizon.
+  var eclToEq = O.eclToEq, eqToHor = O.eqToHor, altOf = O.altOf, azOf = O.azOf;
   var horToAA = function (h) { return { alt: altOf(h), az: azOf(h) }; };
 
   // The whole sky for one moment. Y in MC, doy 1..386, h in hours 0..24.
@@ -173,18 +146,16 @@
       });
     });
     out.baryHor = eqToHor(bary, lst);
-    MOONS.forEach(function (m) {
-      var pc = mod(D, m.c) + h / 24;
-      var e = 2 * Math.PI * (pc - m.ph[0] / 2) / m.c;
-      var lm = lb + e;
-      var node = (m.node0 * DEG) - 2 * Math.PI * (D + h / 24) / m.nodeP;
-      var bm = m.inc * DEG * Math.sin(lm - node);
-      var eq = eclToEq(lm, bm), hor = eqToHor(eq, lst);
+    O.moonsAt(t, lb).forEach(function (m) {
+      var eq = eclToEq(m.lon, m.lat), hor = eqToHor(eq, lst);
+      // How far round from the suns the moon is, which is what bows the
+      // terminator the right way when it is drawn.
       var cosPsi = eq[0] * bary[0] + eq[1] * bary[1] + eq[2] * bary[2];
-      out.bodies.push({ kind: 'moon', n: m.n, r: m.r, key: m.key,
+      out.bodies.push({ kind: 'moon', n: m.n, key: m.key,
+                        r: m.rho / DEG,
                         eq: eq, hor: hor, alt: altOf(hor), az: azOf(hor),
                         cosPsi: cosPsi, illum: (1 - cosPsi) / 2,
-                        phase: M.phaseOf(m, D).i });
+                        phase: m.phase });
     });
     return out;
   }

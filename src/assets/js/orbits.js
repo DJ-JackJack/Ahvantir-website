@@ -166,6 +166,225 @@
     return null;
   }
 
+  /* ---------- the observer ----------
+   *
+   * Where a body sits on the sky is one question; whether it was above the
+   * horizon in Aru'Mas at the time is another, and events need both. sky.js
+   * drives these same numbers when the reader moves the latitude slider.
+   */
+  var OBS = { lat: 40, tilt: 23 };
+
+  function eclToEq(lon, lat) {
+    var e = OBS.tilt * DEG, cb = Math.cos(lat);
+    var x = cb * Math.cos(lon), y0 = cb * Math.sin(lon), z0 = Math.sin(lat);
+    return [x, y0 * Math.cos(e) - z0 * Math.sin(e), y0 * Math.sin(e) + z0 * Math.cos(e)];
+  }
+  // returns [East, North, Up]
+  function eqToHor(v, lst) {
+    var phi = OBS.lat * DEG, c = Math.cos(lst), s = Math.sin(lst);
+    var xp = v[0] * c + v[1] * s, yp = -v[0] * s + v[1] * c, z = v[2];
+    return [yp, z * Math.cos(phi) - xp * Math.sin(phi), z * Math.sin(phi) + xp * Math.cos(phi)];
+  }
+  function altOf(h) { return Math.asin(Math.max(-1, Math.min(1, h[2]))) / DEG; }
+  function azOf(h) { return M.mod(Math.atan2(h[0], h[1]) / DEG, 360); }
+
+  // Sidereal angle for a moment, given where the suns are.
+  function lstAt(t, lbSun) {
+    var h = (t - Math.floor(t)) * 24;
+    var eq = eclToEq(lbSun, 0);
+    return Math.atan2(eq[1], eq[0]) + (h - 12) * 15 * DEG;
+  }
+  // Altitude in degrees of an ecliptic direction, at a moment.
+  function altAt(t, lon, lat, lbSun) {
+    return altOf(eqToHor(eclToEq(lon, lat), lstAt(t, lbSun)));
+  }
+
+  /* ---------- the moons ----------
+   *
+   * Canon fixes each moon's cycle and its phase table, and fixes all three new
+   * on 1 Varenthal Year 1. It says nothing about how big they look or how their
+   * orbits are tilted, and those are what decide whether a moon ever crosses a
+   * sun or another moon. They are set here deliberately rather than inherited.
+   *
+   *   rho   angular radius on the sky, in degrees. Compare Solara at 0.45 and
+   *         Nystara at 0.28: a moon with rho above 0.45 can cover either sun
+   *         outright, below 0.28 it can only ever graze them.
+   *   inc   tilt of the moon's orbit against the planet's own. A moon with no
+   *         tilt would cross a sun every single cycle; the tilt is what makes
+   *         crossings occasional.
+   *   nodeP the time for the line of nodes to turn right round. This is what
+   *         stops crossings settling into a fixed season and repeating forever
+   *         on the same dates.
+   *
+   * Distance order follows the cycles — Miras nearest, Keltas furthest — so
+   * when two moons meet, the shorter-cycle one passes in front.
+   */
+  var MOON_EL = {
+    miras:  { rho: 0.46, inc: 8.0,  nodeP: 940,  node0: 40,  depth: 0 },
+    toris:  { rho: 0.42, inc: 6.0,  nodeP: 1630, node0: 200, depth: 1 },
+    keltas: { rho: 0.34, inc: 11.0, nodeP: 2710, node0: 310, depth: 2 }
+  };
+
+  var MOONS = M.MOONS.map(function (mo) {
+    var e = MOON_EL[mo.key], m = {};
+    for (var k in mo) if (Object.prototype.hasOwnProperty.call(mo, k)) m[k] = mo[k];
+    m.rho = e.rho * DEG; m.inc = e.inc * DEG;
+    m.nodeP = e.nodeP; m.node0 = e.node0 * DEG; m.depth = e.depth;
+    return m;
+  });
+
+  /* Where each moon stands, given where the suns are. Phase is measured from
+     the sunward direction, so it stays in step with the Foundry tables; the
+     tilt then lifts the moon off the ecliptic by its own amount. */
+  function moonsAt(t, lbSun) {
+    var Dd = Math.floor(t), frac = t - Dd;
+    return MOONS.map(function (m) {
+      var pc = M.mod(Dd, m.c) + frac;
+      // Elongation from the sun. Zero in the middle of the New window, which
+      // is where the phase tables put a true conjunction.
+      var el = 2 * Math.PI * (pc - m.ph[0] / 2) / m.c;
+      var lon = lbSun + el;
+      var node = m.node0 - 2 * Math.PI * t / m.nodeP;
+      var lat = m.inc * Math.sin(lon - node);
+      return {
+        n: m.n, key: m.key, depth: m.depth, rho: m.rho,
+        lon: lon, lat: lat,
+        phase: M.phaseOf(m, Dd).i,
+        illum: (1 - Math.cos(el)) / 2
+      };
+    });
+  }
+
+  // Angle between two ecliptic directions.
+  function between(a, b) {
+    var ca = Math.cos(a.lat), cb = Math.cos(b.lat);
+    var d = ca * cb * Math.cos(a.lon - b.lon) + Math.sin(a.lat) * Math.sin(b.lat);
+    return Math.acos(Math.max(-1, Math.min(1, d)));
+  }
+
+  /* Everything crossing everything else, at one moment. The suns are passed in
+     so a caller that already has them does not pay for them twice. */
+  function crossingsAt(t, S) {
+    S = S || sunsAt(t);
+    var ms = moonsAt(t, S.bary.lon);
+    var suns = [
+      { n: 'Solara', dir: S.solara, rho: S.rhoS },
+      { n: 'Nystara', dir: S.nystara, rho: S.rhoN }
+    ];
+    var out = [];
+    ms.forEach(function (m) {
+      suns.forEach(function (s) {
+        var a = between(m, s.dir);
+        if (a < m.rho + s.rho) {
+          out.push({ kind: 'moon-sun', moon: m.n, other: s.n, sep: a,
+                     total: m.rho > s.rho && a < m.rho - s.rho });
+        }
+      });
+    });
+    for (var i = 0; i < ms.length; i++) {
+      for (var j = i + 1; j < ms.length; j++) {
+        var a2 = between(ms[i], ms[j]);
+        if (a2 < ms[i].rho + ms[j].rho) {
+          var near = ms[i].depth < ms[j].depth ? ms[i] : ms[j];
+          var far = near === ms[i] ? ms[j] : ms[i];
+          out.push({ kind: 'moon-moon', moon: near.n, other: far.n, sep: a2,
+                     total: near.rho > far.rho && a2 < near.rho - far.rho });
+        }
+      }
+    }
+    return out;
+  }
+
+  /* Walk an episode minute by minute to get its real edges and peak. The
+     half-hourly scan only tells us roughly where it is. */
+  function refine(ep) {
+    var fine = 1 / 1440, lo = ep.start - 1 / 48, hi = ep.end + 1 / 48;
+    var first = null, last = null, best = null;
+    for (var t = lo; t <= hi; t += fine) {
+      var S = sunsAt(t);
+      var hit = null;
+      crossingsAt(t, S).forEach(function (c) {
+        if (c.kind === ep.kind && c.moon === ep.a && c.other === ep.b) hit = c;
+      });
+      if (hit) {
+        if (first === null) first = t;
+        last = t;
+        if (!best || hit.sep < best.sep) best = { t: t, sep: hit.sep, total: hit.total };
+        if (hit.total) ep.total = true;
+      }
+    }
+    if (first !== null) {
+      ep.start = first; ep.end = last;
+      ep.peak = best.t; ep.min = best.sep;
+    }
+  }
+
+  /* Every crossing in a span of time, gathered into episodes.
+   *
+   * A crossing lasts hours, so the scan steps in hours and groups consecutive
+   * hits on the same pair into one event with a peak. Each is marked visible
+   * only if the bodies stood above Aru'Mas's horizon at some point during it:
+   * an eclipse that happened under everyone's feet is not an event the city
+   * had, and a DM asking when the next one falls means the next one they SEE.
+   *
+   * Costly across centuries, so ask for the span you need. A year is cheap.
+   */
+  function eventsBetween(fromT, toT) {
+    /* Half-hourly. A moon takes an hour or two to cross a sun, so a coarser
+       step walks straight over the short ones and reports nonsense durations
+       for the rest. Each episode it does find is then re-walked minute by
+       minute, below, to get an honest peak and length. */
+    var step = 1 / 48, open = {}, done = [];
+    for (var t = fromT; t < toT; t += step) {
+      var S = sunsAt(t);
+      var lb = S.bary.lon;
+      var live = {};
+      /* jshint loopfunc:true */
+      crossingsAt(t, S).forEach(function (c) {
+        var key = c.kind + ':' + c.moon + '>' + c.other;
+        live[key] = true;
+        var ep = open[key];
+        if (!ep) {
+          ep = open[key] = {
+            kind: c.kind, a: c.moon, b: c.other,
+            start: t, peak: t, min: c.sep, total: c.total, visible: false
+          };
+        }
+        if (c.sep < ep.min) { ep.min = c.sep; ep.peak = t; }
+        if (c.total) ep.total = true;
+        ep.end = t;
+        if (!ep.visible) {
+          // Check the moon; in a crossing the other body is right beside it.
+          var ms = moonsAt(t, lb);
+          for (var i = 0; i < ms.length; i++) {
+            if (ms[i].n === c.moon && altAt(t, ms[i].lon, ms[i].lat, lb) > 0) {
+              ep.visible = true;
+              break;
+            }
+          }
+        }
+      });
+      Object.keys(open).forEach(function (k) {
+        if (!live[k]) {
+          var ep = open[k];
+          refine(ep);
+          var f = M.fromAbs(Math.floor(ep.peak));
+          ep.Y = f.Y; ep.doy = f.doy;
+          ep.hours = (ep.end - ep.start) * 24;
+          done.push(ep);
+          delete open[k];
+        }
+      });
+    }
+    return done;
+  }
+
+  // Everything crossing in one year, soonest first. What an almanac wants.
+  function eventsInYear(Y) {
+    return eventsBetween(M.absDay(Y, 1), M.absDay(Y + 1, 1))
+      .sort(function (p, q) { return p.peak - q.peak; });
+  }
+
   // Widest the pair ever gets, for scaling a chart against something fixed.
   var WIDEST = 18.5;
 
@@ -189,6 +408,11 @@
   window.Orbits = {
     EL: EL, DEG: DEG, WIDEST: WIDEST, setBeta: setBeta,
     sunsAt: sunsAt, pairingOf: pairingOf, nextEclipse: nextEclipse,
+    MOONS: MOONS, MOON_EL: MOON_EL, moonsAt: moonsAt,
+    OBS: OBS, eclToEq: eclToEq, eqToHor: eqToHor, altOf: altOf, azOf: azOf,
+    lstAt: lstAt, altAt: altAt,
+    crossingsAt: crossingsAt, between: between,
+    eventsBetween: eventsBetween, eventsInYear: eventsInYear,
     sepFraction: sepFraction, nextClosePairing: nextClosePairing,
     toEcl: toEcl
   };

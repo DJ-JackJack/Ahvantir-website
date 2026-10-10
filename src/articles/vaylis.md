@@ -46,6 +46,8 @@ The Paradox Seekers do not celebrate grand holidays or public festivals. Instead
 
 The Eclipse of Paradox is the most sacred event for the Paradox Seekers, celebrated whenever one of Ahvantir’s moons eclipses the other. During this time, followers believe that Vaylis’s power is at its peak, as the unity of light and darkness is manifest in the sky. The Paradox Seekers gather to meditate, engage in debates, and perform rites that embody balance and contradiction. They see the eclipse as a divine moment of insight and harmony, a rare alignment that brings them closer to Vaylis’s mysteries.
 
+It comes round rather more than once a year — close enough to predictable that a Seeker can plan a journey to be present, rare enough that missing one costs something. The Seekers grade them. Most are a bite taken out of one moon by another and pass in a few hours. Far rarer is the kind where the nearer moon swallows the farther one whole, which needs Miras over Keltas or Miras over Toris and happens perhaps once in a generation or two. That one is what the older rites are written for, and most Seekers go their whole lives without seeing it.
+
 ## Followers of Vaylis
 
 The followers of Vaylis, known collectively as the Duskbound, are a diverse group drawn together by a shared fascination with paradox, duality, and the mysteries of existence. The Duskbound are philosophers, poets, mystics, and artists who believe that wisdom is found through embracing life’s contradictions. They are often eccentric, viewing the world with a mixture of awe and curiosity, and they walk paths that balance extremes—intellect and intuition, light and shadow, kindness and ruthlessness.

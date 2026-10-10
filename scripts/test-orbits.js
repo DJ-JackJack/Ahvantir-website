@@ -117,6 +117,44 @@ O.setBeta(before / O.DEG);
 ok('a shallower orbit gives more eclipses', n5 > n, `${n5} in 40 yr at 5°, against ${n} in ${SPAN} yr at 45°`);
 ok('and the tilt is restored afterwards', Math.abs(O.EL.BETA - before) < 1e-9);
 
+console.log('\nThe moons');
+ok('three moons, matching the calendar', O.MOONS.length === 3);
+ok('each carries a tilt, a disc and a turning line of nodes',
+   O.MOONS.every(m => m.inc > 0 && m.rho > 0 && m.nodeP > 0));
+
+/* Only Miras is wider than Solara, and only barely. That margin is the whole
+   reason a total eclipse of the warm sun happens twice a century instead of
+   every few years, so it is worth a guard: widening Miras by a tenth of a
+   degree would quietly turn the rarest event in the sky into a regular one. */
+const miras = O.MOONS.filter(m => m.n === 'Miras')[0];
+const rSol = O.EL.R_SOL * O.DEG, rNys = O.EL.R_NYS * O.DEG;
+ok('Miras is the only moon that can cover Solara at all',
+   miras.rho > rSol && O.MOONS.filter(m => m.rho > rSol).length === 1);
+ok('and it clears Solara only barely', (miras.rho - rSol) / O.DEG < 0.05,
+   ((miras.rho - rSol) / O.DEG).toFixed(3) + ' deg of margin');
+ok('every moon can cover Nystara, the smaller disc',
+   O.MOONS.every(m => m.rho > rNys));
+ok('the moons run near to far in cycle order, so the nearer passes in front',
+   O.MOONS[0].depth === 0 && O.MOONS[1].depth === 1 && O.MOONS[2].depth === 2);
+
+console.log('\nCrossings');
+const yr = O.eventsInYear(439);
+ok('a year has crossings in it', yr.length > 0, yr.length + ' in 439 MC');
+ok('each lasts a real stretch of time, not one sample',
+   yr.every(e => e.hours > 0 && e.hours < 48),
+   'longest ' + Math.max.apply(null, yr.map(e => e.hours)).toFixed(1) + ' h');
+ok('each names two different bodies', yr.every(e => e.a && e.b && e.a !== e.b));
+ok('each is dated in the year asked for', yr.every(e => e.Y === 439));
+
+/* The finder scans every half hour and then re-walks each hit by the minute.
+   Without that refinement a crossing shorter than the scan step reports a
+   duration of zero and the almanac prints nonsense, which is how this was
+   found. A duration that is not a multiple of thirty minutes proves the
+   refinement still runs. */
+const offGrid = yr.some(e => Math.abs((e.hours * 2) - Math.round(e.hours * 2)) > 0.02);
+ok('and durations are refined below the scan step', offGrid,
+   yr.map(e => (e.hours * 60).toFixed(0) + 'm').join(' '));
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);
