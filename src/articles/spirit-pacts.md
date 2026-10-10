@@ -90,5 +90,18 @@ Spirit pacts are woven into the culture and laws of Ahvantir, influencing not on
 
 ---
 
+## What Binds a Spirit
+
+There is no spirit law in the sense mortals mean it. No code, no court of
+general jurisdiction, no statute a spirit could be shown to have broken. What
+holds in its place is an interwoven tapestry: etiquette, the rules that pass
+between the fey courts, edicts handed down by the upper-level fey, and the
+binding power of pacts and oaths sworn by and to the spirits involved.
+
+Mortals negotiating with spirits routinely mistake the first three for the
+fourth. Only the last is binding in the way a mortal would recognise. The rest
+is observed because a spirit's nature observes it, which is both more reliable
+and less negotiable than law.
+
 > **Source**
 > Source: `world-anvil` — imported from `wa_articles_structured.json`
