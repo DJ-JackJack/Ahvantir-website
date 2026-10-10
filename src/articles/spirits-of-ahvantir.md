@@ -1,109 +1,109 @@
 ---
 title: "Spirits of Ahvantir"
-category: culture
-tags: [culture, law]
+description: "\"Spirit\" is a broad umbrella term for a wide range of supernatural entities in Ahvantir — not a description of one kind of thing, but a category as loose and various as terms like *Yokai* or *Faerie* in other traditions. What unites spirits is not a shared origin or a shared nature, but a shared status: they are alive, they are not mortal, and they exist and operate by rules that differ from the ordinary world."
+category: cosmology
+tags: [cosmology, spirits, spirit-types, lore-fundamentals]
+aliases: ["Spirits of Ahvantir — An Overview", "Spirit Overview", "Spirits Overview", "What is a Spirit", "A Guide to the Spiritual Community"]
 date_added: "2026-06-06"
 ---
 
 # Spirits of Ahvantir
 
-## A Guide to the Spiritual Community
+## The Term Itself
 
-Ahvantir is a land rich with supernatural entities, each with its own origin, personality, and purpose. For newcomers, the spiritual hierarchy and variety of spirits on the islands can be overwhelming. The spirits are as diverse as the land itself, and understanding them is crucial for respectful coexistence. Spirit scholars have classified these beings into categories to help people understand the different types, though the boundaries between these categories can sometimes be as elusive as the spirits themselves.
+Scholars, clergy, and ordinary people of Ahvantir use the word *spirit* to mean many things, often simultaneously. A hearth-spirit that keeps a family's fire from going out and a Warden that governs a mountain range are both spirits. So is a Once-Was drifting through the ruins of its former life, and a Primordem sealed beneath the city, and Nodd the Monarch of Dreams. The term spans an enormous range of scale, disposition, origin, and nature.
 
-This list of categories is not exhaustive. Many spirits in Ahvantir exist at the edges of definition, blending qualities from multiple categories or shifting between them as their nature or circumstances change. This fluidity is a reminder that spirits are not static entities; their essence is as changeable as the land they inhabit.
+This is not imprecision. It is accuracy. There is no single underlying type of entity called a spirit — there is a vast and varied category of supernatural beings that mortals have found it useful to group under one word because they share certain qualities in broad terms, and separating them into wholly distinct taxonomies would obscure as much as it revealed.
 
-## 1. The Once-Was
+The closest analogues from other traditions are *Yokai* — a Japanese word covering an enormous range of supernatural beings from the mischievous to the terrifying, unified by their otherness rather than any shared essence — or the older use of *Faerie*, which once described a category of supernatural being rather than a specific small winged creature. Ahvantir's spirits work the same way. The word is a door, not a box.
 
-The Once-Was are the echoes of beings—whether human or animal—who died in particularly emotional, violent, or unexpected ways. These spirits often haunt the location of their death or the cause of their demise and are tied to lingering emotions that prevent them from moving on. Unlike other spirits, the Once-Was retain a part of their original identity, though often in a distorted or single-minded way, focused on the trauma that binds them.
+For newcomers to the islands, the variety is overwhelming, and the stakes of getting it wrong are real. Much of what mortals call manners toward spirits is really classification: knowing which kind of thing you are standing in front of, and therefore which obligations you have just incurred.
 
-## Characteristics and Behavior
+## How Spirits Come Into Being
 
-- Haunting Presences: Once-Was spirits are most commonly associated with haunted places or objects, particularly those tied to their deaths. They may linger around cliffs, battlefields, abandoned homes, or sunken ships.
-- Emotional Resonance: These spirits are often driven by intense emotions, such as grief, anger, regret, or love, and they act upon these feelings. Those who encounter a Once-Was may sense an overwhelming sadness or anger in the air.
-- Vengeful or Protective: A Once-Was spirit can be either vengeful or protective. If vengeful, they might curse or harm those they perceive as responsible for their untimely end or who remind them of it. Protective Once-Was spirits, on the other hand, might warn people away from the danger that took their life, sometimes appearing as shadowy figures or cold whispers that caution travelers.
+Spirits arise from many sources. The most common is emotion — specifically, the accumulation of powerful feeling around a place, a concept, an event, or a type of experience, until that accumulation achieves a kind of critical mass and takes on independent existence. A stretch of coastline where generations of sailors have felt both terror and wonder may eventually produce a spirit that embodies that specific tension. A battlefield where grief and fury became so concentrated that the land itself remembers may give rise to something that carries both.
 
-## Debates Among Spirit Scholars
+This is not the only origin. Loci arise from places rather than feelings, though feeling often plays a role in making a place significant enough to generate one. Omens are born from the nurturing forces of nature itself rather than from death or attachment. Usurpers arrive from outside Ahvantir entirely, breaking through the spiritual boundaries that protect the islands. Once-Was begin as people, and sometimes animals, and become spirits at the moment of death — usually through the force of whatever circumstances killed them. The Primordem were born from the specific emotional violence of the Landing War. Wardens seem to arise through a combination of place-resonance and accumulated interaction with the living world over long periods.
 
-- Many scholars debate whether the Once-Was are true spirits or mere echoes of life left behind by trauma. They are considered among the weaker spirits of the isles, limited in power and scope, with their energy often waning over time unless actively acknowledged or appeased.
-- Some argue that the Once-Was lack the true consciousness of other spirits, existing only as residual emotions and instincts. Others, however, believe that Once-Was spirits are sentient but simply unable to fully comprehend their condition.
+The diversity of origins is one reason the umbrella term is necessary. To insist that all spirits share one origin story would require ignoring most of them.
 
-## 2. Omens
+## How Spirits Persist
 
-Omens are spirits born from the nurturing aspects of nature, though their exact nature remains a mystery. They appear to kind-hearted or respectful individuals, often giving warnings of impending disaster or guiding travelers toward safety. However, some fear that Omens actually cause the misfortunes they appear to predict, a topic of great debate among locals and spirit scholars.
+A spirit does not, in most cases, require the ongoing presence of whatever gave rise to it in order to continue existing. This is a critical distinction from [[Deification in Ahvantir|deities]], whose continued existence depends entirely on active worship.
 
-## Characteristics and Behavior
+A spirit born from the grief of a particular community does not need that community to keep grieving in order to persist. The emotion was the catalyst, not the fuel. Once the spirit exists, it exists — it may wander, be diminished by circumstance or conflict, or be met in a mood no one has seen from it before, but it does not simply stop being because the feeling that produced it has passed.
 
-- Manifestations of Nature’s Kindness: Omens may appear as animals, misty figures, or glowing lights. For instance, a lost traveler may see a shimmering deer that guides them back to safety, or a protective crow that seems to follow a child home.
-- Timing and Intent: Omens typically appear before a disaster strikes—a landslide, a storm, or a dangerous animal encounter. They often present themselves just before the event, giving just enough time for the person to take action.
-- Signs of Favor or Foresight: Those who encounter Omens are often seen as blessed or favored by nature. These spirits are more likely to appear to people who have shown reverence for the natural world, as though rewarding them for their kindness.
+Some spirits can and do feed on certain emotions, drawing power from the presence of the feelings that resonate with their nature. [[He Who Festers]] is an example in the extreme: a spirit that does not merely draw sustenance from accumulated resentment, but actively preserves and tends the wounds that produce it. But this is a capability, not a requirement. Most spirits persist without needing to feed on anything. They simply are.
 
-## Controversy and Debate
+This independence of existence is both the strength and the complexity of spirits. They are not fragile in the way a deity is fragile. They are also, as a result, harder to diminish through the simple removal of what sustains them.
 
-- Harbingers or Catalysts? While many believe that Omens are benevolent messengers, others suspect they might provoke the disasters they warn of. Some say Omens possess a dual nature—both warning and causing harm, bound to cycles of fate that mortals cannot fully understand.
-- Fear and Reverence: This duality has led to a mixed view of Omens among the people. Some treat them with reverence, viewing them as guardians, while others fear that any encounter with an Omen might spell impending disaster, regardless of the spirit’s intention.
+## Power and Scale
 
-## 3. Loci
+Spirits vary enormously in power, from the simplest hearth-spirits — minor entities whose presence is barely distinguishable from the warmth of a well-kept fire — to entities like the Primordem, who shaped the political history of an entire archipelago, or Nodd, whose power rivals the deities of the established pantheons.
 
-Loci are not merely spirits but manifestations of specific places—enchanted locations with powerful energies that create a spiritual body to enforce their will and protect their sanctity. They represent sites where magic, intention, and nature converge so intensely that the place itself gains a form of sentience and agency.
+The primary mechanism of spirit power is the Claim — the territory a spirit governs, shaped by the pacts and resonances that tie them to it. Within a Claim, a spirit's authority approaches absolute. A Warden at the heart of their territory can do things that would be impossible for them outside it. A Loci is, in some sense, indistinguishable from the place it inhabits — its power and its domain are the same thing.
 
-## Characteristics and Behavior
+Scale matters accordingly. A spirit whose domain is a single hearth is powerful in that hearth and nowhere else. A spirit whose domain is a mountain range is powerful across that entire range. Nodd, whose domain is the Dreaming — an entire plane — is sovereign over an expanse that has no mortal equivalent, which is why their power reaches a level that invites comparison to divinity even though the mechanisms are entirely different.
 
-- Embodiments of Place: A Locus can be anything from an ancient grove to a sacred waterfall, a ring of stones, or a deep cave. Each Locus has a unique spiritual form that reflects its nature—a grove might appear as a massive, green-skinned figure with foliage for hair, while a waterfall may manifest as a flowing, translucent shape.
-- Power and Purpose: Loci are incredibly powerful within their boundaries and possess the ability to alter their terrain, summon protective forces, or influence the environment. A Locus can make paths twist, plants grow over intruders, or water flow backward if it feels threatened.
-- Guardian or Trap: Each Locus has its own temperament. Some serve as sanctuaries, welcoming weary travelers and offering protection. Others are defensive or hostile, luring trespassers into dangerous traps. The character of a Locus is often shaped by how it has been treated by those who visit it.
+## The Recognised Types
 
-## Interaction and Warnings
+The spiritual taxonomy of Ahvantir is incomplete and contested, and the list below is not exhaustive. These are the categories spirit scholars most commonly recognise:
 
-- Respect and Rituals: Travelers who pass through a Locus are advised to offer gifts or perform rituals to show respect. Ignoring these customs can result in swift retribution, as the Locus perceives disrespect as a direct threat to its sanctity.
-- Sources of Magic: Many Loci are sought by spellcasters for their unique magical properties. However, they are risky places to visit, as their nature can shift unpredictably. Those who wish to harness their magic often seek permission through pacts or offerings.
+**[[Hearth Spirits]]** — Minor spirits tied to domestic spaces and the life of households. Among the most common spirits encountered by ordinary mortals, and often the most benign. Their power is modest and their concerns are narrow, but their presence is woven through the daily life of Ahvantir in ways that are easy to overlook. Their blessings are conditional on respect, and a slighted Hearth Spirit withdraws its aid before it does anything worse.
 
-## 4. [[Usurpers]]
+**[[Loci]]** — Highly spiritual places that have developed a presence and a mind, either slowly over time or all at once where something powerfully magical happened. A Locus is not a guardian of its domain; it is the land itself given will, and a voice, though not always a literal one. Within its boundaries a Locus can turn paths, raise growth over intruders, or reverse the flow of water. Nodd is the most extreme known example: a Locus whose domain is not a grove or a shrine but an entire plane.
 
-Usurpers are entities from outside Ahvantir—beings from other realms or planes who have crossed over through portals, breaches, or dark rituals. Unlike other spirits, Usurpers have not grown from the land but instead forcibly claimed a part of it, usually through sheer power and dominance. Usurpers are often feared and viewed as dangerous intruders by other spirits and mortals alike.
+**[[Omens]]** — Spirits born from the nurturing forces of nature, appearing briefly to warn of disaster or to steer a traveller clear of it. They show themselves as animals, lights, mists or sounds at the edge of hearing, and they do not linger to be questioned. Their nature is difficult to characterise precisely, as they tend to resist examination.
 
-## Characteristics and Behavior
+**[[Once-Was]]** — People, and sometimes animals, who became spirits at their deaths — usually through the force of whatever circumstances killed them. They stay tied to the place, the person or the cause of their death, and to the grief, rage or longing that outlasted them. Alone among the types they retain part of who they were, though often narrowed to the one thing that bound them.
 
-- Foreign Presence: Usurpers are usually alien in appearance and behavior, their forms reflecting the strange and unsettling aspects of their origins. They might have multi-faceted eyes, shifting forms, or spectral limbs, making them stand out starkly from Ahvantir’s native spirits.
-- Claimed Territories: Because of the power required to subdue an area, Usurpers almost always become Wardens of their own Claims. These Claims tend to be darker, with an aura of tension, as if the land itself resents its new master. Spirits and mortals alike avoid these areas, and Usurpers often impose their own laws within their Claims, ignoring the Old Pacts.
-- Isolation and Independence: Usurpers are typically aloof and self-contained, choosing to rule their territories with an iron fist rather than interact with Ahvantir’s spiritual community. They are seen as outsiders who operate by unknown rules and often with hostile intentions.
+**[[Usurpers]]** — Entities from outside Ahvantir that have broken through the islands' spiritual boundaries by force. Foreign in nature and energy, they establish Claims through conquest rather than arising organically from the land, and they impose their own rules inside them. Their presence corrupts: Rootrot Crystals mark the places they have touched.
 
-## Relations with Other Spirits
+**Wardens** — Among the most powerful native spirits, Wardens are entities that have established deep sovereignty over significant territories. They are shaped by long interaction with their domains and are often among the oldest spirits in any given region. [[Claims and Wardens]] sets out what a Claim is and what holding one means.
 
-- Hostile Relations: Other spirits are wary of Usurpers, often viewing them as invasive threats that disrupt the spiritual balance of the land. Alliances between Usurpers and native spirits are rare, as most Usurpers only respect their own authority and have no loyalty to Ahvantir’s traditions.
-- Powerful Enemies: Mortals rarely venture into Usurper Claims without extreme caution or powerful magical defenses. Usurpers are known for taking severe actions against those who trespass, and their Claims often contain twisted versions of natural features, bearing the marks of their alien influence.
+**The Primordem** — Eleven spirits sealed beneath Aru'Mas, born from the specific emotional residue of the Landing War. A category unto themselves in terms of origin, nature, and threat. See [[The Primordem]] for full documentation.
 
-## 5. [[Hearth Spirits]]
+## What the Scholars Dispute
 
-Hearth Spirits are the gentle, familiar spirits that preside over families, villages, or small communities. They are guardians of hearth and home, maintaining the well-being of the people within their domain. Their influence is usually limited to a specific location—a house, farmstead, or village—and they often form close bonds with the people they protect.
+Classification is scholars' work, and the scholars do not agree. Two arguments in particular have never been settled, and both are worth knowing before taking anyone's category at face value.
 
-## Characteristics and Behavior
+**Whether the Once-Was are spirits at all.** One school holds that they are not — that a Once-Was is an echo of a life left behind by trauma rather than a being in its own right, residual emotion and instinct running on without anyone home. They point to how limited the Once-Was are in power and scope, and to how their presence thins over time unless it is acknowledged or appeased. The opposing school holds that a Once-Was is sentient, and that what looks like absence is simply a mind unable to comprehend its own condition. This is why *echo* and *remnant* appear so often in writing about them: the words belong to one side of a live argument, not to a settled definition.
 
-- Embodiments of Community: Hearth Spirits take forms that reflect the culture and personality of their communities, appearing as elderly figures, animals, or even as invisible presences. Their nature is generally kind and nurturing, but they have a strict code of respect and gratitude.
-- Caretakers and Helpers: When properly respected, Hearth Spirits help with everyday tasks—keeping fires lit, blessing crops, warding off illness, and protecting livestock. They are subtle, often performing these duties without fanfare, and only those who know the signs can recognize their influence.
-- Punishers of Disrespect: A Hearth Spirit’s blessings are conditional on respect. If ignored, they may retract their aid, allowing illness, accidents, and bad luck to afflict the community. In cases of severe disrespect, a Hearth Spirit might even curse a household or community, bringing misfortune, illness, and broken tools until appeased.
+**Whether Omens cause what they announce.** Most people treat Omens as benevolent messengers, and the pattern supports it — an Omen appears, and there is just time enough to act. But a persistent minority suspects the arrival is not a warning but a beginning, and that the misfortune follows the Omen rather than the reverse. A third position splits the difference and grants them a dual nature, bound to cycles of fate that mortals are not equipped to read. The practical result is that Omens are met with reverence and dread in roughly equal measure, and that an Omen's intent is never assumed.
 
-## Offerings and Rituals
+## Deities as a Subset
 
-- Regular Offerings: Hearth Spirits appreciate small, simple gifts such as bowls of milk, fresh bread, or flowers. These offerings are left in designated places—by the hearth, under a specific tree, or at the front door.
-- Seasonal Ceremonies: Many communities hold seasonal festivals to honor their Hearth Spirit, decorating their homes, performing dances, and making offerings to reaffirm the bond. These ceremonies strengthen the spirit’s connection to the people, reinforcing its role as protector.
+It is technically accurate to describe deities as a form of spirit — specifically, a category of supernatural entity that arose from mortal experience and emotion, as spirits do. Deities are aware of this classification and uniformly object to it, typically on the grounds that the distinction in mechanism is sufficient to constitute a distinction in kind.
 
-## Community and Trust
+They are not entirely wrong. A deity whose worship disappears ceases to exist. A spirit does not face the same constraint. Whatever one calls them, they operate by meaningfully different rules, and conflating them in practical terms leads to errors. The taxonomy question is largely one for scholars and theologians to argue about.
 
-- Trusted Allies: Hearth Spirits are typically cherished members of the community, treated almost like family. They are trusted to watch over the household, especially in times of illness or when community members are away.
-- Silent Witnesses: Hearth Spirits are believed to observe everything that happens within their domain, knowing the joys and troubles of each household member. Their loyalty is rarely questioned, and they will go to great lengths to protect the homes they are bound to.
+What matters practically: do not assume that because something is called a spirit it is lesser than a deity, nor that because something is called a deity it is greater than a spirit. Nodd is a spirit. Nodd is, by any practical measure, more powerful than most of the deities currently active in Ahvantir's cosmology. The category tells you something about the mechanism. It does not tell you the ceiling.
 
-## Blurring Boundaries and Fluid Nature
+## Where the Categories Fail
 
-These categories are not exhaustive, and the boundaries between them are often fluid and flexible. Some spirits may share traits of multiple categories, shifting between roles or inhabiting the gray areas of spiritual identity. For example:
+The boundaries between the types are soft, and the softness is in the scheme rather than in the spirits. A single spirit can answer to two descriptions at once, and which name a scholar reaches for can say more about the scholar than about the thing being named.
 
-- A Once-Was spirit might become a Hearth Spirit if it chooses to protect a family or home where it once lived.
-- An Omen might form a temporary Locus around a place that requires protection or guidance, creating a space where people feel compelled to listen to its warnings.
-- An Usurper might adopt aspects of a Locus if they forge a powerful bond with their Claim, eventually earning a place in the spiritual community.
+- A Once-Was bound to the house where it lived, watching over the family still in it, satisfies the description of a Once-Was and the description of a Hearth Spirit equally well.
+- An Omen that keeps returning to one place until the place itself acquires a reputation is indistinguishable, from outside, from a minor Locus.
+- An Usurper holds a Claim, which is the one thing most definitions of a Warden actually require, while being the precise opposite of a spirit grown from the land it rules.
 
-Ahvantir’s spirits are as changeable as the land itself, adapting to the shifting tides of nature and the respect (or disregard) shown by mortals. Understanding them requires not only a grasp of these categories but also an appreciation for the complexity and interconnectedness of the spiritual world.
+None of this means a spirit has shifted from one category into another. What a spirit is was never up for revision. The scheme is a mortal convenience laid over beings who were not consulted about it, and the cases above are the places where the convenience runs out.
 
----
+## Connections
+- Spirit types: [[Hearth Spirits]] · [[Loci]] · [[Omens]] · [[Once-Was]] · [[Usurpers]]
+- Major spirit entities: [[The Primordem]] · [[Nodd the Monarch of Dreams]]
+- [[Claims and Wardens]] — what a Claim is, how one is held, and what a Warden is
+- [[Spirit Pacts]] — the agreements that bind spirits and mortals to each other
+- Related article: [[Deification in Ahvantir]] (how deities work and how they differ from spirits)
+- See also: [[The Ranjergon]] (where deities reside, behind the Divine Gate)
 
+## Source Notes
 > **Source**
-> Source: `world-anvil` — imported from `wa_articles_structured.json`
+> Source: `DM canon` — established in conversation 2026-05-17, covering the umbrella
+> nature of "spirit", origins, persistence, scale, and the deity/spirit distinction.
+> Merged 2026-10-10 with `source: world-anvil` material imported from
+> `wa_articles_structured.json` (wa-category *Natural Law*, wa-template *Physical /
+> Metaphysical Law*), which contributed the spiritual-community framing, the scholarly
+> disputes over the Once-Was and over Omens, and the observation that the categories
+> have soft edges. Per-type detail from the world-anvil article was not carried over:
+> the five type articles in this section already cover it at greater length.

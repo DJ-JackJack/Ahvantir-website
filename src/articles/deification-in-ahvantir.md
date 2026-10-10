@@ -72,4 +72,4 @@ The practical distinction is one of dependence. A deity cannot exist without wor
 - See also: [[Pathite Pantheon]] (the primary pantheon of Ahvantir)
 - See also: [[Lycanum Tyr Mechanus]] (sole exception to the Divine Gate)
 - See also: [[Nodd the Monarch of Dreams]] (spirit of deity-comparable power; illustrates the distinction)
-- Related article: [[Spirits of Ahvantir — An Overview]] (the broader category)
+- Related article: [[Spirits of Ahvantir]] (the broader category)

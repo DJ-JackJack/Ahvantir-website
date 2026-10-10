@@ -70,7 +70,7 @@ going there. A company comes back from the Fend or somewhere further out, and
 something comes back with them.
 
 ## Connections
-- [[Spirits of Ahvantir — An Overview]] — in Ahvantir "spirit" is an umbrella term rather than a kind of creature, covering anything alive, not mortal, and running on rules the ordinary world does not. Fairies fall under it as readily as anything else.
+- [[Spirits of Ahvantir]] — in Ahvantir "spirit" is an umbrella term rather than a kind of creature, covering anything alive, not mortal, and running on rules the ordinary world does not. Fairies fall under it as readily as anything else.
 - [[Vast Green]] — the plane of raw emotion, home of the fey and seat of their courts
 
 ## Source Notes

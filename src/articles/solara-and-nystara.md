@@ -56,7 +56,9 @@ At dawn and dusk, the character of the light shifts based on which sun reaches t
 
 ## The Pale Hour
 
-When Nystara is in the sky and Solara is not — either at dawn before Solara has risen or in the evening after she has set — the period of single-blue-sun light is called the Pale Hour. The name is traditional rather than exact; the span runs anywhere from twenty minutes to nearly two hours depending on season and the current orbital phase.
+When Nystara is in the sky and Solara is not — either at dawn before Solara has risen or in the evening after she has set — the period of single-blue-sun light is called the Pale Hour. The name is traditional rather than exact. Nobody means sixty minutes by it; they mean the quality of the light, and the word gets used whether it lasts the better part of two hours or the time it takes to cross a courtyard.
+
+The span depends on how far apart the suns are standing, and so on the season and on where Solara and Nystara have reached in their eight-year cycle. At its longest, with the two at their widest, it runs to nearly two hours. It shrinks as they close, and in the years around a Pairing it can be reduced to minutes, the two suns reaching the horizon almost together.
 
 Pale Hour light is cooler and harder than combined daylight. Color perception shifts: warm tones flatten, cool tones sharpen. Shadows become crisper. Distance reads more cleanly. There is a clinical quality to it that the inhabitants of Aru'Mas associate, at a level that has become cultural reflex, with precision and uncomfortable clarity.
 
