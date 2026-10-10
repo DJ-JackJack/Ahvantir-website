@@ -262,11 +262,20 @@
     if (isFinite(h)) st.h = mod(h, 24);
   })();
 
-  /* ---------- the starfield ---------- */
-
-  // Seeded so the constellations are the same sky every visit, and the same
-  // sky for every reader. A random field would make the page's own screenshots
-  // disagree with itself.
+  /* ---------- the starfield ----------
+   *
+   * Two populations, on two seeds, and the separation is the point.
+   *
+   *   BRIGHT  a few score stars that carry colour, a glow and, for the fiercest
+   *           of them, a cross of light. These are the ones a constellation
+   *           would ever be drawn from, so they have their own seed and must
+   *           stay put: adding to the faint layer must never move one.
+   *   FAINT   many thousands of anonymous points for depth. Nothing will ever
+   *           reference them by name, so this layer can be made denser or
+   *           thinner whenever we like without breaking anything.
+   *
+   * Both are seeded, so it is the same sky on every visit and for every reader.
+   */
   function rng(seed) {
     return function () {
       seed |= 0; seed = seed + 0x6D2B79F5 | 0;
@@ -275,14 +284,26 @@
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
   }
-  var R = rng(4391);
-  var STARS = [];
-  for (var si = 0; si < 1100; si++) {
-    var z = R() * 2 - 1, th = R() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
-    STARS.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z], b: Math.pow(R(), 3.2), t: R() });
+
+  // Star colours, warmest to coolest. Real stars run this gamut and a sky drawn
+  // in one shade of white looks printed rather than seen.
+  var TINTS = [
+    [255, 214, 170],   // amber
+    [255, 236, 206],   // pale gold
+    [248, 246, 240],   // white
+    [236, 240, 252],   // the common case, faintly blue
+    [214, 228, 255],   // blue-white
+    [196, 214, 255]    // hot blue
+  ];
+  function pickTint(r) {
+    // Weighted toward the middle, with a few of each extreme.
+    var i = Math.floor(2 + (r * r * 6 - 2));
+    return clamp(i, 0, TINTS.length - 1);
   }
-  // A faint river of stars along a tilted great circle.
-  (function () {
+
+  // The river: a tilted great circle, used by both the dense band of stars and
+  // the diffuse glow drawn under them.
+  var RIVER = (function () {
     var pole = [0.32, -0.55, 0.77], pn = Math.hypot(pole[0], pole[1], pole[2]);
     pole = pole.map(function (x) { return x / pn; });
     var u1 = [pole[1], -pole[0], 0], u1n = Math.hypot(u1[0], u1[1], u1[2]);
@@ -290,12 +311,41 @@
     var u2 = [pole[1] * u1[2] - pole[2] * u1[1],
               pole[2] * u1[0] - pole[0] * u1[2],
               pole[0] * u1[1] - pole[1] * u1[0]];
-    for (var i = 0; i < 900; i++) {
-      var a = R() * 2 * Math.PI, off = (R() + R() + R() - 1.5) * 0.16;
-      var v = [0, 1, 2].map(function (k) { return Math.cos(a) * u1[k] + Math.sin(a) * u2[k] + off * pole[k]; });
-      var nn = Math.hypot(v[0], v[1], v[2]);
-      STARS.push({ v: v.map(function (x) { return x / nn; }), b: Math.pow(R(), 5) * 0.7, t: R(), band: true });
+    return { pole: pole, u1: u1, u2: u2 };
+  })();
+  function onRiver(a, off) {
+    var v = [0, 1, 2].map(function (k) {
+      return Math.cos(a) * RIVER.u1[k] + Math.sin(a) * RIVER.u2[k] + off * RIVER.pole[k];
+    });
+    var n = Math.hypot(v[0], v[1], v[2]);
+    return [v[0] / n, v[1] / n, v[2] / n];
+  }
+
+  var BRIGHT = (function () {
+    var R = rng(4391), out = [];
+    for (var i = 0; i < 150; i++) {
+      var z = R() * 2 - 1, th = R() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
+      // All genuinely bright; this layer exists to be seen individually.
+      var b = 0.52 + 0.48 * Math.pow(R(), 1.7);
+      out.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z], b: b, t: R(), c: pickTint(R()) });
     }
+    return out.sort(function (p, q) { return q.b - p.b; });
+  })();
+
+  var FAINT = (function () {
+    var R = rng(90210), out = [];
+    // The general field.
+    for (var i = 0; i < 15000; i++) {
+      var z = R() * 2 - 1, th = R() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
+      out.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z],
+                 b: Math.pow(R(), 2.4) * 0.5, t: R(), c: pickTint(R()) });
+    }
+    // The river, several times denser than the field it crosses.
+    for (var j = 0; j < 9000; j++) {
+      var a = R() * 2 * Math.PI, off = (R() + R() + R() - 1.5) * 0.17;
+      out.push({ v: onRiver(a, off), b: Math.pow(R(), 3.0) * 0.42, t: R(), c: pickTint(R()) });
+    }
+    return out;
   })();
 
   /* ---------- canvas ---------- */
@@ -514,6 +564,98 @@
     });
   }
 
+  /* The river, as light rather than as dots. A galaxy is mostly unresolved
+     glow; drawing it only as points makes it read as a smear of dust. Soft
+     blobs stepped along the great circle, with the dense star band over them. */
+  function drawRiverGlow(sky, L) {
+    var a = L.starA * 0.5;
+    if (a < 0.03) return;
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for (var k = 0; k < 96; k++) {
+      var ang = k / 96 * 2 * Math.PI;
+      var h = eqToHor(onRiver(ang, 0), sky.lst);
+      if (h[2] < -0.12) continue;
+      var alt = altOf(h), p = P.f(alt, azOf(h));
+      if (!p.ok) continue;
+      var rad = Math.max(24 * DPR, 7 * P.sc);
+      var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
+      var fade = a * smooth(-4, 10, alt);
+      g.addColorStop(0, 'rgba(150,160,210,' + (fade * 0.16).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(150,160,210,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(p.x - rad, p.y - rad, rad * 2, rad * 2);
+    }
+    ctx.restore();
+  }
+
+  /* Fifteen thousand points cannot each have their own fillStyle; that is tens
+     of thousands of state changes a frame. Instead they are sorted into a few
+     buckets of colour and brightness, and each bucket is filled once. */
+  var FAINT_STEPS = 5;
+  function drawFaint(sky, L) {
+    var buckets = [], i, n = TINTS.length * FAINT_STEPS;
+    for (i = 0; i < n; i++) buckets.push(null);
+    for (i = 0; i < FAINT.length; i++) {
+      var s = FAINT[i], h = eqToHor(s.v, sky.lst);
+      if (h[2] < -0.02) continue;
+      var alt = altOf(h), p = P.f(alt, azOf(h));
+      if (!p.ok) continue;
+      var tw = 0.78 + 0.22 * Math.sin(s.t * 40 + st.h * 9);
+      var a = L.starA * (0.22 + 0.78 * s.b) * tw * smooth(-2, 6, alt);
+      if (a < 0.015) continue;
+      var lvl = clamp(Math.floor(a * FAINT_STEPS), 0, FAINT_STEPS - 1);
+      var bi = s.c * FAINT_STEPS + lvl;
+      var path = buckets[bi] || (buckets[bi] = new Path2D());
+      var sz = (0.55 + s.b * 1.1) * DPR;
+      path.rect(p.x - sz / 2, p.y - sz / 2, sz, sz);
+    }
+    for (i = 0; i < n; i++) {
+      if (!buckets[i]) continue;
+      var c = TINTS[Math.floor(i / FAINT_STEPS)];
+      var av = ((i % FAINT_STEPS) + 0.5) / FAINT_STEPS;
+      ctx.fillStyle = rgb(c, av.toFixed(3));
+      ctx.fill(buckets[i]);
+    }
+  }
+
+  /* The bright layer, drawn one at a time because each is meant to be noticed:
+     its own colour, a halo, and for the fiercest a cross of light. */
+  function drawBright(sky, L) {
+    for (var i = 0; i < BRIGHT.length; i++) {
+      var s = BRIGHT[i], h = eqToHor(s.v, sky.lst);
+      if (h[2] < -0.02) continue;
+      var alt = altOf(h), p = P.f(alt, azOf(h));
+      if (!p.ok) continue;
+      var tw = 0.82 + 0.18 * Math.sin(s.t * 40 + st.h * 11);
+      var a = L.starA * s.b * tw * smooth(-2, 7, alt);
+      if (a < 0.02) continue;
+      var c = TINTS[s.c];
+      var core = (0.8 + s.b * 2.2) * DPR;
+
+      var halo = core * 7;
+      var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, halo);
+      g.addColorStop(0, rgb(c, (a * 0.5).toFixed(3)));
+      g.addColorStop(0.35, rgb(c, (a * 0.11).toFixed(3)));
+      g.addColorStop(1, rgb(c, 0));
+      ctx.fillStyle = g;
+      ctx.fillRect(p.x - halo, p.y - halo, halo * 2, halo * 2);
+
+      // Only the fiercest get spikes, or the sky turns into a pincushion.
+      if (s.b > 0.88) {
+        var len = core * (4 + s.b * 5), w = Math.max(0.5 * DPR, core * 0.16);
+        ctx.fillStyle = rgb(c, (a * 0.4).toFixed(3));
+        ctx.fillRect(p.x - len, p.y - w / 2, len * 2, w);
+        ctx.fillRect(p.x - w / 2, p.y - len, w, len * 2);
+      }
+
+      ctx.fillStyle = rgb(c, Math.min(1, a * 1.25).toFixed(3));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, core, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+  }
+
   function render() {
     if (!W) return;
     setupProj();
@@ -559,18 +701,9 @@
     });
 
     if (L.starA > 0.01) {
-      for (var i = 0; i < STARS.length; i++) {
-        var s = STARS[i], h = eqToHor(s.v, sky.lst);
-        if (h[2] < -0.05) continue;
-        var aa = horToAA(h), p = P.f(aa.alt, aa.az);
-        if (!p.ok) continue;
-        var tw = 0.75 + 0.25 * Math.sin(s.t * 40 + st.h * 9);
-        var a = L.starA * (s.band ? 0.25 + s.b : 0.25 + 0.75 * s.b) * tw * smooth(-2, 6, aa.alt);
-        if (a < 0.02) continue;
-        var sz = (s.band ? 0.7 : 0.6 + s.b * 1.8) * DPR;
-        ctx.fillStyle = 'rgba(232,236,248,' + a.toFixed(3) + ')';
-        ctx.fillRect(p.x - sz / 2, p.y - sz / 2, sz, sz);
-      }
+      drawRiverGlow(sky, L);
+      drawFaint(sky, L);
+      drawBright(sky, L);
     }
 
     var placed = [];
