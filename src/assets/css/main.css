@@ -43,6 +43,14 @@
   --moon-keltas: #5c5c69;
   --alm-moon-dark: #e0d8c5;
 
+  /* Sky projection. Same rule as the moons: these name bodies in a table, not
+     just swatches, so they are tuned to clear 4.5:1 on both parchment
+     surfaces (#7d5a08 worst 5.38, #2b5e96 worst 5.71) rather than taken from
+     the artifact's dark palette. Nystara is pushed bluer than --moon-miras's
+     teal so the two are not read as the same colour. */
+  --solara:  #7d5a08;
+  --nystara: #2b5e96;
+
   --nav-player:       #674e11;
   --nav-player-hover: #4a3708;
 
@@ -76,6 +84,10 @@
   /* Typography */
   --font-body:    'EB Garamond', 'Georgia', serif;
   --font-display: 'Cinzel', 'Palatino Linotype', serif;
+  /* Clocks, altitudes and rise times are columns of figures that have to line
+     up as they tick. A system stack rather than a fourth web font: the page
+     already pays for Cinzel and EB Garamond. */
+  --font-mono:    ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Menlo, Consolas, monospace;
   --size-base: 1.125rem;
   --lh-body: 1.82;
   --lh-head: 1.2;
@@ -1998,6 +2010,174 @@ hr {
 }
 @media (prefers-reduced-motion: no-preference) {
   .alm-sepbar i { transition: width 0.25s ease; }
+}
+
+/* ── Sky Projection (/almanac/sky/) ────────────────────── */
+/* An observatory window. The sky is the hero and gets the width; the time
+   controls sit directly beneath it like an orrery's dials; the day's ephemeris
+   and the two-shadow dial follow. Panels, eyebrows and buttons are the
+   almanac's, so the two pages read as one tool. */
+
+.sky {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem) 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.sky-stage {
+  position: relative;
+  border: 1px solid var(--br-light);
+  overflow: hidden;
+  /* Always dark: this is the frame of a sky, not a panel of the page. */
+  background: #05070d;
+}
+
+.sky-box { position: relative; width: 100%; aspect-ratio: 2.35 / 1; max-height: 74vh; touch-action: pan-y; }
+.sky-box.is-dome { aspect-ratio: 1 / 1; max-height: 78vh; }
+@media (max-width: 700px) { .sky-box { aspect-ratio: 1.35 / 1; } }
+
+.sky-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+.sky-canvas.is-dragging { cursor: grabbing; }
+.sky-canvas:focus-visible { outline: 2px solid var(--nystara); outline-offset: -4px; }
+
+/* Reads over the sky itself, so it carries its own light colour and a shadow
+   rather than a theme token. */
+.sky-hud {
+  position: absolute; left: 0.9rem; top: 0.75rem;
+  display: flex; flex-direction: column; gap: 0.1rem;
+  pointer-events: none; color: #ece6d6; text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.sky-hud__date { font-family: var(--font-display); font-size: clamp(1rem, 2.4vw, 1.4rem); }
+.sky-hud__state {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.88;
+}
+
+/* Narrow first: the buttons are ordinary controls in the bar under the sky,
+   because on a phone there is no corner free to float them in. */
+.sky-viewbtns { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.sky-viewbtns button {
+  background: var(--p-200); color: var(--ink);
+  border: 1px solid var(--br-light);
+  height: 2rem; padding: 0 0.6rem;
+  font-family: var(--font-mono); font-size: 0.72rem; cursor: pointer;
+}
+.sky-viewbtns button:hover { border-color: var(--br-mid); }
+.sky-viewbtns button[aria-pressed="true"] { background: var(--ink); color: var(--p-100); border-color: var(--ink); }
+
+/* With room to spare they lift back over the sky's top-right corner, where
+   they belong next to a view you are turning. .sky-stage is the positioning
+   context so they can leave the controls box without leaving the DOM order. */
+@media (min-width: 701px) {
+  .sky-viewbtns {
+    position: absolute; right: 0.75rem; top: 0.75rem;
+    justify-content: flex-end; z-index: 1;
+  }
+  .sky-viewbtns button {
+    background: rgba(10,12,18,0.62); color: #ece6d6;
+    border-color: rgba(236,230,214,0.25);
+  }
+  .sky-viewbtns button:hover { border-color: rgba(236,230,214,0.6); }
+  .sky-viewbtns button[aria-pressed="true"] { background: rgba(236,230,214,0.9); color: #10131a; border-color: rgba(236,230,214,0.9); }
+}
+
+.sky-controls {
+  background: var(--p-100); border-top: 1px solid var(--br-light);
+  padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.75rem;
+}
+.sky-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.9rem; }
+.sky-field { display: flex; align-items: center; gap: 0.4rem; }
+.sky-field label {
+  font-family: var(--font-mono); font-size: 0.66rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-ghost);
+}
+.sky-field--right { margin-left: auto; }
+.sky-ctl {
+  background: var(--p-200); border: 1px solid var(--br-light);
+  color: var(--ink); height: 2.25rem; padding: 0 0.5rem;
+  font-family: var(--font-mono); font-size: 0.85rem;
+}
+.sky-ctl:hover { border-color: var(--br-mid); }
+#sky-year { width: 5.5em; text-align: center; }
+
+.sky-timeline { display: flex; align-items: center; gap: 0.75rem; }
+.sky-clock {
+  font-family: var(--font-mono); font-size: 1.2rem;
+  font-variant-numeric: tabular-nums; min-width: 5ch; color: var(--ink);
+}
+.sky-slider { position: relative; flex: 1; min-width: 0; height: 2.25rem; display: flex; align-items: center; }
+/* The band is the day's own light, ten minutes per stop. The slider rides on
+   top of it with a transparent track, so the thumb reads as a position in the
+   day rather than a value on a scale. */
+.sky-band {
+  position: absolute; left: 0; right: 0; top: 0.8rem; height: 0.625rem;
+  border: 1px solid var(--br-light);
+}
+.sky-hour {
+  position: relative; width: 100%; height: 2.25rem; margin: 0;
+  background: transparent; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+}
+.sky-hour::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 6px; height: 1.75rem;
+  background: var(--ink); border: 1px solid var(--p-100);
+}
+.sky-hour::-moz-range-thumb {
+  width: 6px; height: 1.75rem; border-radius: 0;
+  background: var(--ink); border: 1px solid var(--p-100);
+}
+.sky-hour::-webkit-slider-runnable-track { background: transparent; }
+.sky-hour::-moz-range-track { background: transparent; }
+.sky-ticks {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.64rem;
+  color: var(--ink-ghost); padding-inline: 2px;
+}
+
+.sky-grid {
+  display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1.75rem; align-items: start;
+}
+@media (max-width: 900px) { .sky-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.sky-tablewrap { overflow-x: auto; }
+.sky-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.sky-table th {
+  text-align: left; font-family: var(--font-mono); font-size: 0.64rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-ghost);
+  font-weight: 400; padding: 0 0.6rem 0.5rem 0; white-space: nowrap;
+}
+.sky-table td { padding: 0.55rem 0.6rem 0.55rem 0; border-top: 1px solid var(--br-light); vertical-align: top; }
+.sky-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 0.82rem; }
+.sky-nm { font-family: var(--font-display); display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+.sky-sw { width: 0.625rem; height: 0.625rem; border-radius: 50%; display: inline-block; flex: none; }
+.sky-lit { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-ghost); }
+
+.sky-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sky-pill {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  border: 1px solid var(--br-light); background: var(--p-200);
+  padding: 0.15rem 0.6rem; color: var(--ink);
+}
+.sky-pill--pale { border-color: var(--nystara); }
+.sky-pill--warm { border-color: var(--solara); }
+
+.sky-dialwrap { align-items: center; }
+.sky-dial { width: min(100%, 260px); aspect-ratio: 1; height: auto; display: block; }
+
+.sky-model { border: 1px solid var(--br-light); background: var(--p-100); padding: 0 1.25rem; }
+.sky-model summary { cursor: pointer; padding: 1rem 0; font-family: var(--font-display); font-size: 1.15rem; }
+.sky-model__body { display: flex; flex-direction: column; gap: 0.85rem; padding-bottom: 1.25rem; max-width: 80ch; }
+.sky-model__body ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 0.4rem; }
+.sky-model__ctl { display: flex; flex-wrap: wrap; gap: 0.6rem 1.1rem; align-items: center; }
+.sky-model__ctl input[type="number"] { width: 6ch; }
+.sky-share-out {
+  font-family: var(--font-mono); font-size: 0.78rem; width: 100%;
+  background: var(--p-200); border: 1px solid var(--br-light); color: var(--ink);
+  padding: 0.4rem 0.5rem;
 }
 
 /* ── Graph Page ─────────────────────────────────────────────────── */
@@ -5114,6 +5294,11 @@ html.dark {
   --moon-toris:  #d08a45;
   --moon-keltas: #c6c6cf;
   --alm-moon-dark: #2a2117;
+
+  /* On a dark surface the suns can take their true colours, which are also the
+     values the canvas draws with. 9.05 and 11.44 against --p-200. */
+  --solara:  #e9b44c;
+  --nystara: #b9d6f7;
 
   --nav-player:       #ab9256;
   --nav-player-hover: #c9b074;

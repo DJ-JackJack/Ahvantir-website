@@ -1,12 +1,13 @@
 /* almanac.js — the Marducian year, day by day.
  *
- * Ported from the Ahvantir Sky Almanac artifact. Everything is computed from
- * the Foundry calendar's own tables rather than stored: given a day, the moon
- * phases and the sun separation fall out of arithmetic, so any year from 0 to
- * 9999 MC works without a data file.
+ * Ported from the Ahvantir Sky Almanac artifact. Everything is computed rather
+ * than stored: given a day, the moon phases and the sun separation fall out of
+ * arithmetic, so any year from 0 to 9999 MC works without a data file.
  *
- * Canon lives in /articles/marducian-calendar/. If the two ever disagree, the
- * article is what a reader is quoting, so fix this to match it.
+ * The calendar tables themselves live in marducian.js, shared with the sky
+ * projection at /almanac/sky/. Canon lives in /articles/marducian-calendar/;
+ * if the two ever disagree, the article is what a reader is quoting, so fix
+ * marducian.js to match it.
  *
  * Two things differ from the artifact, both deliberate:
  *   - The palette comes from the site's own tokens, so the page follows the
@@ -20,101 +21,19 @@
 
   /* ---------- the calendar ---------- */
 
-  // Intercalary days are modelled as one-day "months" (ic: true) so that a day
-  // number maps to a position without a separate special case everywhere.
-  var MONTHS = [
-    { n: 'Varenthal',  a: 'Var', d: 43, desc: 'Thawing and early growth as winter retreats.' },
-    { n: 'Ossandrel',  a: 'Oss', d: 43, desc: 'Rain and renewal, when seeds are sown and rivers swell.' },
-    { n: 'Thirivale',  a: 'Thi', d: 43, desc: 'Full spring when blossoms peak and life is at its most vibrant.' },
-    { n: 'Cindralis',  a: 'Cin', d: 43, desc: 'Heat and storms as the suns blaze high and passions flare.' },
-    { n: 'Cindrafel',  a: 'Cfl', d: 1, ic: true, desc: "The burning's end. The blaze of Cindralis breaks and the harvest begins." },
-    { n: 'Embrathen',  a: 'Emb', d: 42, desc: 'Harvest begins and warmth mellows into golden days.' },
-    { n: 'Lochenvir',  a: 'Loc', d: 42, desc: 'Cooling winds and fading leaves mark the onset of autumn.' },
-    { n: 'Draelthorn', a: 'Dra', d: 43, desc: 'Frost returns and stillness settles over the land.' },
-    { n: 'Myrnselt',   a: 'Myr', d: 43, desc: 'Deep winter and the longest nights, when dreams and memory dominate.' },
-    { n: 'Noctharis',  a: 'Noc', d: 1, ic: true, desc: "The night's keeping. A vigil of remembrance through the longest dark." },
-    { n: 'Keltharyn',  a: 'Kel', d: 42, desc: 'Dormant season when the soil rests and seeds lie in wait.' }
-  ];
-  var WEEK  = ['Solkir', 'Nyskir', 'Mirakir', 'Torkir', 'Kelkir', 'Orkir', 'Veskir', 'Alkir'];
-  var WABBR = ['Sol', 'Nys', 'Mir', 'Tor', 'Kel', 'Ork', 'Ves', 'Alk'];
+  // The tables used to live here. They now live in marducian.js, because the
+  // sky projection at /almanac/sky/ needs the same ones and two copies of
+  // MONTHS and MOONS would drift without anything breaking loudly enough to
+  // notice. Aliased into locals so the drawing code below is unchanged.
+  var M = window.Marducian;
+  if (!M) return;
 
-  // ph: how many days each phase lasts, in PH order. They are uneven because a
-  // cycle rarely divides by eight; Foundry's tables decide where the remainder
-  // goes and this copies them exactly.
-  var MOONS = [
-    { n: 'Miras',  c: 24, ph: [3, 3, 3, 3, 3, 3, 3, 3],  key: 'miras',  dom: 'change and emotional tides' },
-    { n: 'Toris',  c: 43, ph: [6, 5, 6, 5, 6, 5, 6, 4],  key: 'toris',  dom: 'labour and growth' },
-    { n: 'Keltas', c: 66, ph: [8, 8, 8, 8, 8, 8, 8, 10], key: 'keltas', dom: 'dreams, prophecy and death' }
-  ];
-  var PH  = ['New', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
-             'Full', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'];
-  var ILL = [0, 0.25, 0.5, 0.75, 1, 0.75, 0.5, 0.25];
-  var YEAR_LEN = 386;
-  var PAIR_YEAR = 0, PAIR_PERIOD = 8;   // first recorded Pairing: 0 MC
-
-  function mod(a, b) { return ((a % b) + b) % b; }
-
-  function phaseOf(m, D) {
-    var p = mod(D, m.c), i = 0;
-    while (p >= m.ph[i]) { p -= m.ph[i]; i++; }
-    return { i: i, into: p + 1, len: m.ph[i] };
-  }
-
-  // Day 0 is 1 Varenthal, Year 1 — the epoch where Foundry starts all three
-  // moons new. Every phase on the page is measured from there.
-  function absDay(Y, doy) { return (Y - 1) * YEAR_LEN + (doy - 1); }
-  function fromAbs(D) { return { Y: Math.floor(D / YEAR_LEN) + 1, doy: mod(D, YEAR_LEN) + 1 }; }
-
-  function buildYear(Y) {
-    var out = [], doy = 0, turn = 0;
-    MONTHS.forEach(function (m, mi) {
-      for (var d = 1; d <= m.d; d++) {
-        doy++;
-        var D = absDay(Y, doy);
-        out.push({
-          Y: Y, doy: doy, mi: mi, d: d, ic: !!m.ic,
-          wd: m.ic ? null : turn % 8, D: D,
-          ph: MOONS.map(function (mo) { return phaseOf(mo, D); })
-        });
-        if (!m.ic) turn++;
-      }
-    });
-    return out;
-  }
-
-  function dayInfo(Y, doy) {
-    var rem = doy, turn = 0;
-    for (var mi = 0; mi < MONTHS.length; mi++) {
-      var m = MONTHS[mi];
-      if (rem <= m.d) return { mi: mi, d: rem, ic: !!m.ic, wd: m.ic ? null : (turn + rem - 1) % 8 };
-      rem -= m.d;
-      if (!m.ic) turn += m.d;
-    }
-    return null;
-  }
-
-  function fmtLong(Y, doy) {
-    var x = dayInfo(Y, doy), m = MONTHS[x.mi];
-    return x.ic ? (m.n + ', ' + Y + ' MC') : (WEEK[x.wd] + ', ' + x.d + ' ' + m.n + ' ' + Y + ' MC');
-  }
-  function fmtShort(Y, doy) {
-    var x = dayInfo(Y, doy), m = MONTHS[x.mi];
-    return x.ic ? m.n : (x.d + ' ' + m.a);
-  }
-
-  /* The suns swing apart and back on an eight-year cycle; |sin| gives one full
-     approach-and-separate per period, zero at the Pairing. */
-  function sunSep(Y, doy) {
-    var t = Y + (doy - 1) / YEAR_LEN - PAIR_YEAR;
-    return Math.abs(Math.sin(Math.PI * t / PAIR_PERIOD));
-  }
-  function nextPairing(Y, doy) {
-    var t = Y + (doy - 1) / YEAR_LEN - PAIR_YEAR;
-    return PAIR_YEAR + Math.ceil(t / PAIR_PERIOD - 1e-9) * PAIR_PERIOD;
-  }
-
-  var fullCount = function (x) { return x.ph.filter(function (p) { return p.i === 4; }).length; };
-  var isDark    = function (x) { return x.ph.every(function (p) { return p.i === 0; }); };
+  var MONTHS = M.MONTHS, WEEK = M.WEEK, WABBR = M.WABBR, MOONS = M.MOONS,
+      PH = M.PH, ILL = M.ILL, YEAR_LEN = M.YEAR_LEN;
+  var phaseOf = M.phaseOf, absDay = M.absDay, fromAbs = M.fromAbs,
+      buildYear = M.buildYear, fmtLong = M.fmtLong, fmtShort = M.fmtShort,
+      sunSep = M.sunSep, nextPairing = M.nextPairing,
+      fullCount = M.fullCount, isDark = M.isDark;
 
   /* ---------- drawing ---------- */
 

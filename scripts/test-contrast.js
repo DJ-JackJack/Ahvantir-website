@@ -122,6 +122,16 @@ function cases(t, mode) {
     [`${mode}: --moon-miras on --p-100`,  t['--moon-miras'],  t['--p-100'], AA_NORMAL],
     [`${mode}: --moon-toris on --p-100`,  t['--moon-toris'],  t['--p-100'], AA_NORMAL],
     [`${mode}: --moon-keltas on --p-100`, t['--moon-keltas'], t['--p-100'], AA_NORMAL],
+
+    // The two suns, held to the same bar as the moons and for the same reason:
+    // the sky page names Solara and Nystara in its ephemeris, not only in
+    // swatches. --p-200 is listed as well, because the Two Shadows dial is
+    // painted on it and it is the darker parchment — checking --p-100 alone
+    // would pass a colour that fails where it actually sits.
+    [`${mode}: --solara on --p-100`,  t['--solara'],  t['--p-100'], AA_NORMAL],
+    [`${mode}: --solara on --p-200`,  t['--solara'],  t['--p-200'], AA_NORMAL],
+    [`${mode}: --nystara on --p-100`, t['--nystara'], t['--p-100'], AA_NORMAL],
+    [`${mode}: --nystara on --p-200`, t['--nystara'], t['--p-200'], AA_NORMAL],
   ];
 }
 
