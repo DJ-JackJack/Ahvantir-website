@@ -21,8 +21,10 @@ permalink: /almanac/sky/
   <p class="alm-hint" id="sky-keys">
     Tab to the sky, then use the left and right arrows to turn, the up and down
     arrows to move the clock by a quarter hour, Page&nbsp;Up and Page&nbsp;Down to
-    change the day, Home to face north, and Space to start or stop. Hold Shift to
-    move in larger steps. Every control below is reachable on its own.
+    change the day, Home to face north, and Space to start or stop. Plus and minus
+    zoom and 0 returns to the full horizon; once you are zoomed in, Shift with the
+    up and down arrows aims higher or lower, and dragging does both at once. Shift
+    with left or right turns further. Every control below is reachable on its own.
   </p>
 
   <section class="sky-stage" aria-labelledby="sky-stage-head">
@@ -34,6 +36,7 @@ permalink: /almanac/sky/
       <div class="sky-hud">
         <div class="sky-hud__date" id="sky-hud-date"></div>
         <div class="sky-hud__state" id="sky-hud-state"></div>
+        <div class="sky-hud__state" id="sky-hud-fov"></div>
       </div>
     </div>
 
@@ -115,6 +118,13 @@ permalink: /almanac/sky/
           <tbody id="sky-eph"></tbody>
         </table>
       </div>
+      <div>
+        <p class="alm-eyebrow">Apparent size, right now</p>
+        <div class="sky-sizes" id="sky-sizes" role="img" aria-labelledby="sky-sizes-desc"></div>
+        <p class="sr-only" id="sky-sizes-desc">The five bodies drawn in proportion to how wide each looks from the ground at this moment.</p>
+        <p class="alm-note">Drawn to the same scale as each other, so the comparison holds even when the sky above is magnified. The suns change size through the year as Ahvantir's orbit carries it nearer and further; Nystara swings widest, sitting furthest from the centre the pair turns about.</p>
+      </div>
+
       <p class="alm-note">Moon phase names follow the Foundry phase tables, so they match the <a href="/almanac/" class="wikilink">Sky Almanac</a> and the table&rsquo;s own moon widget. The Pale Hour is Nystara in the sky with Solara below it &mdash; named for the light, not the length, so it can run to minutes or to most of two hours. Solara alone is simply the warm light, which has no other name.</p>
     </div>
 
@@ -150,9 +160,9 @@ permalink: /almanac/sky/
         <span class="sky-field"><label for="sky-lat">Latitude</label><input class="sky-ctl" id="sky-lat" type="number" min="-80" max="80" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-tilt">Axial tilt</label><input class="sky-ctl" id="sky-tilt" type="number" min="0" max="60" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-spread">Orbit tilt</label><input class="sky-ctl" id="sky-spread" type="number" min="0" max="89" step="1">&deg;</span>
-        <span class="sky-field"><label for="sky-big">Enlarge discs</label><input id="sky-big" type="checkbox" checked></span>
+        <span class="sky-field"><label for="sky-big">Magnify discs &times;3</label><input id="sky-big" type="checkbox" checked></span>
       </div>
-      <p class="alm-note">Discs are drawn three times their modelled size unless &ldquo;Enlarge discs&rdquo; is off. At true scale they are specks, which is accurate and useless.</p>
+      <p class="alm-note">Across the whole horizon a sun is about four pixels wide, so the discs are drawn at three times their real size to be visible at all. Turn that off and zoom in &mdash; scroll on the sky, or use plus and minus &mdash; and everything is at true angular size. The strip under the ephemeris always shows the real proportions whatever the view is doing.</p>
       <div class="sky-field">
         <button type="button" class="map-btn" id="sky-share">Link to this sky</button>
         <input class="sky-share-out" id="sky-share-out" type="text" readonly hidden

@@ -224,13 +224,14 @@
 
   var st = {
     Y: 439, doy: M.doyOf(8, 35), h: 18.5,
-    view: 'pan', facing: 90, domeRot: 0, fov: 180,
+    view: 'pan', facing: 90, domeRot: 0, pitch: 0,
+    fov: 180, fovAuto: true,   // fovAuto until the reader zooms; then theirs
     big: true, playing: false, speed: '60'
   };
   try {
     var saved = JSON.parse(localStorage.getItem('ahv-sky') || 'null');
     if (saved) {
-      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big'].forEach(function (k) {
+      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big', 'fov', 'fovAuto', 'pitch'].forEach(function (k) {
         if (saved[k] !== undefined) st[k] = saved[k];
       });
       if (saved.model) {
@@ -245,7 +246,7 @@
     try {
       localStorage.setItem('ahv-sky', JSON.stringify({
         Y: st.Y, doy: st.doy, h: st.h, view: st.view, facing: st.facing,
-        domeRot: st.domeRot, big: st.big,
+        domeRot: st.domeRot, big: st.big, fov: st.fov, fovAuto: st.fovAuto, pitch: st.pitch,
         model: { lat: MODEL.lat, tilt: MODEL.tilt, beta: O.EL.BETA / DEG }
       }));
     } catch (e) {}
@@ -308,7 +309,8 @@
     DPR = Math.min(window.devicePixelRatio || 1, 2);
     W = Math.round(r.width * DPR); H = Math.round(r.height * DPR);
     cv.width = W; cv.height = H;
-    if (st.view === 'pan') st.fov = r.width < 700 ? 130 : 180;
+    // Only pick a field of view while the reader has not chosen one.
+    if (st.view === 'pan' && st.fovAuto) st.fov = r.width < 700 ? 130 : 180;
     render();
   }
   if (window.ResizeObserver) new ResizeObserver(resize).observe(box);
@@ -322,7 +324,10 @@
         sc: sc, hy: hy,
         f: function (alt, az) {
           var d = mod(az - st.facing + 180, 360) - 180;
-          return { x: W / 2 + d * sc, y: hy - alt * sc, ok: Math.abs(d) < st.fov / 2 + 8 };
+          // st.pitch lifts the frame: at 0 the horizon sits where it always
+          // did, and nothing about the wide view changes.
+          return { x: W / 2 + d * sc, y: hy - (alt - st.pitch) * sc,
+                   ok: Math.abs(d) < st.fov / 2 + 8 };
         }
       };
     } else {
@@ -372,7 +377,10 @@
   function drawSun(b) {
     var p = P.f(b.alt, b.az);
     if (!p.ok) return null;
-    var rpx = Math.max(3 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
+    // A floor only so a body is never invisible. Kept small, because at true
+    // size a generous floor flattens every disc to the same dot and the
+    // proportions — the whole point of looking — go with it.
+    var rpx = Math.max(0.6 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
     var c = COL[b.n];
     var glowR = rpx * (b.n === 'Nystara' ? 14 : 11);
     var g = ctx.createRadialGradient(p.x, p.y, rpx * 0.6, p.x, p.y, glowR);
@@ -388,7 +396,7 @@
   function drawMoon(b, sky, L) {
     var p = P.f(b.alt, b.az);
     if (!p.ok) return null;
-    var rpx = Math.max(2.2 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
+    var rpx = Math.max(0.6 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
     // Point the terminator at the suns: nudge the moon's direction a little
     // toward the pair's centre and see which way that moves on screen.
     var s = sky.baryHor, m = b.hor;
@@ -515,11 +523,19 @@
     ctx.clearRect(0, 0, W, H);
 
     if (st.view === 'pan') {
-      var g = ctx.createLinearGradient(0, 0, 0, P.hy);
-      g.addColorStop(0, rgb(L.zen));
-      g.addColorStop(0.75, rgb(lerp3(L.zen, L.hor, 0.55)));
-      g.addColorStop(1, rgb(L.hor));
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, P.hy + 2);
+      /* Keyed to altitude rather than to a fixed fraction of the canvas, so it
+         stays right when the view tilts up. Altitude at any row is
+         pitch + (hy - y)/sc; the colour runs from the horizon shade at 0 to the
+         zenith shade at 90, and the whole canvas is covered because the
+         horizon may now be well below the bottom edge. */
+      var g = ctx.createLinearGradient(0, 0, 0, H);
+      for (var gi = 0; gi <= 8; gi++) {
+        var gy = gi / 8;
+        var galt = st.pitch + (P.hy - gy * H) / P.sc;
+        var f = clamp(galt / 90, 0, 1);
+        g.addColorStop(gy, rgb(lerp3(L.hor, L.zen, f)));
+      }
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     } else {
       ctx.fillStyle = '#05070d'; ctx.fillRect(0, 0, W, H);
       ctx.save(); ctx.beginPath(); ctx.arc(P.cx, P.cy, P.R, 0, 2 * Math.PI); ctx.clip();
@@ -567,10 +583,11 @@
     if (st.view === 'pan') {
       var light = Math.min(1, L.day + (L.tS + L.tN) * 0.25);
       ctx.fillStyle = rgb(lerp3([8, 9, 13], [44, 46, 50], light));
+      // Through the projection, so the skyline drops away when you look up.
       ctx.beginPath(); ctx.moveTo(0, H);
       for (var x = 0; x <= W; x += 3 * DPR) {
         var az = st.facing + (x - W / 2) / P.sc;
-        ctx.lineTo(x, P.hy - hills(mod(az, 360)) * P.sc);
+        ctx.lineTo(x, P.f(hills(mod(az, 360)), az).y);
       }
       ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
       ctx.font = (11 * DPR) + 'px ' + (cssv('--font-mono') || 'monospace');
@@ -580,11 +597,11 @@
         var pc = P.f(0, az2);
         if (!pc.ok) continue;
         ctx.fillText(compass(az2), pc.x, H - 12 * DPR);
-        ctx.fillRect(pc.x - 0.5 * DPR, P.hy + 6 * DPR, 1 * DPR, 6 * DPR);
+        ctx.fillRect(pc.x - 0.5 * DPR, pc.y + 6 * DPR, 1 * DPR, 6 * DPR);
       }
       ctx.textAlign = 'left'; ctx.fillStyle = 'rgba(236,230,214,.35)';
       [30, 60].forEach(function (a) {
-        var y = P.hy - a * P.sc;
+        var y = P.f(a, st.facing).y;
         if (y > 20 * DPR) { ctx.fillRect(0, y, 10 * DPR, 1 * DPR); ctx.fillText(a + '°', 14 * DPR, y + 4 * DPR); }
       });
     } else {
@@ -638,7 +655,8 @@
       var tok = moon ? '--moon-' + moon.key : '--' + body.key;
       return '<tr><td><span class="sky-nm"><i class="sky-sw" style="background:var(' + tok + ')"></i>' +
         esc(body.n) + '</span></td>' +
-        '<td class="sky-num" id="sky-now' + k + '"></td>' +
+        '<td class="sky-num"><button type="button" class="sky-aim" id="sky-now' + k + '" ' +
+          'data-i="' + k + '" title="Point the view at ' + esc(body.n) + '"></button></td>' +
         '<td class="sky-num">' + esc(rise) + '</td>' +
         '<td class="sky-num">' + esc(set) + '</td>' +
         '<td>' + esc(ph) + (moon ? ' <span class="sky-lit" id="sky-ill' + k + '"></span>' : '') + '</td></tr>';
@@ -684,6 +702,12 @@
     });
     var state = lightState(S, N) + extra;
     $('sky-hud-state').textContent = state;
+    var fovEl = $('sky-hud-fov');
+    if (fovEl) {
+      fovEl.textContent = st.view === 'dome' ? 'Whole sky'
+        : (st.fov >= 170 ? 'Full horizon · discs ' + (st.big ? '×3' : 'true size')
+           : st.fov.toFixed(st.fov < 10 ? 1 : 0) + '° across · discs ' + (st.big ? '×3' : 'true size'));
+    }
     $('sky-clock').textContent = fmtH(st.h);
     if (document.activeElement !== $('sky-hour')) $('sky-hour').value = st.h;
 
@@ -691,6 +715,9 @@
       var el = $('sky-now' + k);
       if (!el) return;
       el.textContent = b.alt > -0.5 ? Math.round(b.alt) + '° ' + compass(b.az) : 'below';
+      el.dataset.alt = b.alt.toFixed(3);
+      el.dataset.az = b.az.toFixed(3);
+      el.disabled = b.alt <= -0.5;
       var il = $('sky-ill' + k);
       if (il) il.textContent = Math.round(b.illum * 100) + '% lit';
     });
@@ -698,7 +725,29 @@
     // One live region rather than many: a screen reader needs the moment and
     // the light, not every cell of the table on every frame.
     if (!st.playing) $('sky-status').textContent = M.fmtLong(st.Y, st.doy) + ', ' + fmtH(st.h) + '. ' + state + '.';
+    drawSizes(sky);
     drawDial(sky);
+  }
+
+  /* The five bodies in proportion to one another, at this moment. The sky above
+     may be magnified three times so that anything is visible at all; this strip
+     never is, so the comparison stays honest. Miras is the widest thing in the
+     sky and sets the scale. */
+  function drawSizes(sky) {
+    var el = $('sky-sizes');
+    if (!el) return;
+    var items = sky.bodies.map(function (b) {
+      return { n: b.n, key: b.key, dia: b.r * 2 };
+    });
+    var widest = Math.max.apply(null, items.map(function (i) { return i.dia; }));
+    el.innerHTML = items.map(function (i) {
+      var px = Math.max(4, Math.round(i.dia / widest * 68));
+      var tok = i.key === 'solara' || i.key === 'nystara' ? '--' + i.key : '--moon-' + i.key;
+      return '<span class="sky-size">' +
+        '<span class="sky-size__disc" style="width:' + px + 'px;height:' + px + 'px;background:var(' + tok + ')"></span>' +
+        '<span class="sky-size__name">' + esc(i.n) + '</span>' +
+        '<span class="sky-size__num">' + i.dia.toFixed(2) + '&deg;</span></span>';
+    }).join('');
   }
 
   /* ---------- the two shadows ---------- */
@@ -801,6 +850,50 @@
     };
   });
 
+  /* Point the view at a body. The ephemeris rows carry where each one is, so
+     clicking a row swings the frame onto it — which is the only practical way
+     to find something once the field of view is down to a degree or two. */
+  function aimAt(alt, az) {
+    if (st.view === 'dome') { st.domeRot = az; }
+    else { st.facing = az; st.pitch = clamp(alt, -15, 88); }
+    render();
+    save();
+  }
+  $('sky-eph').addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.sky-aim') : null;
+    if (!btn || btn.disabled) return;
+    var alt = parseFloat(btn.dataset.alt), az = parseFloat(btn.dataset.az);
+    if (isFinite(alt) && isFinite(az)) aimAt(alt, az);
+  });
+
+  /* Zoom. Without it "true size" is a promise the page cannot keep: across the
+     whole horizon a sun is four pixels wide. Narrowing the field of view is
+     what makes an accurate disc something you can actually look at. */
+  var FOV_MIN = 1.5, FOV_MAX = 180;
+  function setFov(f) {
+    if (st.view !== 'pan') return;
+    st.fov = clamp(f, FOV_MIN, FOV_MAX);
+    st.fovAuto = false;
+    render();
+    save();
+  }
+  function zoom(factor) { setFov(st.fov * factor); }
+  function resetFov() {
+    st.fovAuto = true;
+    st.pitch = 0;
+    var r = box.getBoundingClientRect();
+    st.fov = r.width < 700 ? 130 : 180;
+    render();
+    save();
+  }
+
+  // Wheel zooms rather than scrolling the page, but only over the sky.
+  cv.addEventListener('wheel', function (e) {
+    if (st.view !== 'pan') return;
+    e.preventDefault();
+    zoom(e.deltaY > 0 ? 1.15 : 1 / 1.15);
+  }, { passive: false });
+
   function turn(by) {
     if (st.view === 'dome') st.domeRot = mod(st.domeRot + by, 360);
     else st.facing = mod(st.facing + by, 360);
@@ -810,15 +903,21 @@
   // Drag to turn.
   var drag = null;
   cv.addEventListener('pointerdown', function (e) {
-    drag = { x: e.clientX, f: st.view === 'pan' ? st.facing : st.domeRot };
+    drag = { x: e.clientX, y: e.clientY, p: st.pitch,
+             f: st.view === 'pan' ? st.facing : st.domeRot };
     cv.setPointerCapture(e.pointerId);
     cv.classList.add('is-dragging');
   });
   cv.addEventListener('pointermove', function (e) {
     if (!drag) return;
     var dx = (e.clientX - drag.x) * DPR;
-    if (st.view === 'pan') st.facing = mod(drag.f - dx / P.sc, 360);
-    else st.domeRot = mod(drag.f - dx / (P.R / 90) * 0.6, 360);
+    if (st.view === 'pan') {
+      st.facing = mod(drag.f - dx / P.sc, 360);
+      var dy = (e.clientY - drag.y) * DPR;
+      st.pitch = clamp(drag.p + dy / P.sc, -15, 88);
+    } else {
+      st.domeRot = mod(drag.f - dx / (P.R / 90) * 0.6, 360);
+    }
     render();
   });
   var endDrag = function () { if (drag) { drag = null; cv.classList.remove('is-dragging'); save(); } };
@@ -834,11 +933,24 @@
     switch (e.key) {
       case 'ArrowLeft':  e.preventDefault(); turn(big ? -15 : -5); break;
       case 'ArrowRight': e.preventDefault(); turn(big ? 15 : 5); break;
-      case 'ArrowUp':    e.preventDefault(); setHour(st.h + (big ? 1 : 0.25)); break;
-      case 'ArrowDown':  e.preventDefault(); setHour(st.h - (big ? 1 : 0.25)); break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (big) { st.pitch = clamp(st.pitch + st.fov / 12, -15, 88); render(); save(); }
+        else setHour(st.h + 0.25);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (big) { st.pitch = clamp(st.pitch - st.fov / 12, -15, 88); render(); save(); }
+        else setHour(st.h - 0.25);
+        break;
       case 'PageUp':     e.preventDefault(); setDate(st.Y, st.doy + 1); break;
       case 'PageDown':   e.preventDefault(); setDate(st.Y, st.doy - 1); break;
-      case 'Home':       e.preventDefault(); if (st.view === 'dome') st.domeRot = 0; else st.facing = 0; render(); save(); break;
+      case 'Home':       e.preventDefault(); if (st.view === 'dome') { st.domeRot = 0; } else { st.facing = 0; st.pitch = 0; } render(); save(); break;
+      case '+':
+      case '=':          e.preventDefault(); zoom(1 / 1.4); break;
+      case '-':
+      case '_':          e.preventDefault(); zoom(1.4); break;
+      case '0':          e.preventDefault(); resetFov(); break;
       case ' ':
       case 'Spacebar':   e.preventDefault(); togglePlay(); break;
       default: return;

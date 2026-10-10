@@ -2156,6 +2156,30 @@ hr {
 .sky-sw { width: 0.625rem; height: 0.625rem; border-radius: 50%; display: inline-block; flex: none; }
 .sky-lit { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-ghost); }
 
+/* The five bodies drawn in proportion to each other. Never magnified, however
+   the sky above is being drawn, so the comparison stays truthful. */
+.sky-sizes {
+  display: flex; align-items: flex-end; gap: 1.1rem;
+  flex-wrap: wrap; padding: 0.4rem 0 0.2rem;
+}
+.sky-size { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.sky-size__disc { border-radius: 50%; display: block; flex: none; }
+.sky-size__name { font-family: var(--font-display); font-size: 0.82rem; }
+.sky-size__num {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--ink-ghost); font-variant-numeric: tabular-nums;
+}
+
+/* The "Now" reading doubles as the way to point the view at that body. */
+.sky-aim {
+  font: inherit; font-family: var(--font-mono); font-size: 0.82rem;
+  color: var(--ink); background: none; border: 0;
+  border-bottom: 1px dotted var(--br-mid);
+  padding: 0; cursor: pointer; font-variant-numeric: tabular-nums;
+}
+.sky-aim:hover:not(:disabled) { color: var(--teal-dark); border-bottom-color: currentColor; }
+.sky-aim:disabled { color: var(--ink-ghost); border-bottom: 0; cursor: default; }
+
 .sky-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .sky-pill {
   font-family: var(--font-mono); font-size: 0.72rem;
