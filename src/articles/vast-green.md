@@ -46,7 +46,27 @@ The Green is home to a variety of mystical beings, ranging from benevolent to cr
 
 ## 1. The Fey Courts
 
-The Green is ruled by the Lords and Ladies of Emotion, each embodying a primal feeling such as Joy, Sorrow, Wrath, Passion, or Fear. Their courts are filled with lesser fey, enchanted creatures, and bound spirits, all playing out eternal dramas dictated by their ruler’s whims.
+The courts are a fey contrivance. Fey organise into them and no other kind of
+spirit does, binding themselves by allegiance, shared purpose and fealty — all
+three of which shift.
+
+Each court is composed of its Lords and Ladies of Emotion, nobles who each embody
+a primal feeling such as Joy, Sorrow, Wrath, Passion or Fear, and who can embody
+nothing else. Their courts are filled with lesser fey, enchanted creatures, and
+bound spirits, all playing out eternal dramas dictated by their ruler’s whims.
+
+The courts are ranked. Minor courts answer to lesser courts, lesser to greater,
+and the greater courts answer at last to the four that rule the Green:
+
+| Court | Monarch | Embodies |
+|---|---|---|
+| **Spring** | Erelda Vivoss Curotta, Queen of the Spring Court | Joy in its purest form — simple, childish euphoria |
+| **Summer** | Damsellett Mimos, Queen of the Summer Court | Passion, unbridled and uncontained, in all its myriad forms |
+| **Autumnal** | Duran Vlakkos Nerok, King of the Autumnal Court | Love, in the form of familial and community ties |
+| **Winter** | Erok Dynostrio, King of the Winter Court | Hunger — for all things, for fulfilment, the desperate need for more |
+
+Within the Green the four monarchs act with complete authority. Above them stands
+only the King of Spirits, whom they are bound to obey as every spirit is.
 
 ## 2. The Wild Spirits
 

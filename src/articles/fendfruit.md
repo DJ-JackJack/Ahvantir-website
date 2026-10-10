@@ -1,6 +1,6 @@
 ---
 title: "Fendfruit"
-category: history
+category: culture
 tags: [agriculture]
 date_added: "2026-06-06"
 ---
