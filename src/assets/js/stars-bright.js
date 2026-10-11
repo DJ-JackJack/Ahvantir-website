@@ -32,7 +32,7 @@ window.BrightStars = [
   { id: "s005", ra: 245.9660, dec: -51.9124, b: 0.9689, c: 0, o: "seed", t: 0.0064 },
   { id: "s006", ra: 125.9280, dec: -9.5100, b: 0.9678, c: 2, o: "seed", t: 0.3479 },
   { id: "s007", ra: 337.7914, dec: -3.7143, b: 0.9674, c: 0, o: "seed", t: 0.3508 },
-  { id: "s008", ra: 357.2569, dec: -16.7881, b: 0.9662, c: 3, o: "seed", t: 0.4594 },
+  { id: "s008", ra: 357.2569, dec: -25.0000, b: 0.9662, c: 3, o: "placed", t: 0.4594 },
   { id: "s009", ra: 53.1678, dec: -46.8119, b: 0.9652, c: 2, o: "seed", t: 0.5592 },
   { id: "s010", ra: 83.2554, dec: 37.7338, b: 0.9503, c: 0, o: "seed", t: 0.2300 },
   { id: "s011", ra: 287.6486, dec: 2.7947, b: 0.9399, c: 0, o: "seed", t: 0.0752 },
@@ -97,7 +97,7 @@ window.BrightStars = [
   { id: "s070", ra: 189.2291, dec: -20.2718, b: 0.6748, c: 1, o: "seed", t: 0.1864 },
   { id: "s071", ra: 194.0716, dec: 18.7601, b: 0.6725, c: 4, o: "seed", t: 0.7310 },
   { id: "s072", ra: 315.5209, dec: -45.8267, b: 0.6640, c: 4, o: "seed", t: 0.2175 },
-  { id: "s073", ra: 2.2337, dec: -23.0625, b: 0.6635, c: 2, o: "seed", t: 0.7151 },
+  { id: "s073", ra: 2.2337, dec: -19.0000, b: 0.6635, c: 2, o: "placed", t: 0.7151 },
   { id: "s074", ra: 18.0678, dec: 41.6276, b: 0.6617, c: 0, o: "seed", t: 0.7222 },
   { id: "s075", ra: 8.9991, dec: 29.4718, b: 0.6537, c: 5, o: "seed", t: 0.4131 },
   { id: "s076", ra: 56.6048, dec: 29.3809, b: 0.6530, c: 0, o: "seed", t: 0.0706 },
@@ -221,6 +221,13 @@ window.BrightStars = [
    * become the pattern for the remaining ten signs or the ecliptic ends up
    * brighter than the river.
    *
+   * Legs flipped 2026-10-11 on Krys's call: both figures stood with the
+   * short leg west and the long leg east, and he wanted that reversed. The
+   * Child's feet simply swapped declinations, costing nothing since both
+   * were mine. The Mother's are seeded, so s008 drops 8.2 deg and s073 rises
+   * 4.1 to meet it rather than either making the whole journey. Both are
+   * marked placed now, because a moved star is a placed star.
+   *
    * Re-posed 2026-10-11, same day: the two figures came out too alike, so the
    * Child now holds one arm raised (s159) and stands with his feet drawn in
    * (s161, s162) against his mother's open arms and planted stance. Only
@@ -238,6 +245,6 @@ window.BrightStars = [
   { id: "s158", ra: 31.6000, dec: 7.0000, b: 0.6750, c: 3, o: "placed", t: 0.8820 },
   { id: "s159", ra: 38.6000, dec: 16.2000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
   { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 },
-  { id: "s161", ra: 28.2000, dec: -13.2000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
-  { id: "s162", ra: 29.8000, dec: -17.4000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
+  { id: "s161", ra: 28.2000, dec: -17.4000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
+  { id: "s162", ra: 29.8000, dec: -13.2000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
 ];

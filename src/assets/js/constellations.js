@@ -70,20 +70,23 @@
      * Krys asked that these read as human and resemble each other. Built on one
      * skeleton at two scales they came out *too* alike — the same silhouette
      * twice, which is a photocopy and not a family. So the body plan is still
-     * shared and the difference is now carriage:
+     * shared and the difference is carriage:
      *
-     *   the Mother   crowned, both arms falling open, feet planted apart
-     *   the Child    uncrowned, one arm raised and one lowered, feet drawn in
+     *   the Mother   both arms falling open, feet planted apart
+     *   the Child    one arm raised and one lowered, feet drawn in
      *
-     * Both differences are canon rather than decoration. Her article gives her
-     * hair of living vines and flowering growth, which is the crown. And the
-     * Gate "permits passage outward in limited forms ... but not free ingress"
-     * — one hand says stop and one hand lets through, which is the whole of
-     * what it does, standing in a doorway forever doing it.
+     * That difference is canon, not decoration: the Gate "permits passage
+     * outward in limited forms ... but not free ingress", so one hand bars and
+     * one hand allows, which is the whole of what it does and it has been
+     * standing in a doorway doing it since before recorded history.
      *
-     * Eight shared points in the same order — head, left shoulder, right
+     * A crown was tried on the Mother and cut — Krys judged the Child's change
+     * enough on its own, and he was right that two differentiators was one too
+     * many. s040 and s075 stay in the sky above her head as field stars.
+     *
+     * Eight points each, in the same order — head, left shoulder, right
      * shoulder, left hand, right hand, hips, left foot, right foot — joined by
-     * the same nine lines. The Mother carries two further stars for the crown.
+     * the same nine lines.
      */
     {
       id: 'mother',
@@ -94,22 +97,19 @@
          a head and hips, which are s155 and s156.
          s008, at 0.966 the brightest star in the sign, ends up as a foot rather
          than the heart. That looked wrong until I remembered Rigel.
-         s040 and s075 are the crown, added when the pair proved too alike. They
-         are her two brightest neighbours, they were already standing above her
-         head, and they are uneven — one high and nearly over her, one off to the
-         east — which is the right shape for hair of living vines and a wrong
-         shape for a diadem. */
-      stars: ['s155', 's053', 's058', 's047', 's099', 's156', 's008', 's073',
-              's040', 's075'],
+         Her legs were flipped on 2026-10-11 so the long one falls west. Her feet
+         were the only seeded stars that had to move for it: s008 down 8.2 deg
+         and s073 up 4.1, sharing the distance rather than either making the
+         whole journey, which is why both now read as placed. */
+      stars: ['s155', 's053', 's058', 's047', 's099', 's156', 's008', 's073'],
       lines: [
         ['s155', 's053'], ['s155', 's058'],   // head to either shoulder
         ['s053', 's058'],                     // across the shoulders
         ['s053', 's047'], ['s058', 's099'],   // both arms, spread and falling
         ['s053', 's156'], ['s058', 's156'],   // the torso closing on the hips
-        ['s156', 's008'], ['s156', 's073'],   // the legs, planted apart
-        ['s155', 's040'], ['s155', 's075']    // and the crown growing off her head
+        ['s156', 's008'], ['s156', 's073']    // the legs, long west, planted apart
       ],
-      blurb: 'A crowned figure with both arms spread and falling open and her ' +
+      blurb: 'A standing figure with both arms spread and falling open and her ' +
              'feet planted, reaching from low in the south nearly to the top of ' +
              'the sky. The suns stand among her stars at the northward equinox, ' +
              'so she is lost to daylight on one of the Green Mother\'s four holy days.'
@@ -138,7 +138,7 @@
         ['s106', 's158'],                     // across the shoulders
         ['s106', 's150'], ['s158', 's159'],   // one arm down, one arm raised
         ['s106', 's160'], ['s158', 's160'],   // the torso closing on the hips
-        ['s160', 's161'], ['s160', 's162']    // the legs, drawn in together
+        ['s160', 's161'], ['s160', 's162']    // the legs, long west, drawn in together
       ],
       blurb: 'His mother\'s build at two thirds her height, standing east of her ' +
              'with clear sky between. One arm is raised and one lowered, and his ' +
