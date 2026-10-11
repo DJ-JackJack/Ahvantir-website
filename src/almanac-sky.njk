@@ -24,7 +24,8 @@ permalink: /almanac/sky/
     change the day, Home to face north, and Space to start or stop. Plus and minus
     zoom and 0 returns to the full horizon; once you are zoomed in, Shift with the
     up and down arrows aims higher or lower, and dragging does both at once. Shift
-    with left or right turns further. Every control below is reachable on its own.
+    with left or right turns further. Every control below is reachable on its own,
+    and everything the sky itself can open also has a link under the ephemeris.
   </p>
 
   <section class="sky-stage" aria-labelledby="sky-stage-head">
@@ -125,6 +126,12 @@ permalink: /almanac/sky/
         <p class="alm-note">Drawn to the same scale as each other, so the comparison holds even when the sky above is magnified. The suns change size through the year as Ahvantir's orbit carries it nearer and further; Nystara swings widest, sitting furthest from the centre the pair turns about.</p>
       </div>
 
+      <div>
+        <p class="alm-eyebrow">Figures overhead</p>
+        <ul class="sky-figures" id="sky-figures"></ul>
+        <p class="alm-note">Click a figure in the sky, or any sun or moon, to read about it. A figure appears only once the whole of it has cleared the horizon.</p>
+      </div>
+
       <p class="alm-note">Moon phase names follow the Foundry phase tables, so they match the <a href="/almanac/" class="wikilink">Sky Almanac</a> and the table&rsquo;s own moon widget. The Pale Hour is Nystara in the sky with Solara below it &mdash; named for the light, not the length, so it can run to minutes or to most of two hours. Solara alone is simply the warm light, which has no other name.</p>
     </div>
 
@@ -182,5 +189,7 @@ permalink: /almanac/sky/
 {% block scripts %}
 <script src="/assets/js/marducian.js"></script>
 <script src="/assets/js/orbits.js"></script>
+<script src="/assets/js/stars-bright.js"></script>
+<script src="/assets/js/constellations.js"></script>
 <script src="/assets/js/sky.js"></script>
 {% endblock %}

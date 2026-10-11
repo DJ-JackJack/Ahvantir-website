@@ -2180,6 +2180,15 @@ hr {
 .sky-aim:hover:not(:disabled) { color: var(--teal-dark); border-bottom-color: currentColor; }
 .sky-aim:disabled { color: var(--ink-ghost); border-bottom: 0; cursor: default; }
 
+/* Constellations, listed so they are reachable without a pointer. */
+.sky-figures { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.sky-figure { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+.sky-figure > a { font-family: var(--font-display); font-size: 1.02rem; }
+.sky-figure--none { color: var(--ink-ghost); font-size: 0.86rem; }
+.sky-figure__aliases { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.sky-figure__alias { font-size: 0.78rem; color: var(--ink-faded); }
+.sky-figure__alias i { color: var(--ink-ghost); font-style: normal; font-size: 0.72rem; }
+
 .sky-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .sky-pill {
   font-family: var(--font-mono); font-size: 0.72rem;

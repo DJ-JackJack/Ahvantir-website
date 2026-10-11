@@ -321,16 +321,21 @@
     return [v[0] / n, v[1] / n, v[2] / n];
   }
 
-  var BRIGHT = (function () {
-    var R = rng(4391), out = [];
-    for (var i = 0; i < 150; i++) {
-      var z = R() * 2 - 1, th = R() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
-      // All genuinely bright; this layer exists to be seen individually.
-      var b = 0.52 + 0.48 * Math.pow(R(), 1.7);
-      out.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z], b: b, t: R(), c: pickTint(R()) });
-    }
-    return out.sort(function (p, q) { return q.b - p.b; });
-  })();
+  /* The bright layer is no longer generated here. It is frozen in
+     stars-bright.js, because constellations point at these stars by id and a
+     star that moves takes its figure with it. Positions come in as right
+     ascension and declination, which is what anyone drawing a figure wants to
+     read; the vector is what the renderer wants, so it is built once. */
+  var BRIGHT = (window.BrightStars || []).map(function (s) {
+    var ra = s.ra * DEG, dec = s.dec * DEG, cd = Math.cos(dec);
+    return {
+      id: s.id, b: s.b, t: s.t, c: s.c,
+      v: [cd * Math.cos(ra), cd * Math.sin(ra), Math.sin(dec)]
+    };
+  });
+  var BY_ID = {};
+  BRIGHT.forEach(function (s) { BY_ID[s.id] = s; });
+  var FIGURES = window.Constellations || [];
 
   var FAINT = (function () {
     var R = rng(90210), out = [];
@@ -619,6 +624,116 @@
     }
   }
 
+  /* The figures.
+   *
+   * Drawn under the stars so a line never crosses a star's face, and kept
+   * deliberately quiet: an aura along the shape and a thin line, enough that a
+   * visitor notices something is there without the sky turning into a diagram.
+   * The hit region is built here too, so what you can click is exactly what you
+   * can see.
+   */
+  var figureHits = [], figuresUp = [];
+  function drawFigures(sky, L) {
+    figureHits = [];
+    figuresUp = [];
+    if (!FIGURES.length) return;
+
+    for (var f = 0; f < FIGURES.length; f++) {
+      var fig = FIGURES[f];
+      var pts = {}, up = true, framed = true;
+      var minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+
+      for (var i = 0; i < fig.stars.length; i++) {
+        var s = BY_ID[fig.stars[i]];
+        if (!s) continue;
+        var h = eqToHor(s.v, sky.lst);
+        var alt = altOf(h), p = P.f(alt, azOf(h));
+        /* Two different questions, and conflating them was wrong. Whether the
+           figure is UP is about the horizon and has nothing to do with which
+           way the reader happens to be facing — it belongs in the list either
+           way. Whether it can be DRAWN is about the frame. A figure is only
+           drawn whole: half a spear is worse than none, and a partial hit
+           region misrepresents what is being clicked. */
+        if (h[2] < -0.02) up = false;
+        if (!p.ok) framed = false;
+        pts[s.id] = p;
+        if (p.x < minX) minX = p.x; if (p.x > maxX) maxX = p.x;
+        if (p.y < minY) minY = p.y; if (p.y > maxY) maxY = p.y;
+      }
+      if (up) figuresUp.push(fig);
+      if (!up || !framed || L.starA < 0.05) continue;
+
+      var a = L.starA * (fig._hot ? 0.95 : 0.55);
+      var path = new Path2D();
+      for (var j = 0; j < fig.lines.length; j++) {
+        var A = pts[fig.lines[j][0]], B = pts[fig.lines[j][1]];
+        if (!A || !B) continue;
+        path.moveTo(A.x, A.y); path.lineTo(B.x, B.y);
+      }
+
+      // The aura: the same path, very wide and very soft, laid down first.
+      ctx.save();
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.strokeStyle = 'rgba(150,178,228,' + (a * 0.055).toFixed(3) + ')';
+      ctx.lineWidth = 16 * DPR;
+      ctx.stroke(path);
+      ctx.strokeStyle = 'rgba(168,196,240,' + (a * 0.09).toFixed(3) + ')';
+      ctx.lineWidth = 7 * DPR;
+      ctx.stroke(path);
+      // The line itself.
+      ctx.strokeStyle = 'rgba(198,218,255,' + (a * 0.5).toFixed(3) + ')';
+      ctx.lineWidth = (fig._hot ? 1.6 : 1) * DPR;
+      ctx.stroke(path);
+      ctx.restore();
+
+      if (fig._hot) {
+        ctx.font = (13 * DPR) + 'px ' + (cssv('--font-display') || 'serif');
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(214,230,255,' + Math.min(1, a).toFixed(3) + ')';
+        ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 5 * DPR;
+        ctx.fillText(fig.name, (minX + maxX) / 2, minY - 10 * DPR);
+        ctx.shadowBlur = 0;
+      }
+
+      figureHits.push({ fig: fig, path: path, box: [minX, minY, maxX, maxY] });
+    }
+  }
+
+  // Is the pointer on a figure? Generous, because a one-pixel line is not a
+  // target: the test is against a fat stroke of the same path.
+  function figureAt(x, y) {
+    for (var i = 0; i < figureHits.length; i++) {
+      var hit = figureHits[i], b = hit.box, pad = 14 * DPR;
+      if (x < b[0] - pad || x > b[2] + pad || y < b[1] - pad || y > b[3] + pad) continue;
+      ctx.save();
+      ctx.lineWidth = 18 * DPR;
+      var on = ctx.isPointInStroke(hit.path, x, y);
+      ctx.restore();
+      if (on) return hit.fig;
+    }
+    return null;
+  }
+
+  // Suns and moons are clickable too. Their drawn discs are recorded each
+  // frame in `placed`, so the target is exactly the thing on screen.
+  var ARTICLES = {
+    Solara: '/articles/solara-and-nystara/',
+    Nystara: '/articles/solara-and-nystara/',
+    // The moons have no articles of their own yet; the calendar is where they
+    // are described. Point them somewhere true rather than somewhere broken.
+    Miras: '/articles/marducian-calendar/',
+    Toris: '/articles/marducian-calendar/',
+    Keltas: '/articles/marducian-calendar/'
+  };
+  var bodyHits = [];
+  function bodyAt(x, y) {
+    for (var i = 0; i < bodyHits.length; i++) {
+      var h = bodyHits[i], r = Math.max(h.r, 9 * DPR);
+      if ((x - h.x) * (x - h.x) + (y - h.y) * (y - h.y) <= r * r) return h;
+    }
+    return null;
+  }
+
   /* A four-armed glint: two tapered spindles crossed. Drawn as a path rather
      than as bars so the arms come to a point, which is what makes the shape
      read as a star instead of a plus sign. */
@@ -738,15 +853,25 @@
     if (L.starA > 0.01) {
       drawRiverGlow(sky, L);
       drawFaint(sky, L);
+      drawFigures(sky, L);
       drawBright(sky, L);
+    } else {
+      // Daylight: nothing is drawn, but the figures are still up there and
+      // still belong in the list.
+      drawFigures(sky, L);
     }
 
     var placed = [];
+    bodyHits = [];
     sky.bodies.filter(function (b) { return b.kind === 'sun'; })
       .forEach(function (b) { var r = drawSun(b); if (r) placed.push([b, r]); });
     sky.bodies.filter(function (b) { return b.kind === 'moon'; })
       .sort(function (a, b) { return b.r - a.r; })
       .forEach(function (b) { var r = drawMoon(b, sky, L); if (r) placed.push([b, r]); });
+    placed.forEach(function (e) {
+      if (e[0].alt < -0.5) return;
+      bodyHits.push({ n: e[0].n, x: e[1].x, y: e[1].y, r: e[1].r, href: ARTICLES[e[0].n] });
+    });
 
     if (st.view === 'pan') {
       var light = Math.min(1, L.day + (L.tS + L.tN) * 0.25);
@@ -894,7 +1019,28 @@
     // the light, not every cell of the table on every frame.
     if (!st.playing) $('sky-status').textContent = M.fmtLong(st.Y, st.doy) + ', ' + fmtH(st.h) + '. ' + state + '.';
     drawSizes(sky);
+    drawFigureList();
     drawDial(sky);
+  }
+
+  /* The same figures the canvas just drew, as links.
+     A canvas cannot be tabbed into, so anything the sky can open has to be
+     openable here too or it is only available to people with a mouse. */
+  function drawFigureList() {
+    var el = $('sky-figures');
+    if (!el) return;
+    var up = figuresUp;
+    if (!up.length) {
+      el.innerHTML = '<li class="sky-figure sky-figure--none">No figure is wholly above the horizon just now.</li>';
+      return;
+    }
+    el.innerHTML = up.map(function (f) {
+      var names = (f.names || []).map(function (n) {
+        return '<span class="sky-figure__alias">' + esc(n.name) + ' <i>' + esc(n.tradition) + '</i></span>';
+      }).join('');
+      return '<li class="sky-figure"><a href="' + esc(f.article) + '">' + esc(f.name) + '</a>' +
+             (names ? '<span class="sky-figure__aliases">' + names + '</span>' : '') + '</li>';
+    }).join('');
   }
 
   /* The five bodies in proportion to one another, at this moment. The sky above
@@ -1088,6 +1234,45 @@
     }
     render();
   });
+  /* Clicking the sky. A drag that turns the view is not a click, so the
+     distance travelled decides which it was. */
+  var DRAG_SLOP = 4;
+  function openFor(target) {
+    if (target && target.href) window.location.href = target.href;
+  }
+  cv.addEventListener('pointerup', function (e) {
+    if (drag && (Math.abs(e.clientX - drag.x) > DRAG_SLOP || Math.abs(e.clientY - drag.y) > DRAG_SLOP)) return;
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (W / r.width), y = (e.clientY - r.top) * (H / r.height);
+    var body = bodyAt(x, y);
+    if (body) { openFor(body); return; }
+    var fig = figureAt(x, y);
+    if (fig) window.location.href = fig.article;
+  });
+
+  // Light the figure under the pointer, and say that it can be clicked.
+  cv.addEventListener('pointermove', function (e) {
+    if (drag) return;
+    var r = cv.getBoundingClientRect();
+    var x = (e.clientX - r.left) * (W / r.width), y = (e.clientY - r.top) * (H / r.height);
+    var body = bodyAt(x, y), fig = body ? null : figureAt(x, y);
+    var want = body ? body.n : (fig ? fig.name : null);
+    cv.style.cursor = want ? 'pointer' : '';
+    cv.title = want ? ('Open ' + want) : '';
+    var changed = false;
+    FIGURES.forEach(function (f) {
+      var hot = (f === fig);
+      if (!!f._hot !== hot) { f._hot = hot; changed = true; }
+    });
+    if (changed) render();
+  });
+  cv.addEventListener('pointerleave', function () {
+    var changed = false;
+    FIGURES.forEach(function (f) { if (f._hot) { f._hot = false; changed = true; } });
+    cv.style.cursor = ''; cv.title = '';
+    if (changed) render();
+  });
+
   var endDrag = function () { if (drag) { drag = null; cv.classList.remove('is-dragging'); save(); } };
   cv.addEventListener('pointerup', endDrag);
   cv.addEventListener('pointercancel', endDrag);

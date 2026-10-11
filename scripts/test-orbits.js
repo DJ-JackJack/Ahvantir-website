@@ -155,6 +155,74 @@ const offGrid = yr.some(e => Math.abs((e.hours * 2) - Math.round(e.hours * 2)) >
 ok('and durations are refined below the scan step', offGrid,
    yr.map(e => (e.hours * 60).toFixed(0) + 'm').join(' '));
 
+console.log('\nThe frozen sky');
+global.window.BrightStars = undefined;
+eval(fs.readFileSync(JS('stars-bright.js'), 'utf8'));
+const STARS = global.window.BrightStars;
+ok('the bright layer is frozen to a file', Array.isArray(STARS) && STARS.length === 150,
+   STARS ? STARS.length + ' stars' : 'missing');
+ok('every star has an id, a place and a brightness',
+   STARS.every(s => /^s\d{3}$/.test(s.id) && isFinite(s.ra) && isFinite(s.dec) && s.b > 0));
+ok('ids are unique', new Set(STARS.map(s => s.id)).size === STARS.length);
+ok('ordered brightest first', STARS.every((s, i) => i === 0 || STARS[i - 1].b >= s.b));
+
+/* Re-running the generator must reproduce the file exactly. If it does not,
+   someone has changed the generator and every frozen star has moved — which
+   silently drags every constellation with it, because figures reference these
+   by id. This is the whole reason the file exists. */
+function rng(seed) {
+  return function () {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+const cl = (x, a, b) => Math.max(a, Math.min(b, x));
+const RG = rng(4391), regen = [];
+for (let i = 0; i < 150; i++) {
+  const z = RG() * 2 - 1, th = RG() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
+  const b = 0.52 + 0.48 * Math.pow(RG(), 1.7);
+  // pickTint squares ONE draw. Taking two here desynchronises the stream and
+  // every star after the first lands somewhere else.
+  const tt = RG(), cr = RG();
+  regen.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z], b, t: tt, c: cl(Math.floor(2 + (cr * cr * 6 - 2)), 0, 5) });
+}
+regen.sort((p, q) => q.b - p.b);
+const DG = 180 / Math.PI;
+const drift = regen.map((s, i) => {
+  const ra = ((Math.atan2(s.v[1], s.v[0]) * DG) + 360) % 360;
+  const dec = Math.asin(s.v[2]) * DG;
+  // Right ascension wraps, so 359.9 and 0.1 are a fifth of a degree apart.
+  let dra = Math.abs(ra - STARS[i].ra) % 360;
+  if (dra > 180) dra = 360 - dra;
+  return dra + Math.abs(dec - STARS[i].dec);
+}).reduce((a, b) => Math.max(a, b), 0);
+ok('the generator still reproduces the frozen file', drift < 0.001,
+   'worst drift ' + drift.toFixed(6) + ' deg');
+
+console.log('\nThe figures');
+global.window.Constellations = undefined;
+eval(fs.readFileSync(JS('constellations.js'), 'utf8'));
+const FIGS = global.window.Constellations;
+ok('there is at least one figure', FIGS.length > 0, FIGS.map(f => f.name).join(', '));
+const ids = new Set(STARS.map(s => s.id));
+FIGS.forEach(f => {
+  ok(f.name + ': every star it names exists', f.stars.every(id => ids.has(id)),
+     f.stars.filter(id => !ids.has(id)).join(', ') || '');
+  ok(f.name + ': every line joins two of its own stars',
+     f.lines.every(l => l.length === 2 && f.stars.indexOf(l[0]) >= 0 && f.stars.indexOf(l[1]) >= 0));
+  ok(f.name + ': the lines connect the whole figure', (function () {
+    // no star left stranded off the shape
+    const seen = {};
+    f.lines.forEach(l => { seen[l[0]] = 1; seen[l[1]] = 1; });
+    return f.stars.every(id => seen[id]);
+  })());
+  ok(f.name + ': carries its chain of names oldest first', (f.names || []).length >= 2,
+     (f.names || []).map(n => n.name).join(' -> '));
+  ok(f.name + ': points at an article', /^\/articles\/[a-z0-9-]+\/$/.test(f.article), f.article);
+});
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);
