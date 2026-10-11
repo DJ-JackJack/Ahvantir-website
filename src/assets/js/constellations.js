@@ -25,12 +25,16 @@
       id: 'spear',
       name: 'The Spear',
       article: '/articles/the-spear/',
-      // Brightest first in the figure; s019 is the point.
-      stars: ['s019', 's029', 's046', 's136', 's043', 's030', 's107', 's138'],
+      /* s019 is the point, and the only star here that was not chosen: it is
+         the brightest in this part of the sky and it sits eight degrees from
+         where the suns merged in 0 MC. The rest were moved or placed to make
+         the blade and straighten the haft. */
+      stars: ['s019', 's153', 's151', 's152', 's029', 's136', 's043'],
       lines: [
-        ['s019', 's029'], ['s029', 's136'], ['s136', 's043'],   // the shaft
-        ['s029', 's046'],                                        // the barb behind the head
-        ['s043', 's030'], ['s030', 's107'], ['s107', 's138']     // the binding at the grip
+        // the blade: a leaf closing on the haft
+        ['s019', 's151'], ['s151', 's153'], ['s153', 's152'], ['s152', 's019'],
+        // the haft, straight from the blade to the butt
+        ['s153', 's029'], ['s029', 's136'], ['s136', 's043']
       ],
       // Oldest first.
       names: [

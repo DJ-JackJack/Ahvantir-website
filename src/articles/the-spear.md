@@ -8,7 +8,7 @@ date_added: "2026-10-10"
 
 # The Spear
 
-A long shaft of stars lying along the path the suns walk, with a bright point at its head and a knot of three at the butt where a hand would grip it. It is one of the few figures in Ahvantir's sky that nearly everyone can find, and the only one the suns themselves pass through.
+A leaf-shaped blade of four stars with a long straight haft running out behind it, lying along the path the suns walk. It is one of the few figures in Ahvantir's sky that nearly everyone can find, and the only one the suns themselves pass through.
 
 It has been a weapon for as long as anyone has been looking at it. What has changed is whose.
 
@@ -52,4 +52,5 @@ The anniversary therefore keeps itself. Nobody had to establish an observance or
 > Source: `original` — DM ruling 2026-10-10. Krys established: the figure is Marduk's spear, burned into the heavens, watching over his people; it was named for the sealing rather than inherited as his; astrologers and storytellers built the myth to curry favour with Marduk's new government; and a celestial event in that region of the sky at or near the sealing is what let the story take hold.
 > Krys also set the principle the whole sky is built on: the traditions are sedimentary, not separate. Each culture looked at the same stars and inherited the figures from the one before, renaming them by a small step rather than replacing them. The Lancer becoming the Warrior becoming the Spear is that principle worked through on one figure.
 > The eclipse is not invented to fit. The orbital model built on 2026-10-10 puts a total eclipse — Solara entirely in front of Nystara, 132 hours long — on **34 Lochenvir 0 MC**, in that patch of sky, with the moment of deepest totality below the horizon from Aru'Mas. The era anchor in [[Marducian Calendar]] already placed a deep Pairing in 0 MC; the eclipse fell out of implementing it. That the deepest moment went unwitnessed is likewise the model's, not an authored detail, and it is why the account rests on what people were told rather than what they saw.
+> The figure's shape was settled on 2026-10-10 as well. Krys ruled that the sky is ours to shape until the constellations are finished — stars may be moved or added to make a figure read — so the blade is deliberate rather than whatever the scatter happened to drop there. The point is not: it is the brightest star in that part of the sky and it already sat eight degrees from where the suns merged.
 > Still open: whether the [[First Pact]] should now be dated to that eclipse. Canon currently says only "Year 0", and the sky is offering 34 Lochenvir.

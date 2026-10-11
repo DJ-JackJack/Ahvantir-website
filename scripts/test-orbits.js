@@ -159,47 +159,45 @@ console.log('\nThe frozen sky');
 global.window.BrightStars = undefined;
 eval(fs.readFileSync(JS('stars-bright.js'), 'utf8'));
 const STARS = global.window.BrightStars;
-ok('the bright layer is frozen to a file', Array.isArray(STARS) && STARS.length === 150,
-   STARS ? STARS.length + ' stars' : 'missing');
+ok('the bright layer is a catalogue we can edit', Array.isArray(STARS) && STARS.length >= 150,
+   STARS ? STARS.length + ' stars, ' + STARS.filter(s => s.o === 'placed').length + ' of them placed by hand' : 'missing');
 ok('every star has an id, a place and a brightness',
    STARS.every(s => /^s\d{3}$/.test(s.id) && isFinite(s.ra) && isFinite(s.dec) && s.b > 0));
 ok('ids are unique', new Set(STARS.map(s => s.id)).size === STARS.length);
-ok('ordered brightest first', STARS.every((s, i) => i === 0 || STARS[i - 1].b >= s.b));
+/* The ids were handed out by brightness rank when the catalogue was seeded,
+   so s001 was the brightest star in the sky. That ordering cannot survive
+   hand-placed stars, and the fix is NOT to renumber: constellations point at
+   these ids, and renumbering would move every figure at once. So an id is a
+   stable label and nothing more, and the invariant that matters is that one
+   is never reused or recycled. */
+ok('ids are well formed', STARS.every(s => /^s\d{3}$/.test(s.id)));
+ok('and none is reused', new Set(STARS.map(s => s.id)).size === STARS.length);
 
-/* Re-running the generator must reproduce the file exactly. If it does not,
-   someone has changed the generator and every frozen star has moved — which
-   silently drags every constellation with it, because figures reference these
-   by id. This is the whole reason the file exists. */
-function rng(seed) {
-  return function () {
-    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
-  };
+/* This used to re-run the generator and demand the file match it exactly.
+   That guard belongs to a FINISHED sky. While the constellations are being
+   invented the catalogue is deliberately editable — a star may be moved to
+   make a figure read, or added where a shape needs a point — so the check is
+   now that the catalogue hangs together, not that it has never changed.
+
+   When the figures are done, this is where the lock goes back: pin the file by
+   checksum so nothing can move a star under a constellation by accident. */
+ok('positions are sane', STARS.every(s => s.ra >= 0 && s.ra < 360 && s.dec > -90 && s.dec < 90));
+ok('brightnesses are in range', STARS.every(s => s.b > 0 && s.b <= 1));
+ok('tints are real', STARS.every(s => Number.isInteger(s.c) && s.c >= 0 && s.c <= 5));
+ok('every star records whether it was seeded or placed',
+   STARS.every(s => s.o === 'seed' || s.o === 'placed'),
+   STARS.filter(s => s.o === 'placed').length + ' placed by hand so far');
+// Two stars in the same spot would draw as one and make a figure look broken.
+const tooClose = [];
+for (let i = 0; i < STARS.length; i++) {
+  for (let j = i + 1; j < STARS.length; j++) {
+    const dd = STARS[i].dec - STARS[j].dec;
+    let dr = Math.abs(STARS[i].ra - STARS[j].ra); if (dr > 180) dr = 360 - dr;
+    dr *= Math.cos(STARS[i].dec * Math.PI / 180);
+    if (Math.hypot(dr, dd) < 0.35) tooClose.push(STARS[i].id + '/' + STARS[j].id);
+  }
 }
-const cl = (x, a, b) => Math.max(a, Math.min(b, x));
-const RG = rng(4391), regen = [];
-for (let i = 0; i < 150; i++) {
-  const z = RG() * 2 - 1, th = RG() * 2 * Math.PI, rr = Math.sqrt(1 - z * z);
-  const b = 0.52 + 0.48 * Math.pow(RG(), 1.7);
-  // pickTint squares ONE draw. Taking two here desynchronises the stream and
-  // every star after the first lands somewhere else.
-  const tt = RG(), cr = RG();
-  regen.push({ v: [rr * Math.cos(th), rr * Math.sin(th), z], b, t: tt, c: cl(Math.floor(2 + (cr * cr * 6 - 2)), 0, 5) });
-}
-regen.sort((p, q) => q.b - p.b);
-const DG = 180 / Math.PI;
-const drift = regen.map((s, i) => {
-  const ra = ((Math.atan2(s.v[1], s.v[0]) * DG) + 360) % 360;
-  const dec = Math.asin(s.v[2]) * DG;
-  // Right ascension wraps, so 359.9 and 0.1 are a fifth of a degree apart.
-  let dra = Math.abs(ra - STARS[i].ra) % 360;
-  if (dra > 180) dra = 360 - dra;
-  return dra + Math.abs(dec - STARS[i].dec);
-}).reduce((a, b) => Math.max(a, b), 0);
-ok('the generator still reproduces the frozen file', drift < 0.001,
-   'worst drift ' + drift.toFixed(6) + ' deg');
+ok('no two bright stars sit on top of each other', tooClose.length === 0, tooClose.join(' '));
 
 console.log('\nThe figures');
 global.window.Constellations = undefined;
