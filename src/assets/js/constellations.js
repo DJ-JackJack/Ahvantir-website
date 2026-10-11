@@ -186,9 +186,13 @@
      * than The Mother's do. Hers held because every tradition witnessed the
      * same event. These hold because the spirits WROTE the story and everyone
      * else has been retelling it ever since — Krys's model is Greek myth in
-     * modern pop culture. The walled garden and the clipped hedge are Aru'Mas
-     * furniture bolted onto a tale far older than the city; the bones, and the
-     * three names, came with it unchanged.
+     * modern pop culture.
+     *
+     * The tale never needed translating either. A lord who holds land and tends
+     * what lives on it is not a settler image borrowed by an older story; it is
+     * a Claim, which is the oldest arrangement on these islands. Spirits had
+     * territory, hierarchy and kept creatures long before anyone landed here.
+     * An earlier version of this comment assumed otherwise and was wrong.
      */
     {
       id: 'coy',
