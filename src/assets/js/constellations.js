@@ -101,7 +101,7 @@
     {
       id: 'mother',
       name: 'The Mother',
-      provisional: true,
+      article: '/articles/the-mother/',
       /* Imwei. 22 degrees wide by 45 tall. Six of the eight were already there:
          her sign had shoulders, hands and feet in usable places and wanted only
          a head and hips, which are s155 and s156.
@@ -133,7 +133,7 @@
     {
       id: 'child',
       name: 'The Dutiful Child',
-      provisional: true,
+      article: '/articles/the-dutiful-child/',
       /* The Divine Gate. His mother's build at about two thirds her height.
          Sign 8 is the emptiest in the belt and held four stars, no two of which
          could be a pair of shoulders, so six of these eight are placed. Only
@@ -160,7 +160,7 @@
       names: [
         { tradition: 'Spirit', name: 'the Dutiful Child', note: 'Unchanged. They watched it born and watched it hold.' },
         { tradition: "Drorn'Duur", name: 'the Dutiful Child', note: 'Unchanged. Inherited with its mother and its story.' },
-        { tradition: "Aru'Mas", name: 'the Dutiful Child', note: 'Unchanged — though it is their own gods it keeps out.' }
+        { tradition: "Aru'Mas", name: 'the Dutiful Child', note: 'Unchanged. It is their own gods it keeps out, and they mean the word anyway.' }
       ],
       blurb: 'His mother\'s build at two thirds her height, standing east of her ' +
              'with clear sky between. One arm is raised and one lowered, and his ' +

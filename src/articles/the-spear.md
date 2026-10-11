@@ -36,7 +36,9 @@ The astrologers who told it that way did well out of the telling. They were cour
 
 ## What the suns do
 
-The figure lies along the ecliptic, so the suns enter it once a year and leave it again. They stand deepest within it on **34 Lochenvir**, the same date every year, which is the date of the merging in 0 MC.
+The figure lies along the ecliptic, so the suns come up on it once a year and pass on. They stand at its point on **34 Lochenvir**, the same date every year, which is the date of the merging in 0 MC.
+
+They do not pass through the blade. Their road runs some eight degrees south of it — under the spear rather than along it — and they are deepest inside the figure as a whole a week later, in the first days of Draelthorn. Nobody observes that. It is the point that keeps the anniversary, because the point is where the suns became one.
 
 The anniversary therefore keeps itself. Nobody had to establish an observance or maintain a calendar for it; the suns return to the place on their own and the city has four centuries of habit built on top of that.
 
