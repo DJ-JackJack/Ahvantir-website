@@ -177,5 +177,22 @@ window.BrightStars = [
   { id: "s150", ra: 22.2380, dec: -10.3795, b: 0.5200, c: 0, o: "seed", t: 0.9588 },
   { id: "s151", ra: 190.2000, dec: 8.9000, b: 0.7080, c: 4, o: "placed", t: 0.4120 },
   { id: "s152", ra: 190.6000, dec: 3.6000, b: 0.6620, c: 1, o: "placed", t: 0.8310 },
-  { id: "s153", ra: 193.5000, dec: 6.2000, b: 0.7440, c: 2, o: "placed", t: 0.2670 }
+  { id: "s153", ra: 193.5000, dec: 6.2000, b: 0.7440, c: 2, o: "placed", t: 0.2670 },
+
+  /* The pole star, placed 2026-10-10 on Krys's ruling. Until now the axis was
+     marked by s122 at Dec +73.6 and brightness 0.543 — dim, and sixteen degrees
+     adrift, so north could not be found by looking. This fixes that.
+
+     It sits 1.5 degrees off true pole, so it traces a circle three degrees wide
+     over a night: close enough to steer by at a glance, far enough that precise
+     work still wants a correction. Its right ascension is s122's exactly, which
+     puts the two on one hour circle and gives the pole a built-in pointer; s012,
+     s127 and s137 already stand in the same quarter of the northern sky, so the
+     material for a figure around it was there before the star was.
+
+     This deliberately breaks the caution at the head of this file about giving
+     placed stars their neighbours' brightnesses. Everything else in the
+     circumpolar cap runs 0.53 to 0.93, and 0.952 announces itself over all of
+     it. Announcing itself is the entire function of a pole star. */
+  { id: "s154", ra: 331.9000, dec: 88.5000, b: 0.9520, c: 4, o: "placed", t: 0.6180 }
 ];
