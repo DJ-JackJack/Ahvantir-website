@@ -216,9 +216,21 @@ FIGS.forEach(f => {
     f.lines.forEach(l => { seen[l[0]] = 1; seen[l[1]] = 1; });
     return f.stars.every(id => seen[id]);
   })());
-  ok(f.name + ': carries its chain of names oldest first', (f.names || []).length >= 2,
-     (f.names || []).map(n => n.name).join(' -> '));
-  ok(f.name + ': points at an article', /^\/articles\/[a-z0-9-]+\/$/.test(f.article), f.article);
+  /* A provisional figure is a geometry sketch: Krys has named it and set its
+     sign, but the chain of older names and the article are his to write and
+     must not be invented to satisfy a test. So the chain and article checks
+     apply only to finished figures - and a provisional one has to say so in
+     the data, which is what stops this becoming a way to skip the contract. */
+  if (f.provisional) {
+    ok(f.name + ': declares itself provisional', f.provisional === true, 'shape is a sketch');
+    ok(f.name + ': carries no invented names or article',
+       !(f.names || []).length && !f.article,
+       'names and article left to Krys');
+  } else {
+    ok(f.name + ': carries its chain of names oldest first', (f.names || []).length >= 2,
+       (f.names || []).map(n => n.name).join(' -> '));
+    ok(f.name + ': points at an article', /^\/articles\/[a-z0-9-]+\/$/.test(f.article), f.article);
+  }
 });
 
 console.log('');

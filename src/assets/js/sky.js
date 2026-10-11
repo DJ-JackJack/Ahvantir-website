@@ -1038,7 +1038,13 @@
       var names = (f.names || []).map(function (n) {
         return '<span class="sky-figure__alias">' + esc(n.name) + ' <i>' + esc(n.tradition) + '</i></span>';
       }).join('');
-      return '<li class="sky-figure"><a href="' + esc(f.article) + '">' + esc(f.name) + '</a>' +
+      /* A provisional figure has no article to point at, so it is named as
+         plain text and says so. A link to nowhere would be worse than
+         admitting the shape is unfinished. */
+      var label = f.article
+        ? '<a href="' + esc(f.article) + '">' + esc(f.name) + '</a>'
+        : esc(f.name) + ' <i class="sky-figure__wip">shape not settled</i>';
+      return '<li class="sky-figure">' + label +
              (names ? '<span class="sky-figure__aliases">' + names + '</span>' : '') + '</li>';
     }).join('');
   }
@@ -1247,7 +1253,8 @@
     var body = bodyAt(x, y);
     if (body) { openFor(body); return; }
     var fig = figureAt(x, y);
-    if (fig) window.location.href = fig.article;
+    // Provisional figures carry no article; clicking one must do nothing.
+    if (fig && fig.article) window.location.href = fig.article;
   });
 
   // Light the figure under the pointer, and say that it can be clicked.
