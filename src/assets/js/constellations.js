@@ -182,15 +182,18 @@
      * enough that no two are neighbours. The Cat is in the middle, which is
      * where the story puts her.
      *
-     * Shapes are mine and provisional. Names are open: this reads as a settled
-     * people's story — a walled garden, a hedge, a lord who feeds ornamental
-     * fish — and the Drorn'Duur lived under a mountain, so whether the older
-     * traditions share these names or had their own is unruled.
+     * The names hold across all three traditions, and for a different reason
+     * than The Mother's do. Hers held because every tradition witnessed the
+     * same event. These hold because the spirits WROTE the story and everyone
+     * else has been retelling it ever since — Krys's model is Greek myth in
+     * modern pop culture. The walled garden and the clipped hedge are Aru'Mas
+     * furniture bolted onto a tale far older than the city; the bones, and the
+     * three names, came with it unchanged.
      */
     {
       id: 'coy',
       name: 'The Coy',
-      provisional: true,
+      article: '/articles/the-rooster-the-coy-and-the-cat/',
       /* Sign 6, and not one star placed. Of all the shapes in this sky this is
          the one that was most nearly already drawn: a pair of stars nine
          degrees apart making a mouth at the western end, a back and a belly
@@ -207,13 +210,19 @@
         ['s081', 's126'],   // belly to the lower fork
         ['s007', 's126']    // the tail's trailing edge
       ],
+      // Oldest first. The line does not move: see the note above.
+      names: [
+        { tradition: 'Spirit', name: 'the Coy', note: 'Theirs. They made the story; they still tell it with different scenery.' },
+        { tradition: "Drorn'Duur", name: 'the Coy', note: 'Taken up whole, long before the city existed.' },
+        { tradition: "Aru'Mas", name: 'the Coy', note: 'Taken up again. Most who use the name could not say where they learned it.' }
+      ],
       blurb: 'A fish swimming west, twenty degrees long, its tail forked ' +
              'behind it. Not one of its stars was moved or placed.'
     },
     {
       id: 'cat',
       name: 'The Cat',
-      provisional: true,
+      article: '/articles/the-rooster-the-coy-and-the-cat/',
       /* Sign 2, central to the trio. A cat stalking: head low and west — the
          tight knot of s107, s030 and s097 inside four degrees makes a muzzle,
          a head and an ear — then the back rising to s148 and the haunch east.
@@ -234,13 +243,19 @@
         ['s148', 's163'],                    // the foreleg
         ['s033', 's166']                     // the tail, curling up behind
       ],
+      // Oldest first. The line does not move: see the note above.
+      names: [
+        { tradition: 'Spirit', name: 'the Cat', note: 'Theirs, and the only character in the fable who is never given a reason.' },
+        { tradition: "Drorn'Duur", name: 'the Cat', note: 'Unchanged. A fable offers nobody anything to gain by renaming it.' },
+        { tradition: "Aru'Mas", name: 'the Cat', note: 'Unchanged, down to the rude verse the children add.' }
+      ],
       blurb: 'A cat stalking, head low to the west, back arched, tail curled ' +
              'up behind. Her muzzle, head and ear are three stars inside four degrees.'
     },
     {
       id: 'rooster',
       name: 'The Rooster',
-      provisional: true,
+      article: '/articles/the-rooster-the-coy-and-the-cat/',
       /* Sign 4 is the thinnest on the suns' road — four stars — but they are
          all bright and they already stood as a bird: a head high east, a tail
          high west, and the body slung low between them. A comb and a second
@@ -252,6 +267,12 @@
         ['s054', 's011'],                    // down the breast
         ['s051', 's011'],                    // the underside, closing the body
         ['s011', 's003'], ['s011', 's165']   // two feet
+      ],
+      // Oldest first. The line does not move: see the note above.
+      names: [
+        { tradition: 'Spirit', name: 'the Rooster', note: 'Theirs. The one who watches, says nothing, and understands by the second day.' },
+        { tradition: "Drorn'Duur", name: 'the Rooster', note: 'Unchanged through the whole stone-priest era.' },
+        { tradition: "Aru'Mas", name: 'the Rooster', note: 'Unchanged. Four hundred years and nobody improved on it.' }
       ],
       blurb: 'A bird with its head high to the east and its tail high to the ' +
              'west, standing on two feet between them. Watching.'
