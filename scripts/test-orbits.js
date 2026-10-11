@@ -216,19 +216,33 @@ FIGS.forEach(f => {
     f.lines.forEach(l => { seen[l[0]] = 1; seen[l[1]] = 1; });
     return f.stars.every(id => seen[id]);
   })());
-  /* A provisional figure is a geometry sketch: Krys has named it and set its
-     sign, but the chain of older names and the article are his to write and
-     must not be invented to satisfy a test. So the chain and article checks
-     apply only to finished figures - and a provisional one has to say so in
-     the data, which is what stops this becoming a way to skip the contract. */
+  /* Names, when a figure has them, are Krys's and are never invented to satisfy
+     a test. What IS checked is that a chain is well formed and ordered oldest
+     first, that every tradition is one of the three, and that a provisional
+     figure has no article pointing nowhere. */
+  const names = f.names || [];
+  if (names.length) {
+    ok(f.name + ': names are well formed', names.length >= 2 &&
+       names.every(n => n && typeof n.name === 'string' && n.name &&
+                        ['Spirit', "Drorn'Duur", "Aru'Mas"].indexOf(n.tradition) >= 0),
+       names.map(n => n.name).join(' -> '));
+    ok(f.name + ': names run oldest tradition first',
+       names.map(n => ['Spirit', "Drorn'Duur", "Aru'Mas"].indexOf(n.tradition))
+            .every((v, i, a) => i === 0 || v > a[i - 1]),
+       names.map(n => n.tradition).join(' -> '));
+    /* Drift is evidence, so it must be legible: either every layer kept the
+       same name or every layer changed it. A chain where two match and one
+       does not is almost always a half-finished edit rather than a ruling. */
+    const distinct = new Set(names.map(n => n.name.toLowerCase())).size;
+    ok(f.name + ': drift is all-or-nothing', distinct === 1 || distinct === names.length,
+       distinct === 1 ? 'held across every tradition' : 'renamed at every layer');
+  }
   if (f.provisional) {
-    ok(f.name + ': declares itself provisional', f.provisional === true, 'shape is a sketch');
-    ok(f.name + ': carries no invented names or article',
-       !(f.names || []).length && !f.article,
-       'names and article left to Krys');
+    ok(f.name + ': declares itself provisional', f.provisional === true, 'no article yet');
+    ok(f.name + ': does not point at an article it has not got', !f.article);
   } else {
-    ok(f.name + ': carries its chain of names oldest first', (f.names || []).length >= 2,
-       (f.names || []).map(n => n.name).join(' -> '));
+    ok(f.name + ': carries its chain of names oldest first', names.length >= 2,
+       names.map(n => n.name).join(' -> '));
     ok(f.name + ': points at an article', /^\/articles\/[a-z0-9-]+\/$/.test(f.article), f.article);
   }
 });

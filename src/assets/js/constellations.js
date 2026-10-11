@@ -19,11 +19,21 @@
  * are stable labels and must never be renumbered: a renumbering would move every
  * figure here at once.
  *
- * A figure carrying `provisional: true` is a GEOMETRY SKETCH and nothing more.
- * Its shape is a proposal, it has no article, and it has no chain of names,
- * because the names belong to Krys and inventing them is the one thing this
- * project does not do. Such a figure still draws, so the shape can be judged in
- * the viewer, but it is not clickable and announces itself as unfinished.
+ * A figure carrying `provisional: true` has no article yet. It still draws, so
+ * the shape can be judged in the viewer, but it is not clickable and announces
+ * itself as unfinished. Names may be present or not; what must never happen is
+ * a name invented here to fill a gap, because the names belong to Krys.
+ *
+ * ON DRIFT. The Spear changes name at every layer and the other two do not, and
+ * that is the system rather than an inconsistency. Krys ruled it on 2026-10-11:
+ * where the myth behind a figure is common ground, the name holds; where some-
+ * body had a reason to claim the figure, it moves. Marduk's astrologers renamed
+ * a warrior because a four-hundred-day-old government needed a heaven that
+ * agreed with it. Nobody gains by renaming the Green Mother.
+ *
+ * So a figure's name chain is evidence. Three different names means the figure
+ * was contested and the sky recorded it. One name repeated means every tradition
+ * inherited the same story and had no quarrel with it.
  */
 (function () {
   'use strict';
@@ -109,6 +119,12 @@
         ['s053', 's156'], ['s058', 's156'],   // the torso closing on the hips
         ['s156', 's008'], ['s156', 's073']    // the legs, long west, planted apart
       ],
+      // Oldest first, and the point is that the line does not move.
+      names: [
+        { tradition: 'Spirit', name: 'the Mother', note: 'Unchanged. They fought the war she ended, and have never needed another word for her.' },
+        { tradition: "Drorn'Duur", name: 'the Mother', note: 'Unchanged. Taken from the spirits whole, as the story was.' },
+        { tradition: "Aru'Mas", name: 'the Mother', note: 'Unchanged. There was nothing in her for anyone to claim.' }
+      ],
       blurb: 'A standing figure with both arms spread and falling open and her ' +
              'feet planted, reaching from low in the south nearly to the top of ' +
              'the sky. The suns stand among her stars at the northward equinox, ' +
@@ -139,6 +155,12 @@
         ['s106', 's150'], ['s158', 's159'],   // one arm down, one arm raised
         ['s106', 's160'], ['s158', 's160'],   // the torso closing on the hips
         ['s160', 's161'], ['s160', 's162']    // the legs, long west, drawn in together
+      ],
+      // Oldest first, and the point is that the line does not move.
+      names: [
+        { tradition: 'Spirit', name: 'the Dutiful Child', note: 'Unchanged. They watched it born and watched it hold.' },
+        { tradition: "Drorn'Duur", name: 'the Dutiful Child', note: 'Unchanged. Inherited with its mother and its story.' },
+        { tradition: "Aru'Mas", name: 'the Dutiful Child', note: 'Unchanged — though it is their own gods it keeps out.' }
       ],
       blurb: 'His mother\'s build at two thirds her height, standing east of her ' +
              'with clear sky between. One arm is raised and one lowered, and his ' +
