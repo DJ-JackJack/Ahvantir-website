@@ -246,5 +246,25 @@ window.BrightStars = [
   { id: "s159", ra: 38.6000, dec: 16.2000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
   { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 },
   { id: "s161", ra: 28.2000, dec: -17.4000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
-  { id: "s162", ra: 29.8000, dec: -13.2000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
+  { id: "s162", ra: 29.8000, dec: -13.2000, b: 0.6600, c: 4, o: "placed", t: 0.6590 },
+
+  /* ---- the folktale trio, placed 2026-10-11 ----
+   *
+   * The Coy, the Cat and the Rooster take signs 12, 2 and 4 - spaced round the
+   * belt rather than consecutive, but NOT scattered. Two signs more than five
+   * apart never share a sky at all, measured: six apart is zero nights a year,
+   * five is forty-nine. A first attempt at spacing put the Cat and the Rooster
+   * opposite each other, so the watchman could never see the thief. This layout
+   * keeps the Cat central - three signs from the Coy, two from the Rooster, so
+   * both pairs that matter to the story stand up together most of the year.
+   *
+   * The sky did nearly all the work. The Coy needed nothing: sign 12 already
+   * held a snout, a back, a belly and two stars nineteen degrees apart at RA
+   * 148 that make a forked tail. The Cat needed one forepaw. The Rooster needed
+   * a comb and a second foot, sign 4 being thin.
+   */
+  { id: "s163", ra: 213.0000, dec: -9.0000, b: 0.6000, c: 2, o: "placed", t: 0.4710 },
+  { id: "s164", ra: 287.0000, dec: 50.5000, b: 0.6200, c: 0, o: "placed", t: 0.0840 },
+  { id: "s165", ra: 286.8000, dec: -13.0000, b: 0.5800, c: 1, o: "placed", t: 0.7520 },
+  { id: "s166", ra: 233.0000, dec: 6.0000, b: 0.6100, c: 3, o: "placed", t: 0.3330 }
 ];

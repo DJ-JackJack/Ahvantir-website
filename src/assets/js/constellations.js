@@ -165,6 +165,96 @@
       blurb: 'His mother\'s build at two thirds her height, standing east of her ' +
              'with clear sky between. One arm is raised and one lowered, and his ' +
              'feet are together.'
+    },
+
+    /* ---- the folktale trio, 2026-10-11 ----
+     *
+     * Three figures from one story, in signs 2, 4 and 6 — spaced round the
+     * belt rather than consecutive, so the tale is told across the year and the
+     * named sky does not clump.
+     *
+     * Spaced, but not scattered, and the difference was measured rather than
+     * guessed. Two signs six apart NEVER share a sky from Aru'Mas — zero nights
+     * a year — and five apart manages only forty-nine. A first attempt put the
+     * Cat and the Rooster opposite each other, which would have meant the
+     * watchman could never once see the thief. The three now sit two signs apart
+     * each, which is close enough that all three stand up together, and far
+     * enough that no two are neighbours. The Cat is in the middle, which is
+     * where the story puts her.
+     *
+     * Shapes are mine and provisional. Names are open: this reads as a settled
+     * people's story — a walled garden, a hedge, a lord who feeds ornamental
+     * fish — and the Drorn'Duur lived under a mountain, so whether the older
+     * traditions share these names or had their own is unruled.
+     */
+    {
+      id: 'coy',
+      name: 'The Coy',
+      provisional: true,
+      /* Sign 6, and not one star placed. Of all the shapes in this sky this is
+         the one that was most nearly already drawn: a pair of stars nine
+         degrees apart making a mouth at the western end, a back and a belly
+         running east, and s007 and s126 eighteen degrees apart at RA 339
+         forking into a tail. Twenty degrees long by twenty-one deep, which is
+         about the proportion of an actual fish — the Coy is the only figure
+         here that did not have to be stretched to fit its animal. */
+      stars: ['s105', 's082', 's111', 's081', 's007', 's126'],
+      lines: [
+        ['s105', 's082'],   // the mouth
+        ['s105', 's111'],   // up over the head to the back
+        ['s111', 's007'],   // the back, east to the tail
+        ['s082', 's081'],   // the belly
+        ['s081', 's126'],   // belly to the lower fork
+        ['s007', 's126']    // the tail's trailing edge
+      ],
+      blurb: 'A fish swimming west, twenty degrees long, its tail forked ' +
+             'behind it. Not one of its stars was moved or placed.'
+    },
+    {
+      id: 'cat',
+      name: 'The Cat',
+      provisional: true,
+      /* Sign 2, central to the trio. A cat stalking: head low and west — the
+         tight knot of s107, s030 and s097 inside four degrees makes a muzzle,
+         a head and an ear — then the back rising to s148 and the haunch east.
+         Two stars are placed, a foreleg and a raised tail; a quadruped with no
+         front leg reads as a snake.
+         She deliberately does NOT use s131 and s050, which lie at Dec -30 and
+         -35 in the same sign and would have made a longer, lower cat. From
+         Aru'Mas a star at Dec -35 never climbs past 20 degrees, so a figure
+         reaching down to it is only ever wholly above the horizon for a narrow
+         window — and that window did not overlap the Coy's at all. Keeping the
+         Cat shallow is what lets her share a sky with the fish she is hunting.
+         s043 is absent too: it is the butt of The Spear's haft. */
+      stars: ['s107', 's030', 's097', 's148', 's033', 's163', 's166'],
+      lines: [
+        ['s107', 's030'], ['s030', 's097'],  // muzzle, head, ear
+        ['s030', 's148'],                    // neck up to the back
+        ['s148', 's033'],                    // the back, down to the haunch
+        ['s148', 's163'],                    // the foreleg
+        ['s033', 's166']                     // the tail, curling up behind
+      ],
+      blurb: 'A cat stalking, head low to the west, back arched, tail curled ' +
+             'up behind. Her muzzle, head and ear are three stars inside four degrees.'
+    },
+    {
+      id: 'rooster',
+      name: 'The Rooster',
+      provisional: true,
+      /* Sign 4 is the thinnest on the suns' road — four stars — but they are
+         all bright and they already stood as a bird: a head high east, a tail
+         high west, and the body slung low between them. A comb and a second
+         foot were placed; nothing else was needed. */
+      stars: ['s164', 's054', 's051', 's011', 's003', 's165'],
+      lines: [
+        ['s164', 's054'],                    // comb above the head
+        ['s054', 's051'],                    // the back, head to raised tail
+        ['s054', 's011'],                    // down the breast
+        ['s051', 's011'],                    // the underside, closing the body
+        ['s011', 's003'], ['s011', 's165']   // two feet
+      ],
+      blurb: 'A bird with its head high to the east and its tail high to the ' +
+             'west, standing on two feet between them. Watching.'
     }
   ];
 })();
