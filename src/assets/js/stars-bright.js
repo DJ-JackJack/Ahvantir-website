@@ -221,6 +221,11 @@ window.BrightStars = [
    * become the pattern for the remaining ten signs or the ecliptic ends up
    * brighter than the river.
    *
+   * Re-posed 2026-10-11, same day: the two figures came out too alike, so the
+   * Child now holds one arm raised (s159) and stands with his feet drawn in
+   * (s161, s162) against his mother's open arms and planted stance. Only
+   * stars already placed by hand were moved; nothing seeded shifted.
+   *
    * The Child's new stars run 0.62-0.72 while its two existing ones are 0.52 and
    * 0.57. That breaks "give placed stars their neighbours' brightnesses" on
    * purpose: the neighbours are faint because the sign is empty, not because the
@@ -231,8 +236,8 @@ window.BrightStars = [
   { id: "s156", ra: 0.9000, dec: -1.8000, b: 0.6620, c: 2, o: "placed", t: 0.7710 },
   { id: "s157", ra: 28.2000, dec: 12.7000, b: 0.7000, c: 4, o: "placed", t: 0.3050 },
   { id: "s158", ra: 31.6000, dec: 7.0000, b: 0.6750, c: 3, o: "placed", t: 0.8820 },
-  { id: "s159", ra: 35.6000, dec: -9.6000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
+  { id: "s159", ra: 38.6000, dec: 16.2000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
   { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 },
-  { id: "s161", ra: 27.4000, dec: -12.8000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
-  { id: "s162", ra: 30.6000, dec: -16.9000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
+  { id: "s161", ra: 28.2000, dec: -13.2000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
+  { id: "s162", ra: 29.8000, dec: -17.4000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
 ];
