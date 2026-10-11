@@ -17,8 +17,6 @@ Every other figure on the suns' road stands square or reaches with both arms. Th
 
 One hand is up and out: *stop*. One hand is down and open: *pass*. That is precisely and completely what the Gate does — divine influence reaches the mortal world through prayer, through clergy, through artifacts and the acts of the faithful, and the gods themselves do not follow it through. Outward in limited forms; inward not at all.
 
-He is faint. Nothing in the figure is bright, and on a poor night he is not there at all. People have made something of this, and it is probably worth saying plainly that the Gate's dimness in the sky is not doctrine — but it has not stopped anyone observing that a barrier which has never once been seen by anybody is fittingly hard to find.
-
 ## Why he is called dutiful, and meant
 
 The word is approving, and the people who use it most are the ones the Gate costs most. That requires explaining.
