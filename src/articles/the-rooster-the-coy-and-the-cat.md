@@ -47,13 +47,11 @@ The next day she came back, and the Coy came up to the surface and asked what ha
 
 The Coy were frightened. But one of them came forward and said that somebody had to go and make sure he was safe. And the Cat left with another meal.
 
-And so it went. Not one of them went for the ocean. Every one of them went to find the one before, and the Cat ate them in the order of their affection, which was the order in which they loved each other best.
-
-The pond grew quiet.
+And so it went. Not one of them went for the ocean. Every one of them went to find the one before, and the Cat ate them in the order of their affection. The pond grew quiet.
 
 All this while the Rooster had been in the yard, saying nothing, watching everything. He had understood the trick from the second day. He had also understood something the Coy had not, which was that a cat who has finished the fish does not leave the yard.
 
-So the Rooster went to the Cat and told her he had never in his life seen anything done so well, and that he did not understand how she had managed it, and would she show him — just the lifting, just how she had got them out of the water without a splash.
+So the Rooster went to the Cat and told her he had never in his life seen anything done so well, and that he did not understand how she had managed it, and would she show him: just the lifting, just how she had got them out of the water without a splash.
 
 The Cat, who had eaten very well and had never once been admired, went to the stone lip of the pond to show him.
 
