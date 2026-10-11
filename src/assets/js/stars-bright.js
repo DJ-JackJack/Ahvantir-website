@@ -194,5 +194,45 @@ window.BrightStars = [
      placed stars their neighbours' brightnesses. Everything else in the
      circumpolar cap runs 0.53 to 0.93, and 0.952 announces itself over all of
      it. Announcing itself is the entire function of a pole star. */
-  { id: "s154", ra: 331.9000, dec: 88.5000, b: 0.9520, c: 4, o: "placed", t: 0.6180 }
+  { id: "s154", ra: 331.9000, dec: 88.5000, b: 0.9520, c: 4, o: "placed", t: 0.6180 },
+
+  /* ---- the humanoid pair, placed 2026-10-11 ----
+   *
+   * Krys asked that The Mother and The Dutiful Child read as human figures,
+   * resemble each other, and stand further apart. The first two cannot be had
+   * from the scatter: a body needs a head, shoulders, hips and feet in roughly
+   * the right places, and neither sign had all four. So both figures are built
+   * on one eight-point skeleton, and the stars the skeleton needed that the sky
+   * did not provide are here.
+   *
+   * The Mother needed two (s155, s156) - her sign already had shoulders, hands
+   * and feet, and only the head and hips were missing. The Child needed six,
+   * because sign 8 is the emptiest in the belt; only s106 and s150 were usable,
+   * and they are its left shoulder and left hand where they already stood.
+   *
+   * s149 and s128 are deliberately NOT in the Child. s149 sits west, toward the
+   * Mother, and leaving it out is what opens the gap between the two figures
+   * from six degrees to eleven. Both stay in the catalogue as field stars.
+   *
+   * Two departures from the cautions at the head of this file, both deliberate:
+   *
+   * Six placed stars in one figure is the most this project has done, and it is
+   * only defensible because sign 8 had four stars and no shape. It must not
+   * become the pattern for the remaining ten signs or the ecliptic ends up
+   * brighter than the river.
+   *
+   * The Child's new stars run 0.62-0.72 while its two existing ones are 0.52 and
+   * 0.57. That breaks "give placed stars their neighbours' brightnesses" on
+   * purpose: the neighbours are faint because the sign is empty, not because the
+   * region is meant to be dim, and a child that reads as a ghost beside its
+   * mother is not the resemblance that was asked for.
+   */
+  { id: "s155", ra: 358.8000, dec: 22.4000, b: 0.7180, c: 1, o: "placed", t: 0.1440 },
+  { id: "s156", ra: 0.9000, dec: -1.8000, b: 0.6620, c: 2, o: "placed", t: 0.7710 },
+  { id: "s157", ra: 28.2000, dec: 12.7000, b: 0.7000, c: 4, o: "placed", t: 0.3050 },
+  { id: "s158", ra: 31.6000, dec: 7.0000, b: 0.6750, c: 3, o: "placed", t: 0.8820 },
+  { id: "s159", ra: 35.6000, dec: -9.6000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
+  { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 },
+  { id: "s161", ra: 27.4000, dec: -12.8000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
+  { id: "s162", ra: 30.6000, dec: -16.9000, b: 0.6600, c: 4, o: "placed", t: 0.6590 }
 ];

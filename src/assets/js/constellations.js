@@ -65,29 +65,43 @@
      * or placed for either — these are the stars that were already there, so what
      * the viewer shows is the raw material rather than a flattered version of it.
      */
+    /* ONE SKELETON, TWO FIGURES.
+     *
+     * Krys asked that these read as human, resemble each other, and stand
+     * further apart. The resemblance is therefore structural rather than a
+     * matter of drawing: both carry the same eight points in the same order —
+     * head, left shoulder, right shoulder, left hand, right hand, hips, left
+     * foot, right foot — and the same nine lines joining them. Change the
+     * skeleton in one and it must change in the other.
+     *
+     * What differs is scale. The Child is built at 65% of the Mother, which is
+     * what makes one of them a child without either stopping being a person.
+     */
     {
       id: 'mother',
       name: 'The Mother',
       provisional: true,
-      /* Imwei. Eight stars, all seeded, spanning 22 degrees of right ascension
-         and 63 of declination — a tall figure for a deity her own article calls
-         a tall woman whose form is the forest. There is a near-vertical spine at
-         RA 356-357 (s040 crown, s053, s008) that the shape is hung on, and s047
-         and s099 sit at almost the same declination 22 degrees apart, which is
-         what suggested arms held level. s008, brightest in the sign at 0.966, is
-         the heart rather than an extremity, so the figure's weight is central. */
-      stars: ['s040', 's053', 's058', 's075', 's047', 's099', 's008', 's073'],
+      /* Imwei. 22 degrees wide by 45 tall. Six of the eight were already there:
+         her sign had shoulders, hands and feet in usable places and wanted only
+         a head and hips, which are s155 and s156.
+         s008, at 0.966 the brightest star in the sign, ends up as a foot rather
+         than the heart. That looked wrong until I remembered Rigel.
+         Her two brightest neighbours, s040 and s075, stand just above her head
+         and are deliberately NOT in the figure. They would make a crown — which
+         her article supports, hair of living vines and flowering growth — but a
+         crown is exactly the kind of flourish that stops her resembling her son.
+         Adding them back is two lines and is the first thing to try if the pair
+         ever look too alike. */
+      stars: ['s155', 's053', 's058', 's047', 's099', 's156', 's008', 's073'],
       lines: [
-        ['s040', 's053'],   // the crown, high and alone
-        ['s053', 's058'],   // across the shoulders
-        ['s053', 's047'],   // the west arm, reaching down
-        ['s058', 's099'],   // the east arm, level with it
-        ['s058', 's075'],   // growth rising off the east shoulder
-        ['s053', 's008'],   // the trunk, down to the heart
-        ['s008', 's073']    // and the root below it
+        ['s155', 's053'], ['s155', 's058'],   // head to either shoulder
+        ['s053', 's058'],                     // across the shoulders
+        ['s053', 's047'], ['s058', 's099'],   // the arms, spread and falling
+        ['s053', 's156'], ['s058', 's156'],   // the torso closing on the hips
+        ['s156', 's008'], ['s156', 's073']    // and the legs
       ],
-      blurb: 'A crowned figure with arms held level and a bright heart, standing ' +
-             'from low in the south almost to the top of the sky. The suns stand ' +
+      blurb: 'A standing figure with her arms spread and falling open, reaching ' +
+             'from low in the south nearly to the top of the sky. The suns stand ' +
              'among her stars at the northward equinox, so she is lost to ' +
              'daylight on one of the Green Mother\'s four holy days.'
     },
@@ -95,21 +109,24 @@
       id: 'child',
       name: 'The Dutiful Child',
       provisional: true,
-      /* The Divine Gate. Four stars and not one brighter than 0.569 — the
-         faintest sign of the thirteen by a wide margin, which is a fact about
-         the seed scatter and not a statement about the Gate. They do make a
-         simple four-sided frame, which is at least the right idea for a gate,
-         but it is lopsided and dim. This is the figure that most needs a ruling:
-         place stars, move the Child, or keep it faint on purpose. */
-      stars: ['s149', 's106', 's128', 's150'],
+      /* The Divine Gate. The same figure at 65% — 14 degrees wide by 29 tall.
+         Sign 8 is the emptiest in the belt and held four stars, no two of which
+         could be a pair of shoulders, so six of these eight are placed. Only
+         s106 and s150 were already in the right places, and they are the left
+         shoulder and left hand exactly where they stood.
+         s149 and s128 are left out. s149 lay west, toward his mother, and
+         dropping it is what widens the gap between the two figures from six
+         degrees to eleven. */
+      stars: ['s157', 's106', 's158', 's150', 's159', 's160', 's161', 's162'],
       lines: [
-        ['s149', 's106'],   // the lintel
-        ['s106', 's128'],   // the eastern post, long and faint
-        ['s128', 's150'],   // the threshold
-        ['s150', 's149']    // the western post
+        ['s157', 's106'], ['s157', 's158'],   // head to either shoulder
+        ['s106', 's158'],                     // across the shoulders
+        ['s106', 's150'], ['s158', 's159'],   // the arms, spread and falling
+        ['s106', 's160'], ['s158', 's160'],   // the torso closing on the hips
+        ['s160', 's161'], ['s160', 's162']    // and the legs
       ],
-      blurb: 'A lopsided frame of four faint stars. Nothing in it is bright, and ' +
-             'it has to be looked for.'
+      blurb: 'The same figure as his mother and two thirds her height, standing ' +
+             'east of her with clear sky between them.'
     }
   ];
 })();
