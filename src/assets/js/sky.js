@@ -152,7 +152,7 @@
       // terminator the right way when it is drawn.
       var cosPsi = eq[0] * bary[0] + eq[1] * bary[1] + eq[2] * bary[2];
       out.bodies.push({ kind: 'moon', n: m.n, key: m.key,
-                        r: m.rho / DEG,
+                        r: m.rho / DEG, depth: m.depth,
                         eq: eq, hor: hor, alt: altOf(hor), az: azOf(hor),
                         cosPsi: cosPsi, illum: (1 - cosPsi) / 2,
                         phase: m.phase });
@@ -449,35 +449,43 @@
     return 'Night';
   }
 
-  /* Discs are drawn larger than life so they are visible at all, and that
-     magnification used to be a lie about eclipses: the radii were tripled while
-     the gaps between bodies were left alone, so two bodies two degrees apart
-     were painted touching. The event list, which uses true radii, would say
-     nothing was happening while the picture showed a transit.
+  /* Discs are drawn larger than life so they are visible at all, and that used
+     to be a lie about eclipses: radii were tripled while the gaps between
+     bodies were left alone, so two bodies two degrees apart were painted
+     touching. The event list, which uses true radii, would say nothing was
+     happening while the picture showed a transit.
 
-     Rather than magnify the gaps too — which would move a body off its real
-     place among the stars, and the sign it stands in is now printed on the page
-     — each body's magnification is capped by how close its nearest neighbour
-     is. Far from anything it is drawn at full size; as another body approaches
-     it shrinks, reaching true size at the moment of contact. So an overlap on
-     screen is always a real one, and nothing is ever drawn anywhere but where
-     it is.
+     The fix is Beas's, read out of the Rolara sky's source, and it is better
+     than the one that stood here for a day: rather than shrink a disc as its
+     neighbour closes in — which took the magnification away at exactly the
+     moment anyone wanted to look — magnify the GAP by the same factor as the
+     discs, but only in the neighbourhood where an overlap is possible.
 
-     Idea taken from the Rolara sky's note that spacing and size are magnified
-     together, which is the other way of keeping the same promise. */
-  function magnify(bodies) {
-    var MAG = st.big ? 3 : 1;
-    for (var i = 0; i < bodies.length; i++) {
-      var b = bodies[i], m = MAG;
-      for (var j = 0; j < bodies.length; j++) {
-        if (i === j) continue;
-        var o = bodies[j], R = b.r + o.r;
-        if (R <= 0) continue;
-        var d = Math.acos(clamp(b.eq[0] * o.eq[0] + b.eq[1] * o.eq[1] + b.eq[2] * o.eq[2], -1, 1)) / DEG;
-        m = Math.min(m, Math.max(1, d / R));
-      }
-      b.mag = m;
-    }
+     c is the on-screen distance at which the true discs just touch. Inside c
+     the offset is multiplied by g, exactly as the radii are, so a drawn overlap
+     happens precisely when a true one does. From c out to 2gc the drawn offset
+     eases back to the truth, and beyond 2gc nothing moves at all — so a body is
+     never displaced by more than about a degree, and only ever next to
+     something it is nearly touching. */
+  var MIN_DISC = 3;
+
+  /* One scale for every disc, never per body. A floor applied to each disc
+     separately flattens the small ones up to the size of the large and takes
+     the proportions — the whole point of looking — with it. Raising the single
+     shared factor instead keeps every disc true to every other. */
+  function discScale(bodies) {
+    var base = st.big ? 3 : 1, least = Infinity;
+    for (var i = 0; i < bodies.length; i++) if (bodies[i].r < least) least = bodies[i].r;
+    if (!isFinite(least) || least <= 0) return base;
+    return Math.max(base, (MIN_DISC * DPR) / (least * P.sc));
+  }
+
+  function spreadPt(p, anchor, c, g) {
+    var dx = p.x - anchor.x, dy = p.y - anchor.y, s = Math.hypot(dx, dy);
+    var S = 2 * Math.max(g, 1) * c;
+    if (Math.abs(g - 1) < 1e-6 || !s || s >= S) return p;
+    var drawn = s <= c ? g * s : g * c + (s - c) * (S - g * c) / (S - c);
+    return { ok: p.ok, x: anchor.x + dx * drawn / s, y: anchor.y + dy * drawn / s };
   }
 
   /* The suns' road, and the thirteen marks along it. Without this the signs are
@@ -517,13 +525,7 @@
     ctx.restore();
   }
 
-  function drawSun(b) {
-    var p = P.f(b.alt, b.az);
-    if (!p.ok) return null;
-    // A floor only so a body is never invisible. Kept small, because at true
-    // size a generous floor flattens every disc to the same dot and the
-    // proportions — the whole point of looking — go with it.
-    var rpx = Math.max(0.6 * DPR, b.r * (b.mag || 1) * P.sc);
+  function drawSun(b, p, rpx) {
     var c = COL[b.n];
     var glowR = rpx * (b.n === 'Nystara' ? 14 : 11);
     var g = ctx.createRadialGradient(p.x, p.y, rpx * 0.6, p.x, p.y, glowR);
@@ -536,10 +538,7 @@
     return { x: p.x, y: p.y, r: rpx };
   }
 
-  function drawMoon(b, sky, L) {
-    var p = P.f(b.alt, b.az);
-    if (!p.ok) return null;
-    var rpx = Math.max(0.6 * DPR, b.r * (b.mag || 1) * P.sc);
+  function drawMoon(b, p, rpx, sky, L) {
     // Point the terminator at the suns: nudge the moon's direction a little
     // toward the pair's centre and see which way that moves on screen.
     var s = sky.baryHor, m = b.hor;
@@ -620,7 +619,9 @@
       return p.y - q.y;
     });
 
-    var done = [];
+    // Seeded with the figure names already on the canvas, so a body name
+    // steps around them instead of printing through them.
+    var done = figLabels.slice();
     var clashes = function (L) {
       return done.some(function (o) {
         return L.x < o.x + o.w + PAD && o.x < L.x + L.w + PAD &&
@@ -720,10 +721,11 @@
    * The hit region is built here too, so what you can click is exactly what you
    * can see.
    */
-  var figureHits = [], figuresUp = [];
+  var figureHits = [], figuresUp = [], figLabels = [];
   function drawFigures(sky, L) {
     figureHits = [];
     figuresUp = [];
+    figLabels = [];
     if (!FIGURES.length) return;
 
     for (var f = 0; f < FIGURES.length; f++) {
@@ -779,8 +781,12 @@
         ctx.textAlign = 'center';
         ctx.fillStyle = 'rgba(214,230,255,' + Math.min(1, a).toFixed(3) + ')';
         ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 5 * DPR;
-        ctx.fillText(fig.name, (minX + maxX) / 2, minY - 10 * DPR);
+        var lx = (minX + maxX) / 2, ly = minY - 10 * DPR;
+        ctx.fillText(fig.name, lx, ly);
         ctx.shadowBlur = 0;
+        // Body names are laid out later and must not land on top of this one.
+        var lw = ctx.measureText(fig.name).width;
+        figLabels.push({ x: lx - lw / 2, y: ly, w: lw });
       }
 
       figureHits.push({ fig: fig, path: path, box: [minX, minY, maxX, maxY] });
@@ -951,14 +957,32 @@
 
     drawEcliptic(sky, L);
 
-    magnify(sky.bodies);
+    /* Far to near, so what passes in front is painted last. The moons used to
+       be ordered by apparent size, which happens to run the other way: Miras is
+       the widest AND the nearest, so it was laid down first and Keltas, the
+       farthest, covered it. Every moon-on-moon pass showed the wrong one on
+       top. Depth is the only thing that decides this, so depth is what sorts. */
+    var G = discScale(sky.bodies);
+    var anchors = [];
     var placed = [];
     bodyHits = [];
+    function place(b, draw) {
+      var p = P.f(b.alt, b.az);
+      if (!p.ok) return;
+      for (var i = 0; i < anchors.length; i++) {
+        p = spreadPt(p, anchors[i].p, (b.r + anchors[i].r) * P.sc, G);
+      }
+      var r = draw(b, p, b.r * G * P.sc);
+      if (r) { placed.push([b, r]); anchors.push({ p: p, r: b.r }); }
+    }
     sky.bodies.filter(function (b) { return b.kind === 'sun'; })
-      .forEach(function (b) { var r = drawSun(b); if (r) placed.push([b, r]); });
+      .sort(function (a, b) { return (a.n === sky.front) - (b.n === sky.front); })
+      .forEach(function (b) { place(b, drawSun); });
     sky.bodies.filter(function (b) { return b.kind === 'moon'; })
-      .sort(function (a, b) { return b.r - a.r; })
-      .forEach(function (b) { var r = drawMoon(b, sky, L); if (r) placed.push([b, r]); });
+      .sort(function (a, b) { return b.depth - a.depth; })
+      .forEach(function (b) {
+        place(b, function (bb, p, rpx) { return drawMoon(bb, p, rpx, sky, L); });
+      });
     placed.forEach(function (e) {
       if (e[0].alt < -0.5) return;
       bodyHits.push({ n: e[0].n, x: e[1].x, y: e[1].y, r: e[1].r, href: ARTICLES[e[0].n] });
