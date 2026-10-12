@@ -226,12 +226,12 @@
     Y: 439, doy: M.doyOf(8, 35), h: 18.5,
     view: 'pan', facing: 90, domeRot: 0, pitch: 0,
     fov: 180, fovAuto: true,   // fovAuto until the reader zooms; then theirs
-    big: true, playing: false, speed: '60'
+    big: true, figNames: true, sunPath: false, playing: false, speed: '60'
   };
   try {
     var saved = JSON.parse(localStorage.getItem('ahv-sky') || 'null');
     if (saved) {
-      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big', 'fov', 'fovAuto', 'pitch'].forEach(function (k) {
+      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big', 'figNames', 'sunPath', 'fov', 'fovAuto', 'pitch'].forEach(function (k) {
         if (saved[k] !== undefined) st[k] = saved[k];
       });
       if (saved.model) {
@@ -246,7 +246,7 @@
     try {
       localStorage.setItem('ahv-sky', JSON.stringify({
         Y: st.Y, doy: st.doy, h: st.h, view: st.view, facing: st.facing,
-        domeRot: st.domeRot, big: st.big, fov: st.fov, fovAuto: st.fovAuto, pitch: st.pitch,
+        domeRot: st.domeRot, big: st.big, figNames: st.figNames, sunPath: st.sunPath, fov: st.fov, fovAuto: st.fovAuto, pitch: st.pitch,
         model: { lat: MODEL.lat, tilt: MODEL.tilt, beta: O.EL.BETA / DEG }
       }));
     } catch (e) {}
@@ -336,6 +336,26 @@
   var BY_ID = {};
   BRIGHT.forEach(function (s) { BY_ID[s.id] = s; });
   var FIGURES = window.Constellations || [];
+
+  /* Which figure, if any, holds each sign. Worked out from the figures' own
+     stars so it cannot drift from them; a figure that straddles a boundary
+     counts in the sign its mean position falls in. */
+  var FIG_BY_SIGN = (function () {
+    var map = {};
+    FIGURES.forEach(function (f) {
+      var x = 0, y = 0, z = 0, n = 0;
+      f.stars.forEach(function (id) {
+        var s = BY_ID[id];
+        if (s) { x += s.v[0]; y += s.v[1]; z += s.v[2]; n++; }
+      });
+      if (!n) return;
+      var len = Math.hypot(x, y, z);
+      if (!len) return;
+      map[O.signOf(O.raOf([x / len, y / len, z / len]))] = f;
+    });
+    return map;
+  })();
+
 
   var FAINT = (function () {
     var R = rng(90210), out = [];
@@ -429,13 +449,81 @@
     return 'Night';
   }
 
+  /* Discs are drawn larger than life so they are visible at all, and that
+     magnification used to be a lie about eclipses: the radii were tripled while
+     the gaps between bodies were left alone, so two bodies two degrees apart
+     were painted touching. The event list, which uses true radii, would say
+     nothing was happening while the picture showed a transit.
+
+     Rather than magnify the gaps too — which would move a body off its real
+     place among the stars, and the sign it stands in is now printed on the page
+     — each body's magnification is capped by how close its nearest neighbour
+     is. Far from anything it is drawn at full size; as another body approaches
+     it shrinks, reaching true size at the moment of contact. So an overlap on
+     screen is always a real one, and nothing is ever drawn anywhere but where
+     it is.
+
+     Idea taken from the Rolara sky's note that spacing and size are magnified
+     together, which is the other way of keeping the same promise. */
+  function magnify(bodies) {
+    var MAG = st.big ? 3 : 1;
+    for (var i = 0; i < bodies.length; i++) {
+      var b = bodies[i], m = MAG;
+      for (var j = 0; j < bodies.length; j++) {
+        if (i === j) continue;
+        var o = bodies[j], R = b.r + o.r;
+        if (R <= 0) continue;
+        var d = Math.acos(clamp(b.eq[0] * o.eq[0] + b.eq[1] * o.eq[1] + b.eq[2] * o.eq[2], -1, 1)) / DEG;
+        m = Math.min(m, Math.max(1, d / R));
+      }
+      b.mag = m;
+    }
+  }
+
+  /* The suns' road, and the thirteen marks along it. Without this the signs are
+     invisible infrastructure: a reader can be told a body stands in the Cat and
+     has no way to see where the Cat's stretch of sky begins. */
+  function drawEcliptic(sky, L) {
+    if (!st.sunPath) return;
+    var a = 0.30 + 0.45 * (1 - L.day);
+    ctx.save();
+    ctx.strokeStyle = 'rgba(214,198,150,' + (a * 0.5).toFixed(3) + ')';
+    ctx.lineWidth = 1 * DPR;
+    ctx.setLineDash([5 * DPR, 6 * DPR]);
+    ctx.beginPath();
+    var open = false;
+    for (var lon = 0; lon <= 360; lon += 1.5) {
+      var h = O.eqToHor(O.eclToEq(lon * Math.PI / 180, 0), sky.lst);
+      var p = h[2] < -0.02 ? { ok: false } : P.f(O.altOf(h), O.azOf(h));
+      if (!p.ok) { open = false; continue; }
+      if (!open) { ctx.moveTo(p.x, p.y); open = true; } else { ctx.lineTo(p.x, p.y); }
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // A tick at each sign boundary, so the division can be seen and counted.
+    ctx.strokeStyle = 'rgba(214,198,150,' + (a * 0.8).toFixed(3) + ')';
+    ctx.lineWidth = 1.2 * DPR;
+    for (var k = 1; k <= O.SIGNS.n; k++) {
+      var ra = O.signBounds(k)[0] * Math.PI / 180;
+      var v = [Math.cos(ra), Math.sin(ra), 0];
+      var hh = O.eqToHor(v, sky.lst);
+      if (hh[2] < -0.02) continue;
+      var pp = P.f(O.altOf(hh), O.azOf(hh));
+      if (!pp.ok) continue;
+      ctx.beginPath();
+      ctx.moveTo(pp.x, pp.y - 5 * DPR); ctx.lineTo(pp.x, pp.y + 5 * DPR);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   function drawSun(b) {
     var p = P.f(b.alt, b.az);
     if (!p.ok) return null;
     // A floor only so a body is never invisible. Kept small, because at true
     // size a generous floor flattens every disc to the same dot and the
     // proportions — the whole point of looking — go with it.
-    var rpx = Math.max(0.6 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
+    var rpx = Math.max(0.6 * DPR, b.r * (b.mag || 1) * P.sc);
     var c = COL[b.n];
     var glowR = rpx * (b.n === 'Nystara' ? 14 : 11);
     var g = ctx.createRadialGradient(p.x, p.y, rpx * 0.6, p.x, p.y, glowR);
@@ -451,7 +539,7 @@
   function drawMoon(b, sky, L) {
     var p = P.f(b.alt, b.az);
     if (!p.ok) return null;
-    var rpx = Math.max(0.6 * DPR, b.r * (st.big ? 3 : 1) * P.sc);
+    var rpx = Math.max(0.6 * DPR, b.r * (b.mag || 1) * P.sc);
     // Point the terminator at the suns: nudge the moon's direction a little
     // toward the pair's centre and see which way that moves on screen.
     var s = sky.baryHor, m = b.hor;
@@ -686,7 +774,7 @@
       ctx.stroke(path);
       ctx.restore();
 
-      if (fig._hot) {
+      if (fig._hot || st.figNames) {
         ctx.font = (13 * DPR) + 'px ' + (cssv('--font-display') || 'serif');
         ctx.textAlign = 'center';
         ctx.fillStyle = 'rgba(214,230,255,' + Math.min(1, a).toFixed(3) + ')';
@@ -861,6 +949,9 @@
       drawFigures(sky, L);
     }
 
+    drawEcliptic(sky, L);
+
+    magnify(sky.bodies);
     var placed = [];
     bodyHits = [];
     sky.bodies.filter(function (b) { return b.kind === 'sun'; })
@@ -950,6 +1041,7 @@
         esc(body.n) + '</span></td>' +
         '<td class="sky-num"><button type="button" class="sky-aim" id="sky-now' + k + '" ' +
           'data-i="' + k + '" title="Point the view at ' + esc(body.n) + '"></button></td>' +
+        '<td><span class="sky-in" id="sky-in' + k + '"></span></td>' +
         '<td class="sky-num">' + esc(rise) + '</td>' +
         '<td class="sky-num">' + esc(set) + '</td>' +
         '<td>' + esc(ph) + (moon ? ' <span class="sky-lit" id="sky-ill' + k + '"></span>' : '') + '</td></tr>';
@@ -1011,6 +1103,11 @@
       el.dataset.alt = b.alt.toFixed(3);
       el.dataset.az = b.az.toFixed(3);
       el.disabled = b.alt <= -0.5;
+      var inEl = $('sky-in' + k);
+      if (inEl) {
+        var fg = FIG_BY_SIGN[O.signOf(O.raOf(b.eq))];
+        inEl.textContent = fg ? fg.name : '\u2013';
+      }
       var il = $('sky-ill' + k);
       if (il) il.textContent = Math.round(b.illum * 100) + '% lit';
     });
@@ -1357,12 +1454,16 @@
   $('sky-tilt').value = MODEL.tilt;
   $('sky-spread').value = (O.EL.BETA / DEG).toFixed(0);
   $('sky-big').checked = st.big;
+  $('sky-fignames').checked = st.figNames;
+  $('sky-sunpath').checked = st.sunPath;
   $('sky-lat').addEventListener('change', function (e) { MODEL.lat = clamp(+e.target.value || 0, -80, 80); tableKey = ''; render(); save(); });
   $('sky-tilt').addEventListener('change', function (e) { MODEL.tilt = clamp(+e.target.value || 0, 0, 60); tableKey = ''; render(); save(); });
   $('sky-spread').addEventListener('change', function (e) {
     O.setBeta(clamp(+e.target.value || 45, 0, 89)); tableKey = ''; render(); save();
   });
   $('sky-big').addEventListener('change', function (e) { st.big = e.target.checked; render(); save(); });
+  $('sky-fignames').addEventListener('change', function (e) { st.figNames = e.target.checked; render(); save(); });
+  $('sky-sunpath').addEventListener('change', function (e) { st.sunPath = e.target.checked; render(); save(); });
 
   // A link a reader can hand to someone else, pinned to what they are looking at.
   $('sky-share').addEventListener('click', function () {

@@ -405,6 +405,30 @@
     return null;
   }
 
+  /* ---------- the thirteen signs ----------
+   *
+   * The suns' road is cut into thirteen equal parts. NOTHING IN CANON DIVIDES
+   * IT: the division, the count and the anchor are a working construction, and
+   * the numbers are labels rather than a tradition. The anchor was set to 178.0
+   * on 2026-10-11 so the merging of 0 MC falls inside The Spear's sign; move it
+   * and every figure's sign moves with it.
+   *
+   * It lives in the model rather than in a note because the viewer now tells a
+   * reader which sign a body stands in, and a number printed on the page has to
+   * come from the same arithmetic as everything else.
+   */
+  var SIGNS = { n: 13, anchor: 178.0 };
+  function signWidth() { return 360 / SIGNS.n; }
+  function signOf(raDeg) {
+    return Math.floor(M.mod(raDeg - SIGNS.anchor, 360) / signWidth()) + 1;
+  }
+  function signBounds(k) {
+    var lo = M.mod(SIGNS.anchor + (k - 1) * signWidth(), 360);
+    return [lo, M.mod(lo + signWidth(), 360)];
+  }
+  // Right ascension of an equatorial unit vector, in degrees.
+  function raOf(v) { return M.mod(Math.atan2(v[1], v[0]) / DEG, 360); }
+
   window.Orbits = {
     EL: EL, DEG: DEG, WIDEST: WIDEST, setBeta: setBeta,
     sunsAt: sunsAt, pairingOf: pairingOf, nextEclipse: nextEclipse,
@@ -414,6 +438,7 @@
     crossingsAt: crossingsAt, between: between,
     eventsBetween: eventsBetween, eventsInYear: eventsInYear,
     sepFraction: sepFraction, nextClosePairing: nextClosePairing,
+    SIGNS: SIGNS, signWidth: signWidth, signOf: signOf, signBounds: signBounds, raOf: raOf,
     toEcl: toEcl
   };
 })();

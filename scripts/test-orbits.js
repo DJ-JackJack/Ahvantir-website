@@ -247,6 +247,64 @@ FIGS.forEach(f => {
   }
 });
 
+console.log('\nThe thirteen signs');
+const SG = O.SIGNS;
+ok('there are thirteen of them', SG.n === 13);
+ok('each is 360/13 degrees wide', Math.abs(O.signWidth() - 360 / 13) < 1e-9,
+   O.signWidth().toFixed(4) + ' deg');
+ok('the anchor is where it was set', Math.abs(SG.anchor - 178.0) < 1e-9, String(SG.anchor));
+ok('signOf and signBounds agree', (function () {
+  for (let k = 1; k <= SG.n; k++) {
+    const b = O.signBounds(k);
+    // a hair inside each end of the sign
+    if (O.signOf(b[0] + 0.01) !== k) return false;
+    if (O.signOf(global.window.Marducian.mod(b[1] - 0.01, 360)) !== k) return false;
+  }
+  return true;
+})());
+ok('the signs tile the circle without gap or overlap', (function () {
+  const seen = new Set();
+  for (let ra = 0; ra < 360; ra += 0.25) {
+    const k = O.signOf(ra);
+    if (!(k >= 1 && k <= SG.n)) return false;
+    seen.add(k);
+  }
+  return seen.size === SG.n;
+})());
+
+/* The anchor exists to put the merging of 0 MC inside The Spear's sign. If a
+   future edit moves it, this is what says so out loud. */
+{
+  const M2 = global.window.Marducian;
+  const S = O.sunsAt(M2.absDay(0, M2.doyOf(6, 34)) + 0.5);
+  const eq = O.eclToEq(S.bary.lon, 0);
+  const ra = O.raOf(eq);
+  ok('the merging of 0 MC falls in sign 1, which is the anchor\'s whole purpose',
+     O.signOf(ra) === 1, '34 Lochenvir sits at RA ' + ra.toFixed(1) + ', sign ' + O.signOf(ra));
+}
+
+/* Each figure sits in its own sign, which is what lets the viewer name the sign
+   a body stands in. Two figures sharing one would make that ambiguous. */
+{
+  const byId = {};
+  STARS.forEach(s => { byId[s.id] = s; });
+  const signs = new Map();
+  let clash = '';
+  FIGS.forEach(f => {
+    let x = 0, y = 0, z = 0;
+    f.stars.forEach(id => {
+      const s = byId[id], ra = s.ra * Math.PI / 180, dec = s.dec * Math.PI / 180, cd = Math.cos(dec);
+      x += cd * Math.cos(ra); y += cd * Math.sin(ra); z += Math.sin(dec);
+    });
+    const n = Math.hypot(x, y, z);
+    const k = O.signOf(O.raOf([x / n, y / n, z / n]));
+    if (signs.has(k)) clash += f.name + ' shares sign ' + k + ' with ' + signs.get(k) + '; ';
+    signs.set(k, f.name);
+  });
+  ok('no two figures claim the same sign', clash === '', clash ||
+     [...signs.entries()].sort((a, b) => a[0] - b[0]).map(e => e[0] + ':' + e[1]).join(', '));
+}
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);

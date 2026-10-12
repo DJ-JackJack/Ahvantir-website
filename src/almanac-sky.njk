@@ -114,7 +114,7 @@ permalink: /almanac/sky/
         <table class="sky-table">
           <caption class="sr-only">Where each body stands now, when it rises and sets, and its phase</caption>
           <thead>
-            <tr><th scope="col">Body</th><th scope="col">Now</th><th scope="col">Rises</th><th scope="col">Sets</th><th scope="col">Phase</th></tr>
+            <tr><th scope="col">Body</th><th scope="col">Now</th><th scope="col">In</th><th scope="col">Rises</th><th scope="col">Sets</th><th scope="col">Phase</th></tr>
           </thead>
           <tbody id="sky-eph"></tbody>
         </table>
@@ -167,6 +167,8 @@ permalink: /almanac/sky/
         <span class="sky-field"><label for="sky-lat">Latitude</label><input class="sky-ctl" id="sky-lat" type="number" min="-80" max="80" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-tilt">Axial tilt</label><input class="sky-ctl" id="sky-tilt" type="number" min="0" max="60" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-spread">Orbit tilt</label><input class="sky-ctl" id="sky-spread" type="number" min="0" max="89" step="1">&deg;</span>
+        <span class="sky-field"><label for="sky-fignames">Figure names</label><input id="sky-fignames" type="checkbox" checked></span>
+        <span class="sky-field"><label for="sky-sunpath">The suns' road</label><input id="sky-sunpath" type="checkbox"></span>
         <span class="sky-field"><label for="sky-big">Magnify discs &times;3</label><input id="sky-big" type="checkbox" checked></span>
       </div>
       <p class="alm-note">Across the whole horizon a sun is about four pixels wide, so the discs are drawn at three times their real size to be visible at all. Turn that off and zoom in &mdash; scroll on the sky, or use plus and minus &mdash; and everything is at true angular size. The strip under the ephemeris always shows the real proportions whatever the view is doing.</p>
