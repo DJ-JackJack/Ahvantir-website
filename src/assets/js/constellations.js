@@ -262,15 +262,21 @@
       article: '/articles/the-rooster-the-coy-and-the-cat/',
       /* Sign 4 is the thinnest on the suns' road — four stars — but they are
          all bright and they already stood as a bird: a head high east, a tail
-         high west, and the body slung low between them. A comb and a second
-         foot were placed; nothing else was needed. */
-      stars: ['s164', 's054', 's051', 's011', 's003', 's165'],
+         high west, and the body slung low between them. Four stars are placed:
+         a comb, a second foot, and the tail tip that fixed the proportions.
+         Built on the four alone the bird was 15 degrees wide by 64 tall, which
+         is one to four and stretched even for something that stands upright.
+         Carrying the tail out to the western end of the sign, bringing the comb
+         down and drawing the feet level gives 24 by 57 — and a tail sweeping
+         back and up is the one line a rooster cannot do without. */
+      stars: ['s164', 's054', 's051', 's167', 's011', 's003', 's165'],
       lines: [
         ['s164', 's054'],                    // comb above the head
-        ['s054', 's051'],                    // the back, head to raised tail
+        ['s054', 's051'],                    // the back, head to the tail root
+        ['s051', 's167'],                    // and out to the tail tip
         ['s054', 's011'],                    // down the breast
         ['s051', 's011'],                    // the underside, closing the body
-        ['s011', 's003'], ['s011', 's165']   // two feet
+        ['s011', 's003'], ['s011', 's165']   // two feet, side by side
       ],
       // Oldest first. The line does not move: see the note above.
       names: [

@@ -467,26 +467,14 @@
      eases back to the truth, and beyond 2gc nothing moves at all — so a body is
      never displaced by more than about a degree, and only ever next to
      something it is nearly touching. */
-  var MIN_DISC = 3;
-
-  /* One scale for every disc, never per body. A floor applied to each disc
-     separately flattens the small ones up to the size of the large and takes
-     the proportions — the whole point of looking — with it. Raising the single
-     shared factor instead keeps every disc true to every other. */
+  /* Both live in disc-scale.js, where they can be tested on their own: the
+     promise they keep — that a drawn overlap is a real one — is the one thing
+     about this picture that has been got wrong twice. */
+  var DS = window.DiscScale;
   function discScale(bodies) {
-    var base = st.big ? 3 : 1, least = Infinity;
-    for (var i = 0; i < bodies.length; i++) if (bodies[i].r < least) least = bodies[i].r;
-    if (!isFinite(least) || least <= 0) return base;
-    return Math.max(base, (MIN_DISC * DPR) / (least * P.sc));
+    return DS.discScale(bodies.map(function (b) { return b.r; }), st.big ? 3 : 1, P.sc, DPR);
   }
-
-  function spreadPt(p, anchor, c, g) {
-    var dx = p.x - anchor.x, dy = p.y - anchor.y, s = Math.hypot(dx, dy);
-    var S = 2 * Math.max(g, 1) * c;
-    if (Math.abs(g - 1) < 1e-6 || !s || s >= S) return p;
-    var drawn = s <= c ? g * s : g * c + (s - c) * (S - g * c) / (S - c);
-    return { ok: p.ok, x: anchor.x + dx * drawn / s, y: anchor.y + dy * drawn / s };
-  }
+  var spreadPt = DS.spreadPoint;
 
   /* The suns' road, and the thirteen marks along it. Without this the signs are
      invisible infrastructure: a reader can be told a body stands in the Cat and

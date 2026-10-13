@@ -264,7 +264,14 @@ window.BrightStars = [
    * a comb and a second foot, sign 4 being thin.
    */
   { id: "s163", ra: 213.0000, dec: -9.0000, b: 0.6000, c: 2, o: "placed", t: 0.4710 },
-  { id: "s164", ra: 287.0000, dec: 50.5000, b: 0.6200, c: 0, o: "placed", t: 0.0840 },
-  { id: "s165", ra: 286.8000, dec: -13.0000, b: 0.5800, c: 1, o: "placed", t: 0.7520 },
-  { id: "s166", ra: 233.0000, dec: 6.0000, b: 0.6100, c: 3, o: "placed", t: 0.3330 }
+  { id: "s164", ra: 287.0000, dec: 47.0000, b: 0.6200, c: 0, o: "placed", t: 0.0840 },
+  { id: "s165", ra: 286.2000, dec: -9.0000, b: 0.5800, c: 1, o: "placed", t: 0.7520 },
+  { id: "s166", ra: 233.0000, dec: 6.0000, b: 0.6100, c: 3, o: "placed", t: 0.3330 },
+
+  /* The Rooster's tail tip, placed 2026-10-12. Sign 4 holds only four
+     stars and they stand almost in a line, so the bird came out 15 degrees
+     wide by 64 tall - one to four, stretched even for something upright.
+     Carrying the tail west to the far end of the sign widens it to 24 by
+     57, and gives a rooster the one silhouette it cannot do without. */
+  { id: "s167", ra: 263.5000, dec: 38.0000, b: 0.6000, c: 2, o: "placed", t: 0.5840 }
 ];

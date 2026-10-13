@@ -305,6 +305,159 @@ ok('the signs tile the circle without gap or overlap', (function () {
      [...signs.entries()].sort((a, b) => a[0] - b[0]).map(e => e[0] + ':' + e[1]).join(', '));
 }
 
+/* Degrees. A figure has to be tellable from its own reflection in AT LEAST ONE
+   axis, not in both: most things worth drawing — a spear, a fish, a bird seen
+   side on — are naturally symmetric about their long axis, and that is not a
+   fault. What would be a fault is a figure you cannot orient at all. The bar is
+   set just under The Spear, which is the tightest at 2.3 and is the one case
+   where the symmetry is the subject's own. */
+const MIRROR_FLOOR = 2.0;
+
+console.log('\nThe picture agrees with the event list');
+global.window.DiscScale = undefined;
+eval(fs.readFileSync(JS('disc-scale.js'), 'utf8'));
+const DS = global.window.DiscScale;
+
+/* The one promise the drawing makes. Discs are magnified so they are visible at
+   all; the gaps are magnified with them so that a drawn overlap is a real one.
+   This has been got wrong twice, in opposite directions, so it is pinned here
+   rather than left to the eye. */
+ok('a drawn overlap happens exactly when a true one does', (function () {
+  const sc = 7.9, dpr = 2, anchor = { ok: true, x: 400, y: 300 };
+  for (const [r1, r2] of [[0.431, 0.328], [0.46, 0.431], [0.34, 0.28], [0.46, 0.34]]) {
+    const R = r1 + r2, c = R * sc;
+    for (const g of [1, 2, 3, 4.5]) {
+      for (let s = 0; s < 6 * R; s += R / 60) {
+        const p = { ok: true, x: anchor.x + s * sc, y: anchor.y };
+        const q = DS.spreadPoint(p, anchor, c, g);
+        const drawn = Math.hypot(q.x - anchor.x, q.y - anchor.y);
+        if ((drawn < g * R * sc - 1e-9) !== (s < R - 1e-9)) return false;
+      }
+    }
+  }
+  return true;
+})());
+
+ok('and the drawn gap never goes backwards as two bodies close', (function () {
+  const sc = 7.9, anchor = { ok: true, x: 0, y: 0 }, R = 0.76, c = R * sc;
+  for (const g of [1, 2, 3, 4.5]) {
+    let prev = -1;
+    for (let s = 0; s < 8 * R; s += R / 200) {
+      const q = DS.spreadPoint({ ok: true, x: s * sc, y: 0 }, anchor, c, g);
+      const d = Math.hypot(q.x, q.y);
+      if (d < prev - 1e-9) return false;
+      prev = d;
+    }
+  }
+  return true;
+})());
+
+ok('one shared scale, so the discs keep their proportions', (function () {
+  const radii = [0.431, 0.328, 0.46, 0.42, 0.34];
+  for (const sc of [0.4, 2, 7.9, 60, 400]) {
+    for (const base of [1, 3]) {
+      const g = DS.discScale(radii, base, sc, 2);
+      if (g < base - 1e-9) return false;
+      // the smallest disc stays visible...
+      if (Math.min(...radii) * g * sc < DS.MIN_DISC * 2 - 1e-6) return false;
+      // ...and every disc is the same multiple of its true size
+      const ratio = (radii[0] * g * sc) / (radii[2] * g * sc);
+      if (Math.abs(ratio - radii[0] / radii[2]) > 1e-12) return false;
+    }
+  }
+  return true;
+})());
+
+/* The same promise, against the real sky rather than a sweep: a full year of
+   every pair, asking the drawing and crossingsAt() the same question. */
+ok('a year of the real sky, drawing and event list in step', (function () {
+  const M2 = global.window.Marducian, sc = 7.9, dpr = 2;
+  let checked = 0;
+  for (let k = 0; k < M2.YEAR_LEN * 24; k += 1) {
+    const t = M2.absDay(439, 1) + k / 24;
+    const S = O.sunsAt(t), lb = S.bary.lon;
+    const bodies = [
+      { n: 'Solara', eq: O.eclToEq(S.solara.lon, S.solara.lat), r: S.rhoS / O.DEG },
+      { n: 'Nystara', eq: O.eclToEq(S.nystara.lon, S.nystara.lat), r: S.rhoN / O.DEG },
+    ];
+    for (const m of O.moonsAt(t, lb)) {
+      bodies.push({ n: m.n, eq: O.eclToEq(m.lon, m.lat), r: m.rho / O.DEG });
+    }
+    const g = DS.discScale(bodies.map((b) => b.r), 3, sc, dpr);
+    for (let i = 0; i < bodies.length; i++) {
+      for (let j = i + 1; j < bodies.length; j++) {
+        const a = bodies[i], b = bodies[j];
+        const dot = a.eq[0] * b.eq[0] + a.eq[1] * b.eq[1] + a.eq[2] * b.eq[2];
+        const sep = Math.acos(Math.max(-1, Math.min(1, dot))) / O.DEG;
+        const R = a.r + b.r;
+        const q = DS.spreadPoint({ ok: true, x: sep * sc, y: 0 }, { ok: true, x: 0, y: 0 }, R * sc, g);
+        const drawnOverlap = Math.hypot(q.x, q.y) < g * R * sc - 1e-9;
+        if (drawnOverlap !== (sep < R - 1e-9)) return false;
+        checked++;
+      }
+    }
+  }
+  return checked > 90000;
+})(), 'every pair, every hour of 439 MC');
+
+console.log('\nThe figures as shapes');
+
+/* A figure that is its own mirror image is a weak one: it reads the same
+   flipped, so it cannot tell you which way up the sky is or which way it is
+   facing. Beas measures this on Rolara after a player complained some of his
+   constellations were too symmetrical, and the measure is worth having.
+   Reported rather than tightly bounded, because The Dutiful Child was BUILT as
+   his mother's reflection and is supposed to score low. */
+function mirrorMisfit(pts) {
+  // Everything in a flat frame centred on the figure, in degrees.
+  const out = {};
+  for (const [name, flip] of [['left to right', (p) => [-p[0], p[1]]],
+                              ['top to bottom', (p) => [p[0], -p[1]]]]) {
+    let sum = 0;
+    for (const p of pts) {
+      const q = flip(p);
+      let best = Infinity;
+      for (const o of pts) best = Math.min(best, Math.hypot(q[0] - o[0], q[1] - o[1]));
+      sum += best;
+    }
+    out[name] = sum / pts.length;
+  }
+  return out;
+}
+// The measure catches a true mirror image.
+ok('the mirror measure reads a perfect reflection as zero',
+   mirrorMisfit([[-3, 1], [3, 1], [0, -4]])['left to right'] < 1e-9);
+
+{
+  const byId = {};
+  STARS.forEach((s) => { byId[s.id] = s; });
+  const rows = [];
+  FIGS.forEach((f) => {
+    // Flatten onto a plane touching the sky at the figure's middle.
+    const vs = f.stars.map((id) => {
+      const s = byId[id], ra = s.ra * Math.PI / 180, dec = s.dec * Math.PI / 180, cd = Math.cos(dec);
+      return [cd * Math.cos(ra), cd * Math.sin(ra), Math.sin(dec)];
+    });
+    let c = [0, 0, 0];
+    vs.forEach((v) => { c = [c[0] + v[0], c[1] + v[1], c[2] + v[2]]; });
+    const cn = Math.hypot(...c); c = c.map((x) => x / cn);
+    let e1 = [-c[1], c[0], 0];
+    const e1n = Math.hypot(...e1);
+    e1 = e1n < 1e-9 ? [1, 0, 0] : e1.map((x) => x / e1n);
+    const e2 = [c[1] * e1[2] - c[2] * e1[1], c[2] * e1[0] - c[0] * e1[2], c[0] * e1[1] - c[1] * e1[0]];
+    const pts = vs.map((v) => [
+      (v[0] * e1[0] + v[1] * e1[1] + v[2] * e1[2]) * 180 / Math.PI,
+      (v[0] * e2[0] + v[1] * e2[1] + v[2] * e2[2]) * 180 / Math.PI,
+    ]);
+    const m = mirrorMisfit(pts);
+    rows.push({ name: f.name, best: Math.max(m['left to right'], m['top to bottom']) });
+  });
+  rows.sort((a, b) => a.best - b.best);
+  ok('every figure can be told from its own reflection',
+     rows.length > 0 && rows[0].best > MIRROR_FLOOR,
+     rows.map((r) => r.name + ' ' + r.best.toFixed(1)).join(', '));
+}
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);
