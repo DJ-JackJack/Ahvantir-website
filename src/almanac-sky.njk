@@ -38,6 +38,7 @@ permalink: /almanac/sky/
         <div class="sky-hud__date" id="sky-hud-date"></div>
         <div class="sky-hud__state" id="sky-hud-state"></div>
         <div class="sky-hud__state" id="sky-hud-fov"></div>
+        <div class="sky-hud__state sky-hud__at" id="sky-hud-at"></div>
       </div>
     </div>
 
@@ -100,6 +101,31 @@ permalink: /almanac/sky/
         <span>15</span><span>18</span><span>21</span><span>24</span>
       </div>
       <p class="sr-only" id="sky-status" aria-live="polite" aria-atomic="true"></p>
+    </div>
+
+    {# Everything above is about WHEN. This strip is about WHAT you are looking
+       at: a way to find a thing by name, and the three switches that change
+       what the sky draws. They used to sit at the bottom of the modelling
+       notes, which is the right place for the dials that change the model and
+       the wrong place for the ones that change the view. #}
+    <div class="sky-controls sky-controls--find">
+      <div class="sky-field sky-field--find">
+        <label for="sky-search">Find</label>
+        <input id="sky-search" class="sky-ctl" type="text" list="sky-search-list"
+               placeholder="a figure, a body, a sign or a month"
+               autocomplete="off" spellcheck="false">
+        <datalist id="sky-search-list"></datalist>
+        <button type="button" class="map-btn" id="sky-search-go">Go</button>
+      </div>
+      <span class="sky-field"><label for="sky-fignames"
+            title="Name each figure on the sky itself, not only in the list below.">Figure names</label><input id="sky-fignames" type="checkbox" checked></span>
+      <span class="sky-field"><label for="sky-sunpath"
+            title="The path the suns walk, with a tick at each of the thirteen signs.">The suns&rsquo; road</label><input id="sky-sunpath" type="checkbox"></span>
+      <span class="sky-field"><label for="sky-coords"
+            title="Read out where the pointer is: height, bearing, and the sign it falls in.">Pointer position</label><input id="sky-coords" type="checkbox"></span>
+      <span class="sky-field"><label for="sky-big"
+            title="Draw the discs three times life size so they are visible at all. Gaps are stretched to match, so an overlap on screen is a real one.">Magnify discs &times;3</label><input id="sky-big" type="checkbox" checked></span>
+      <p class="sky-find-note alm-note" id="sky-search-note" aria-live="polite"></p>
     </div>
   </section>
 
@@ -179,9 +205,6 @@ permalink: /almanac/sky/
         <span class="sky-field"><label for="sky-lat">Latitude</label><input class="sky-ctl" id="sky-lat" type="number" min="-80" max="80" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-tilt">Axial tilt</label><input class="sky-ctl" id="sky-tilt" type="number" min="0" max="60" step="1">&deg;</span>
         <span class="sky-field"><label for="sky-spread">Orbit tilt</label><input class="sky-ctl" id="sky-spread" type="number" min="0" max="89" step="1">&deg;</span>
-        <span class="sky-field"><label for="sky-fignames">Figure names</label><input id="sky-fignames" type="checkbox" checked></span>
-        <span class="sky-field"><label for="sky-sunpath">The suns' road</label><input id="sky-sunpath" type="checkbox"></span>
-        <span class="sky-field"><label for="sky-big">Magnify discs &times;3</label><input id="sky-big" type="checkbox" checked></span>
       </div>
       <p class="alm-note">Across the whole horizon a sun is about four pixels wide, so the discs are drawn at three times their real size to be visible at all &mdash; and the gaps between them are stretched by the same amount, close in, so that <strong>two discs touch on screen exactly when they truly touch</strong>. Without that the picture would show transits the day&rsquo;s event list denies. Nothing is moved by more than about a degree, and only ever beside something it is nearly touching. Turn magnifying off and zoom in &mdash; scroll on the sky, or use plus and minus &mdash; and everything is at true angular size. The strip under the ephemeris always shows the real proportions whatever the view is doing.</p>
       <div class="sky-field">

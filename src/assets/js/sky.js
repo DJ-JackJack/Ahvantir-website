@@ -117,6 +117,19 @@
   // needs the same answers to say whether a crossing was above the horizon.
   var eclToEq = O.eclToEq, eqToHor = O.eqToHor, altOf = O.altOf, azOf = O.azOf;
   var horToAA = function (h) { return { alt: altOf(h), az: azOf(h) }; };
+  /* The same trip the other way, which only the pointer readout needs: a
+     height and bearing back to a horizon vector, and that back to the
+     equatorial frame, where the signs are reckoned. */
+  function aaToHor(alt, az) {
+    var a = alt * DEG, z = az * DEG, c = Math.cos(a);
+    return [c * Math.sin(z), c * Math.cos(z), Math.sin(a)];
+  }
+  function horToEq(h, lst) {
+    var phi = MODEL.lat * DEG, c = Math.cos(lst), s = Math.sin(lst);
+    var xp = h[2] * Math.cos(phi) - h[1] * Math.sin(phi);
+    var zz = h[1] * Math.cos(phi) + h[2] * Math.sin(phi);
+    return [xp * c - h[0] * s, xp * s + h[0] * c, zz];
+  }
 
   // The whole sky for one moment. Y in MC, doy 1..386, h in hours 0..24.
   function skyAt(Y, doy, h) {
@@ -227,12 +240,12 @@
     Y: 439, doy: M.doyOf(8, 35), h: 18.5,
     view: 'pan', facing: 90, domeRot: 0, pitch: 0,
     fov: 180, fovAuto: true,   // fovAuto until the reader zooms; then theirs
-    big: true, figNames: true, sunPath: false, playing: false, speed: '60'
+    big: true, figNames: true, sunPath: false, coords: false, playing: false, speed: '60'
   };
   try {
     var saved = JSON.parse(localStorage.getItem('ahv-sky') || 'null');
     if (saved) {
-      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big', 'figNames', 'sunPath', 'fov', 'fovAuto', 'pitch'].forEach(function (k) {
+      ['Y', 'doy', 'h', 'view', 'facing', 'domeRot', 'big', 'figNames', 'sunPath', 'coords', 'fov', 'fovAuto', 'pitch'].forEach(function (k) {
         if (saved[k] !== undefined) st[k] = saved[k];
       });
       if (saved.model) {
@@ -247,7 +260,7 @@
     try {
       localStorage.setItem('ahv-sky', JSON.stringify({
         Y: st.Y, doy: st.doy, h: st.h, view: st.view, facing: st.facing,
-        domeRot: st.domeRot, big: st.big, figNames: st.figNames, sunPath: st.sunPath, fov: st.fov, fovAuto: st.fovAuto, pitch: st.pitch,
+        domeRot: st.domeRot, big: st.big, figNames: st.figNames, sunPath: st.sunPath, coords: st.coords, fov: st.fov, fovAuto: st.fovAuto, pitch: st.pitch,
         model: { lat: MODEL.lat, tilt: MODEL.tilt, beta: O.EL.BETA / DEG }
       }));
     } catch (e) {}
@@ -404,6 +417,13 @@
           // did, and nothing about the wide view changes.
           return { x: W / 2 + d * sc, y: hy - (alt - st.pitch) * sc,
                    ok: Math.abs(d) < st.fov / 2 + 8 };
+        },
+        // Where a point on screen is in the sky. Both projections are simple
+        // enough to turn round exactly, which is what lets the pointer say
+        // where it is.
+        inv: function (x, y) {
+          return { az: mod(st.facing + (x - W / 2) / sc, 360),
+                   alt: st.pitch + (hy - y) / sc };
         }
       };
     } else {
@@ -413,6 +433,11 @@
         f: function (alt, az) {
           var r = (90 - alt) / 90 * Rr, a = (az - st.domeRot) * DEG;
           return { x: cx - Math.sin(a) * r, y: cy - Math.cos(a) * r, ok: alt > -12 };
+        },
+        inv: function (x, y) {
+          var dx = x - cx, dy = y - cy, rr = Math.hypot(dx, dy);
+          return { az: mod(st.domeRot + Math.atan2(-dx, -dy) / DEG, 360),
+                   alt: 90 - (rr / Rr) * 90 };
         }
       };
     }
@@ -670,7 +695,12 @@
       done.push(L);
     });
 
-    done.forEach(function (L) {
+    /* Draw only the labels this function made. `done` also holds the figure
+       names already on the canvas, which are in it so body names step around
+       them — they carry a box and no body, so drawing from `done` reached for
+       a name that was not there and threw on every frame where a figure label
+       and a body label shared the sky. */
+    labels.forEach(function (L) {
       if (L.moved) {
         // From the label's inner edge to the rim of its own disc.
         ctx.strokeStyle = rgb(COL[L.b.n], 0.55);
@@ -1344,6 +1374,94 @@
   /* Point the view at a body. The ephemeris rows carry where each one is, so
      clicking a row swings the frame onto it — which is the only practical way
      to find something once the field of view is down to a degree or two. */
+
+  /* ---------- finding a thing, and knowing where you are ----------
+   *
+   * The sky had one way in: five aim buttons in the ephemeris, one per body.
+   * Six figures, thirteen signs and eleven months had none, so the only way to
+   * see The Spear was to already know where it was. Borrowed from NoctoSky,
+   * which puts a search bar where its own title would go.
+   */
+  function figureCentre(fig) {
+    var x = 0, y = 0, z = 0, n = 0;
+    for (var i = 0; i < fig.stars.length; i++) {
+      var s = BY_ID[fig.stars[i]];
+      if (s) { x += s.v[0]; y += s.v[1]; z += s.v[2]; n++; }
+    }
+    if (!n) return null;
+    var len = Math.hypot(x, y, z);
+    return len ? [x / len, y / len, z / len] : null;
+  }
+
+  // Everything a reader might reasonably type, and what to do about it.
+  function searchTargets() {
+    var out = [];
+    FIGURES.forEach(function (f) { out.push({ label: f.name, kind: 'figure', fig: f }); });
+    SUNS.concat(MOONS).forEach(function (b, i) { out.push({ label: b.n, kind: 'body', i: i }); });
+    for (var k = 1; k <= O.SIGNS.n; k++) {
+      var fg = FIG_BY_SIGN[k];
+      out.push({ label: 'Sign ' + k + (fg ? ' \u2014 ' + fg.name : ''), kind: 'sign', k: k });
+    }
+    M.MONTHS.forEach(function (mo, mi) { out.push({ label: mo.n, kind: 'month', mi: mi }); });
+    return out;
+  }
+
+  function say(msg) { var el = $('sky-search-note'); if (el) el.textContent = msg || ''; }
+
+  function runSearch(raw) {
+    var q = (raw || '').trim().toLowerCase();
+    if (!q) { say(''); return; }
+    var all = searchTargets(), hit = null;
+    for (var i = 0; i < all.length && !hit; i++) if (all[i].label.toLowerCase() === q) hit = all[i];
+    for (var j = 0; j < all.length && !hit; j++) if (all[j].label.toLowerCase().indexOf(q) === 0) hit = all[j];
+    for (var m = 0; m < all.length && !hit; m++) if (all[m].label.toLowerCase().indexOf(q) >= 0) hit = all[m];
+    if (!hit) { say('Nothing in the sky by that name.'); return; }
+
+    if (hit.kind === 'month') {
+      st.doy = M.doyOf(hit.mi, 1);
+      syncDate();
+      say('Moved to ' + M.fmtLong(st.Y, st.doy) + '.');
+      return;
+    }
+    var sky = skyAt(st.Y, st.doy, st.h), v = null;
+    if (hit.kind === 'body') {
+      var b = sky.bodies[hit.i];
+      aimAt(b.alt, b.az);
+      say(hit.label + (b.alt > -0.5
+        ? ' \u2014 ' + Math.round(b.alt) + '\u00b0 ' + compass(b.az)
+        : ' is below the horizon just now.'));
+      return;
+    }
+    if (hit.kind === 'figure') v = figureCentre(hit.fig);
+    else {
+      var ra = M.mod(O.signBounds(hit.k)[0] + O.signWidth() / 2, 360) * DEG;
+      v = [Math.cos(ra), Math.sin(ra), 0];
+    }
+    if (!v) { say('Nothing to aim at.'); return; }
+    var h = eqToHor(v, sky.lst), alt = altOf(h), az = azOf(h);
+    aimAt(alt, az);
+    say(hit.label + (alt > 0
+      ? ' \u2014 ' + Math.round(alt) + '\u00b0 ' + compass(az)
+      : ' is below the horizon just now, ' + compass(az) + '.'));
+  }
+
+  /* Where the pointer is, in the sky's own terms: how high, which way, and
+     which of the thirteen signs it falls in. */
+  function pointerAt(x, y) {
+    if (!st.coords || !P.inv) return '';
+    var q = P.inv(x, y);
+    if (!isFinite(q.alt) || !isFinite(q.az)) return '';
+    if (st.view === 'dome' && q.alt < -1) return '';
+    var txt = Math.round(q.alt) + '\u00b0 ' + compass(q.az);
+    if (q.alt > -1) {
+      var sky = skyAt(st.Y, st.doy, st.h);
+      var eq = horToEq(aaToHor(q.alt, q.az), sky.lst);
+      var k = O.signOf(O.raOf(eq)), fg = FIG_BY_SIGN[k];
+      txt += ' \u00b7 sign ' + k + (fg ? ', ' + fg.name : '');
+    }
+    return txt;
+  }
+
   function aimAt(alt, az) {
     if (st.view === 'dome') { st.domeRot = az; }
     else { st.facing = az; st.pitch = clamp(alt, -15, 88); }
@@ -1437,6 +1555,8 @@
     var want = body ? body.n : (fig ? fig.name : null);
     cv.style.cursor = want ? 'pointer' : '';
     cv.title = want ? ('Open ' + want) : '';
+    var at = $('sky-hud-at');
+    if (at) at.textContent = pointerAt(x, y);
     var changed = false;
     FIGURES.forEach(function (f) {
       var hot = (f === fig);
@@ -1445,6 +1565,8 @@
     if (changed) render();
   });
   cv.addEventListener('pointerleave', function () {
+    var at = $('sky-hud-at');
+    if (at) at.textContent = '';
     var changed = false;
     FIGURES.forEach(function (f) { if (f._hot) { f._hot = false; changed = true; } });
     cv.style.cursor = ''; cv.title = '';
@@ -1530,6 +1652,7 @@
   $('sky-big').checked = st.big;
   $('sky-fignames').checked = st.figNames;
   $('sky-sunpath').checked = st.sunPath;
+  $('sky-coords').checked = st.coords;
   $('sky-lat').addEventListener('change', function (e) { MODEL.lat = clamp(+e.target.value || 0, -80, 80); tableKey = ''; render(); save(); });
   $('sky-tilt').addEventListener('change', function (e) { MODEL.tilt = clamp(+e.target.value || 0, 0, 60); tableKey = ''; render(); save(); });
   $('sky-spread').addEventListener('change', function (e) {
@@ -1538,6 +1661,30 @@
   $('sky-big').addEventListener('change', function (e) { st.big = e.target.checked; render(); save(); });
   $('sky-fignames').addEventListener('change', function (e) { st.figNames = e.target.checked; render(); save(); });
   $('sky-sunpath').addEventListener('change', function (e) { st.sunPath = e.target.checked; render(); save(); });
+  $('sky-coords').addEventListener('change', function (e) {
+    st.coords = e.target.checked;
+    if (!st.coords) { var at = $('sky-hud-at'); if (at) at.textContent = ''; }
+    save();
+  });
+
+  /* The list is fixed, so it is built once. A datalist rather than a
+     hand-rolled dropdown: the browser already knows how to filter, how to
+     keyboard through it, and how to look right on a phone. */
+  (function () {
+    var dl = $('sky-search-list');
+    if (dl) {
+      dl.innerHTML = searchTargets().map(function (t) {
+        return '<option value="' + esc(t.label) + '"></option>';
+      }).join('');
+    }
+    var inp = $('sky-search'), go = $('sky-search-go');
+    if (!inp) return;
+    inp.addEventListener('change', function () { runSearch(inp.value); });
+    inp.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); runSearch(inp.value); }
+    });
+    if (go) go.addEventListener('click', function () { runSearch(inp.value); });
+  })();
 
   // A link a reader can hand to someone else, pinned to what they are looking at.
   $('sky-share').addEventListener('click', function () {
