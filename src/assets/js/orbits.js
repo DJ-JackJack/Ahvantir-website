@@ -199,6 +199,51 @@
     return altOf(eqToHor(eclToEq(lon, lat), lstAt(t, lbSun)));
   }
 
+  /* ---------- what a watcher sees ----------
+   *
+   * The catalogue's `b` runs 0 to 1 and answers no question anyone in the world
+   * could ask. Magnitudes do, and they are the scale every star chart has ever
+   * used: lower is brighter, and each whole step is about two and a half times
+   * the light. This is a DISPLAY mapping only — `b` still drives the drawing, so
+   * nothing here can disturb a figure.
+   *
+   * Two anchors, both chosen because they carry their own meaning:
+   *
+   *   6.0   the faintest star a sharp eye finds on a dark night, which is where
+   *         the faint layer runs out
+   *  -1.5   the brightest star in the sky, s001
+   *
+   * The pole star would have been the obvious third, since real charts put
+   * Polaris at 2.0 — but s154 was placed as the brightest thing in the northern
+   * cap and sits ninth in the whole sky, so pinning it at 2 would squash every
+   * brighter star into nothing. It lands at about -1.1 instead.
+   *
+   * WORTH SAYING OUT LOUD: no catalogued star is fainter than magnitude 2.1,
+   * and 148 of them beat magnitude 2.
+   * Earth has about fifty. Ahvantir's nameable sky is roughly three times as
+   * bright as ours, which is deliberate — Krys asked for a sky that reads as
+   * fantastical — but it is an authored fact and not a derived one.
+   */
+  var MAG = {
+    faintest: 6.0,     // naked eye, dark night
+    brightest: -1.5,   // s001
+    glass: 3.0,        // what the Arcane Observatory's crystal glasses add
+    fullMiras: -13.0,  // the widest moon, full
+    solara: -26.5,
+    nystara: -25.9     // smaller disc; hotter per unit of face, which this ignores
+  };
+
+  // A catalogue star's magnitude from its brightness.
+  function magOf(b) { return MAG.faintest - (MAG.faintest - MAG.brightest) * b; }
+
+  /* A moon's, from how wide it is and how much of it is lit. Scaled off full
+     Miras: twice the face at the same phase is 0.75 of a magnitude brighter. */
+  function moonMagOf(rhoDeg, illum) {
+    var ref = MOON_EL.miras.rho;
+    var lit = Math.max(1e-4, illum) * (rhoDeg / ref) * (rhoDeg / ref);
+    return MAG.fullMiras - 2.5 * Math.log(lit) / Math.LN10;
+  }
+
   /* ---------- the moons ----------
    *
    * Canon fixes each moon's cycle and its phase table, and fixes all three new
@@ -520,6 +565,7 @@
     lstAt: lstAt, altAt: altAt,
     crossingsAt: crossingsAt, between: between,
     overlapArea: overlapArea, coverageAt: coverageAt,
+    MAG: MAG, magOf: magOf, moonMagOf: moonMagOf,
     eventsBetween: eventsBetween, eventsInYear: eventsInYear,
     sepFraction: sepFraction, nextClosePairing: nextClosePairing,
     SIGNS: SIGNS, signWidth: signWidth, signOf: signOf, signBounds: signBounds, raOf: raOf,

@@ -516,6 +516,33 @@ ok('coverage climbs as the bodies close and never steps back', (function () {
      (100 * Math.max(0, ...evs.filter((e) => !e.total).map((e) => e.covered))).toFixed(0) + '%');
 }
 
+console.log('\nBrightness as a chart counts it');
+ok('the scale runs the right way: lower is brighter', O.magOf(1) < O.magOf(0.5) && O.magOf(0.5) < O.magOf(0));
+ok('it meets its two anchors', Math.abs(O.magOf(0) - O.MAG.faintest) < 1e-9 &&
+   Math.abs(O.magOf(1) - O.MAG.brightest) < 1e-9,
+   O.MAG.brightest + ' at the top, ' + O.MAG.faintest + ' at the naked-eye limit');
+ok('no catalogued star falls below the naked-eye limit',
+   STARS.every((s) => O.magOf(s.b) < O.MAG.faintest),
+   'faintest is ' + Math.max(...STARS.map((s) => O.magOf(s.b))).toFixed(2));
+ok('and the sky is about three times as bright as Earth\'s, on purpose',
+   STARS.filter((s) => O.magOf(s.b) < 2).length > 100,
+   STARS.filter((s) => O.magOf(s.b) < 2).length + ' stars beat magnitude 2; Earth has about 50');
+
+ok('a moon brightens as more of it is lit', (function () {
+  const r = O.MOON_EL.miras.rho;
+  let prev = Infinity;
+  for (let i = 1; i <= 100; i++) {
+    const m = O.moonMagOf(r, i / 100);
+    if (m > prev) return false;
+    prev = m;
+  }
+  return Math.abs(prev - O.MAG.fullMiras) < 1e-9;
+})());
+ok('and a wider moon beats a narrower one at the same phase',
+   O.moonMagOf(O.MOON_EL.miras.rho, 0.5) < O.moonMagOf(O.MOON_EL.keltas.rho, 0.5),
+   'half Miras ' + O.moonMagOf(O.MOON_EL.miras.rho, 0.5).toFixed(2) +
+   ' against half Keltas ' + O.moonMagOf(O.MOON_EL.keltas.rho, 0.5).toFixed(2));
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);

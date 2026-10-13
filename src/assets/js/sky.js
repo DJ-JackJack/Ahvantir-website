@@ -1102,7 +1102,8 @@
         '<td><span class="sky-in" id="sky-in' + k + '"></span></td>' +
         '<td class="sky-num">' + esc(rise) + '</td>' +
         '<td class="sky-num">' + esc(set) + '</td>' +
-        '<td>' + esc(ph) + (moon ? ' <span class="sky-lit" id="sky-ill' + k + '"></span>' : '') + '</td></tr>';
+        '<td>' + esc(ph) + (moon ? ' <span class="sky-lit" id="sky-ill' + k + '"></span>' : '') + '</td>' +
+        '<td class="sky-num"><span id="sky-mag' + k + '"></span></td></tr>';
     }).join('');
 
     var pills = [];
@@ -1161,6 +1162,21 @@
       el.dataset.alt = b.alt.toFixed(3);
       el.dataset.az = b.az.toFixed(3);
       el.disabled = b.alt <= -0.5;
+      /* Brightness as a star chart counts it. A moon's rides its phase; a
+         sun's dims as something covers it, which is the one place the two new
+         numbers on this page meet. */
+      var magEl = $('sky-mag' + k);
+      if (magEl) {
+        var mg;
+        if (b.kind === 'moon') {
+          mg = O.moonMagOf(b.r, b.illum);
+        } else {
+          mg = b.n === 'Solara' ? O.MAG.solara : O.MAG.nystara;
+          var cv = (sky.cov && sky.cov[b.n]) || 0;
+          if (cv > 0 && cv < 1) mg -= 2.5 * Math.log(1 - cv) / Math.LN10;
+        }
+        magEl.textContent = (sky.cov && sky.cov[b.n] >= 1) ? 'hidden' : mg.toFixed(1);
+      }
       var inEl = $('sky-in' + k);
       if (inEl) {
         var fg = FIG_BY_SIGN[O.signOf(O.raOf(b.eq))];
