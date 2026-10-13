@@ -146,6 +146,7 @@
       });
     });
     out.baryHor = eqToHor(bary, lst);
+    out.cov = O.coverageAt(t, S);
     O.moonsAt(t, lb).forEach(function (m) {
       var eq = eclToEq(m.lon, m.lat), hor = eqToHor(eq, lst);
       // How far round from the suns the moon is, which is what bows the
@@ -421,9 +422,15 @@
      sun contributes daylight as it climbs and a twilight wash while it is just
      below the horizon, and the two add, which is why twin daylight reads
      cleaner and cooler than either sun alone. */
+  /* An eclipsed sun gives less light, so each sun's contribution is scaled by
+     how much of its face is still showing. Done per sun rather than on the
+     total, because the usual case here is one sun bitten while the other blazes
+     away untouched — and because a total crossing of Nystara, dramatic as it
+     looks, takes less than a fifth of the daylight with it. */
   function skyLight(sky) {
     var S = sky.bodies[0], N = sky.bodies[1];
-    var dS = smooth(-4, 8, S.alt), dN = smooth(-4, 8, N.alt);
+    var cov = sky.cov || { Solara: 0, Nystara: 0 };
+    var dS = smooth(-4, 8, S.alt) * (1 - cov.Solara), dN = smooth(-4, 8, N.alt) * (1 - cov.Nystara);
     var tS = smooth(-18, -1, S.alt) * (1 - dS), tN = smooth(-18, -1, N.alt) * (1 - dN);
     var add = function (base, parts) {
       return parts.reduce(function (acc, p) {
@@ -513,12 +520,47 @@
     ctx.restore();
   }
 
-  function drawSun(b, p, rpx) {
+  /* showing: the share of this sun's face no moon and no other sun is hiding.
+     The glare goes with the light rather than with the disc, so a sun most of
+     the way covered stops washing out everything around it; and when there is
+     almost nothing left, the corona comes out around whatever is doing the
+     hiding. That last is the only moment this sky offers a reason to look up
+     and not away. */
+  function drawSun(b, p, rpx, showing) {
+    if (showing === undefined) showing = 1;
     var c = COL[b.n];
+    var k = Math.sqrt(showing);
     var glowR = rpx * (b.n === 'Nystara' ? 14 : 11);
     var g = ctx.createRadialGradient(p.x, p.y, rpx * 0.6, p.x, p.y, glowR);
-    g.addColorStop(0, rgb(c, 0.75)); g.addColorStop(0.25, rgb(c, 0.18)); g.addColorStop(1, rgb(c, 0));
+    g.addColorStop(0, rgb(c, 0.75 * k)); g.addColorStop(0.25, rgb(c, 0.18 * k)); g.addColorStop(1, rgb(c, 0));
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, glowR, 0, 2 * Math.PI); ctx.fill();
+
+    var corona = 1 - smooth(0, 0.05, showing);
+    if (corona > 0) {
+      var cg = ctx.createRadialGradient(p.x, p.y, rpx, p.x, p.y, rpx * 4.5);
+      cg.addColorStop(0, 'rgba(238,242,255,' + (0.8 * corona).toFixed(3) + ')');
+      cg.addColorStop(0.3, 'rgba(218,228,255,' + (0.25 * corona).toFixed(3) + ')');
+      cg.addColorStop(1, 'rgba(218,228,255,0)');
+      ctx.fillStyle = cg;
+      ctx.beginPath(); ctx.arc(p.x, p.y, rpx * 4.5, 0, 2 * Math.PI); ctx.fill();
+      // Streamers, fixed in their places on the sun so they do not crawl.
+      var ST_ = [[0.4, 3.6, 0.5], [1.3, 2.4, 0.35], [2.2, 3.1, 0.45],
+                 [3.3, 2.2, 0.3], [4.1, 3.8, 0.55], [5.2, 2.6, 0.4]];
+      for (var si = 0; si < ST_.length; si++) {
+        var aa = ST_[si][0], len = ST_[si][1], wd = ST_[si][2];
+        var ux = Math.cos(aa), uy = Math.sin(aa);
+        var sg = ctx.createLinearGradient(p.x + ux * rpx, p.y + uy * rpx,
+                                          p.x + ux * rpx * len, p.y + uy * rpx * len);
+        sg.addColorStop(0, 'rgba(235,240,255,' + (0.28 * corona).toFixed(3) + ')');
+        sg.addColorStop(1, 'rgba(235,240,255,0)');
+        ctx.fillStyle = sg;
+        ctx.beginPath();
+        ctx.moveTo(p.x + (ux - uy * wd) * rpx, p.y + (uy + ux * wd) * rpx);
+        ctx.lineTo(p.x + ux * rpx * len, p.y + uy * rpx * len);
+        ctx.lineTo(p.x + (ux + uy * wd) * rpx, p.y + (uy - ux * wd) * rpx);
+        ctx.closePath(); ctx.fill();
+      }
+    }
     ctx.fillStyle = rgb(b.n === 'Nystara' ? [240, 248, 255] : [255, 236, 190]);
     ctx.beginPath(); ctx.arc(p.x, p.y, rpx, 0, 2 * Math.PI); ctx.fill();
     ctx.strokeStyle = rgb(c, 0.9); ctx.lineWidth = 1.2 * DPR;
@@ -965,7 +1007,11 @@
     }
     sky.bodies.filter(function (b) { return b.kind === 'sun'; })
       .sort(function (a, b) { return (a.n === sky.front) - (b.n === sky.front); })
-      .forEach(function (b) { place(b, drawSun); });
+      .forEach(function (b) {
+        place(b, function (bb, p, rpx) {
+          return drawSun(bb, p, rpx, 1 - ((sky.cov && sky.cov[bb.n]) || 0));
+        });
+      });
     sky.bodies.filter(function (b) { return b.kind === 'moon'; })
       .sort(function (a, b) { return b.depth - a.depth; })
       .forEach(function (b) {

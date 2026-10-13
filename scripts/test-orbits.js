@@ -458,6 +458,64 @@ ok('the mirror measure reads a perfect reflection as zero',
      rows.map((r) => r.name + ' ' + r.best.toFixed(1)).join(', '));
 }
 
+console.log('\nHow much is covered');
+
+/* The lens area, against values that can be worked out by hand. */
+ok('two circles apart cover nothing', O.overlapArea(1, 1, 3) === 0);
+ok('a small disc wholly inside a big one covers its own face',
+   Math.abs(O.overlapArea(2, 1, 0.5) - Math.PI) < 1e-12);
+ok('two unit circles one apart overlap by the known amount',
+   Math.abs(O.overlapArea(1, 1, 1) - (2 * Math.PI / 3 - Math.sqrt(3) / 2)) < 1e-12,
+   O.overlapArea(1, 1, 1).toFixed(6));
+
+/* Coverage against the event list, which is the pair that has to agree. */
+{
+  const M2 = global.window.Marducian;
+  let bad = '', checked = 0, deepest = 0, deepWhen = null;
+  for (let k = 0; k < M2.YEAR_LEN * 24; k++) {
+    const t = M2.absDay(439, 1) + k / 24;
+    const S = O.sunsAt(t);
+    const c = O.coverageAt(t, S);
+    const touching = O.crossingsAt(t, S).some((x) => x.kind === 'moon-sun' || x.other === 'Solara' || x.other === 'Nystara');
+    const any = c.Solara > 0 || c.Nystara > 0;
+    if (any && !touching) bad = 'covered but nothing is touching at t=' + t.toFixed(3);
+    if (c.Solara < 0 || c.Solara > 1 || c.Nystara < 0 || c.Nystara > 1) bad = 'out of range at t=' + t.toFixed(3);
+    if (c.light < 0 || c.light > 1) bad = 'light out of range at t=' + t.toFixed(3);
+    const d = Math.max(c.Solara, c.Nystara);
+    if (d > deepest) { deepest = d; deepWhen = t; }
+    checked++;
+  }
+  ok('coverage never appears without something in the way, and stays in range',
+     bad === '' && checked > 9000, bad || (checked + ' hours'));
+  const f = M2.fromAbs(Math.floor(deepWhen));
+  ok('the year has a deepest moment and the model can name it', deepest > 0,
+     M2.fmtShort(f.Y, f.doy) + ', ' + (100 * deepest).toFixed(0) + '% covered');
+}
+
+/* Coverage rises as an occulter closes in: no jumps, no going backwards. */
+ok('coverage climbs as the bodies close and never steps back', (function () {
+  let prev = -1;
+  for (let d = 2; d >= 0; d -= 0.002) {
+    const f = O.overlapArea(0.45, 0.46, d) / (Math.PI * 0.45 * 0.45);
+    if (f < prev - 1e-12) return false;
+    prev = f;
+  }
+  return Math.abs(prev - 1) < 1e-9;    // ends wholly hidden
+})());
+
+/* Every event the almanac prints carries a depth, and a total one is total. */
+{
+  const evs = O.eventsInYear(439);
+  const bad = evs.filter((e) => !(e.covered >= 0 && e.covered <= 1));
+  ok('every crossing in a year carries a depth between none and all',
+     evs.length > 0 && bad.length === 0, evs.length + ' crossings');
+  const totals = evs.filter((e) => e.total);
+  ok('and a crossing called total really does hide the far body',
+     totals.every((e) => e.covered > 0.999),
+     totals.length + ' total, deepest partial ' +
+     (100 * Math.max(0, ...evs.filter((e) => !e.total).map((e) => e.covered))).toFixed(0) + '%');
+}
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);

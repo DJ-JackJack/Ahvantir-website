@@ -288,13 +288,14 @@
         next3Html +
       '</div>' +
       '<div class="alm-evgroup"><h3>Crossings <span class="alm-mono alm-muted">' + crossings.length + '</span></h3>' +
-        '<p class="alm-note">When one body passes in front of another. A total crossing hides the far one outright; the rest take a bite out of it.</p>' +
+        '<p class="alm-note">When one body passes in front of another, and how much of it was hidden at the deepest moment. A total crossing covers the far one outright.</p>' +
         '<div class="alm-chips">' + (crossings.map(function (e) {
           var what = esc(fmtShort(Y, e.doy)) + ' &middot; ' + esc(e.a) + ' over ' + esc(e.b);
           var mins = Math.round(e.hours * 60);
           var dur = mins >= 120 ? Math.round(mins / 60) + ' h' : mins + ' min';
+          var deep = e.total ? 'total' : Math.round((e.covered || 0) * 100) + '% covered';
           return chip(e.doy, e.total ? 'alm-chip--three' : '',
-                      what + ' &middot; ' + dur + (e.total ? ' &middot; total' : ''));
+                      what + ' &middot; ' + dur + ' &middot; ' + deep);
         }).join('') || '<span class="alm-muted">None this year.</span>') + '</div></div>' +
       '<div class="alm-evgroup"><h3>Convergences <span class="alm-mono alm-muted">' + runs.length + '</span></h3>' +
         '<p class="alm-note">Spans when two or three moons share the Full phase.</p>' +

@@ -262,6 +262,74 @@
     return Math.acos(Math.max(-1, Math.min(1, d)));
   }
 
+  /* ---------- how much is covered ----------
+   *
+   * A crossing used to be a yes or a no: touching, and total or not. That is
+   * enough to list an event and not enough to draw one, or to answer the first
+   * question anyone actually asks, which is how dark it got.
+   *
+   * overlapArea is the standard lens area of two circles — the same closed form
+   * the Rolara sky uses, and worth matching rather than reinventing.
+   */
+  function overlapArea(R, r, d) {
+    if (d >= R + r) return 0;
+    var small = Math.min(R, r);
+    if (d <= Math.abs(R - r)) return Math.PI * small * small;
+    function wedge(x, y) {
+      return Math.acos(Math.max(-1, Math.min(1, (d * d + x * x - y * y) / (2 * d * x))));
+    }
+    var lens = r * r * wedge(r, R) + R * R * wedge(R, r) -
+      0.5 * Math.sqrt(Math.max(0, (-d + r + R) * (d + r - R) * (d - r + R) * (d + r + R)));
+    /* Just outside full containment the closed form overshoots the smaller
+       disc's own area by a few parts in ten thousand, which is enough to make
+       coverage climb past 1 and then fall back to it — a dip in the middle of
+       an eclipse deepening. And a hair inside first contact it comes out a few
+       parts in ten billion BELOW zero. Nothing can hide more of a face than the
+       whole of the smaller disc, and nothing can hide less than none of it, so
+       say both. */
+    return Math.max(0, Math.min(lens, Math.PI * small * small));
+  }
+
+  /* The share of each sun's face hidden at a moment, and what is left of the
+     daylight. Moons are always nearer than the suns; the suns can only cover
+     each other, and only in one direction — whichever is in front.
+     Simultaneous occulters are added rather than intersected, so two moons
+     overlapping each other ON the same sun would be counted twice. Over 1200
+     years both suns are bitten at once ten times and never both covered, so a
+     double bite on one sun with the two moons also overlapping each other is
+     far rarer still; the cap at 1 keeps the answer sane if it ever happens. */
+  function coverageAt(t, S) {
+    S = S || sunsAt(t);
+    var ms = moonsAt(t, S.bary.lon);
+    var suns = [
+      { n: 'Solara', dir: S.solara, rho: S.rhoS },
+      { n: 'Nystara', dir: S.nystara, rho: S.rhoN }
+    ];
+    var out = { Solara: 0, Nystara: 0, by: {} };
+    var shown = 0, whole = 0;
+    suns.forEach(function (s, i) {
+      var face = Math.PI * s.rho * s.rho, hidden = 0;
+      ms.forEach(function (m) {
+        var a = overlapArea(s.rho, m.rho, between(m, s.dir));
+        if (a > 0) { hidden += a; out.by[s.n] = (out.by[s.n] || []).concat([m.n]); }
+      });
+      var other = suns[1 - i];
+      if (S.front === other.n) {
+        var a2 = overlapArea(s.rho, other.rho, between(other.dir, s.dir));
+        if (a2 > 0) { hidden += a2; out.by[s.n] = (out.by[s.n] || []).concat([other.n]); }
+      }
+      out[s.n] = Math.min(1, hidden / face);
+      shown += face * (1 - out[s.n]);
+      whole += face;
+    });
+    /* Light still reaching the ground, as a share of an unobstructed day. Disc
+       area stands in for brightness, which is a working assumption: Nystara is
+       the hotter of the two and so gives more light per unit of face than this
+       allows. Good enough to dim a sky by, not to calculate by. */
+    out.light = whole > 0 ? shown / whole : 1;
+    return out;
+  }
+
   /* Everything crossing everything else, at one moment. The suns are passed in
      so a caller that already has them does not pay for them twice. */
   function crossingsAt(t, S) {
@@ -371,6 +439,21 @@
           var f = M.fromAbs(Math.floor(ep.peak));
           ep.Y = f.Y; ep.doy = f.doy;
           ep.hours = (ep.end - ep.start) * 24;
+          /* How much of the far body was hidden at the deepest moment. The
+             almanac used to say only "total" or nothing, which left every
+             partial crossing — almost all of them — described as a bite of
+             unstated size. */
+          var Sp = sunsAt(ep.peak), msp = moonsAt(ep.peak, Sp.bary.lon);
+          var radOf = function (n) {
+            if (n === 'Solara') return Sp.rhoS;
+            if (n === 'Nystara') return Sp.rhoN;
+            for (var z = 0; z < msp.length; z++) if (msp[z].n === n) return msp[z].rho;
+            return 0;
+          };
+          var rFar = radOf(ep.b), rNear = radOf(ep.a);
+          ep.covered = rFar > 0
+            ? Math.min(1, overlapArea(rFar, rNear, ep.min) / (Math.PI * rFar * rFar))
+            : 0;
           done.push(ep);
           delete open[k];
         }
@@ -436,6 +519,7 @@
     OBS: OBS, eclToEq: eclToEq, eqToHor: eqToHor, altOf: altOf, azOf: azOf,
     lstAt: lstAt, altAt: altAt,
     crossingsAt: crossingsAt, between: between,
+    overlapArea: overlapArea, coverageAt: coverageAt,
     eventsBetween: eventsBetween, eventsInYear: eventsInYear,
     sepFraction: sepFraction, nextClosePairing: nextClosePairing,
     SIGNS: SIGNS, signWidth: signWidth, signOf: signOf, signBounds: signBounds, raOf: raOf,
