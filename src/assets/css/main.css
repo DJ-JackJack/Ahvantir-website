@@ -3889,22 +3889,26 @@ body { overflow-x: clip; }
 
 .cryptex-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
   color: var(--p-200);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin: 0 0 0.4rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(212,170,64,0.2);
+  /* Tracking down from 0.12em and the two shadows gone. The band behind this
+     is already near-black in both themes, so the drop shadow was buying no
+     legibility, and the second shadow was a soft gold glow -- the one effect
+     that dates a heading faster than anything else here. */
+  letter-spacing: 0.02em;
+  text-transform: none;
+  margin: 0 0 var(--sp-3);
 }
 
 .cryptex-subheading {
   font-family: var(--font-body);
-  font-style: italic;
+  font-style: normal;
   color: var(--ink-muted-dark);
-  font-size: 0.95rem;
-  max-width: 38ch;
-  margin: 0 0 2.2rem;
-  line-height: 1.5;
+  font-size: 1.02rem;
+  max-width: 44ch;
+  margin: 0 0 var(--sp-7);
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 /* ── Three rune stones ─────────────────────────────────────── */
@@ -4001,10 +4005,10 @@ body { overflow-x: clip; }
 /* ── Consult button ────────────────────────────────────────── */
 .cryptex-consult-btn {
   font-family: var(--font-ui);
-  letter-spacing: 0.1em;
-  font-size: 0.85rem;
-  padding: 0.55rem 2rem;
-  margin-bottom: 1.2rem;
+  letter-spacing: 0;
+  font-size: 0.9rem;
+  padding: var(--sp-3) var(--sp-6);
+  margin-bottom: var(--sp-5);
 }
 
 /* ── Result display ────────────────────────────────────────── */
@@ -4053,20 +4057,29 @@ body { overflow-x: clip; }
   max-width: 520px;
 }
 
+/* Was a full-width strip of letterspaced caps. It is a disclosure for a list
+   that is usually empty, so it should read as a quiet control rather than as
+   a section divider. */
 .discoveries-toggle {
   background: none;
   border: 1px solid var(--br-dark);
   color: var(--ink-muted-dark);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: var(--sp-2) var(--sp-5);
   cursor: pointer;
-  border-radius: 2px;
-  width: 100%;
+  border-radius: var(--r-full);
+  width: auto;
   text-align: center;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease),
+              background 0.15s var(--ease);
+}
+
+.discoveries-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .discoveries-toggle:hover {

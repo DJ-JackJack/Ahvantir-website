@@ -198,7 +198,7 @@
     var toggle = qs('.discoveries-toggle');
     var ul     = qs('.discoveries-list');
     if (!toggle || !ul) return;
-    toggle.textContent = 'Your Discoveries (' + list.length + ')';
+    toggle.textContent = 'Your discoveries (' + list.length + ')';
     if (!list.length) {
       ul.innerHTML = '<li class="discoveries-empty">No sequences unlocked yet.</li>';
       return;
