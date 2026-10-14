@@ -6202,17 +6202,14 @@ html.dark {
   --shadow-lg: 4px 8px 32px rgba(0,0,0,0.7);
 }
 
-html.dark body {
-  background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(80,50,20,0.15) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 75%, rgba(60,40,15,0.12) 0%, transparent 45%),
-    linear-gradient(155deg, var(--p-100) 0%, var(--p-300) 60%, var(--p-400) 100%);
-}
+/* The light theme's three stacked gradients were flattened to one parchment
+   colour; this is their dark-mode twin, which would otherwise have kept the
+   drift in the theme most of the reading happens in. The rule that followed
+   it set a blend mode on body::before -- the second grain overlay -- which no
+   longer exists.
 
-html.dark body::before {
-  mix-blend-mode: screen;
-  opacity: 0.06;
-}
+   --p-200 from the base `body` rule flips with the theme on its own, so dark
+   mode needs no background rule at all. */
 
 /* The header's colours are tokens now, and those tokens flip below, so the
    theme no longer needs a separate rule to repaint the bar. What remains here
