@@ -1792,29 +1792,47 @@ body { overflow-x: clip; }
   --pagefind-ui-border:          var(--br-mid);
   --pagefind-ui-border-width:    1px;
   --pagefind-ui-border-radius:   2px;
-  --pagefind-ui-font:            var(--font-body);
+  --pagefind-ui-font:            var(--font-ui);
   --pagefind-ui-tag-background:  var(--p-300);
   --pagefind-ui-tag-border:      var(--br-mid);
 }
 
 /* Search input */
 .pagefind-ui__search-input {
-  background: var(--p-200) !important;
-  border-color: var(--br-mid) !important;
-  color: var(--ink) !important;
-  font-family: var(--font-body) !important;
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--r-md) !important;
+  color: var(--text-strong) !important;
+  font-family: var(--font-ui) !important;
 }
 
 .pagefind-ui__search-input:focus {
-  border-color: var(--burg) !important;
+  border-color: var(--accent) !important;
   outline: none !important;
-  box-shadow: 0 0 0 2px rgba(123,29,42,0.15) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
 
-/* Search clear/submit buttons */
+/* Search clear/submit buttons.
+
+   Colour alone was not enough: Pagefind's own stylesheet gives the clear
+   button a light background that does not come from --pagefind-ui-background,
+   so in dark mode it rendered as a white block sitting on top of the dark
+   field. Everything it paints with is stated here. */
 .pagefind-ui__search-clear,
 .pagefind-ui__suppressed-button {
-  color: var(--ink-ghost) !important;
+  color: var(--text-muted) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: var(--r-md) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.82rem !important;
+  padding: var(--sp-2) var(--sp-3) !important;
+}
+
+.pagefind-ui__search-clear:hover,
+.pagefind-ui__suppressed-button:hover {
+  color: var(--accent) !important;
+  background: var(--accent-soft) !important;
 }
 
 /* Filter section */
