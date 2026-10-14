@@ -8,7 +8,10 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
   <div class="hero__inner">
     <p class="hero__eyebrow">The Lore Encyclopedia of</p>
     <h1 class="hero__title">Ahvantir</h1>
-    <p class="hero__subtitle">A world shaped by ancient pacts, layered histories,<br>and the city that never sleeps — <em>Aru'Mas</em>.</p>
+    {# No hard break. It was placed for a desktop line length, and on a phone
+       it split the sentence at a point the words do not. The subtitle has a
+       max-width and text-wrap: pretty, which is what should decide. #}
+    <p class="hero__subtitle">A world shaped by ancient pacts, layered histories, and the city that never sleeps &mdash; <em>Aru&rsquo;Mas</em>.</p>
     {# Three actions used to mean three button styles -- gold, teal, outline --
        side by side, which reads as three equally important things rather than
        one primary and two alternatives. Entering the world is the primary;
