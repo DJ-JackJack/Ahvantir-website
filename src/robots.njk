@@ -1,0 +1,13 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+layout: null
+---
+# The lore is public and meant to be found. The player area is not: it needs a
+# sign-in, so crawling it only produces copies of a login screen.
+User-agent: *
+Allow: /
+Disallow: /player/
+Disallow: /play/
+
+Sitemap: {{ meta.site.url }}/sitemap.xml

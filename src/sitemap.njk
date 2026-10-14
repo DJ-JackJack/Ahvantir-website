@@ -1,0 +1,28 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+layout: null
+---
+{#- Every public page, for crawlers. The site had no sitemap, so discovery of
+    244 articles depended entirely on each being linked from somewhere a
+    crawler already knew about.
+
+    Excluded: the player area and the live play view, which need a sign-in and
+    would otherwise be a pile of index entries all pointing at a login screen;
+    and the redirect stubs, which already carry rel=canonical at their
+    destination. The 404 is excluded from collections in its own front matter. -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all -%}
+{%- set url = item.url -%}
+{%- if url and not url.endsWith(".html") and not url.startsWith("/player/") and not url.startsWith("/play/") %}
+  <url>
+    <loc>{{ meta.site.url }}{{ url }}</loc>
+{%- if item.date %}
+    <lastmod>{{ item.date.toISOString() }}</lastmod>
+{%- endif %}
+    <priority>{% if url == "/" %}1.0{% elif url.startsWith("/articles/") and url != "/articles/" %}0.7{% else %}0.8{% endif %}</priority>
+  </url>
+{%- endif -%}
+{%- endfor %}
+</urlset>

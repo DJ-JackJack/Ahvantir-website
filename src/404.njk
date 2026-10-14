@@ -1,0 +1,40 @@
+---
+layout: base
+title: Not found
+description: That page is not in the archive. Search the records, or browse by subject.
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+{# GitHub Pages serves /404.html for any unmatched path, so this one file
+   covers every bad link on the site. Without it a visitor who mistyped a
+   slug -- or followed one of the older article URLs -- landed on GitHub's
+   own grey "File not found" page, complete with a GitHub logo and no way
+   back here. #}
+<div class="notfound">
+  <p class="notfound__code" aria-hidden="true">404</p>
+
+  <h1 class="notfound__title">No such record</h1>
+
+  <p class="notfound__lead">
+    The archive has no page at this address. It may have been renamed, or the
+    link that brought you here may have been written from memory.
+  </p>
+
+  <div class="notfound__actions">
+    <a href="/search/" class="btn btn--primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search the records
+    </a>
+    <a href="/articles/" class="btn btn--ghost">Browse all articles</a>
+  </div>
+
+  <nav class="notfound__links" aria-label="Elsewhere on the site">
+    <h2 class="notfound__links-title">Or start somewhere</h2>
+    <ul role="list">
+      <li><a href="/articles/arumas/">Aru&rsquo;Mas</a> &mdash; the city the archive is written from</li>
+      <li><a href="/timeline/">The historical record</a> &mdash; founding era to the present day</li>
+      <li><a href="/map/">The world map</a></li>
+      <li><a href="/almanac/">The almanac</a> &mdash; calendar, suns, moons and sky</li>
+    </ul>
+  </nav>
+</div>

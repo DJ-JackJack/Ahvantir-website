@@ -40,7 +40,10 @@ permalink: /articles/
   {% if catArticles.length %}
   <section class="articles-section" id="{{ cat.slug }}" data-category="{{ cat.slug }}">
     <h2 class="articles-section__title">
-      <span aria-hidden="true">{{ cat.icon }}</span> {{ cat.label }}
+      <span class="cat-head__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{{ cat.icon | safe }}</svg>
+      </span> {{ cat.label }}
     </h2>
     <div class="article-grid">
       {% for article in catArticles %}

@@ -21,6 +21,30 @@ function assetHash(url) {
   return h;
 }
 
+
+/* Plain text out of a fragment of rendered HTML, normalised far enough that
+   two spellings of the same heading compare equal: tags gone, entities
+   resolved, wikilink brackets unwrapped, and every apostrophe variant folded
+   to one. Aru'Mas is written three ways across this vault (straight quote,
+   curly quote, and inside a [[wikilink]]) and all three have to match. */
+function htmlToText(html) {
+  return String(html || "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g, (m, target, alias) =>
+      alias || String(target).split("#")[0])
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/[\u2018\u2019\u02bc\u055a\ufffd]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
 function escHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -64,12 +88,26 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Markdown
+  /* The anchor used to be a pilcrow, rendered in accent red and visible at
+     all times beside every heading in every article. A pilcrow marks a
+     paragraph, not a link to one, and permanently-on anchors are clutter the
+     reader did not ask for: the convention since is a quiet glyph that
+     appears on hover or keyboard focus. The CSS keeps it at opacity 0 until
+     then; `aria-hidden` plus a real label keeps it sensible to a screen
+     reader, which should hear "Link to this section", not "pilcrow". */
   const md = markdownIt({ html: true, linkify: true, typographer: true }).use(
     markdownItAnchor,
     {
       permalink: markdownItAnchor.permalink.linkInsideHeader({
-        symbol: "¶",
+        symbol:
+          '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" ' +
+          'stroke="currentColor" stroke-width="2" stroke-linecap="round" ' +
+          'stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>' +
+          '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>' +
+          '</svg>',
         placement: "after",
+        ariaHidden: false,
       }),
     }
   );
@@ -110,6 +148,62 @@ module.exports = function (eleventyConfig) {
   // there into an <a>, which nests illegally inside a card's own <a> (breaking
   // the card layout) and corrupts the meta tag's content attribute. Article
   // *bodies* are unaffected — they still render wikilinks as real links.
+
+  /* Every one of the 244 articles opens with an `# H1` repeating its own
+     title, because that is how they are written in Obsidian, where the page
+     has no title furniture of its own. On the site the layout already prints
+     the title, so each article showed its name twice, forty pixels apart --
+     and the second one took the page's only <h1>, leaving two.
+
+     Stripped only when it really is the title: a leading heading that says
+     something else is the author's and stays. The build reports any it
+     declines to strip, so a mismatch is visible rather than silent. */
+  const _keptLeadingH1 = [];
+  eleventyConfig.addFilter("dropLeadingTitle", function (content, title) {
+    if (!content) return content;
+    const m = String(content).match(/^\s*<h1\b[^>]*>([\s\S]*?)<\/h1>\s*/i);
+    if (!m) return content;
+    const heading = htmlToText(m[1]);
+    if (heading && heading !== htmlToText(title)) {
+      _keptLeadingH1.push(`${title}  ->  ${m[1].replace(/<[^>]*>/g, "").trim()}`);
+      return content;
+    }
+    return String(content).slice(m[0].length);
+  });
+
+  eleventyConfig.on("eleventy.after", () => {
+    if (_keptLeadingH1.length) {
+      console.log(
+        `[articles] ${_keptLeadingH1.length} leading heading(s) kept — they do ` +
+        `not match their article title:\n  ` + _keptLeadingH1.join("\n  ")
+      );
+    }
+  });
+
+  /* A contents list for the sidebar, read back out of the rendered HTML so it
+     can never drift from the headings actually on the page. H2 and H3 only:
+     H1 is the title, and H4 and below are too fine to navigate by. The ids are
+     markdown-it-anchor's own, so the links land. */
+  eleventyConfig.addFilter("tableOfContents", function (content) {
+    const out = [];
+    const re = /<(h[23])\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/gi;
+    let m;
+    while ((m = re.exec(String(content || "")))) {
+      // The anchor link markdown-it-anchor puts inside the heading is not
+      // part of the heading's text.
+      const text = m[3].replace(/<a\b[^>]*class="header-anchor"[\s\S]*?<\/a>/gi, "");
+      const label = text.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+      if (label) out.push({ level: Number(m[1][1]), id: m[2], text: label });
+    }
+    return out;
+  });
+
+  /* Nunjucks has no array slice of its own -- its `slice` splits a list into
+     N chunks, which is a different thing. The sidebar needs a first run and
+     the remainder. */
+  eleventyConfig.addFilter("take", (arr, n) => (arr || []).slice(0, n));
+  eleventyConfig.addFilter("drop", (arr, n) => (arr || []).slice(n));
+
   eleventyConfig.addFilter("stripWikilinks", function (str) {
     if (!str) return "";
     return String(str).replace(

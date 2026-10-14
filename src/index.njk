@@ -9,18 +9,20 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
     <p class="hero__eyebrow">The Lore Encyclopedia of</p>
     <h1 class="hero__title">Ahvantir</h1>
     <p class="hero__subtitle">A world shaped by ancient pacts, layered histories,<br>and the city that never sleeps — <em>Aru'Mas</em>.</p>
+    {# Three actions used to mean three button styles -- gold, teal, outline --
+       side by side, which reads as three equally important things rather than
+       one primary and two alternatives. Entering the world is the primary;
+       the other two are the same weight as each other. #}
     <div class="hero__actions">
-      <a href="/play/" class="btn btn--play"><span class="btn--play__sigil" aria-hidden="true">⚜</span> Enter the World</a>
-      <a href="/articles/" class="btn btn--primary">Browse Articles</a>
-      <a href="/search/" class="btn btn--ghost">Search the Records</a>
+      <a href="/play/" class="btn btn--play"><span class="btn--play__sigil" aria-hidden="true">⚜</span> Enter the world</a>
+      <a href="/articles/" class="btn btn--onDark">Browse articles</a>
+      <a href="/search/" class="btn btn--onDark">Search the records</a>
     </div>
   </div>
-  <div class="hero__deckle" aria-hidden="true"></div>
 </section>
 
 <section class="home-intro">
   <div class="container">
-    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
     <div class="home-intro__text">
       <p>
         These records belong to the Aru'Mas Historical Society — compiled from guild archives,
@@ -38,7 +40,6 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
 
 <section class="cryptex-section">
   <div class="container cryptex-container">
-    <div class="ornament" aria-hidden="true"><span class="ornament__symbol" style="font-family:inherit">᛭</span></div>
     <h2 class="cryptex-heading">The Cryptex</h2>
     <p class="cryptex-subheading">Align three runes. Consult the stone. Each sequence unlocks an article hidden within the archives.</p>
 
@@ -76,11 +77,14 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
 
 <section class="home-categories">
   <div class="container">
-    <h2 class="section-title">Browse by Subject</h2>
+    <h2 class="section-title">Browse by subject</h2>
     <div class="category-grid">
       {% for cat in meta.categories %}
-      <a href="/articles/#{{ cat.slug }}" class="category-card" style="border-top-color: {{ cat.color }}">
-        <span class="category-card__icon" aria-hidden="true">{{ cat.icon }}</span>
+      <a href="/articles/#{{ cat.slug }}" class="category-card" style="--cat-color: {{ cat.color }}">
+        <span class="category-card__icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{{ cat.icon | safe }}</svg>
+        </span>
         <h3 class="category-card__title">{{ cat.label }}</h3>
         <p class="category-card__desc">{{ cat.description }}</p>
       </a>
@@ -92,8 +96,10 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
 {% if collections.allArticles.length %}
 <section class="home-recent">
   <div class="container">
-    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
-    <h2 class="section-title">Recent Articles</h2>
+    <div class="section-head">
+      <h2 class="section-title">Recently added</h2>
+      <a href="/recently-added/" class="section-head__more">See what changed</a>
+    </div>
     <div class="article-grid">
       {% set recentArticles = collections.allArticles | reverse %}
       {% for article in recentArticles %}
@@ -111,15 +117,14 @@ description: "The living lore encyclopedia for Ahvantir — the great city of Ar
       {% endfor %}
     </div>
     <div class="home-recent__more">
-      <a href="/articles/" class="btn btn--ghost">View All Articles</a>
+      <a href="/articles/" class="btn btn--ghost">View all {{ collections.allArticles.length }} articles</a>
     </div>
   </div>
 </section>
 {% else %}
 <section class="home-recent">
   <div class="container">
-    <div class="ornament" aria-hidden="true"><span class="ornament__symbol">✦</span></div>
-    <h2 class="section-title">Recent Articles</h2>
+    <h2 class="section-title">Recently added</h2>
     <p class="home-empty">No articles yet. Add markdown files to <code>src/articles/</code> to see them here.</p>
   </div>
 </section>
