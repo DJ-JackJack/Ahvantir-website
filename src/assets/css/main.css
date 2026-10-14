@@ -1870,9 +1870,9 @@ body { overflow-x: clip; }
 .pagefind-ui__filter-panel { margin-top: 0.75rem; }
 
 .pagefind-ui__filter-name {
-  font-family: var(--font-display) !important;
+  font-family: var(--font-ui) !important;
   font-size: 0.72rem !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
   color: var(--ink-faded) !important;
 }
@@ -1928,14 +1928,25 @@ body { overflow-x: clip; }
   padding: 0 clamp(1rem, 3vw, 2rem) 3.5rem;
 }
 
-.map-head { padding: 2rem 0 1rem; }
+/* Deliberately tighter than .page-header: this page is a tool, and every
+   row of header is a row the map does not get. The TYPE matches the rest of
+   the site even though the scale does not -- the lead was the body serif in
+   --ink-faded while every other page lead is the interface face. */
+.map-head { padding: var(--sp-6) 0 var(--sp-4); }
 .map-head__title {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--ink);
-  margin: 0 0 0.3rem;
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  color: var(--text-strong);
+  line-height: 1.15;
+  margin: 0 0 var(--sp-2);
 }
-.map-head__lead { font-size: 0.95rem; color: var(--ink-faded); margin: 0; max-width: 46rem; }
+.map-head__lead {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 46rem;
+}
 
 .map-toolbar {
   display: flex;
@@ -1947,9 +1958,10 @@ body { overflow-x: clip; }
 
 .map-switch { display: flex; align-items: center; gap: 0.5rem; }
 .map-switch__label {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faded);
 }
@@ -2199,9 +2211,10 @@ body { overflow-x: clip; }
 .map-group { break-inside: avoid; }
 
 .map-group-title {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.72rem;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faded);
   margin: 0.6rem 0 0.25rem;
@@ -2314,9 +2327,10 @@ body { overflow-x: clip; }
   border-left: 1px solid var(--br-light);
 }
 .map-dm__badge {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.66rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--p-100);
   background: var(--burg-dark);
@@ -2362,9 +2376,10 @@ body { overflow-x: clip; }
   max-width: 26rem;
 }
 .map-props__head {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faded);
   margin: 0;
@@ -2610,9 +2625,10 @@ body { overflow-x: clip; }
   }
 }
 .map-mynote__head {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faded);
   margin: 0;
@@ -3565,12 +3581,15 @@ body { overflow-x: clip; }
 }
 .char-field--sm { min-width: 80px; max-width: 120px; flex: 0 0 auto; }
 .char-field--full { min-width: 100%; }
+/* Form labels on the character sheet. The last of the display-serif
+   micro-caps; a field label is apparatus, like every other label on the site. */
 .char-field > span, .char-field > label > span {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-muted);
 }
 .char-field input, .char-field textarea, .char-field select {
   padding: 0.45rem 0.6rem;
@@ -3796,8 +3815,8 @@ body { overflow-x: clip; }
   font-family: var(--font-display);
   font-size: 1.15rem;
   color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  text-transform: none;
+  letter-spacing: 0;
   border-bottom: 1px solid var(--br-light);
   padding-bottom: 0.4rem;
   margin-bottom: 1.2rem;
@@ -4295,9 +4314,10 @@ body { overflow-x: clip; }
   left: 4px;
   background: rgba(123, 29, 42, 0.82);
   color: var(--p-100);
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.6rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 1px 5px;
   border-radius: 2px;
@@ -4663,9 +4683,10 @@ body { overflow-x: clip; }
 .hero-modal__section { margin-bottom: 1.1rem; }
 
 .hero-modal__section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--burg);
   margin-bottom: 0.35rem;
@@ -4830,9 +4851,9 @@ body { overflow-x: clip; }
 .dm-session-row__badge {
   display: inline-block;
   font-size: 0.6rem;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--p-100);
   background: var(--burg);
@@ -5360,9 +5381,10 @@ button.messages-convo {
 }
 
 .messages-new-form__label {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-ghost);
 }
@@ -5998,9 +6020,10 @@ body.play-active .site-footer { display: none; }
 /* Bookmarks pinned list */
 .lore-bookmarks { margin: 0.25rem 0 0.5rem; }
 .lore-bookmarks__label {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-ghost);
   padding: 0 0 0.3rem;
@@ -6137,10 +6160,10 @@ body.play-active .site-footer { display: none; }
 
 .schedule-item__badge {
   display: inline-block;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--p-100);
   background: var(--burg);
@@ -6358,10 +6381,11 @@ html.dark blockquote {
 }
 
 .cosmos-wheel-col__title {
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-weight: 600;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--ink-faded);
   margin: 0 0 0.5rem;
 }
