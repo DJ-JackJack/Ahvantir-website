@@ -3,16 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src https: data: blob:; connect-src 'self' https://cloudflareinsights.com https://fbfqeijisvckwmkqzjtd.supabase.co wss://fbfqeijisvckwmkqzjtd.supabase.co https://fonts.googleapis.com https://fonts.gstatic.com https://play-tunnel.ahvantir.world; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src https://play-tunnel.ahvantir.world">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{% if title %}{{ title }} — {% endif %}{{ meta.site.title }}</title>
   <meta name="description" content="{{ (description or meta.site.description) | stripWikilinks }}">
   <meta name="generator" content="Eleventy">
   <meta name="supabase-url" content="{{ meta.supabase.url }}">
   <meta name="supabase-anon-key" content="{{ meta.supabase.anonKey }}">
 
+  {# Paints a phone's own browser chrome to match the page, so the status bar
+     stops being a bright strip above a dark site. #}
+  <meta name="theme-color" content="#f7edcd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#241a10" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="{{ meta.site.url }}{{ page.url }}">
+
+  {# Social cards. Without these, every link to this site pasted into Discord —
+     which is how most of it gets shared — rendered as a bare URL: no title, no
+     image, no description. #}
+  <meta property="og:type" content="{% if tags and 'articles' in tags %}article{% else %}website{% endif %}">
+  <meta property="og:site_name" content="{{ meta.site.title }}">
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ meta.site.title }} — {{ meta.site.subtitle }}{% endif %}">
+  <meta property="og:description" content="{{ (description or meta.site.description) | stripWikilinks }}">
+  <meta property="og:url" content="{{ meta.site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ meta.site.url }}/assets/img/hero.jpg">
+  <meta property="og:image:alt" content="The city of Aru&rsquo;Mas seen from above, across its harbour.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ meta.site.title }} — {{ meta.site.subtitle }}{% endif %}">
+  <meta name="twitter:description" content="{{ (description or meta.site.description) | stripWikilinks }}">
+  <meta name="twitter:image" content="{{ meta.site.url }}/assets/img/hero.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  {# Must run here, synchronously, BEFORE the stylesheet: it puts the theme
+     class on <html> so the FIRST paint is already the right colour. This logic
+     used to sit at the foot of main.js despite a comment claiming otherwise,
+     so every navigation flashed light before going dark. Blocking is the
+     point, and it is twenty lines. #}
+  <script src="/assets/js/theme.js"></script>
 
   {# Must be in <head> and must NOT be deferred. The player templates put
      their own <script> tags in the page CONTENT, so player.js runs while
@@ -29,65 +58,94 @@
 
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <div class="grain" aria-hidden="true"></div>
-
   <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
+    <nav class="nav" aria-label="Main">
       <a href="/" class="nav__home" aria-label="Ahvantir home">
         <span class="nav__sigil" aria-hidden="true">⚜</span>
         <span class="nav__title">{{ meta.site.title }}</span>
       </a>
 
-      {% if meta.sister and meta.sister.url %}
-      {# Sits between the wordmark and the page links deliberately: this says
-         WHICH WORLD you are in, which is a masthead job, not a navigation one.
-         `.nav__links` carries `margin-left: auto`, so the control stays beside
-         the title while the page links stay right-aligned. #}
-      <div class="world-switch" role="group" aria-label="Switch world">
-        <span class="world-switch__current" aria-current="true">{{ meta.site.title }}</span>
-        <a class="world-switch__other" href="{{ meta.sister.url }}">{{ meta.sister.label }}</a>
-      </div>
-      {% endif %}
+      {# One panel, in the DOM exactly once: an inline row on a wide screen, a
+         slide-in sheet below --bp-nav. Rendering a separate mobile copy would
+         have meant two elements carrying each of the ids the auth code in
+         player.js and play.js looks up by getElementById. #}
+      <div class="nav__panel" id="nav-panel">
+        {% if meta.sister and meta.sister.url %}
+        {# Inside the panel, but held to its left edge by margin-right:auto, so
+           on a wide screen it still reads as part of the masthead — saying
+           WHICH WORLD you are in, which is not a navigation job. Putting it
+           here rather than in the bar is what lets it ride into the drawer on
+           a phone, where 375px cannot hold a wordmark, a two-segment control
+           and three tools at once. #}
+        <div class="world-switch" role="group" aria-label="Switch world">
+          <span class="world-switch__current" aria-current="true">{{ meta.site.title }}</span>
+          <a class="world-switch__other" href="{{ meta.sister.url }}">{{ meta.sister.label }}</a>
+        </div>
+        {% endif %}
 
-      <ul class="nav__links" id="nav-links" role="list">
-        <li><a href="/articles/">Articles</a></li>
-        <li><a href="/timeline/">Timeline</a></li>
-        <li><a href="/almanac/">Almanac</a></li>
-        <li><a href="/cosmology/">Cosmology</a></li>
-        <li><a href="/map/">World Map</a></li>
-        <li><a href="/graph/">Relations</a></li>
-        <li><a href="/recently-added/">Recent</a></li>
-        <li><a href="/player/hall-of-heroes/">Hall of Heroes</a></li>
-        <li hidden id="nav-play-item"><a href="/play/" class="nav__player-link">Play</a></li>
-        <li><a href="/search/" class="nav__search-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Search
-        </a></li>
-        <li><a href="/player/dashboard/" class="nav__player-link">Player</a></li>
-        <li><a href="/player/messages/" class="nav__player-link nav__messages-link">
-          Messages<span class="nav-badge" id="nav-msg-badge" hidden aria-label="unread messages"></span>
-        </a></li>
-        <li hidden id="nav-signout-item"><button class="nav__signout" id="nav-signout" type="button">Sign Out</button></li>
-        <li class="nav__theme-item">
-          <button class="nav__theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
-            <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <ul class="nav__links" role="list">
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/timeline/">Timeline</a></li>
+          <li><a href="/map/">Map</a></li>
+          <li><a href="/almanac/">Almanac</a></li>
+          <li><a href="/cosmology/">Cosmology</a></li>
+          <li><a href="/graph/">Relations</a></li>
+          <li><a href="/recently-added/">Recent</a></li>
+        </ul>
+
+        {# The table-facing links. Someone who arrived to read about Aru'Mas has
+           no use for an unread-message badge, so these sit behind one control
+           instead of taking four of the twelve slots in the bar. #}
+        <div class="nav__account">
+          <button class="nav__account-trigger" id="account-trigger" type="button"
+                  aria-expanded="false" aria-controls="account-menu" aria-haspopup="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Player</span>
+            <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-        </li>
-      </ul>
+
+          <ul class="nav__account-menu" id="account-menu" role="list" hidden>
+            <li><a href="/player/dashboard/">Dashboard</a></li>
+            <li><a href="/player/messages/">
+              <span>Messages</span><span class="nav-badge" id="nav-msg-badge" hidden aria-label="unread messages"></span>
+            </a></li>
+            <li><a href="/player/hall-of-heroes/">Hall of Heroes</a></li>
+            <li hidden id="nav-play-item"><a href="/play/">Play</a></li>
+            <li hidden id="nav-signout-item">
+              <hr class="nav__account-sep">
+              <button class="nav__signout" id="nav-signout" type="button">Sign out</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nav__tools">
+        <a href="/search/" class="nav__icon-btn" aria-label="Search">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+
+        <button class="nav__icon-btn nav__theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+
+        <button class="nav__burger" id="nav-burger" type="button"
+                aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
+
+  <div class="nav__scrim" id="nav-scrim"></div>
 
   <main id="main-content">
     {{ content | safe }}
   </main>
 
   <footer class="site-footer">
-    <div class="ornament" aria-hidden="true">
-      <span class="ornament__symbol">✦</span>
-    </div>
     <p class="site-footer__tagline">
-      These records were compiled in the city of <em>Aru'Mas</em>,<br>
+      These records were compiled in the city of <em>Aru&rsquo;Mas</em>,
       in the Third Era of the world called Ahvantir.
     </p>
     <p class="site-footer__credits">
@@ -95,6 +153,7 @@
     </p>
   </footer>
 
+  <script src="/assets/js/nav.js"></script>
   <script src="/assets/js/main.js"></script>
   {% block scripts %}{% endblock %}
 </body>

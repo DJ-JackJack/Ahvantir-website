@@ -2,7 +2,6 @@
    Ahvantir — Parchment Design System
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 /* ── Custom Properties ─────────────────────────────────────────── */
 :root {
@@ -97,6 +96,64 @@
   --article-w: 52rem;
   --sidebar-w: 17rem;
   --nav-h: 3.5rem;
+
+  /* ── Added in the modernization pass ──────────────────────────────
+     Everything below is new vocabulary. The colour and type primitives
+     above are untouched: the contrast work done on them is correct and
+     the semantic names here point AT them rather than replacing them,
+     so a rule can say what a colour is for instead of which parchment
+     tint it happens to be. */
+
+  /* Interface type. A system stack, so it costs no network request and
+     renders as the reader's own platform does. Cinzel stays for display
+     and EB Garamond for prose; this is only for chrome — nav, buttons,
+     labels, table headers, anything that is apparatus rather than text. */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+             'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing. One scale, so a gap is chosen from a set rather than typed
+     fresh each time; the old file had no spacing tokens at all and the
+     rhythm drifted accordingly. */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* Radius */
+  --r-sm: 3px;
+  --r-md: 6px;
+  --r-lg: 12px;
+  --r-full: 999px;
+
+  /* Semantic surfaces and text. These flip wholesale in dark mode, which
+     is what lets a component be written once instead of twice. */
+  --surface:        var(--p-100);
+  --surface-sunk:   var(--p-200);
+  --surface-raised: #fffdf6;
+  --text:           var(--ink-soft);
+  --text-strong:    var(--ink);
+  --text-muted:     var(--ink-ghost);
+  --border:         rgba(107, 76, 40, 0.22);
+  --border-strong:  rgba(107, 76, 40, 0.42);
+  --accent:         var(--burg);
+  --accent-soft:    rgba(123, 29, 42, 0.08);
+
+  /* Header. Its own tokens because it is the one surface that sits over
+     content and has to stay legible in both themes. */
+  --header-bg:     rgba(247, 237, 205, 0.88);
+  --header-border: rgba(107, 76, 40, 0.20);
+
+  /* The width a navigation collapses at. One number, referenced by the
+     drawer's media queries, instead of the ten ad-hoc breakpoints the
+     file had grown. */
+  --bp-nav: 1024px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Reset ─────────────────────────────────────────────────────── */
@@ -193,12 +250,24 @@ pre {
 
 pre code { background: none; padding: 0; color: inherit; }
 
-ul, ol {
+/* Indent and spacing are prose behaviour: a bulleted list in an article wants
+   them, a row of navigation links does not. These used to be unqualified, so
+   every nav list inherited a 1.5em indent and 0.35em between items, which is
+   why the drawer's two groups did not line up with each other. `:where`
+   contributes no specificity, so a component still only has to say `padding: 0`
+   once rather than out-specify a reset. */
+:where(ul, ol):not([role="list"]) {
   padding-left: 1.5em;
   margin-bottom: 1.25em;
 }
 
-li { margin-bottom: 0.35em; }
+:where(ul, ol):not([role="list"]) > li { margin-bottom: 0.35em; }
+
+ul[role="list"], ol[role="list"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 hr {
   border: none;
@@ -243,83 +312,410 @@ hr {
   padding-inline: clamp(1rem, 4vw, 2.5rem);
 }
 
-/* ── Navigation ────────────────────────────────────────────────── */
+/* ── Navigation ────────────────────────────────────────────────────
+   Rebuilt in the modernization pass. What changed and why:
+
+   It used to be one flex row with `flex-wrap: wrap` and twelve links in
+   it. On a desktop that wrapped to two rows; on a phone it wrapped to
+   SIX, 355px of links before any content, on every page. Wrapping is not
+   a small-screen strategy, so the links now move into a drawer below
+   --bp-nav and the row never wraps at all.
+
+   The links are also split by audience. Lore navigation — what a visitor
+   came for — stays in the bar. The table-facing links (Player, Messages,
+   Hall of Heroes, Play) move behind one account control, because a
+   stranger reading about Aru'Mas has no use for an unread-message badge.
+
+   Both sets are in the DOM exactly once. `.nav__panel` is an inline row
+   on a wide screen and a slide-in sheet on a narrow one, so there is no
+   duplicate markup and no duplicate ids for the auth code to find. */
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--p-400);
-  background-image: linear-gradient(to bottom, var(--p-300), var(--p-400));
-  border-bottom: 2px solid var(--burg-dark);
-  box-shadow: 0 2px 12px rgba(45,20,5,0.22);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+
+/* Frosting, where it is supported. The fallback above is already opaque
+   enough to read against, so this is pure enhancement. */
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .site-header {
+    background: color-mix(in srgb, var(--header-bg) 72%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+  }
 }
 
 .nav {
   display: flex;
   align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
+  gap: var(--sp-4);
   max-width: var(--max-w);
   margin-inline: auto;
-  padding: 0.4rem clamp(1rem, 4vw, 2.5rem);
+  padding: var(--sp-2) clamp(var(--sp-4), 4vw, var(--sp-6));
   min-height: var(--nav-h);
-  gap: 0.4rem 0.5rem;
 }
 
+/* ── Wordmark ── */
 .nav__home {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--sp-2);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--text-strong);
   flex-shrink: 0;
+  border-radius: var(--r-sm);
 }
 
 .nav__sigil {
-  font-size: 1.2rem;
-  color: var(--burg);
+  font-size: 1.05rem;
+  color: var(--accent);
   line-height: 1;
 }
 
 .nav__title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--ink);
+  letter-spacing: 0.04em;
+  color: var(--text-strong);
 }
+
+/* ── The panel: a row here, a sheet on a phone ── */
+/* `flex: 1` rather than `margin-left: auto`, so the panel owns all the space
+   between the wordmark and the tools. That is what gives the world switch
+   somewhere to sit: it takes `margin-right: auto` inside the panel and is
+   pushed to the panel's LEFT edge, which is immediately right of the
+   wordmark, while the links and the account control stay right-aligned. */
+.nav__panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.nav__panel > .world-switch { margin-right: auto; }
 
 .nav__links {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
   list-style: none;
-  gap: 0.3rem 0.1rem;
-  margin: 0 0 0 auto;
+  gap: var(--sp-1);
+  margin: 0;
 }
 
-.nav__links li { margin: 0; }
-
 .nav__links a {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.38rem 0.5rem;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  display: block;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   text-decoration: none;
-  color: var(--ink-faded);
-  text-transform: uppercase;
-  border-radius: 2px;
-  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  color: var(--text-muted);
+  border-radius: var(--r-md);
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
 }
 
 .nav__links a:hover {
-  color: var(--burg);
-  background: rgba(123,29,42,0.07);
+  color: var(--text-strong);
+  background: var(--accent-soft);
 }
+
+/* Set by main.js. A rule rather than an inline style, so the active state
+   can carry more than a colour and stays with the rest of the nav. */
+.nav__links a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-soft);
+}
+
+/* ── Right-hand controls ── */
+.nav__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  flex-shrink: 0;
+}
+
+.nav__icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.nav__icon-btn:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.nav__theme-toggle .icon-moon { display: block; }
+.nav__theme-toggle .icon-sun  { display: none; }
+html.dark .nav__theme-toggle .icon-moon { display: none; }
+html.dark .nav__theme-toggle .icon-sun  { display: block; }
+
+/* ── Account: a dropdown on a wide screen, a plain list in the sheet ── */
+.nav__account { position: relative; }
+
+.nav__account-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.nav__account-trigger:hover,
+.nav__account-trigger[aria-expanded="true"] {
+  color: var(--text-strong);
+  background: var(--accent-soft);
+}
+
+.nav__account-trigger .chev {
+  transition: transform 0.18s var(--ease);
+}
+
+.nav__account-trigger[aria-expanded="true"] .chev {
+  transform: rotate(180deg);
+}
+
+.nav__account-menu {
+  position: absolute;
+  top: calc(100% + var(--sp-2));
+  right: 0;
+  min-width: 13rem;
+  list-style: none;
+  margin: 0;
+  padding: var(--sp-2);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.nav__account-menu[hidden] { display: none !important; }
+
+.nav__account-menu a,
+.nav__account-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.nav__account-menu a:hover,
+.nav__account-menu button:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.nav__account-menu a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.nav__account-sep {
+  height: 1px;
+  margin: var(--sp-2) var(--sp-1);
+  background: var(--border);
+  border: 0;
+}
+
+/* ── Burger and scrim: inert until the drawer breakpoint ── */
+.nav__burger { display: none; }
+.nav__scrim  { display: none; }
+
+/* ── Below --bp-nav: the panel becomes a sheet ── */
+@media (max-width: 1024px) {
+  .nav__burger {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-md);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .nav__burger:hover { color: var(--accent); background: var(--accent-soft); }
+
+  /* Three lines that become a cross. Transform only, so it stays on the
+     compositor and does not reflow the header mid-animation. */
+  .nav__burger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.22s var(--ease), opacity 0.14s var(--ease);
+  }
+  .nav__burger span + span { margin-top: 4px; }
+
+  .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .nav__panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* An explicit height rather than `bottom: 0`. The panel is a flex item in
+       the wide layout, and the `flex: 1` it carries there left its content box
+       resolving to zero here, so the sheet came out 126px tall — its own
+       padding and nothing else — and every link was clipped out of sight.
+
+       `dvh` rather than `vh` because this is a phone component: `vh` is the
+       viewport with the address bar hidden, so a sheet sized in `vh` runs off
+       the bottom of the screen while the bar is still showing. */
+    height: 100vh;
+    height: 100dvh;
+    width: min(21rem, 85vw);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    margin: 0;
+    padding: calc(var(--nav-h) + var(--sp-5)) var(--sp-5) var(--sp-6);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.26s var(--ease), visibility 0.26s;
+    z-index: 120;
+  }
+
+  .nav__panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .nav__panel > .world-switch {
+    margin: 0 0 var(--sp-5);
+    align-self: stretch;
+  }
+
+  .nav__panel > .world-switch .world-switch__current,
+  .nav__panel > .world-switch .world-switch__other {
+    flex: 1;
+    justify-content: center;
+    padding: var(--sp-2) var(--sp-3);
+  }
+
+  .nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-1);
+  }
+
+  .nav__links a {
+    padding: var(--sp-3) var(--sp-3);
+    font-size: 1rem;
+  }
+
+  /* In the sheet the account links are just the next group down: no
+     second tap to reveal them, and a rule above them to say they are a
+     different kind of thing. */
+  .nav__account-trigger { display: none; }
+
+  .nav__account {
+    margin-top: var(--sp-4);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border);
+  }
+
+  .nav__account-menu,
+  .nav__account-menu[hidden] {
+    display: block !important;
+    position: static;
+    min-width: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .nav__account-menu a,
+  .nav__account-menu button {
+    padding: var(--sp-3) var(--sp-3);
+    font-size: 1rem;
+  }
+
+  .nav__scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 12, 4, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.26s var(--ease), visibility 0.26s;
+    z-index: 110;
+  }
+
+  .nav__scrim.is-open { opacity: 1; visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__panel,
+  .nav__scrim,
+  .nav__burger span,
+  .nav__account-trigger .chev { transition: none; }
+}
+
+/* While the sheet is open the page behind it must not scroll. */
+body.nav-open { overflow: hidden; }
+
+/* The closed sheet is parked at translateX(100%), i.e. in the strip of space
+   immediately right of the viewport. A fixed element sitting there still
+   counts toward the document's scrollable width, so the page gained a
+   horizontal scrollbar and a sideways nudge on the first tap.
+
+   `clip` rather than `hidden` on purpose: `overflow: hidden` would make the
+   body a scroll container and break `position: sticky` on the header. */
+html { overflow-x: clip; }
+body { overflow-x: clip; }
 
 /* ── Hero ───────────────────────────────────────────────────────── */
 .hero {
@@ -2363,17 +2759,6 @@ hr {
   color: var(--ink-ghost);
 }
 
-/* ── Grain div ──────────────────────────────────────────────────── */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  mix-blend-mode: multiply;
-}
-
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .article-layout {
@@ -2389,10 +2774,6 @@ hr {
 }
 
 @media (max-width: 680px) {
-  /* Nav wraps to several rows on phones; un-stick it so the tall header
-     scrolls away instead of pinning to the top and eating screen space. */
-  .site-header { position: static; }
-
   .hero__title { font-size: clamp(3rem, 15vw, 5rem); }
 
   .category-grid {
@@ -2416,48 +2797,6 @@ hr {
    the darker stop it was 2.92:1 in light mode — and, because it was a hardcoded
    literal rather than a token, 2.4:1 in dark mode, where the header is dark and
    a dark gold all but disappears. Both stops of both gradients now clear 4.5:1. */
-.nav__player-link { color: var(--nav-player) !important; font-weight: 600; }
-.nav__player-link:hover { color: var(--nav-player-hover) !important; }
-
-/* Nav sign-out button — styled like a nav link */
-.nav__signout {
-  display: flex;
-  align-items: center;
-  padding: 0.4rem 0.65rem;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--ink-faded);
-  border-radius: 2px;
-  transition: color 0.15s, background 0.15s;
-}
-.nav__signout:hover { color: var(--burg); background: rgba(123,29,42,0.07); }
-
-/* Dark-mode theme toggle */
-.nav__theme-item { display: flex; align-items: center; }
-.nav__theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--ink-faded);
-  padding: 0.35rem;
-  border-radius: 4px;
-  line-height: 1;
-  transition: color 0.15s, background 0.15s;
-}
-.nav__theme-toggle:hover { color: var(--burg); background: rgba(123,29,42,0.07); }
-.nav__theme-toggle .icon-moon { display: block; }
-.nav__theme-toggle .icon-sun  { display: none; }
-html.dark .nav__theme-toggle .icon-moon { display: none; }
-html.dark .nav__theme-toggle .icon-sun  { display: block; }
-
 /* Shared player page wrapper */
 .player-page {
   padding: 2rem 0 4rem;
@@ -2920,7 +3259,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
 
 /* ── Print ──────────────────────────────────────────────────────── */
 @media print {
-  .site-header, .article-sidebar, .back-link, .site-footer, .grain { display: none; }
+  .site-header, .article-sidebar, .back-link, .site-footer { display: none; }
   .article-layout { grid-template-columns: 1fr; }
   body { background: white; color: black; }
   a { color: black; text-decoration: underline; }
@@ -4181,17 +4520,16 @@ html.dark .tl-entry { border-color: rgba(255,255,255,0.07); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--burg);
+  background: var(--accent);
   color: var(--p-100);
-  font-size: 0.62rem;
-  font-weight: 700;
-  font-family: var(--font-body);
-  border-radius: 999px;
-  min-width: 1.15em;
-  height: 1.15em;
-  padding: 0 0.3em;
-  margin-left: 0.3em;
-  vertical-align: middle;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  border-radius: var(--r-full);
+  min-width: 1.35em;
+  height: 1.35em;
+  padding: 0 0.4em;
   line-height: 1;
   letter-spacing: 0;
 }
@@ -5362,6 +5700,17 @@ html.dark {
   --teal-dark: #4abfd0;
   --gold-dark: #c09030;
 
+  /* Added in the modernization pass. Most of the semantic tokens point at the
+     parchment primitives above and flip for free when those do; these four
+     cannot, because a brown at 22% alpha is invisible on a dark ground and a
+     near-white raised surface is simply wrong there. */
+  --surface-raised: #2a1f13;
+  --border:         rgba(232, 216, 192, 0.14);
+  --border-strong:  rgba(232, 216, 192, 0.26);
+  --header-bg:      rgba(35, 26, 15, 0.88);
+  --header-border:  rgba(232, 216, 192, 0.12);
+  --accent-soft:    rgba(192, 64, 96, 0.13);
+
   --shadow-sm: 1px 2px 6px rgba(0,0,0,0.5);
   --shadow-md: 2px 4px 16px rgba(0,0,0,0.6);
   --shadow-lg: 4px 8px 32px rgba(0,0,0,0.7);
@@ -5379,10 +5728,10 @@ html.dark body::before {
   opacity: 0.06;
 }
 
-html.dark .site-header {
-  background: var(--p-400);
-  background-image: linear-gradient(to bottom, var(--p-300), var(--p-400));
-}
+/* The header's colours are tokens now, and those tokens flip below, so the
+   theme no longer needs a separate rule to repaint the bar. What remains here
+   is only the sheet, which is opaque in both themes. */
+html.dark .nav__panel { background: var(--p-200); }
 
 html.dark code {
   background: rgba(255,255,255,0.06);
@@ -5524,14 +5873,16 @@ html.dark .cosmos-key--neutral { color: #aab4c8; background: rgba(154,166,186,0.
   display: inline-flex;
   align-items: stretch;
   flex-shrink: 0;
-  margin-left: 0.6rem;
-  border: 1px solid var(--gold-dark);
-  border-radius: 3px;
-  overflow: hidden;
-  font-family: var(--font-display);
-  font-size: 0.66rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  padding: 2px;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   line-height: 1;
 }
 
@@ -5539,35 +5890,36 @@ html.dark .cosmos-key--neutral { color: #aab4c8; background: rgba(154,166,186,0.
 .world-switch__other {
   display: flex;
   align-items: center;
-  padding: 0.42rem 0.6rem;
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-sm);
   white-space: nowrap;
 }
 
-/* The active segment's background is `--gold`, which dark mode does NOT
-   redefine. Its text colour therefore must not be `--ink`, which dark mode
-   DOES redefine — that pairing renders light-on-light the moment the theme
-   toggle is used. Fixed dark ink is correct here precisely because the
-   surface behind it never changes. */
+/* The selected segment is a raised chip rather than a gold block. The old
+   version painted --gold, a token dark mode does NOT redefine, which is why
+   it had to pin its own ink to a literal; a surface token flips with the
+   theme and the text can simply be --text-strong. */
 .world-switch__current {
-  background: var(--gold);
-  color: #1a0e02;
-  font-weight: 700;
+  background: var(--surface-raised);
+  color: var(--text-strong);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(45, 20, 5, 0.12);
 }
 
 .world-switch__other {
-  color: var(--ink-faded);
+  color: var(--text-muted);
   text-decoration: none;
   background: transparent;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
 }
 
 .world-switch__other:hover {
-  color: var(--burg);
-  background: rgba(123, 29, 42, 0.09);
+  color: var(--text-strong);
+  background: var(--accent-soft);
 }
 
 .world-switch__other:focus-visible {
-  outline: 2px solid var(--burg);
+  outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
 
@@ -5575,10 +5927,6 @@ html.dark .cosmos-key--neutral { color: #aab4c8; background: rgba(154,166,186,0.
   .world-switch__other { transition: none; }
 }
 
-/* Narrow screens: the nav already wraps rather than collapsing to a menu,
-   so the control only needs to stop forcing the row wider than it has to be. */
-@media (max-width: 480px) {
-  .world-switch { margin-left: 0; font-size: 0.6rem; }
-  .world-switch__current,
-  .world-switch__other { padding: 0.35rem 0.45rem; }
-}
+/* No narrow-screen variant is needed any more: below --bp-nav the control
+   moves into the drawer with the rest of the panel, where it has the full
+   width of the sheet. */
