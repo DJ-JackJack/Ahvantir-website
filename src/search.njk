@@ -7,8 +7,8 @@ permalink: /search/
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-title">Search the Records</h1>
-    <p class="page-lead">Search across all {{ collections.allArticles.length }} articles.</p>
+    <h1 class="page-title">Search the records</h1>
+    <p class="page-lead">{{ collections.allArticles.length }} articles across {{ meta.categories.length }} subjects.</p>
   </div>
 </div>
 
@@ -17,6 +17,41 @@ permalink: /search/
   <noscript>
     <p class="search-noscript">Search requires JavaScript. <a href="/articles/">Browse all articles instead →</a></p>
   </noscript>
+
+  {# Before anything is typed this page was a single input on an otherwise
+     empty screen, with the footer pulled up under it -- which reads as a page
+     that failed to load rather than one waiting for input. These are ways in
+     for a reader who does not yet know what to ask for. search.js hides the
+     whole block as soon as there is a query, so it never competes with
+     results. #}
+  <div class="search-start" id="search-start">
+    <section class="search-start__block">
+      <h2 class="search-start__title">Browse by subject</h2>
+      <div class="search-start__subjects">
+        {% for cat in meta.categories %}
+        <a href="/articles/#{{ cat.slug }}" class="subject-chip" style="--cat-color: {{ cat.color }}">
+          <span class="subject-chip__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{{ cat.icon | safe }}</svg>
+          </span>
+          {{ cat.label }}
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="search-start__block">
+      <h2 class="search-start__title">Or go somewhere</h2>
+      <ul class="search-start__links" role="list">
+        <li><a href="/articles/arumas/">Aru&rsquo;Mas</a> <span>the city these records are written from</span></li>
+        <li><a href="/timeline/">The historical record</a> <span>founding era to the present day</span></li>
+        <li><a href="/map/">The world map</a> <span>the archipelago and its districts</span></li>
+        <li><a href="/almanac/">The almanac</a> <span>calendar, suns, moons and sky</span></li>
+        <li><a href="/graph/">Relations</a> <span>how people, places and powers connect</span></li>
+        <li><a href="/recently-added/">Recently added</a> <span>what has changed lately</span></li>
+      </ul>
+    </section>
+  </div>
 </div>
 
 {% block scripts %}

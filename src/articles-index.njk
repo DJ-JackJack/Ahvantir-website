@@ -38,7 +38,7 @@ permalink: /articles/
     {% endif %}
   {% endfor %}
   {% if catArticles.length %}
-  <section class="articles-section" id="{{ cat.slug }}" data-category="{{ cat.slug }}">
+  <section class="articles-section" id="{{ cat.slug }}" data-category="{{ cat.slug }}" style="--cat-color: {{ cat.color }}">
     <h2 class="articles-section__title">
       <span class="cat-head__icon" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"

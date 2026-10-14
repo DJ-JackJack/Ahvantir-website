@@ -747,9 +747,14 @@ body { overflow-x: clip; }
   content: '';
   position: absolute;
   inset: 0;
+  /* Two gradients rather than one flat wash: the left-hand one carries the
+     text, the bottom one seats the hero against the page below it. They
+     multiply where they meet, so each can be lighter than a single scrim
+     would have to be -- the point is to read the words without painting out
+     the picture they are standing on. */
   background:
-    linear-gradient(to right, rgba(8,5,2,0.82) 0%, rgba(8,5,2,0.62) 42%, rgba(8,5,2,0.12) 78%),
-    linear-gradient(to top, rgba(8,5,2,0.72) 0%, transparent 55%);
+    linear-gradient(to right, rgba(8,5,2,0.74) 0%, rgba(8,5,2,0.42) 46%, rgba(8,5,2,0) 80%),
+    linear-gradient(to top, rgba(8,5,2,0.55) 0%, rgba(8,5,2,0) 58%);
 }
 
 .hero__inner {
@@ -1178,24 +1183,118 @@ body { overflow-x: clip; }
 
 /* ── Page Header ─────────────────────────────────────────────────── */
 .page-header {
-  padding: 3rem 0 2rem;
-  border-bottom: 1px solid var(--br-light);
-  margin-bottom: 2.5rem;
+  padding: clamp(var(--sp-7), 7vw, var(--sp-8)) 0 var(--sp-6);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-7);
 }
 
 .page-title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  color: var(--ink);
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  color: var(--text-strong);
+  margin-bottom: var(--sp-2);
+  line-height: 1.1;
+  text-wrap: balance;
 }
 
 .page-lead {
+  font-family: var(--font-ui);
   font-size: 1rem;
-  color: var(--ink-faded);
-  font-style: italic;
+  color: var(--text-muted);
+  font-style: normal;
   margin: 0;
 }
+
+/* ── Search: what the page shows before anything is typed ───────── */
+.search-start {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--sp-7);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-7);
+  border-top: 1px solid var(--border);
+}
+
+.search-start[hidden] { display: none; }
+
+.search-start__title {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-4);
+}
+
+.search-start__subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.subject-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4) var(--sp-2) var(--sp-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.subject-chip:hover {
+  background: var(--surface-raised);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.subject-chip__icon {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--cat-color, var(--accent)) 16%, transparent);
+  color: color-mix(in srgb, var(--cat-color, var(--accent)) 76%, var(--text-strong));
+}
+
+@supports not (color: color-mix(in srgb, red 50%, transparent)) {
+  .subject-chip__icon { background: var(--accent-soft); color: var(--accent); }
+}
+
+.search-start__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.search-start__links li { margin: 0; line-height: 1.45; }
+
+.search-start__links a {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.search-start__links a:hover { text-decoration: underline; }
+
+.search-start__links span {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) { .subject-chip { transition: none; } }
 
 /* ── Article Layout ─────────────────────────────────────────────── */
 .article {
@@ -1573,58 +1672,100 @@ body { overflow-x: clip; }
   padding-bottom: 4rem;
 }
 
+/* The controls sit above 244 articles and are used before anything else on
+   the page, so they get to be the one piece of furniture here with any
+   weight. Stacked rather than side by side: the search field wants the full
+   width, and the category row wants to wrap under it instead of fighting it
+   for the same line. */
 .articles-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-start;
-  margin-bottom: 2.5rem;
+  flex-direction: column;
+  gap: var(--sp-4);
+  align-items: stretch;
+  margin-bottom: var(--sp-7);
 }
 
 .filter-input {
-  flex: 1;
-  min-width: 200px;
-  padding: 0.6rem 0.9rem;
-  font-family: var(--font-body);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-ui);
   font-size: 1rem;
-  background: var(--p-100);
-  border: 1px solid var(--br-mid);
-  color: var(--ink);
-  border-radius: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text);
   outline: none;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
-.filter-input:focus { border-color: var(--burg); }
+.filter-input::placeholder { color: var(--text-muted); }
+
+.filter-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
 
 .filter-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: var(--sp-2);
 }
 
 .filter-btn {
-  padding: 0.4rem 0.85rem;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   background: transparent;
-  border: 1px solid var(--br-mid);
-  color: var(--ink-faded);
-  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--r-full);
   cursor: pointer;
-  transition: all 0.12s;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease),
+              color 0.15s var(--ease);
 }
 
-.filter-btn:hover,
+.filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-strong);
+  background: var(--accent-soft);
+}
+
+/* The selected one has to be unmistakable at a glance across a row of nine,
+   so it inverts rather than merely tinting. */
 .filter-btn.active {
-  background: var(--teal-dark);
-  border-color: var(--teal-dark);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--p-100);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-btn, .filter-input { transition: none; }
 }
 
 .articles-section {
-  margin-bottom: 3rem;
+  margin-bottom: var(--sp-8);
+  scroll-margin-top: calc(var(--nav-h) + var(--sp-5));
+}
+
+/* The subject icon, matching the home page's set and coloured the same way.
+   The colour comes from the section's own --cat-color, set in the template. */
+.cat-head__icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--cat-color, var(--accent)) 14%, transparent);
+  color: color-mix(in srgb, var(--cat-color, var(--accent)) 76%, var(--text-strong));
+}
+
+@supports not (color: color-mix(in srgb, red 50%, transparent)) {
+  .cat-head__icon { background: var(--accent-soft); color: var(--accent); }
 }
 
 .articles-section__title {

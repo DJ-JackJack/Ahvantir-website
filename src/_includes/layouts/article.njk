@@ -93,7 +93,7 @@ layout: base
          unbroken, making the sidebar longer than most articles. Eight, then
          the rest behind a disclosure -- <details> rather than script, so it
          works before any JavaScript runs and prints open. #}
-      <section class="sidebar-section">
+      <section class="sidebar-section" data-backlinks>
         <h2 class="sidebar-title">Mentioned in <span class="sidebar-count">{{ backlinks.length }}</span></h2>
         <ul class="backlinks-list" role="list">
           {% for link in backlinks | take(8) %}

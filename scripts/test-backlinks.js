@@ -4,6 +4,12 @@
  * Backlinks are computed in .eleventy.js by reading each article off disk and
  * scanning it for [[wikilinks]], then mutating page.data.backlinks before
  * render. That is more machinery than most of the build, it depends on Eleventy
+ * Matched on the section's `data-backlinks` attribute rather than on its
+ * heading text. The heading is copy -- it was "Mentioned In" and is now
+ * "Mentioned in" with a count beside it -- and a rewording should not read as
+ * "backlinks are not reaching the page", which is what this test said the
+ * first time the heading changed.
+ *
  * collection behaviour, and when it breaks it breaks SILENTLY: the "Mentioned
  * In" box simply stops appearing. Nothing else would notice.
  *
@@ -43,13 +49,13 @@ const ok   = (msg) => console.log('  ok    ' + msg);
 const withBacklinks = [];
 for (const p of pages) {
   const html = fs.readFileSync(p.file, 'utf8');
-  if (/<h3[^>]*>\s*Mentioned In\s*<\/h3>/.test(html)) withBacklinks.push({ p, html });
+  if (/<section[^>]*\bdata-backlinks\b/.test(html)) withBacklinks.push({ p, html });
 }
 
 if (!withBacklinks.length) {
-  fail('no article renders a "Mentioned In" section — backlinks are not reaching the page');
+  fail('no article renders a backlinks section — backlinks are not reaching the page');
 } else {
-  ok(`${withBacklinks.length} of ${pages.length} articles render "Mentioned In"`);
+  ok(`${withBacklinks.length} of ${pages.length} articles render their backlinks`);
 }
 
 /* ---------- 2. the links in it are real ----------
@@ -67,7 +73,7 @@ let deadLinks = 0;
 
 for (const { p, html } of withBacklinks) {
   const section = html.match(
-    /<h3[^>]*>\s*Mentioned In\s*<\/h3>\s*<ul[^>]*>([\s\S]*?)<\/ul>/);
+    /<section[^>]*\bdata-backlinks\b[^>]*>[\s\S]*?<ul[^>]*class="backlinks-list"[^>]*>([\s\S]*?)<\/ul>/);
   if (!section) continue;
   const hrefs = [...section[1].matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   for (const h of hrefs) {
@@ -75,7 +81,7 @@ for (const { p, html } of withBacklinks) {
     if (!builtPaths.has(h)) {
       deadLinks++;
       if (deadLinks <= 3) {
-        fail(`${p.slug}: "Mentioned In" points at ${h}, which was not built`);
+        fail(`${p.slug}: backlinks point at ${h}, which was not built`);
       }
     }
   }
@@ -97,7 +103,7 @@ if (checkedLinks && !deadLinks) {
 const sample = withBacklinks[0];
 if (sample) {
   const section = sample.html.match(
-    /<h3[^>]*>\s*Mentioned In\s*<\/h3>\s*<ul[^>]*>([\s\S]*?)<\/ul>/);
+    /<section[^>]*\bdata-backlinks\b[^>]*>[\s\S]*?<ul[^>]*class="backlinks-list"[^>]*>([\s\S]*?)<\/ul>/);
   const first = section && section[1].match(/href="\/articles\/([^/"]+)\//);
   if (!first) {
     fail('could not read a backlink to check reciprocity');

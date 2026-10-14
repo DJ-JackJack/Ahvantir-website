@@ -28,4 +28,25 @@ window.addEventListener('DOMContentLoaded', function () {
       clear_filters:      'Clear filters',
     },
   });
+
+  /* The suggestions below the box are for a reader who has not typed
+     anything yet. Once there is a query they are in the way of the results,
+     so they go. Pagefind builds its own input, which is why this waits for
+     the element to exist rather than binding at load. */
+  var start = document.getElementById('search-start');
+  if (!start) return;
+
+  var tries = 0;
+  (function bind() {
+    var input = document.querySelector('#search input[type="text"], #search .pagefind-ui__search-input');
+    if (!input) {
+      // Pagefind renders asynchronously; give it a second, then give up
+      // quietly, leaving the suggestions visible rather than hidden forever.
+      if (++tries < 40) setTimeout(bind, 50);
+      return;
+    }
+    var sync = function () { start.hidden = input.value.trim().length > 0; };
+    input.addEventListener('input', sync);
+    sync();
+  })();
 });
