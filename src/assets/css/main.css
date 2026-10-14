@@ -727,9 +727,40 @@ body { overflow-x: clip; }
   padding: clamp(var(--sp-8), 12vw, var(--sp-9)) 0 clamp(var(--sp-7), 8vw, var(--sp-8));
   overflow: hidden;
   background-color: #1a1008;
+  /* The plain URL is the fallback, and stays first so a browser that does not
+     understand image-set still gets a hero. */
   background-image: url('/assets/img/hero.jpg');
   background-size: cover;
   background-position: center 35%;
+}
+
+/* The painting was the heaviest thing on the site by some margin: 156 kB,
+   against 41 kB for the whole stylesheet once compressed. It is also the
+   first thing anyone sees, so it is worth the two extra files.
+
+   WebP at q84 is 103 kB for the same 1122px image, and a phone pulling the
+   full-width file for a 375px viewport was the other half of the waste --
+   hero-sm.webp is 51 kB, a third of the original.
+
+   Guarded by @supports rather than served blind: the fallback above is a
+   perfectly good hero, and a browser old enough to lack image-set should get
+   it rather than nothing. */
+@supports (background-image: image-set(url('/assets/img/hero.webp') type('image/webp'))) {
+  .hero {
+    background-image: image-set(
+      url('/assets/img/hero.webp') type('image/webp'),
+      url('/assets/img/hero.jpg') type('image/jpeg')
+    );
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      background-image: image-set(
+        url('/assets/img/hero-sm.webp') type('image/webp'),
+        url('/assets/img/hero.jpg') type('image/jpeg')
+      );
+    }
+  }
 }
 
 .hero::after {
