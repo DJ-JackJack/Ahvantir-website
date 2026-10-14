@@ -27,8 +27,30 @@ jobs:
       - name: Run Obsidian converter
         shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
         run: |
+          # `2>&1` on a NATIVE command in Windows PowerShell 5.1 does not merely
+          # merge the streams: each stderr line comes back as a NativeCommandError
+          # record, and that is enough to make the shell exit 1 even when the
+          # program exited 0.
+          #
+          # That is what happened here. A new untitled note appeared in the vault,
+          # the converter printed one SKIP line to stderr as designed, exited 0 --
+          # and the step failed. The weekly sync has been red since 28 September.
+          #
+          # No lore was lost: a dry run against the vault on 14 October reported
+          # "Would update 0 files", because everything written in that window had
+          # been published by direct commits instead. What was lost is the
+          # automation -- and the Sync Health Check correctly said so every day
+          # while the cause looked like a flaky monitor.
+          #
+          # The merge is kept, because sync.log is meant to hold everything the
+          # run said. What changes is that the step's result now comes from
+          # $LASTEXITCODE and nothing else.
+          $ErrorActionPreference = 'Continue'
           & python scripts/obsidian-to-md.py 2>&1 | Tee-Object -FilePath sync.log
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $code = $LASTEXITCODE
+          if ($null -eq $code) { $code = 0 }
+          Write-Host "Converter exited $code."
+          exit $code
         env:
           OBSIDIAN_VAULT_PATH: ${{ secrets.OBSIDIAN_VAULT_PATH }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}

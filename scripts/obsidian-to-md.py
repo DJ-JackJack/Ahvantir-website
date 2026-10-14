@@ -384,11 +384,13 @@ def build_frontmatter(fm: dict, description: str, preserved: dict = None) -> str
     category_raw = fm.get("category", "")
     category = CATEGORY_MAP.get(category_raw, category_raw)
     if category and category not in VALID_CATEGORIES:
+        # stdout, not stderr. The article still builds and the run still
+        # succeeds, so this is a notice, not a failure -- and on the Windows
+        # runner anything on stderr becomes a PowerShell error record.
         print(
             f"WARN unmapped category '{category_raw}' -> '{category}': not one of "
             f"{sorted(VALID_CATEGORIES)}. The article will build but will not "
-            f"appear on /articles/. Add it to CATEGORY_MAP.",
-            file=sys.stderr,
+            f"appear on /articles/. Add it to CATEGORY_MAP."
         )
     tags = fm.get("tags", [])
     aliases = fm.get("aliases", [])
@@ -437,8 +439,10 @@ def process_file(src: Path, preserved_fm: dict = None):
     # sync each time the generated copy was deleted. Fails safe: a skipped
     # article is a visible absence, a published working document is not.
     if not str(fm.get("title", "")).strip():
-        print(f"SKIP (no title, treated as working material): {src.name}",
-              file=sys.stderr)
+        # stdout: skipping a working document is the designed behaviour,
+        # not an error. On 5 and 12 October this one line, on stderr, failed
+        # the whole weekly sync. See .github/workflows/obsidian-sync.yml.
+        print(f"SKIP (no title, treated as working material): {src.name}")
         return None
     title = fm.get("title", src.stem)
     if "<%" in str(title):
