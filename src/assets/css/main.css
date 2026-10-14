@@ -164,29 +164,23 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* One flat colour. The page used to carry three stacked gradients -- two
+   warm radials and a 155-degree wash running --p-100 to --p-400 -- so the
+   background drifted from near-white at the top left to deep tan at the
+   bottom right. On a short page it read as texture; on a 4,000-word article
+   it read as a page that had been left in the sun, and every card on it had
+   to sit against a different shade depending on how far down it was.
+
+   The parchment colour stays. What goes is the drift, which is what lets a
+   surface token mean one thing everywhere it is used. Sections that want
+   separating use --surface-sunk and a border. */
 body {
   font-family: var(--font-body);
   color: var(--ink-soft);
   background-color: var(--p-200);
-  background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(190,150,80,0.10) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 75%, rgba(170,130,60,0.08) 0%, transparent 45%),
-    linear-gradient(155deg, var(--p-100) 0%, var(--p-300) 60%, var(--p-400) 100%);
   min-height: 100vh;
   line-height: var(--lh-body);
   position: relative;
-}
-
-/* Paper grain overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.045;
-  mix-blend-mode: multiply;
 }
 
 body > * { position: relative; z-index: 1; }
@@ -4827,11 +4821,16 @@ body { overflow-x: clip; }
    Timeline — accordion (year groups with <details>/<summary>)
    ================================================================ */
 
+/* The container matches every other page's, so the accordion's left edge
+   lines up with the page title above it. The accordion itself is capped at a
+   reading width inside it -- a row holding one short year label does not want
+   to be 1,400px wide, but it does want to start where the heading starts. */
 .timeline-container {
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-  max-width: 760px;
+  padding-top: var(--sp-6);
+  padding-bottom: var(--sp-8);
 }
+
+.tl-accordion { max-width: 48rem; }
 
 .tl-accordion {
   display: flex;
