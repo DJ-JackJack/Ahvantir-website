@@ -1567,6 +1567,10 @@ body { overflow-x: clip; }
   font-family: var(--font-ui);
   font-size: 0.85rem;
   line-height: 1.35;
+  /* Muted on purpose. A contents list is a way around the article, not part
+     of reading it, and at --text weight it competes with the prose beside it.
+     Measured 5.02:1 on the card in light and 4.82:1 in dark, so quiet here
+     still clears AA. */
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.15s var(--ease), background 0.15s var(--ease);
