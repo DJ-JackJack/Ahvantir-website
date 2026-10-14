@@ -70,16 +70,11 @@ function tokens(selector) {
 const light = tokens(':root');
 const dark  = Object.assign({}, light, tokens('html\\.dark'));
 
-/* The nav link must not be a hardcoded literal: the header is light in one
-   theme and dark in the other, so a fixed colour cannot clear both. It was a
-   literal, and measured 1.75:1 in dark mode where a dark gold vanishes into a
-   dark header. Keep it a token. */
-if (/\.nav__player-link\s*\{[^}]*color:\s*#[0-9a-fA-F]{3,6}/.test(CSS)) {
-  console.error(
-    'FAIL: .nav__player-link uses a hardcoded colour. The header inverts between\n' +
-    '      themes, so this must be a token that inverts with it.');
-  process.exit(1);
-}
+/* The guard that used to stand here watched .nav__player-link for a hardcoded
+   colour. That rule is gone: the rebuilt navigation puts the table-facing
+   links in the account menu, where they take --text on the menu surface. The
+   lesson it encoded is kept below instead, as a rule about the nav link that
+   does exist. */
 
 /* ---------- the cases ----------
    Surfaces were taken from the rendered pages, not assumed: each token was
@@ -109,12 +104,18 @@ function cases(t, mode) {
     [`${mode}: --ink-muted-dark on --cryptex-band`,
       t['--ink-muted-dark'], t['--cryptex-band'], AA_NORMAL],
 
-    // The nav link spans the header gradient, so it must clear BOTH stops —
-    // and it must be checked in both themes, because the header inverts.
-    [`${mode}: nav Player on header top (--p-300)`,
-      t['--nav-player'], t['--p-300'], AA_NORMAL],
-    [`${mode}: nav Player on header bottom (--p-400)`,
-      t['--nav-player'], t['--p-400'], AA_NORMAL],
+    // The nav links. The header is no longer a gradient between two parchment
+    // stops -- it is --header-bg, a translucent wash over the page -- so the
+    // surface to measure against is the page colour showing through it. The
+    // links take --ink-ghost (via --text-muted), and --p-200 is the page.
+    // Checked in both themes, because the header still inverts.
+    [`${mode}: nav link on the header`,
+      t['--ink-ghost'], t['--p-200'], AA_NORMAL],
+
+    // The account menu sits on --surface-raised, which is its own token and
+    // not one of the parchment stops, so it needs its own case.
+    [`${mode}: account menu text on --surface-raised`,
+      t['--ink-soft'], t['--surface-raised'], AA_NORMAL],
 
     // Almanac moon colours. These are swatches AND text — the moon's name in
     // the day panel and the full-moon rows is set in its own colour — so they

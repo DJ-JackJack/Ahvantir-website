@@ -32,8 +32,6 @@
      dark. Pinned to a literal so the band means the same thing in either theme. */
   --cryptex-band: #2d1e0e;
 
-  /* Nav "Player" link. Sits on the header gradient, not the page, so it is
-     measured against --p-300/--p-400 rather than the parchment. */
   /* Sky Almanac. Moon colours are used for text as well as swatches, so they
      are tuned to clear 4.5:1 on both parchment surfaces, not taken from the
      artifact's own dark palette. */
@@ -49,9 +47,6 @@
      teal so the two are not read as the same colour. */
   --solara:  #7d5a08;
   --nystara: #2b5e96;
-
-  --nav-player:       #674e11;
-  --nav-player-hover: #4a3708;
 
   /* Burgundy accent */
   --burg:      #7b1d2a;
@@ -1649,12 +1644,6 @@ body { overflow-x: clip; }
   letter-spacing: 0.03em;
 }
 
-.sidebar-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
 /* ── DM-only Banner ─────────────────────────────────────────────── */
 .dm-only-banner {
   display: flex;
@@ -2628,9 +2617,10 @@ body { overflow-x: clip; }
   gap: 2.25rem;
 }
 .alm-eyebrow {
-  font-family: var(--font-head);
+  font-family: var(--font-ui);
   font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-ghost);
   margin: 0;
@@ -2648,7 +2638,7 @@ body { overflow-x: clip; }
 /* year control */
 .alm-yearbar { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .alm-yearbar__label {
-  font-family: var(--font-head); font-size: 0.72rem; letter-spacing: 0.14em;
+  font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--ink-ghost); margin-right: 0.2rem;
 }
 .alm-yearbar__input {
@@ -2759,7 +2749,7 @@ body { overflow-x: clip; }
 
 .alm-grid8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; }
 .alm-wd {
-  font-family: var(--font-head); font-size: 0.6rem; letter-spacing: 0.06em;
+  font-family: var(--font-ui); font-size: 0.6rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--ink-ghost); text-align: center; padding-bottom: 2px;
 }
 .alm-cell {
@@ -3760,7 +3750,7 @@ body { overflow-x: clip; }
 }
 
 .recently-section__title {
-  font-family: var(--font-head);
+  font-family: var(--font-display);
   font-size: 1.15rem;
   color: var(--ink);
   text-transform: uppercase;
@@ -3855,7 +3845,7 @@ body { overflow-x: clip; }
 }
 
 .cryptex-heading {
-  font-family: var(--font-head);
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   color: var(--p-200);
   letter-spacing: 0.12em;
@@ -3922,7 +3912,7 @@ body { overflow-x: clip; }
 }
 
 .cryptex-rune {
-  font-family: var(--font-head);
+  font-family: var(--font-display);
   font-size: 2.4rem;
   line-height: 1;
   color: var(--p-200);
@@ -3967,7 +3957,7 @@ body { overflow-x: clip; }
 
 /* ── Consult button ────────────────────────────────────────── */
 .cryptex-consult-btn {
-  font-family: var(--font-head);
+  font-family: var(--font-ui);
   letter-spacing: 0.1em;
   font-size: 0.85rem;
   padding: 0.55rem 2rem;
@@ -3994,7 +3984,7 @@ body { overflow-x: clip; }
 .cryptex-result--special { color: var(--p-300); }
 
 .cryptex-found-label {
-  font-family: var(--font-head);
+  font-family: var(--font-ui);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4006,7 +3996,7 @@ body { overflow-x: clip; }
   text-decoration: none;
   font-style: normal;
   font-size: 1.1rem;
-  font-family: var(--font-head);
+  font-family: var(--font-display);
   letter-spacing: 0.04em;
   border-bottom: 1px solid var(--gold-dark);
   transition: color 0.15s;
@@ -4024,7 +4014,7 @@ body { overflow-x: clip; }
   background: none;
   border: 1px solid var(--br-dark);
   color: var(--ink-muted-dark);
-  font-family: var(--font-head);
+  font-family: var(--font-ui);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4076,7 +4066,7 @@ body { overflow-x: clip; }
 .discoveries-item:last-child { border-bottom: none; }
 
 .discoveries-seq {
-  font-family: var(--font-head);
+  font-family: var(--font-display);
   font-size: 1rem;
   color: var(--gold);
   letter-spacing: 0.05em;
@@ -4850,24 +4840,24 @@ body { overflow-x: clip; }
 }
 
 .tl-year {
-  border: 1px solid var(--br-mid);
-  border-radius: 6px;
-  background: var(--p-100);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
   overflow: hidden;
 }
 
 .tl-year__header {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1rem;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
   cursor: pointer;
   list-style: none;
   user-select: none;
   font-family: var(--font-display);
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  transition: background 0.15s;
+  letter-spacing: 0;
+  color: var(--text-strong);
+  transition: background 0.15s var(--ease);
 }
 .tl-year__header::-webkit-details-marker { display: none; }
 .tl-year__header::marker { display: none; }
@@ -4890,12 +4880,13 @@ body { overflow-x: clip; }
 }
 
 .tl-year__count {
-  font-size: 0.72rem;
-  font-family: var(--font-body);
-  background: var(--br-mid);
-  color: var(--ink-faded);
-  border-radius: 99px;
-  padding: 0.1em 0.55em;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: var(--r-full);
+  padding: 0.15em 0.6em;
   letter-spacing: 0;
 }
 
@@ -4936,32 +4927,33 @@ body { overflow-x: clip; }
 .tl-entry__title {
   display: block;
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--ink);
+  font-size: 1rem;
+  color: var(--text-strong);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
-.tl-entry__title:hover { color: var(--burg); }
+.tl-entry__title:hover { color: var(--accent); text-decoration: underline; }
 
 .tl-entry__date {
   display: block;
-  font-size: 0.72rem;
-  color: var(--ink-ghost);
-  margin-top: 0.1rem;
-  letter-spacing: 0.03em;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+  letter-spacing: 0;
 }
 
 .tl-entry__desc {
-  margin: 0.2rem 0 0;
-  font-size: 0.8rem;
-  color: var(--ink-faded);
-  line-height: 1.4;
+  margin: var(--sp-1) 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-html.dark .tl-year { background: var(--p-200); border-color: var(--br-mid); }
-html.dark .tl-year__header:hover { background: rgba(255,255,255,0.04); }
-html.dark .tl-entries { border-color: var(--br-mid); }
-html.dark .tl-entry { border-color: rgba(255,255,255,0.07); }
+/* The borders and surfaces here are semantic tokens now, and those flip with
+   the theme on their own, so the only thing left to say is the hover tint. */
+html.dark .tl-year__header:hover { background: rgba(255,255,255,0.05); }
 
 /* ================================================================
    Province Graph — tooltip & label additions
@@ -6165,9 +6157,6 @@ html.dark {
      values the canvas draws with. 9.05 and 11.44 against --p-200. */
   --solara:  #e9b44c;
   --nystara: #b9d6f7;
-
-  --nav-player:       #ab9256;
-  --nav-player-hover: #c9b074;
 
   --burg:      #c04060;
   --burg-dark: #e05070;
