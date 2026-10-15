@@ -615,13 +615,24 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
     box-shadow: var(--shadow-lg);
     transform: translateX(100%);
     visibility: hidden;
-    transition: transform 0.26s var(--ease), visibility 0.26s;
+    /* `visibility 0.26s` looks harmless and is not. visibility is a DISCRETE
+       property, so a plain transition does not flip it until the halfway
+       point -- and nothing inside a `visibility: hidden` subtree can take
+       focus. Opening the sheet therefore ran its focus() against a subtree
+       that was still hidden, the call was silently ignored, and a reader on
+       a keyboard or a screen reader was left outside the sheet they had just
+       opened.
+
+       Zero duration in both directions, delayed only on the way out so the
+       sheet stays visible while it slides away. */
+    transition: transform 0.26s var(--ease), visibility 0s linear 0.26s;
     z-index: 120;
   }
 
   .nav__panel.is-open {
     transform: translateX(0);
     visibility: visible;
+    transition: transform 0.26s var(--ease), visibility 0s linear 0s;
   }
 
   .nav__panel > .world-switch {
@@ -696,11 +707,16 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
     background: rgba(20, 12, 4, 0.5);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.26s var(--ease), visibility 0.26s;
+    /* Same reasoning as the sheet: hidden only once it has finished fading. */
+    transition: opacity 0.26s var(--ease), visibility 0s linear 0.26s;
     z-index: 90;
   }
 
-  .nav__scrim.is-open { opacity: 1; visibility: visible; }
+  .nav__scrim.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.26s var(--ease), visibility 0s linear 0s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -91,9 +91,43 @@ if (scrimBlock.some((b) => /pointer-events:\s*none/.test(b))) {
   ok('scrim still accepts pointer events, so tapping the page closes the drawer');
 }
 
+/* Opening the sheet has to make it visible THIS TICK.
+ *
+ * `visibility` is a discrete property: a plain `transition: visibility 0.26s`
+ * does not flip it until halfway through the animation. Nothing inside a
+ * `visibility: hidden` subtree can take focus, so the sheet's own focus() ran
+ * against a subtree that was still hidden, was silently ignored, and anyone
+ * opening the drawer from a keyboard or a screen reader was left outside it.
+ *
+ * The duration must therefore be 0s on the way in. A delay on the way OUT is
+ * correct and expected, so only the .is-open rule is checked. */
+for (const name of ['.nav__panel', '.nav__scrim']) {
+  const open = RULES.filter(([sel]) =>
+    sel.split(',').some((s) => s.trim() === name + '.is-open'));
+
+  if (!open.length) {
+    fail(`${name}.is-open has no rule — cannot check how it becomes visible`);
+    continue;
+  }
+
+  const decl = open.map(([, body]) => body).join(';');
+  const vis = decl.match(/transition:[^;]*\bvisibility\s+([\d.]+m?s)/);
+
+  if (!vis) {
+    fail(`${name}.is-open does not restate its visibility transition. Without it the ` +
+         `base rule's duration applies, visibility flips late, and focus cannot enter.`);
+  } else if (parseFloat(vis[1]) !== 0) {
+    fail(`${name}.is-open transitions visibility over ${vis[1]}. visibility is discrete, ` +
+         `so it will not become visible until mid-animation and focus() into it is ` +
+         `silently ignored. It must be 0s on open.`);
+  } else {
+    ok(`${name} becomes visible immediately on open, so focus can enter it`);
+  }
+}
+
 console.log();
 if (failed) {
   console.error(`FAIL: ${failed} layering check(s) failed.`);
   process.exit(1);
 }
-console.log('PASS: the drawer sits above its scrim and stays tappable.');
+console.log('PASS: the drawer sits above its scrim, stays tappable, and can take focus.');
