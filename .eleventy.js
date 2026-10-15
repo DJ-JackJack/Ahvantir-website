@@ -105,7 +105,12 @@ module.exports = function (eleventyConfig) {
           'stroke-linejoin="round" aria-hidden="true">' +
           '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>' +
           '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>' +
-          '</svg>',
+          '</svg>' +
+          // The glyph is aria-hidden, so without this the link has no
+          // accessible name at all and a screen reader announces a bare
+          // "link" -- 2,198 of them across the articles. The span is
+          // visually hidden, not display:none, so it is still announced.
+          '<span class="sr-only">Link to this section</span>',
         placement: "after",
         ariaHidden: false,
       }),
@@ -163,7 +168,14 @@ module.exports = function (eleventyConfig) {
     if (!content) return content;
     const m = String(content).match(/^\s*<h1\b[^>]*>([\s\S]*?)<\/h1>\s*/i);
     if (!m) return content;
-    const heading = htmlToText(m[1]);
+    /* The permalink anchor markdown-it-anchor puts INSIDE the heading is not
+       part of the heading's text. It carries a visually-hidden label for
+       screen readers, so leaving it in made every heading compare as
+       "<title> Link to this section", nothing matched its title, and all 244
+       duplicate headings came back. The build said so, loudly, which is what
+       that report is for. */
+    const bare = m[1].replace(/<a\b[^>]*class="header-anchor"[\s\S]*?<\/a>/gi, "");
+    const heading = htmlToText(bare);
     if (heading && heading !== htmlToText(title)) {
       _keptLeadingH1.push(`${title}  ->  ${m[1].replace(/<[^>]*>/g, "").trim()}`);
       return content;

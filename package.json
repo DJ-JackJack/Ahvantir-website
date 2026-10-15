@@ -15,7 +15,8 @@
     "test:contrast": "node scripts/test-contrast.js",
     "test:layering": "node scripts/test-layering.js",
     "test:backlinks": "node scripts/test-backlinks.js",
-    "test:built": "npm run build && npm run test:backlinks",
+    "test:a11y": "node scripts/test-a11y.js",
+    "test:built": "npm run build && npm run test:backlinks && npm run test:a11y",
     "test:marducian": "node scripts/test-marducian.js",
     "test:orbits": "node scripts/test-orbits.js"
   },
