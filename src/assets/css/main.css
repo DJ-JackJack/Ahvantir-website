@@ -1147,6 +1147,24 @@ body { overflow-x: clip; }
 
 .article-card:hover .article-card__title { color: var(--accent); }
 
+/* The subject label on a recently-added card. Same treatment as the subject
+   icons: the hue is kept, but mixed far enough toward --text-strong to stay
+   legible in whichever theme is on. Written as a raw hex it was 2.88:1. */
+.article-card__category {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+  color: color-mix(in srgb, var(--cat-color, var(--accent)) 50%, var(--text-strong));
+}
+
+@supports not (color: color-mix(in srgb, red 50%, transparent)) {
+  .article-card__category { color: var(--text-muted); }
+}
+
 .article-card__cat {
   display: inline-block;
   font-family: var(--font-ui);
@@ -6272,8 +6290,22 @@ html.dark {
   --solara:  #e9b44c;
   --nystara: #b9d6f7;
 
-  --burg:      #c04060;
-  --burg-dark: #e05070;
+  /* #c04060 reached only 3.38:1 on the page and 3.59:1 on a card, and
+     --burg is --accent: it dresses the current nav link, the wordmark
+     sigil, the "show N more" control, and -- as a FILL, with --p-100 for
+     ink -- the category badge and the unread-message badge. All of it sat
+     under AA in dark mode.
+
+     The contrast test did not catch it because it never checked --burg as
+     text. It checks --ink, --ink-faded, --ink-ghost, the moons and the suns;
+     the accent was simply absent from the list. It is in it now, in both
+     directions, because this token is used as ink AND as a fill.
+
+     #de6b85 measures 5.23:1 on --p-200 and 5.55:1 on --p-100, and the badge
+     reads 5.55:1 the other way round. --burg-dark is the hover, and at
+     #e05070 it was 4.43 -- under the line by a whisker -- so it moves too. */
+  --burg:      #de6b85;
+  --burg-dark: #ef8098;
   --burg-pale: #602030;
 
   --br-dark:  #3a2a1a;

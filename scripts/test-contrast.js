@@ -104,6 +104,17 @@ function cases(t, mode) {
     [`${mode}: --ink-muted-dark on --cryptex-band`,
       t['--ink-muted-dark'], t['--cryptex-band'], AA_NORMAL],
 
+    // --burg is --accent, and it is used BOTH as ink and as a fill, so it
+    // needs checking both ways round. As ink it dresses the current nav link,
+    // the wordmark sigil and the "show N more" control; as a fill it backs
+    // the category badge and the unread-message badge, which set their text
+    // in --p-100. In dark mode it measured 3.38:1 and 3.59:1 and nothing
+    // noticed, because this token was not on the list.
+    [`${mode}: --burg as ink on --p-200`, t['--burg'], t['--p-200'], AA_NORMAL],
+    [`${mode}: --burg as ink on --p-100`, t['--burg'], t['--p-100'], AA_NORMAL],
+    [`${mode}: badge label on a --burg fill`, t['--p-100'], t['--burg'], AA_NORMAL],
+    [`${mode}: --burg-dark (hover) on --p-200`, t['--burg-dark'], t['--p-200'], AA_NORMAL],
+
     // The nav links. The header is no longer a gradient between two parchment
     // stops -- it is --header-bg, a translucent wash over the page -- so the
     // surface to measure against is the page colour showing through it. The

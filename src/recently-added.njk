@@ -37,7 +37,12 @@ permalink: /recently-added/
     <div class="article-grid">
       {% for article in group.items %}
       <a href="{{ article.url }}" class="article-card">
-        <span class="article-card__category" style="color:
+        {#- The subject's colour is handed to CSS as a custom property rather
+            than written straight into `color`. Painted raw it was cosmology's
+            #7a5a28 on a dark card: 2.88:1, well under AA. The rule mixes it
+            toward the page's own ink, so the same expression darkens it on
+            parchment and lightens it on the dark ground. -#}
+        <span class="article-card__category" style="--cat-color:
           {%- for cat in meta.categories -%}
             {%- if cat.slug == article.data.category -%}{{ cat.color }}{%- endif -%}
           {%- endfor -%}
