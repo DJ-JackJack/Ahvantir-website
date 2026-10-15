@@ -675,6 +675,20 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
     font-size: 1rem;
   }
 
+  /* BELOW the header, not above it.
+     
+     .site-header is `position: sticky; z-index: 100`, which makes it a
+     stacking context. The drawer lives inside it, so the drawer's z-index of
+     120 is scoped to that context and cannot rise above 100 at page level --
+     while this scrim is a sibling of the header and its z-index is measured
+     against the page. At 110 it therefore painted over the whole header
+     subtree, drawer included, and swallowed every tap meant for a link. The
+     drawer still looked right, because the scrim is half transparent.
+     
+     Putting it under the header means the header and everything in it stay
+     above, so the links are reachable. The bar itself is left undimmed, which
+     is deliberate: the burger is sitting there as a close button and should
+     stay visible and tappable while the sheet is open. */
   .nav__scrim {
     display: block;
     position: fixed;
@@ -683,7 +697,7 @@ html.dark .nav__theme-toggle .icon-sun  { display: block; }
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.26s var(--ease), visibility 0.26s;
-    z-index: 110;
+    z-index: 90;
   }
 
   .nav__scrim.is-open { opacity: 1; visibility: visible; }
