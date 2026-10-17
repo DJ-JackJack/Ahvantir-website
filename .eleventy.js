@@ -7,6 +7,15 @@ const markdownItAnchor = require("markdown-it-anchor");
 // Cache-busting: short content hash per asset, computed from the source file.
 // The hash only changes when the file's bytes change, so unchanged assets keep
 // their URL (and stay cached) while edited ones get a fresh URL automatically.
+//
+// The map is cleared at the start of every build, and that is not optional.
+// A one-shot build never notices, because the process is new each time; but
+// under `--serve` this module stays loaded across rebuilds, so without the
+// reset the FIRST hash computed for a URL would stick for the whole session.
+// Edit a script and the page goes on asking for the old URL, the browser
+// answers it out of cache, and you debug a version of the file you did not
+// write. That cost an hour once, chasing a ReferenceError for an identifier
+// that was plainly declared.
 const _assetHashes = new Map();
 function assetHash(url) {
   if (_assetHashes.has(url)) return _assetHashes.get(url);
@@ -227,6 +236,10 @@ module.exports = function (eleventyConfig) {
       }
     );
   });
+
+  // Forget last build's hashes, so an edited asset gets a fresh URL. See the
+  // note on _assetHashes: without this, `--serve` serves stale scripts.
+  eleventyConfig.on("eleventy.before", function () { _assetHashes.clear(); });
 
   // Cache-bust transform: append ?v=<hash> to local /assets/*.css and *.js URLs
   // so visitors always get the current file after a deploy without a hard

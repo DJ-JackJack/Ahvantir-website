@@ -475,7 +475,17 @@
       }, base);
     };
     var zen = add([5, 7, 14], [[dS, [38, 78, 130]], [dN, [22, 52, 95]], [tS, [12, 14, 30]], [tN, [8, 16, 34]]]);
-    var hor = add([12, 16, 30], [[dS, [135, 125, 100]], [dN, [80, 100, 115]], [tS * 0.6, [40, 28, 26]], [tN * 0.6, [20, 34, 52]]]);
+    /* The light that reaches the horizon from a low sun has crossed the same
+       forty atmospheres a star's light crosses, so it arrives red, and the
+       sky it lights up arrives red with it. That is the whole of why a sunset
+       is a sunset, and until now this page had none: with Solara nine degrees
+       up the horizon came out a warm grey. The twilight terms are left alone;
+       they are already the colour of a sun below the ground, and the sun's
+       own altitude has stopped meaning anything useful by then. */
+    var hor = add([12, 16, 30], [
+      [dS, AIR.hue([135, 125, 100], S.alt)],
+      [dN, AIR.hue([80, 100, 115], N.alt)],
+      [tS * 0.6, [40, 28, 26]], [tN * 0.6, [20, 34, 52]]]);
     return {
       dS: dS, dN: dN, tS: tS, tN: tN, zen: zen, hor: hor,
       day: Math.min(1, dS + dN * 0.8),
@@ -647,12 +657,19 @@
   }
 
   // A fixed, unremarkable skyline, so the horizon is not a straight rule.
+  // HILL_MAX is where the tallest of it reaches, which is where the haze on
+  // the ground has to begin; measured once rather than guessed.
   function hills(az) {
     var a = az * DEG;
     return 1.3 + 0.9 * Math.sin(3 * a + 1) + 0.6 * Math.sin(7 * a + 2.3) +
            0.35 * Math.sin(13 * a + 0.7) + 0.18 * Math.sin(31 * a + 4) +
            1.4 * Math.pow(Math.max(0, Math.sin(a - 0.6)), 6) * 2;
   }
+  var HILL_MAX = (function () {
+    var m = 0;
+    for (var az = 0; az < 360; az += 0.25) m = Math.max(m, hills(az));
+    return m;
+  })();
 
   /* Names, kept apart.
    *
@@ -1020,26 +1037,34 @@
     ctx.clearRect(0, 0, W, H);
 
     if (st.view === 'pan') {
-      /* Keyed to altitude rather than to a fixed fraction of the canvas, so it
-         stays right when the view tilts up. Altitude at any row is
-         pitch + (hy - y)/sc; the colour runs from the horizon shade at 0 to the
-         zenith shade at 90, and the whole canvas is covered because the
-         horizon may now be well below the bottom edge. */
+      /* Keyed to the air rather than to the altitude, and to altitude rather
+         than to a fixed fraction of the canvas, so it stays right when the
+         view tilts up: the altitude at any row is pitch + (hy - y)/sc, and the
+         whole canvas is covered because the horizon may be well below the
+         bottom edge.
+
+         Mixing linearly in altitude made the whole lower half of the sky
+         horizon-coloured — two thirds of the way there at thirty degrees up,
+         which is plainly sky — and left no band to see at the bottom.
+         Twenty-four stops rather than nine, because the profile is now much
+         steeper where it matters and nine would show as steps. */
       var g = ctx.createLinearGradient(0, 0, 0, H);
-      for (var gi = 0; gi <= 8; gi++) {
-        var gy = gi / 8;
+      for (var gi = 0; gi <= 24; gi++) {
+        var gy = gi / 24;
         var galt = st.pitch + (P.hy - gy * H) / P.sc;
-        var f = clamp(galt / 90, 0, 1);
-        g.addColorStop(gy, rgb(lerp3(L.hor, L.zen, f)));
+        g.addColorStop(gy, rgb(lerp3(L.zen, L.hor, AIR.horizonMix(galt))));
       }
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     } else {
       ctx.fillStyle = '#05070d'; ctx.fillRect(0, 0, W, H);
       ctx.save(); ctx.beginPath(); ctx.arc(P.cx, P.cy, P.R, 0, 2 * Math.PI); ctx.clip();
+      // The dome is the same sky seen from underneath, so it takes the same
+      // profile: the rim is the horizon and the centre is overhead.
       var gd = ctx.createRadialGradient(P.cx, P.cy, 0, P.cx, P.cy, P.R);
-      gd.addColorStop(0, rgb(L.zen));
-      gd.addColorStop(0.7, rgb(lerp3(L.zen, L.hor, 0.5)));
-      gd.addColorStop(1, rgb(L.hor));
+      for (var dk = 0; dk <= 16; dk++) {
+        var dr = dk / 16;
+        gd.addColorStop(dr, rgb(lerp3(L.zen, L.hor, AIR.horizonMix(90 - dr * 90))));
+      }
       ctx.fillStyle = gd; ctx.fillRect(0, 0, W, H);
     }
 
@@ -1104,8 +1129,23 @@
     });
 
     if (st.view === 'pan') {
+      /* The ground, and the haze lying on it.
+       *
+       * It used to be one flat fill a shade or two off the night sky, which
+       * meant that after dark the horizon did not exist: eight units of
+       * ground against twelve of sky is not a line anyone can find. So the
+       * ground is darker now, because at night the ground IS darker than the
+       * sky — the sky has starlight in it and the ground has none — and the
+       * skyline carries a little of the sky's own horizon colour. That last
+       * is aerial perspective, the thing that makes far hills read as far,
+       * and it is the same air doing it. */
       var light = Math.min(1, L.day + (L.tS + L.tN) * 0.25);
-      ctx.fillStyle = rgb(lerp3([8, 9, 13], [44, 46, 50], light));
+      var near = lerp3([5, 5, 7], [38, 40, 44], light);
+      var gTop = P.f(HILL_MAX, 0).y;
+      var gg = ctx.createLinearGradient(0, gTop, 0, Math.max(H, gTop + 1));
+      gg.addColorStop(0, rgb(lerp3(near, L.hor, 0.38)));
+      gg.addColorStop(1, rgb(near));
+      ctx.fillStyle = gg;
       // Through the projection, so the skyline drops away when you look up.
       ctx.beginPath(); ctx.moveTo(0, H);
       for (var x = 0; x <= W; x += 3 * DPR) {

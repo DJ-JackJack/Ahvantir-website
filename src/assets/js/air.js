@@ -96,6 +96,54 @@
             c[2] * Math.pow(10, -0.4 * (EXT.B - EXT.G) * x) * k];
   }
 
+  /* The hue shift on its own, with none of the dimming.
+   *
+   * The SKY needs this, and it is a different job from either of the two
+   * above. The light reaching you from just over the horizon has crossed the
+   * same long path a star's light crosses, so it arrives reddened — but how
+   * MUCH of it arrives is already carried by how high its sun is. Dimming it
+   * here as well would count the same loss twice.
+   *
+   * So this preserves the brightest channel and only turns the colour. That
+   * also makes it safe at the bottom, which the other two are not: an eighth
+   * of a degree up the red ratio is into the thousands, and anything that
+   * simply multiplied by it would saturate to a flat red and lose every
+   * gradation in the last few degrees — which is exactly the stretch a sunset
+   * is made of. Holding the peak fixed, the colour walks to pure red and
+   * stops there.
+   */
+  function hue(c, alt) {
+    var x = airmass(alt) - 1;
+    if (x < 0.02) return c;
+    var o = [c[0] * Math.pow(10, -0.4 * (EXT.R - EXT.G) * x), c[1],
+             c[2] * Math.pow(10, -0.4 * (EXT.B - EXT.G) * x)];
+    var k = Math.max(c[0], c[1], c[2]) / Math.max(o[0], o[1], o[2]);
+    return [o[0] * k, o[1] * k, o[2] * k];
+  }
+
+  /* How much of the sky at a given altitude is horizon rather than zenith.
+   *
+   * The sky is brighter and paler near the horizon because you are looking
+   * through more air, and the obvious way to say that — mix linearly with
+   * altitude — gets it badly wrong. Linear makes the whole bottom half of the
+   * sky horizon-coloured: at thirty degrees up it is already two thirds of the
+   * way there, when in life thirty degrees is plainly sky. The brightening is
+   * a BAND, and it lives in the last fifteen or twenty degrees.
+   *
+   * Keying it to the air mass puts it where it belongs, and for the same
+   * reason everything else in this file does. HALF is the excess air mass at
+   * which the mix is half and half; it is the one number here set by eye, and
+   * all it decides is how tall the band stands.
+   */
+  var HALF = 4;
+  function horizonMix(alt) {
+    // The fit returns a shade under one atmosphere at the exact zenith, so the
+    // excess can be a ten-thousandth negative. Clamped, because a function
+    // that promises a mixing fraction should return one.
+    var x = Math.max(0, airmass(alt) - 1);
+    return x / (x + HALF);
+  }
+
   /* Fifteen thousand faint stars cannot each have an air mass computed and a
      fillStyle set for them every frame. Two concessions, and only for that
      layer:
@@ -141,7 +189,8 @@
 
   var API = {
     EXT: EXT, SOFT: SOFT,
-    airmass: airmass, point: point, disc: disc,
+    HALF: HALF,
+    airmass: airmass, point: point, disc: disc, hue: hue, horizonMix: horizonMix,
     dimAt: dimAt, bandAt: bandAt, BAND_AT: BAND_AT, tintBands: tintBands
   };
   if (typeof window !== 'undefined') window.Air = API;

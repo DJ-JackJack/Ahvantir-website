@@ -635,6 +635,48 @@ ok('and even Nystara, who starts blue, ends red', (function () {
   return c[0] > c[1] * 2 && c[0] > c[2] * 4;
 })(), AIR.disc([240, 248, 255], 1).map((v) => Math.round(v)).join(','));
 
+/* The sky's own colour. `hue` turns a colour without touching how bright it
+   is, because the sky's brightness is already carried by how high its sun is
+   — dimming here would count the same loss twice. Holding the peak channel
+   fixed is also what keeps the last few degrees usable: multiply instead and
+   the red ratio, which is into the thousands near the ground, saturates every
+   altitude below about five degrees to the same flat red. */
+ok('turning a colour never changes how bright it is', (function () {
+  for (const c of [[135, 125, 100], [80, 100, 115], [20, 34, 52]]) {
+    const peak = Math.max.apply(null, c);
+    for (const h of [90, 40, 20, 9, 5, 2, 0, -1.5]) {
+      const o = AIR.hue(c, h);
+      if (Math.abs(Math.max.apply(null, o) - peak) > 1e-9) return false;
+      if (o.some((v) => v < -1e-9 || v > 255.0001)) return false;
+    }
+  }
+  return true;
+})());
+ok('and the horizon wash keeps every step of its way to red', (function () {
+  let prev = Infinity;
+  for (const h of [29, 20, 12, 9, 5, 2, 0]) {
+    const g = AIR.hue([135, 125, 100], h)[1];
+    if (!(g < prev - 1)) return false;     // a visible step each time, not a plateau
+    prev = g;
+  }
+  return prev < 5;
+})(), 'green runs ' + [29, 12, 5, 0].map((h) =>
+  h + '°:' + Math.round(AIR.hue([135, 125, 100], h)[1])).join('  '));
+
+/* The sky gradient. The point of keying it to the air is that the brightening
+   is a BAND near the ground rather than the whole lower half of the sky, so
+   that is what the test says. */
+ok('the horizon glow is a band, not half the sky', (function () {
+  const m = AIR.horizonMix;
+  if (m(90) !== 0) return false;
+  for (let h = 90; h >= 0.1; h -= 0.1) if (!(m(h) <= m(h - 0.1) + 1e-12)) return false;
+  // Thirty degrees up is plainly sky; the old linear mix called it two thirds
+  // horizon. Ten degrees up is plainly in the glow.
+  return m(30) < 0.3 && m(10) > 0.4 && m(0) > 0.85 && m(0) < 1;
+})(), 'mix is ' + [30, 20, 10, 0].map((h) =>
+  h + '°:' + AIR.horizonMix(h).toFixed(2)).join('  ') +
+  ', against linear 0.67 0.78 0.89 1.00');
+
 /* The faint layer's two concessions. The table has to agree with the law it
    stands in for, and the bands have to be ordered — a lookup that returned them
    out of sequence would paint the low sky in high-sky colours, which is exactly
