@@ -144,6 +144,33 @@
     return x / (x + HALF);
   }
 
+  /* And the same air, lit from below.
+   *
+   * A city's light does not stay in the city. It scatters off exactly the air
+   * that takes the starlight away — which is the reason the sky over a town is
+   * brightest where the stars are fewest, and the reason these two belong in
+   * one file rather than being separate effects laid over each other.
+   *
+   * How much of it you see looking a given way is how much lit air is that
+   * way, which is the air mass itself — not the EXCESS over the zenith, as
+   * the sky's own gradient uses. The difference matters: a city lights the
+   * air directly overhead too, and a dome that fell to nothing at the zenith
+   * would be claiming it does not.
+   *
+   * SOFTEN is where it saturates, and it sets the one number anybody could
+   * check: how many times brighter the sky is at the horizon than overhead.
+   * At twelve that ratio is about ten to one, which is a well-lit town rather
+   * than a city that has drowned its own sky — the right end for a page whose
+   * whole job is showing people the constellations. How bright the glow is in
+   * absolute terms is not decided here. That depends on the city, and the
+   * city is not this file's business.
+   */
+  var SOFTEN = 12;
+  function glowMix(alt) {
+    var X = airmass(alt);
+    return X / (X + SOFTEN);
+  }
+
   /* Fifteen thousand faint stars cannot each have an air mass computed and a
      fillStyle set for them every frame. Two concessions, and only for that
      layer:
@@ -189,8 +216,9 @@
 
   var API = {
     EXT: EXT, SOFT: SOFT,
-    HALF: HALF,
-    airmass: airmass, point: point, disc: disc, hue: hue, horizonMix: horizonMix,
+    HALF: HALF, SOFTEN: SOFTEN,
+    airmass: airmass, point: point, disc: disc, hue: hue,
+    horizonMix: horizonMix, glowMix: glowMix,
     dimAt: dimAt, bandAt: bandAt, BAND_AT: BAND_AT, tintBands: tintBands
   };
   if (typeof window !== 'undefined') window.Air = API;

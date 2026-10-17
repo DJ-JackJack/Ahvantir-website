@@ -677,6 +677,30 @@ ok('the horizon glow is a band, not half the sky', (function () {
   h + '°:' + AIR.horizonMix(h).toFixed(2)).join('  ') +
   ', against linear 0.67 0.78 0.89 1.00');
 
+/* The city's own glow rides on the air mass itself rather than on the excess
+   over the zenith, and that distinction is the whole test: a city lights the
+   air directly overhead too, so a dome that fell to nothing at the zenith
+   would be claiming it does not. The ratio it does claim — about ten to one,
+   horizon against overhead — is the number a reader could argue with, so it
+   is the number pinned here. */
+ok('the city lights the whole sky, the low sky most', (function () {
+  const g = AIR.glowMix;
+  if (!(g(90) > 0.02)) return false;                  // never nothing overhead
+  for (let h = 90; h >= 0.1; h -= 0.1) if (!(g(h) <= g(h - 0.1) + 1e-12)) return false;
+  const ratio = g(0) / g(90);
+  return ratio > 8 && ratio < 12 && g(0) < 1;
+})(), 'the horizon is ' + (AIR.glowMix(0) / AIR.glowMix(90)).toFixed(1) +
+     ' times the zenith; ' + [90, 30, 10, 0].map((h) =>
+       h + '°:' + AIR.glowMix(h).toFixed(2)).join('  '));
+ok('and it rises higher than the twilight band does, relative to each', (function () {
+  // Relative to their own horizon value: the glow still has an eighth of its
+  // strength at sixty degrees, where the sky's own band has a twentieth.
+  const gr = AIR.glowMix(60) / AIR.glowMix(0), br = AIR.horizonMix(60) / AIR.horizonMix(0);
+  return gr > br;
+})(), 'at 60° the glow holds ' + (AIR.glowMix(60) / AIR.glowMix(0) * 100).toFixed(0) +
+     '% of its horizon strength, the sky band ' +
+     (AIR.horizonMix(60) / AIR.horizonMix(0) * 100).toFixed(0) + '%');
+
 /* The faint layer's two concessions. The table has to agree with the law it
    stands in for, and the bands have to be ordered — a lookup that returned them
    out of sequence would paint the low sky in high-sky colours, which is exactly

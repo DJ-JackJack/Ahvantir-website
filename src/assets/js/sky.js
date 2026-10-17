@@ -492,6 +492,30 @@
       starA: clamp(1 - (dS + dN) * 1.6 - (tS + tN) * 0.55, 0, 1)
     };
   }
+  /* The dome of light over Aru'Mas.
+   *
+   * The viewer stands IN the city — the page says so in its first line — so
+   * this is all around rather than in a direction, and no bearing had to be
+   * invented to place it. That the city is lit is canon: the Arcanum
+   * Dispersal System carries public lighting the length of the streets, and
+   * the districts describe it as a warm golden glow, so the colour is theirs.
+   * The strength is mine, and is declared as an assumption on the page.
+   *
+   * It washes the faintest stars out of the low sky by raising the ground
+   * they are drawn against, which is what a city really does to a sky, and it
+   * is what finally makes the skyline read after dark: the sky above the
+   * hills is now plainly brighter than the hills.
+   */
+  var CITY = [255, 196, 120], CITY_LIGHT = 34;
+
+  // The sky's colour at an altitude: the zenith-to-horizon mix, plus whatever
+  // the city is putting into the air that way. Both views call this.
+  function skyShade(alt, L) {
+    var c = lerp3(L.zen, L.hor, AIR.horizonMix(alt));
+    var k = AIR.glowMix(alt) * (1 - L.day) * (CITY_LIGHT / 255);
+    return [c[0] + CITY[0] * k, c[1] + CITY[1] * k, c[2] + CITY[2] * k];
+  }
+
   function lightState(S, N) {
     var sUp = S.alt + S.r > 0, nUp = N.alt + N.r > 0;
     if (sUp && nUp) return 'Twin daylight';
@@ -1052,7 +1076,7 @@
       for (var gi = 0; gi <= 24; gi++) {
         var gy = gi / 24;
         var galt = st.pitch + (P.hy - gy * H) / P.sc;
-        g.addColorStop(gy, rgb(lerp3(L.zen, L.hor, AIR.horizonMix(galt))));
+        g.addColorStop(gy, rgb(skyShade(galt, L)));
       }
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     } else {
@@ -1063,7 +1087,7 @@
       var gd = ctx.createRadialGradient(P.cx, P.cy, 0, P.cx, P.cy, P.R);
       for (var dk = 0; dk <= 16; dk++) {
         var dr = dk / 16;
-        gd.addColorStop(dr, rgb(lerp3(L.zen, L.hor, AIR.horizonMix(90 - dr * 90))));
+        gd.addColorStop(dr, rgb(skyShade(90 - dr * 90, L)));
       }
       ctx.fillStyle = gd; ctx.fillRect(0, 0, W, H);
     }
@@ -1143,7 +1167,7 @@
       var near = lerp3([5, 5, 7], [38, 40, 44], light);
       var gTop = P.f(HILL_MAX, 0).y;
       var gg = ctx.createLinearGradient(0, gTop, 0, Math.max(H, gTop + 1));
-      gg.addColorStop(0, rgb(lerp3(near, L.hor, 0.38)));
+      gg.addColorStop(0, rgb(lerp3(near, skyShade(HILL_MAX, L), 0.38)));
       gg.addColorStop(1, rgb(near));
       ctx.fillStyle = gg;
       // Through the projection, so the skyline drops away when you look up.
@@ -1201,7 +1225,7 @@
     var stops = [];
     for (var i = 0; i <= 144; i++) {
       var L = skyLight(skyAt(st.Y, st.doy, i / 6));
-      stops.push(rgb(lerp3(L.zen, L.hor, 0.45)) + ' ' + (i / 144 * 100).toFixed(2) + '%');
+      stops.push(rgb(skyShade(25, L)) + ' ' + (i / 144 * 100).toFixed(2) + '%');
     }
     $('sky-band').style.background = 'linear-gradient(90deg, ' + stops.join(',') + ')';
   }
