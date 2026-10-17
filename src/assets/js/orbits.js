@@ -48,9 +48,18 @@
                       // Nyhexus outside the instability zone at D below.
     D: 3.1,           // the planet's orbital radius, in binary separations.
                       // Set by canon's widest apparent gap of about 19 degrees.
-    BETA: 45 * DEG,   // tilt between the planet's orbit and the suns'. The one
+    BETA: 40 * DEG,   // tilt between the planet's orbit and the suns'. The one
                       // number chosen for feel rather than derived: it sets how
-                      // often an eclipse happens.
+                      // often an eclipse happens. Krys moved it from 45 to 40
+                      // on 2026-10-17, for more frequent close Pairings and
+                      // less difference between one year and the next.
+                      //
+                      // 40 is the FLOOR, not a free choice. Solara and Nystara
+                      // says some years the suns "stay ten degrees apart", and
+                      // the widest a year's closest approach reaches is 10.38
+                      // degrees here. At 39 it would be under ten and the
+                      // article would be wrong. Do not lower this without
+                      // changing that sentence first.
     R_SOL: 0.45,      // angular radius in degrees at the mean distance
     R_NYS: 0.28,
     SOLSTICE: 152     // longest day, mid-Cindralis
