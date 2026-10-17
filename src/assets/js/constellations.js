@@ -311,11 +311,18 @@
          west. Eleven stars were available and seven are used, which keeps the
          fingers distinct instead of crowding them.
 
-         Worth knowing before this is written up: the Spear does NOT point
-         here. Its throw runs west along dec +6.6 and misses this sign by 53
-         degrees. Krys's reading already treats the pinning as a tale people
-         tell and the destruction as the likely truth, so the sky is on the
-         side of the sceptics. */
+         A caution for whoever writes this up, because I got it wrong once.
+         This sign's story has Marduk casting his spear to pin the Hand of
+         Gahr to the heavens. The figure Aru'Mas calls THE SPEAR is not that
+         weapon. It is an older figure under two older names, claimed for
+         Marduk long afterwards, at the sealing of 0 MC. The two share a
+         character and nothing else.
+
+         So do not go looking for the one to point at the other, and do not
+         report it as a finding when it does not. I measured the angle between
+         them, found 53 degrees, and offered it as evidence against the myth —
+         which was measuring the distance between two things that were never
+         claimed to touch. */
       stars: ['s110', 's086', 's004', 's140', 's041', 's025', 's092', 's057'],
       lines: [
         ['s110', 's086'], ['s086', 's004'],
