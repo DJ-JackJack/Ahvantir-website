@@ -543,6 +543,138 @@ ok('and a wider moon beats a narrower one at the same phase',
    'half Miras ' + O.moonMagOf(O.MOON_EL.miras.rho, 0.5).toFixed(2) +
    ' against half Keltas ' + O.moonMagOf(O.MOON_EL.keltas.rho, 0.5).toFixed(2));
 
+console.log('\nThe air in the way');
+global.window.Air = undefined;
+eval(fs.readFileSync(JS('air.js'), 'utf8'));
+const AIR = global.window.Air;
+
+/* The air mass itself. These three numbers are not ours to choose — they are
+   what Kasten and Young's fit returns, and they are the check that the formula
+   was transcribed rather than remembered. */
+ok('one atmosphere at the zenith', Math.abs(AIR.airmass(90) - 1) < 0.002,
+   AIR.airmass(90).toFixed(4));
+ok('about five and a half at ten degrees', Math.abs(AIR.airmass(10) - 5.6) < 0.1,
+   AIR.airmass(10).toFixed(2));
+ok('about thirty-eight at the horizon', Math.abs(AIR.airmass(0) - 38) < 1,
+   AIR.airmass(0).toFixed(1));
+ok('and it only ever grows on the way down', (function () {
+  let prev = 0;
+  for (let h = 90; h >= -1.5; h -= 0.25) {
+    const x = AIR.airmass(h);
+    if (!(x > prev) || !isFinite(x)) return false;
+    prev = x;
+  }
+  return true;
+})());
+
+/* The whole point of splitting a star between an alpha and a colour is that the
+   split is exact. Multiply them back together and every channel must land on
+   the flux the extinction law asks for — including the red one, which would
+   otherwise clip at 255 and quietly turn the effect off at the altitudes where
+   it matters most. */
+const fluxErr = (function () {
+  const k = [AIR.EXT.R, AIR.EXT.G, AIR.EXT.B];
+  let worst = 0;
+  for (const c of [[255, 214, 170], [248, 246, 240], [196, 214, 255]]) {
+    for (const h of [90, 60, 40, 25, 15, 10, 6, 3, 1, 0]) {
+      const air = AIR.point(c, h), x = AIR.airmass(h) - 1;
+      for (let i = 0; i < 3; i++) {
+        const want = c[i] * Math.pow(10, -0.4 * k[i] * x);
+        worst = Math.max(worst, Math.abs(2.5 * Math.log10((air.a * air.c[i]) / want)));
+      }
+    }
+  }
+  return worst;
+})();
+/* A thousandth of a magnitude, which is nothing: the only error in here is the
+   hue shift being skipped within a fiftieth of an air mass of the zenith, where
+   it is worth less than a ten-thousandth. Anywhere it IS applied the split is
+   exact to the last bit. */
+ok('a star loses exactly what the law says, channel by channel',
+   fluxErr < 0.001, 'worst channel is out by ' + fluxErr.toExponential(1) + ' magnitudes');
+ok('nothing overhead is touched at all', (function () {
+  const c = [248, 246, 240], air = AIR.point(c, 90);
+  return Math.abs(air.a - 1) < 2e-3 && air.c.every((v, i) => Math.abs(v - c[i]) < 1e-6);
+})());
+ok('and the colour it leaves is always drawable', (function () {
+  for (const h of [90, 30, 10, 3, 0, -1]) {
+    const air = AIR.point([248, 246, 240], h);
+    if (!air.c.every((v) => v >= -1e-9 && v <= 255.0001)) return false;
+  }
+  return true;
+})());
+
+/* The reddening, stated as the thing a reader would notice: a white star low
+   down is orange. Measured as red against blue, which is near one for white
+   and climbs without bound as the blue is stripped away. */
+const redBlue = (h) => { const c = AIR.point([248, 246, 240], h).c; return c[0] / c[2]; };
+ok('a white star reddens steadily as it sets', (function () {
+  let prev = 0;
+  for (const h of [90, 60, 40, 25, 15, 10, 6, 3, 1]) {
+    if (!(redBlue(h) > prev)) return false;
+    prev = redBlue(h);
+  }
+  return prev > 20;
+})(), 'red beats blue ' + redBlue(1).toFixed(0) + ' to one at a degree up, ' +
+     redBlue(10).toFixed(1) + ' to one at ten');
+
+/* A disc is the other half of the contract: it keeps its opacity and takes a
+   softened dimming, because the eye opens up. The test is that it still goes
+   obviously red, and that it never goes BLACK — which honest linear dimming
+   would do, and which is the whole reason SOFT exists. */
+ok('a setting sun turns red without going out', (function () {
+  const c = AIR.disc([255, 236, 190], 1);
+  return c[0] > 140 && c[1] < 110 && c[2] < 30;
+})(), AIR.disc([255, 236, 190], 1).map((v) => Math.round(v)).join(','));
+ok('a sun overhead keeps its own colour', (function () {
+  const c = [255, 236, 190], o = AIR.disc(c, 90);
+  return o.every((v, i) => Math.abs(v - c[i]) < 1e-6);
+})());
+ok('and even Nystara, who starts blue, ends red', (function () {
+  const c = AIR.disc([240, 248, 255], 1);
+  return c[0] > c[1] * 2 && c[0] > c[2] * 4;
+})(), AIR.disc([240, 248, 255], 1).map((v) => Math.round(v)).join(','));
+
+/* The faint layer's two concessions. The table has to agree with the law it
+   stands in for, and the bands have to be ordered — a lookup that returned them
+   out of sequence would paint the low sky in high-sky colours, which is exactly
+   the sort of fault that looks almost right. */
+/* The bar is a fifth of a magnitude, and only where a star could still be seen
+   at all. Lower than that the table cannot keep up and does not need to: below
+   about two degrees the air is taking five magnitudes and more, every star in
+   the layer has already fallen under the alpha cut, and nothing is drawn for
+   the table to be wrong about. */
+const dimErr = (function () {
+  let worst = 0;
+  for (let h = -1.5; h <= 90; h += 0.05) {
+    const want = Math.pow(10, -0.4 * AIR.EXT.G * (AIR.airmass(h) - 1));
+    if (want <= 0.01) continue;
+    worst = Math.max(worst, Math.abs(2.5 * Math.log10(AIR.dimAt(h) / want)));
+  }
+  return worst;
+})();
+ok('the dimming table matches the arithmetic it replaces',
+   dimErr < 0.2, 'worst reading is out by ' + dimErr.toFixed(3) + ' magnitudes');
+ok('the colour bands run high sky to low, in order', (function () {
+  for (let i = 1; i < AIR.BAND_AT.length; i++) {
+    if (!(AIR.BAND_AT[i] < AIR.BAND_AT[i - 1])) return false;
+  }
+  for (let h = 90; h >= 0.1; h -= 0.1) {
+    const b = AIR.bandAt(h);
+    if (b < 0 || b >= AIR.BAND_AT.length) return false;
+    if (b > AIR.bandAt(h - 0.1)) return false;
+  }
+  return AIR.bandAt(90) === 0 && AIR.bandAt(0) === AIR.BAND_AT.length - 1;
+})());
+ok('and every banded tint is a real colour', (function () {
+  const T = [[255, 214, 170], [255, 236, 206], [248, 246, 240],
+             [236, 240, 252], [214, 228, 255], [196, 214, 255]];
+  const bands = AIR.tintBands(T);
+  if (bands.length !== AIR.BAND_AT.length) return false;
+  return bands.every((row) => row.length === T.length &&
+    row.every((c) => c.length === 3 && c.every((v) => v >= 0 && v <= 255.0001)));
+})());
+
 console.log('');
 if (fails.length) {
   console.error(`FAIL: ${fails.length} of ${pass + fails.length} checks failed.`);

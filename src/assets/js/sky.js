@@ -315,6 +315,18 @@
     return clamp(i, 0, TINTS.length - 1);
   }
 
+  /* The air between here and there. Everything drawn in the sky goes through
+     one of these two, and which one depends on whether it is a point of light
+     or a face: a star is dimmed and reddened, a sun or a moon is only reddened
+     and softly darkened, because it does not become transparent on its way
+     down and the eye opens up to meet it. The reasoning and the one assumption
+     are in air.js, where they can be tested on their own. */
+  var AIR = window.Air;
+  // Every tint reddened once per band, so the faint layer can keep drawing
+  // fifteen thousand stars in a few dozen fills instead of fifteen thousand.
+  var AIR_TINTS = AIR.tintBands(TINTS);
+  var AIR_BANDS = AIR.BAND_AT.length;
+
   // The river: a tilted great circle, used by both the dense band of stars and
   // the diffuse glow drawn under them.
   var RIVER = (function () {
@@ -553,7 +565,12 @@
      and not away. */
   function drawSun(b, p, rpx, showing) {
     if (showing === undefined) showing = 1;
-    var c = COL[b.n];
+    /* Everything about a sun goes through the air on the way here, and the
+       disc is the one place where that is unmissable: a sunset. The corona
+       goes through it too, which matters because a crossing can happen at any
+       altitude and a corona drawn in white above a red sun would be the
+       picture contradicting itself. */
+    var c = AIR.disc(COL[b.n], b.alt);
     var k = Math.sqrt(showing);
     var glowR = rpx * (b.n === 'Nystara' ? 14 : 11);
     var g = ctx.createRadialGradient(p.x, p.y, rpx * 0.6, p.x, p.y, glowR);
@@ -562,10 +579,12 @@
 
     var corona = 1 - smooth(0, 0.05, showing);
     if (corona > 0) {
+      var cIn = AIR.disc([238, 242, 255], b.alt), cMid = AIR.disc([218, 228, 255], b.alt);
+      var cStr = AIR.disc([235, 240, 255], b.alt);
       var cg = ctx.createRadialGradient(p.x, p.y, rpx, p.x, p.y, rpx * 4.5);
-      cg.addColorStop(0, 'rgba(238,242,255,' + (0.8 * corona).toFixed(3) + ')');
-      cg.addColorStop(0.3, 'rgba(218,228,255,' + (0.25 * corona).toFixed(3) + ')');
-      cg.addColorStop(1, 'rgba(218,228,255,0)');
+      cg.addColorStop(0, rgb(cIn, (0.8 * corona).toFixed(3)));
+      cg.addColorStop(0.3, rgb(cMid, (0.25 * corona).toFixed(3)));
+      cg.addColorStop(1, rgb(cMid, 0));
       ctx.fillStyle = cg;
       ctx.beginPath(); ctx.arc(p.x, p.y, rpx * 4.5, 0, 2 * Math.PI); ctx.fill();
       // Streamers, fixed in their places on the sun so they do not crawl.
@@ -576,8 +595,8 @@
         var ux = Math.cos(aa), uy = Math.sin(aa);
         var sg = ctx.createLinearGradient(p.x + ux * rpx, p.y + uy * rpx,
                                           p.x + ux * rpx * len, p.y + uy * rpx * len);
-        sg.addColorStop(0, 'rgba(235,240,255,' + (0.28 * corona).toFixed(3) + ')');
-        sg.addColorStop(1, 'rgba(235,240,255,0)');
+        sg.addColorStop(0, rgb(cStr, (0.28 * corona).toFixed(3)));
+        sg.addColorStop(1, rgb(cStr, 0));
         ctx.fillStyle = sg;
         ctx.beginPath();
         ctx.moveTo(p.x + (ux - uy * wd) * rpx, p.y + (uy + ux * wd) * rpx);
@@ -586,7 +605,7 @@
         ctx.closePath(); ctx.fill();
       }
     }
-    ctx.fillStyle = rgb(b.n === 'Nystara' ? [240, 248, 255] : [255, 236, 190]);
+    ctx.fillStyle = rgb(AIR.disc(b.n === 'Nystara' ? [240, 248, 255] : [255, 236, 190], b.alt));
     ctx.beginPath(); ctx.arc(p.x, p.y, rpx, 0, 2 * Math.PI); ctx.fill();
     ctx.strokeStyle = rgb(c, 0.9); ctx.lineWidth = 1.2 * DPR;
     ctx.beginPath(); ctx.arc(p.x, p.y, rpx, 0, 2 * Math.PI); ctx.stroke();
@@ -604,17 +623,20 @@
     if (!isFinite(ang)) ang = 0;
     var cosPsi = b.cosPsi, rx = rpx * Math.abs(cosPsi), gib = cosPsi < 0;
     var a = 0.45 + 0.55 * (1 - L.day);
+    // A moon reddens on its way down exactly as a sun does, and for the same
+    // reason. The dark limb is left out of it: that is sky colour, not moon.
+    var mc = AIR.disc(COL[b.n], b.alt);
     ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(ang);
     // The dark limb is opaque, so a moon hides the stars behind it.
     ctx.fillStyle = rgb(lerp3(L.zen, L.hor, 0.4).map(function (x) { return x * 0.55; }), 1);
     ctx.beginPath(); ctx.arc(0, 0, rpx, 0, 2 * Math.PI); ctx.fill();
     if (b.illum > 0.5 && L.day < 0.5) {
       var g = ctx.createRadialGradient(0, 0, rpx, 0, 0, rpx * 5);
-      g.addColorStop(0, rgb(COL[b.n], 0.22 * b.illum * (1 - L.day)));
-      g.addColorStop(1, rgb(COL[b.n], 0));
+      g.addColorStop(0, rgb(mc, 0.22 * b.illum * (1 - L.day)));
+      g.addColorStop(1, rgb(mc, 0));
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rpx * 5, 0, 2 * Math.PI); ctx.fill();
     }
-    ctx.globalAlpha = a; ctx.fillStyle = rgb(COL[b.n]);
+    ctx.globalAlpha = a; ctx.fillStyle = rgb(mc);
     ctx.beginPath();
     ctx.arc(0, 0, rpx, -Math.PI / 2, Math.PI / 2, false);
     if (gib) ctx.ellipse(0, 0, Math.max(rx, 0.01), rpx, 0, Math.PI / 2, 3 * Math.PI / 2, false);
@@ -721,6 +743,7 @@
   /* The river, as light rather than as dots. A galaxy is mostly unresolved
      glow; drawing it only as points makes it read as a smear of dust. Soft
      blobs stepped along the great circle, with the dense star band over them. */
+  var RIVER_C = [150, 160, 210];
   function drawRiverGlow(sky, L) {
     var a = L.starA * 0.5;
     if (a < 0.03) return;
@@ -734,9 +757,12 @@
       if (!p.ok) continue;
       var rad = Math.max(24 * DPR, 7 * P.sc);
       var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
-      var fade = a * smooth(-4, 10, alt);
-      g.addColorStop(0, 'rgba(150,160,210,' + (fade * 0.16).toFixed(3) + ')');
-      g.addColorStop(1, 'rgba(150,160,210,0)');
+      // The river is made of stars, so it is extinguished like them: it fades
+      // into the murk at the horizon rather than running flat into the ground.
+      var air = AIR.point(RIVER_C, alt);
+      var fade = a * air.a;
+      g.addColorStop(0, rgb(air.c, (fade * 0.16).toFixed(3)));
+      g.addColorStop(1, rgb(air.c, 0));
       ctx.fillStyle = g;
       ctx.fillRect(p.x - rad, p.y - rad, rad * 2, rad * 2);
     }
@@ -745,10 +771,22 @@
 
   /* Fifteen thousand points cannot each have their own fillStyle; that is tens
      of thousands of state changes a frame. Instead they are sorted into a few
-     buckets of colour and brightness, and each bucket is filled once. */
+     buckets of colour and brightness, and each bucket is filled once.
+   *
+   * The air adds a third axis to that sort. The dimming is continuous and
+   * costs nothing, since it folds into the alpha before the alpha is bucketed;
+   * the reddening cannot, so it is banded eight ways. Six tints by eight bands
+   * by five levels is two hundred and forty buckets, against thirty before —
+   * still four orders of magnitude short of one per star.
+   *
+   * The fade that used to live here, a smoothstep from two degrees below the
+   * horizon to six above, is gone: extinction does that job and does it for a
+   * reason. It also does it much higher up. The old fade left a star at twenty
+   * degrees at full brightness; the air takes half a magnitude off it.
+   */
   var FAINT_STEPS = 5;
   function drawFaint(sky, L) {
-    var buckets = [], i, n = TINTS.length * FAINT_STEPS;
+    var buckets = [], i, n = TINTS.length * AIR_BANDS * FAINT_STEPS;
     for (i = 0; i < n; i++) buckets.push(null);
     for (i = 0; i < FAINT.length; i++) {
       var s = FAINT[i], h = eqToHor(s.v, sky.lst);
@@ -756,17 +794,18 @@
       var alt = altOf(h), p = P.f(alt, azOf(h));
       if (!p.ok) continue;
       var tw = 0.78 + 0.22 * Math.sin(s.t * 40 + st.h * 9);
-      var a = L.starA * (0.22 + 0.78 * s.b) * tw * smooth(-2, 6, alt);
+      var a = L.starA * (0.22 + 0.78 * s.b) * tw * AIR.dimAt(alt);
       if (a < 0.015) continue;
       var lvl = clamp(Math.floor(a * FAINT_STEPS), 0, FAINT_STEPS - 1);
-      var bi = s.c * FAINT_STEPS + lvl;
+      var bi = (s.c * AIR_BANDS + AIR.bandAt(alt)) * FAINT_STEPS + lvl;
       var path = buckets[bi] || (buckets[bi] = new Path2D());
       var sz = (0.55 + s.b * 1.1) * DPR;
       path.rect(p.x - sz / 2, p.y - sz / 2, sz, sz);
     }
     for (i = 0; i < n; i++) {
       if (!buckets[i]) continue;
-      var c = TINTS[Math.floor(i / FAINT_STEPS)];
+      var band = Math.floor(i / FAINT_STEPS) % AIR_BANDS;
+      var c = AIR_TINTS[band][Math.floor(i / (FAINT_STEPS * AIR_BANDS))];
       var av = ((i % FAINT_STEPS) + 0.5) / FAINT_STEPS;
       ctx.fillStyle = rgb(c, av.toFixed(3));
       ctx.fill(buckets[i]);
@@ -792,6 +831,7 @@
       var fig = FIGURES[f];
       var pts = {}, up = true, framed = true;
       var minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+      var altSum = 0, altN = 0;
 
       for (var i = 0; i < fig.stars.length; i++) {
         var s = BY_ID[fig.stars[i]];
@@ -806,6 +846,7 @@
            region misrepresents what is being clicked. */
         if (h[2] < -0.02) up = false;
         if (!p.ok) framed = false;
+        altSum += alt; altN++;
         pts[s.id] = p;
         if (p.x < minX) minX = p.x; if (p.x > maxX) maxX = p.x;
         if (p.y < minY) minY = p.y; if (p.y > maxY) maxY = p.y;
@@ -813,7 +854,14 @@
       if (up) figuresUp.push(fig);
       if (!up || !framed || L.starA < 0.05) continue;
 
+      /* The lines take the same extinction as the stars they join. Without
+         it a figure skimming the horizon kept a full-strength diagram drawn
+         over stars that had all but gone out, which read as a fault in the
+         picture rather than as distance. The NAME is left alone: it is a
+         label, not a thing in the sky, and a label you cannot read is no use
+         to anyone. */
       var a = L.starA * (fig._hot ? 0.95 : 0.55);
+      var av = a * AIR.dimAt(altN ? altSum / altN : 90);
       var path = new Path2D();
       for (var j = 0; j < fig.lines.length; j++) {
         var A = pts[fig.lines[j][0]], B = pts[fig.lines[j][1]];
@@ -824,14 +872,14 @@
       // The aura: the same path, very wide and very soft, laid down first.
       ctx.save();
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      ctx.strokeStyle = 'rgba(150,178,228,' + (a * 0.055).toFixed(3) + ')';
+      ctx.strokeStyle = 'rgba(150,178,228,' + (av * 0.055).toFixed(3) + ')';
       ctx.lineWidth = 16 * DPR;
       ctx.stroke(path);
-      ctx.strokeStyle = 'rgba(168,196,240,' + (a * 0.09).toFixed(3) + ')';
+      ctx.strokeStyle = 'rgba(168,196,240,' + (av * 0.09).toFixed(3) + ')';
       ctx.lineWidth = 7 * DPR;
       ctx.stroke(path);
       // The line itself.
-      ctx.strokeStyle = 'rgba(198,218,255,' + (a * 0.5).toFixed(3) + ')';
+      ctx.strokeStyle = 'rgba(198,218,255,' + (av * 0.5).toFixed(3) + ')';
       ctx.lineWidth = (fig._hot ? 1.6 : 1) * DPR;
       ctx.stroke(path);
       ctx.restore();
@@ -928,9 +976,12 @@
       // Scintillation, and much harder than the faint layer's. A moon sitting
       // beside one of these is conspicuously steady.
       var tw = 0.62 + 0.38 * Math.sin(s.t * 40 + st.h * 23);
-      var a = L.starA * s.b * tw * smooth(-2, 7, alt);
+      // A hundred and seventy stars, so each gets the air worked out properly
+      // rather than read off the faint layer's banded table.
+      var air = AIR.point(TINTS[s.c], alt);
+      var a = L.starA * s.b * tw * air.a;
       if (a < 0.02) continue;
-      var c = TINTS[s.c];
+      var c = air.c;
 
       // A dot. Brightness is in the arms, not in the area.
       var core = (0.45 + s.b * 0.8) * DPR;
