@@ -41,6 +41,7 @@ def convert(body):
     body = sync.strip_dm_callouts(body)
     body = sync.strip_unknown_callouts(body)
     body = sync.convert_note_callouts(body)
+    body = sync.strip_loose_dm_lines(body)
     return body
 
 
@@ -65,6 +66,11 @@ SAMPLE = (
     "\n"
     "> [!note] True History\n"
     "> Lore structure, should survive.\n"
+    "\n"
+    "> A plain blockquote of lore, which must survive untouched.\n"
+    "\n"
+    "> DM ruling 2026-10-17: **a loose ruling outside any callout.**\n"
+    "> It wraps onto a second line and must go with the first.\n"
     "\n"
     "> [!note] Source\n"
     "> Source: `original` - anchored in `DM canon` - ChatGPT lore session 2026-05-12.\n"
@@ -107,6 +113,18 @@ MUST_SURVIVE = [
     ("provenance after a wrapped ruling", "Kept provenance after the wrapped ruling"),
     ("body prose before", "Public prose here"),
     ("body prose after", "More public prose"),
+]
+
+# A ruling written as a plain blockquote rather than inside a callout. The
+# vault's convention is to put them in the Source callout, but a convention is
+# not a guard: this exact shape was published on 2026-10-17 and the suite was
+# green at the time, because nothing here had ever tried it.
+MUST_BE_GONE = MUST_BE_GONE + [
+    ("a loose DM ruling outside any callout", "a loose ruling outside any callout"),
+    ("the wrapped second line of that ruling", "It wraps onto a second line"),
+]
+MUST_SURVIVE = MUST_SURVIVE + [
+    ("an ordinary blockquote of lore", "A plain blockquote of lore"),
 ]
 
 failures = []

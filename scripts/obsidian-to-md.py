@@ -265,7 +265,7 @@ DM_LINE_PREFIX = re.compile(
 )
 
 
-def _drop_dm_lines(lines):
+def _drop_dm_lines(lines, keep_blanks=False):
     """Remove DM-facing lines from a callout body that is otherwise published.
 
     _is_dm_note() only inspects a callout's title. The vault appends rulings to
@@ -302,7 +302,16 @@ def _drop_dm_lines(lines):
         if not body:
             # A blank line always ends the run, so an unterminated ruling can
             # never swallow the paragraph after it.
+            #
+            # Whether the line itself survives depends on the caller. Inside a
+            # callout it is scaffolding -- it exists so this loop can tell one
+            # paragraph from the next, and the caller rebuilds the prefixes --
+            # so it goes. In an ordinary blockquote it is the paragraph break
+            # itself, and dropping it merges the quotation into one block.
+            was_dropping = dropping
             dropping = False
+            if keep_blanks and not was_dropping:
+                out.append(ln)
             continue
         if dropping:
             if ends_sentence(body):
@@ -313,6 +322,44 @@ def _drop_dm_lines(lines):
             continue
         out.append(ln)
     return out
+
+
+def strip_loose_dm_lines(body: str) -> str:
+    """Drop `> DM ruling ...` blockquotes that are not inside a callout.
+
+    The vault's convention is to keep rulings inside an article's
+    `[!note] Source` callout, where convert_note_callouts already strips them.
+    But a convention is only a convention. A ruling written as a plain
+    blockquote anywhere in the body went straight through to the public site,
+    and the one that proved it was mine: written on 2026-10-17, caught only
+    because I read the generated file instead of trusting the sync to have
+    done what I assumed it did.
+
+    So this stops trusting the placement. It takes every blockquote left after
+    the callouts are handled and applies the same line rule, which runs on
+    across wrapped lines until a sentence ends. The rule stays in one place;
+    what changes is how far it reaches.
+    """
+    out = []
+    buf = []
+
+    def flush():
+        if not buf:
+            return
+        inner = [ln[1:].lstrip() if ln.startswith(">") else ln for ln in buf]
+        kept = _drop_dm_lines(inner, keep_blanks=True)
+        if any(k.strip() for k in kept):
+            out.extend(("> " + k) if k.strip() else ">" for k in kept)
+        del buf[:]
+
+    for ln in body.split("\n"):
+        if ln.lstrip().startswith(">"):
+            buf.append(ln.lstrip())
+        else:
+            flush()
+            out.append(ln)
+    flush()
+    return "\n".join(out)
 
 
 def convert_note_callouts(body: str) -> str:
@@ -457,6 +504,7 @@ def process_file(src: Path, preserved_fm: dict = None):
     body = strip_dm_callouts(body)
     body = strip_unknown_callouts(body)
     body = convert_note_callouts(body)
+    body = strip_loose_dm_lines(body)
     body = separate_blockquotes(body)
     body = strip_inline_tags(body)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
