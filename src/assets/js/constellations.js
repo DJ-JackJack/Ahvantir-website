@@ -286,6 +286,166 @@
       ],
       blurb: 'A bird with its head high to the east and its tail high to the ' +
              'west, standing on two feet between them. Watching.'
+    },
+
+    /* ---- the seven remaining signs, named by Krys 2026-10-17 ----
+     *
+     * He gave a name and a reading for each; the geometry below is mine and is
+     * meant to be redrawn. Every figure is built from stars that were already
+     * in the sign -- nothing was moved to flatter a shape -- except the Sword,
+     * which had nothing to build from and is noted in stars-bright.js.
+     *
+     * NO NAME CHAINS. The Spirit and Drorn'Duur readings of these are not
+     * known, and inventing them is precisely what this file must not do. Each
+     * carries the one name Krys gave and nothing else until he rules on what
+     * the older traditions called them -- which is a real question, because
+     * the Crown and the Sword are both plainly Aru'Mas claims on a sky that
+     * was being read long before the city existed.
+     */
+    {
+      id: 'hand',
+      name: 'The Hand',
+      provisional: true,
+      /* A hand reaching up with the fingers spread: wrist low, knuckles on
+         s004 (the brightest here), three digits rising and a thumb thrown
+         west. Eleven stars were available and seven are used, which keeps the
+         fingers distinct instead of crowding them.
+
+         Worth knowing before this is written up: the Spear does NOT point
+         here. Its throw runs west along dec +6.6 and misses this sign by 53
+         degrees. Krys's reading already treats the pinning as a tale people
+         tell and the destruction as the likely truth, so the sky is on the
+         side of the sceptics. */
+      stars: ['s110', 's086', 's004', 's140', 's041', 's025', 's092', 's057'],
+      lines: [
+        ['s110', 's086'], ['s086', 's004'],
+        ['s004', 's140'], ['s140', 's041'],
+        ['s004', 's092'], ['s092', 's057'],
+        ['s086', 's025']
+      ],
+      blurb: 'A hand open and reaching, knuckles on the brightest star in the ' +
+             'sign and the thumb thrown west. Named for the Hand of Gahr.'
+    },
+
+    {
+      id: 'lady',
+      name: 'The Lady',
+      provisional: true,
+      /* Narrow at the head and spreading to a hem, with the veil swept to one
+         side only -- which is what keeps her from reading the same mirrored.
+         s002 is the Ladies Gaze and sits at the top, because a figure nobody
+         can identify should still be looking at you.
+
+         Built first from all seven usable stars in the sign and cut back to
+         five. s113 at dec +35.7 and s129 at -29.6 made her sixty-five degrees
+         tall -- taller than anything else in the sky, where the established
+         six run five to fifty-seven. At forty-seven she is exactly the
+         Mother's height, which for a second standing woman is the right
+         company to keep. */
+      stars: ['s002', 's038', 's139', 's087', 's121'],
+      lines: [
+        ['s002', 's038'], ['s038', 's087'], ['s087', 's121'],
+        ['s002', 's139'], ['s139', 's121']
+      ],
+      blurb: 'A veiled figure, narrow at the head and spreading to a hem, with ' +
+             'the Ladies Gaze at the top. Thieves and night travellers both ' +
+             'have reason to address her.'
+    },
+
+    {
+      id: 'dreamer',
+      name: 'The Dreamer',
+      provisional: true,
+      /* Reclining, head east and feet west, with one arm fallen away south.
+         That dropped arm is a thirty-nine degree reach and it is the whole
+         figure: without it this is a line of stars, and with it somebody is
+         asleep. */
+      stars: ['s095', 's026', 's076', 's119', 's098', 's014'],
+      lines: [
+        ['s095', 's026'], ['s026', 's076'],
+        ['s026', 's119'], ['s119', 's098'],
+        ['s026', 's014']
+      ],
+      blurb: 'A sleeper lying with the head east and one arm fallen away ' +
+             'beneath. The sign of Nodd, named after the Shattered Strand.'
+    },
+
+    {
+      id: 'serpent',
+      name: 'The Coiled Serpent',
+      provisional: true,
+      /* One unbroken line through all six usable stars in the sign, and the
+         only figure here that needed no choosing: the stars already lie in an
+         S. Head high in the north, body doubling back twice, tail south. */
+      stars: ['s010', 's069', 's037', 's055', 's028', 's015'],
+      lines: [
+        ['s010', 's069'], ['s069', 's037'], ['s037', 's055'],
+        ['s055', 's028'], ['s028', 's015']
+      ],
+      blurb: 'A single winding line, head raised in the north and the body ' +
+             'doubling back twice to a tail in the south. Medicine, renewal ' +
+             'and grace.'
+    },
+
+    {
+      id: 'crown',
+      name: 'The Crown',
+      provisional: true,
+      /* Points and valleys, west to east. The sign is the richest unclaimed
+         one -- thirteen usable stars -- so this uses only the six that
+         alternate cleanly and leaves the rest as field.
+
+         It comes out taller than a crown ought to be, thirty-five degrees by
+         fifteen, because the stars here are spread in declination and not in
+         right ascension. Marduk called the Crown the heaviest burden fate
+         could place on a man, so an imposing one is not the worst outcome,
+         but this is the figure most likely to want redrawing. */
+      stars: ['s045', 's144', 's104', 's065', 's134', 's042'],
+      lines: [
+        ['s045', 's144'], ['s144', 's104'], ['s104', 's065'],
+        ['s065', 's134'], ['s134', 's042']
+      ],
+      blurb: 'A band of points and valleys running west to east, rising to its ' +
+             'highest at the eastern end. The duty of the royal house.'
+    },
+
+    {
+      id: 'dancer',
+      name: 'The Dancer',
+      provisional: true,
+      /* Mid-step and deliberately lopsided: one arm flung east to s109, one
+         leg kicked east to s017, the other foot planted southwest. A dancer
+         caught symmetrical is a dancer standing still. */
+      stars: ['s052', 's048', 's022', 's089', 's109', 's061', 's006', 's017'],
+      lines: [
+        ['s052', 's048'], ['s052', 's022'],
+        ['s022', 's109'], ['s022', 's089'], ['s089', 's061'],
+        ['s048', 's061'], ['s061', 's006'], ['s061', 's017']
+      ],
+      blurb: 'A figure mid-step, one arm flung east and one leg kicked after ' +
+             'it. At its height the city keeps the Festival of Folly.'
+    },
+
+    {
+      id: 'sword',
+      name: 'The Sword',
+      provisional: true,
+      /* Laid down, not raised. Krys's reading is the weapons set aside between
+         spirits and humans, so the blade lies flat across the sign: point west
+         on s001 -- Piercers Point, the brightest star in the sky -- and the
+         hilt east, nearest the Spear's own sign.
+
+         Five of its six stars are placed; see stars-bright.js. This sign had
+         nothing else to build from. */
+      stars: ['s001', 's168', 's169', 's170', 's171', 's172'],
+      lines: [
+        ['s001', 's168'], ['s168', 's169'],
+        ['s170', 's169'], ['s169', 's171'],
+        ['s169', 's172']
+      ],
+      blurb: 'A sword lying flat, point west on the brightest star in the sky ' +
+             'and the hilt east. The weapons laid down, and the promise not to ' +
+             'take them up again.'
     }
   ];
 })();

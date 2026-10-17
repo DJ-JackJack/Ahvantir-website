@@ -25,14 +25,14 @@
  * phase.
  */
 window.BrightStars = [
-  { id: "s001", ra: 153.0475, dec: 27.6242, b: 0.9986, c: 0, o: "seed", t: 0.3387 },
-  { id: "s002", ra: 292.5652, dec: 30.1113, b: 0.9955, c: 3, o: "seed", t: 0.1980 },
-  { id: "s003", ra: 282.8038, dec: -9.7279, b: 0.9857, c: 0, o: "seed", t: 0.2244 },
+  { id: "s001", ra: 153.0475, dec: 27.6242, b: 0.9986, c: 0, o: "seed", t: 0.3387 , n: "Piercers Point" },
+  { id: "s002", ra: 292.5652, dec: 30.1113, b: 0.9955, c: 3, o: "seed", t: 0.1980 , n: "The Ladies Gaze" },
+  { id: "s003", ra: 282.8038, dec: -9.7279, b: 0.9857, c: 0, o: "seed", t: 0.2244 , n: "The Roosters Call" },
   { id: "s004", ra: 244.7771, dec: 23.2582, b: 0.9764, c: 0, o: "seed", t: 0.8080 },
   { id: "s005", ra: 245.9660, dec: -51.9124, b: 0.9689, c: 0, o: "seed", t: 0.0064 },
   { id: "s006", ra: 125.9280, dec: -9.5100, b: 0.9678, c: 2, o: "seed", t: 0.3479 },
-  { id: "s007", ra: 337.7914, dec: -3.7143, b: 0.9674, c: 0, o: "seed", t: 0.3508 },
-  { id: "s008", ra: 357.2569, dec: -25.0000, b: 0.9662, c: 3, o: "placed", t: 0.4594 },
+  { id: "s007", ra: 337.7914, dec: -3.7143, b: 0.9674, c: 0, o: "seed", t: 0.3508 , n: "Wanderers Point" },
+  { id: "s008", ra: 357.2569, dec: -25.0000, b: 0.9662, c: 3, o: "placed", t: 0.4594 , n: "Mother's Gift" },
   { id: "s009", ra: 53.1678, dec: -46.8119, b: 0.9652, c: 2, o: "seed", t: 0.5592 },
   { id: "s010", ra: 83.2554, dec: 37.7338, b: 0.9503, c: 0, o: "seed", t: 0.2300 },
   { id: "s011", ra: 287.6486, dec: 2.7947, b: 0.9399, c: 0, o: "seed", t: 0.0752 },
@@ -43,7 +43,7 @@ window.BrightStars = [
   { id: "s016", ra: 312.3820, dec: -45.1887, b: 0.9260, c: 0, o: "seed", t: 0.2494 },
   { id: "s017", ra: 148.6002, dec: 10.9710, b: 0.9225, c: 0, o: "seed", t: 0.2373 },
   { id: "s018", ra: 152.9367, dec: -39.7492, b: 0.9187, c: 0, o: "seed", t: 0.7484 },
-  { id: "s019", ra: 185.9618, dec: 6.3324, b: 0.9171, c: 0, o: "seed", t: 0.3541 },
+  { id: "s019", ra: 185.9618, dec: 6.3324, b: 0.9171, c: 0, o: "seed", t: 0.3541 , n: "Kings Point" },
   { id: "s020", ra: 334.7647, dec: -57.6271, b: 0.9128, c: 0, o: "seed", t: 0.4487 },
   { id: "s021", ra: 193.1260, dec: -53.3522, b: 0.8908, c: 4, o: "seed", t: 0.4923 },
   { id: "s022", ra: 134.6832, dec: 26.6014, b: 0.8780, c: 0, o: "seed", t: 0.9789 },
@@ -54,7 +54,7 @@ window.BrightStars = [
   { id: "s027", ra: 271.6293, dec: -69.5477, b: 0.8467, c: 0, o: "seed", t: 0.6136 },
   { id: "s028", ra: 89.9813, dec: 1.2991, b: 0.8454, c: 5, o: "seed", t: 0.5953 },
   { id: "s029", ra: 197.5000, dec: 5.9000, b: 0.8394, c: 0, o: "placed", t: 0.6677 },
-  { id: "s030", ra: 206.4623, dec: 10.1473, b: 0.8371, c: 5, o: "seed", t: 0.6879 },
+  { id: "s030", ra: 206.4623, dec: 10.1473, b: 0.8371, c: 5, o: "seed", t: 0.6879 , n: "Cats Clever Tongue" },
   { id: "s031", ra: 317.0118, dec: 23.8195, b: 0.8371, c: 0, o: "seed", t: 0.9961 },
   { id: "s032", ra: 107.0517, dec: -23.7319, b: 0.8326, c: 1, o: "seed", t: 0.5608 },
   { id: "s033", ra: 230.6039, dec: -8.0059, b: 0.8279, c: 3, o: "seed", t: 0.3500 },
@@ -194,7 +194,7 @@ window.BrightStars = [
      placed stars their neighbours' brightnesses. Everything else in the
      circumpolar cap runs 0.53 to 0.93, and 0.952 announces itself over all of
      it. Announcing itself is the entire function of a pole star. */
-  { id: "s154", ra: 331.9000, dec: 88.5000, b: 0.9520, c: 4, o: "placed", t: 0.6180 },
+  { id: "s154", ra: 331.9000, dec: 88.5000, b: 0.9520, c: 4, o: "placed", t: 0.6180 , n: "Heaven's Light" },
 
   /* ---- the humanoid pair, placed 2026-10-11 ----
    *
@@ -244,7 +244,7 @@ window.BrightStars = [
   { id: "s157", ra: 28.2000, dec: 12.7000, b: 0.7000, c: 4, o: "placed", t: 0.3050 },
   { id: "s158", ra: 31.6000, dec: 7.0000, b: 0.6750, c: 3, o: "placed", t: 0.8820 },
   { id: "s159", ra: 38.6000, dec: 16.2000, b: 0.6400, c: 4, o: "placed", t: 0.0970 },
-  { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 },
+  { id: "s160", ra: 29.0000, dec: -2.6000, b: 0.7200, c: 3, o: "placed", t: 0.5360 , n: "The Childs Smile" },
   { id: "s161", ra: 28.2000, dec: -17.4000, b: 0.6200, c: 5, o: "placed", t: 0.4280 },
   { id: "s162", ra: 29.8000, dec: -13.2000, b: 0.6600, c: 4, o: "placed", t: 0.6590 },
 
@@ -273,5 +273,27 @@ window.BrightStars = [
      wide by 64 tall - one to four, stretched even for something upright.
      Carrying the tail west to the far end of the sign widens it to 24 by
      57, and gives a rooster the one silhouette it cannot do without. */
-  { id: "s167", ra: 263.5000, dec: 38.0000, b: 0.6000, c: 2, o: "placed", t: 0.5840 }
+  { id: "s167", ra: 263.5000, dec: 38.0000, b: 0.6000, c: 2, o: "placed", t: 0.5840 },
+
+  /* ---- The Sword, sign 13, placed 2026-10-17 ----
+   *
+   * Sign 13 is the emptiest in the sky: five stars, and only two of them
+   * within the dec +/-40 the figures are held to. One of those two is s001,
+   * the brightest star there is, which Krys named Piercers Point -- a tip if
+   * ever there was one. The other, s018, lies sixty-seven degrees south of it
+   * and belongs to nothing.
+   *
+   * So the blade is built around the point rather than found. Five stars,
+   * laid EAST of s001 along near-constant declination, because Krys's reading
+   * is "the weapons laid down between the spirits and humans": a sword set
+   * down, not one held up. Point west, hilt east, lying flat across the sign.
+   *
+   * None is brighter than b 0.74 (magnitude 0.45). s001 at 0.9986 has to stay
+   * the thing the eye goes to -- it is the brightest star in the sky and the
+   * only one here anybody had already named. */
+  { id: "s168", ra: 163.0000, dec: 26.3000, b: 0.7200, c: 0, o: "placed", t: 0.5200 },
+  { id: "s169", ra: 171.0000, dec: 25.5000, b: 0.7400, c: 0, o: "placed", t: 0.5000 },
+  { id: "s170", ra: 171.5000, dec: 32.0000, b: 0.6900, c: 2, o: "placed", t: 0.5600 },
+  { id: "s171", ra: 170.5000, dec: 19.0000, b: 0.6900, c: 2, o: "placed", t: 0.5600 },
+  { id: "s172", ra: 177.0000, dec: 24.8000, b: 0.7100, c: 0, o: "placed", t: 0.4800 }
 ];
