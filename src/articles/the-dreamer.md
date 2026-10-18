@@ -7,19 +7,19 @@ date_added: "2026-10-17"
 
 # The Dreamer
 
-A sleeper lying out along the suns' road, head east and feet west, with one arm fallen away beneath them. It is the sign of [[Nodd the Monarch of Dreams|Nodd]], and it is younger than most of the sky by a long way.
+A sleeper lying low along the southern horizon, out over the water, with one arm fallen away beneath them. It is the sign of [[Nodd the Monarch of Dreams|Nodd]], and it is younger than most of the sky by a long way.
 
 It is also a memorial, which not everyone who uses it for astrology remembers.
 
 ## The figure
 
-Six stars and five lines. A body stretched east to west, and then the thing that makes it: an arm dropping thirty-nine degrees south and away. Without that fallen arm this is a line of stars with a kink in it. With it, somebody is asleep — not resting, not lying down on purpose, but gone slack in the way a sleeping arm goes over the edge of a bed.
+Six stars and five lines. The head west and highest, the body sloping down and east through the shoulder and the hips to the feet, and then the thing that makes it: an arm dropping twelve degrees away beneath. Without that fallen arm this is a line of stars with a kink in it. With it, somebody is asleep — not resting, not lying down on purpose, but gone slack in the way a sleeping arm goes over the edge of a bed.
 
-Eleven stars sit in the sign and six are used.
+It is a low figure and a dim one. Nothing in it beats magnitude 0.68, and the whole of it lies between declination −26 and −43, which from Aru'Mas means it never climbs past about twenty-four degrees and the fallen hand never past seven. There are nights it does not clear the hills at all.
 
-The brightest of them is at the end of that fallen arm, magnitude −0.99 and fifteenth in the sky. The hand is the brightest part of the sleeper, which is a strange emphasis for a figure about sleep and a very apt one for a figure about reaching.
+That is not a defect of the drawing. A memorial to people who drowned lies down where the water is.
 
-The suns walk through it from **19 Thirivale** to **3 Cindralis**, twenty-eight days. It stands highest at midnight around **6 Myrnselt**.
+**The suns do not pass through it.** They stand in its *sign*, the stretch of their road named for it, from **19 Thirivale** to **3 Cindralis**. The figure itself is better than fifty degrees south of them. It stands highest at midnight around **6 Myrnselt**, and if you want to see it, that is the night and you will want a clear southern horizon.
 
 ## Nodd
 

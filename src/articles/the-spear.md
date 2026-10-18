@@ -8,7 +8,7 @@ date_added: "2026-10-10"
 
 # The Spear
 
-A leaf-shaped blade of four stars with a long straight haft running out behind it, lying along the path the suns walk. It is one of the few figures in Ahvantir's sky that nearly everyone can find, and the only one the suns themselves pass through.
+A leaf-shaped blade of four stars with a long straight haft running out behind it, lying along the path the suns walk. It is one of the few figures in Ahvantir's sky that nearly everyone can find, and the suns come within ten degrees of its haft — close company, though not the closest. Three figures have the suns crossing their stars outright: [[The Mother]], [[The Dutiful Child]] and the Coy.
 
 It has been a weapon for as long as anyone has been looking at it. What has changed is whose.
 

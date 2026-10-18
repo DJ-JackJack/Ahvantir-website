@@ -19,7 +19,7 @@ What makes it read is that it does not tilt. The figure runs from declination ni
 
 From Aru'Mas it rides high — between sixty-nine and eighty-two degrees, so it passes almost overhead and stays there, lying across the top of the night rather than rising out of anything.
 
-The suns walk through it from **40 Embrathen** to **27 Lochenvir**, thirty days. It stands highest at midnight around **2 Ossandrel**.
+The suns stand in its sign from **40 Embrathen** to **27 Lochenvir**, thirty days, though they pass a good fourteen degrees south of the blade itself. It stands highest at midnight around **2 Ossandrel**.
 
 ## Piercers Point
 

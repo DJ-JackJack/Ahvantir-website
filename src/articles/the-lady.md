@@ -19,7 +19,7 @@ She is forty-seven degrees tall, which is the same height as [[The Mother]]. For
 
 Fourteen stars sit in her sign and five are used. The rest are left as field. She is tall rather than crowded.
 
-The suns walk through her from **20 Keltharyn** to **9 Varenthal**, thirty-two days — which means the Lady is the figure the year turns inside. Whatever the old year was, it ends while the suns are in her, and the new one starts before they leave. She stands highest at midnight around **9 Embrathen**.
+The suns stand in her sign from **20 Keltharyn** to **9 Varenthal**, thirty-two days — which means the Lady is the figure the year turns inside. She is one of the few that has stayed on the road: the suns pass three degrees south of her hem, closer than they come to almost any other figure. Whatever the old year was, it ends while the suns are in her, and the new one starts before they leave. She stands highest at midnight around **9 Embrathen**.
 
 ## Who addresses her
 

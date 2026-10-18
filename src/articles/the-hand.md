@@ -7,19 +7,19 @@ date_added: "2026-10-17"
 
 # The Hand
 
-An open hand reaching upward with the fingers spread, wrist low in the south and the fingertips almost directly overhead. The star at its knuckles is the fourth brightest in the sky, and once it has been pointed out it is very difficult to see this part of the heavens as anything else.
+An open hand reaching upward with the fingers spread, high in the north and very nearly never setting. It is not a bright figure. It is simply always there, which for a thing the stories say was pinned up out of reach is the more useful property of the two.
 
 It is named for the Hand of Gahr, which is said to have been pinned there.
 
 ## The figure
 
-Eight stars and seven lines. A short forearm runs up from the wrist through a lower joint to the knuckles, and from the knuckles two long fingers rise and spread — each of two segments, the western one reaching highest. A thumb is thrown off the lower joint and away to the west, which is what settles the gesture: without it the shape reads as a fork or a branch, and with it the hand is unmistakably a hand, and unmistakably open.
+Six stars and five lines. A wrist east and low, a palm running west and up, the knuckles at the turn of it, and three digits rising north and spreading as they go.
 
-Sixteen stars were available in this stretch of the suns' road and eight are used. The rest are left out on purpose. A hand drawn with every star inside its reach becomes a mitten.
+None of the six is bright. The best is magnitude 0.29 and fiftieth in the sky, which puts the Hand among the quieter figures: you find it by knowing where it is, not by being struck by it.
 
-The knuckle star carries magnitude −1.32 and is the brightest thing for a long way in any direction. The fingertips are fainter but not faint, and the whole figure climbs high: from Aru'Mas the western fingertip passes within two degrees of the zenith, so that for a few minutes each night in the right season a watcher has to lean back and look straight up to find the top of it. The wrist never climbs past about fifty degrees. The figure stands up out of the southern sky rather than lying along it.
+What it has instead is permanence. Every star in it sits above declination forty-nine, so from Aru'Mas the whole figure dips below the horizon by about a single degree at its lowest and is otherwise up — all night, every night, all year. It swings around the pole rather than rising and setting. In the right season the palm passes within nine degrees of straight overhead.
 
-The suns walk through it from **6 Myrnselt** to **34 Myrnselt**, twenty-nine days. It stands highest at midnight around **3 Cindralis**, half a year away, which is when anyone who wants to look at it properly should.
+**The suns do not pass through it.** They stand in its *sign* — the stretch of their road named for it — from **6 Myrnselt** to **34 Myrnselt**, while the figure itself is sixty degrees north of them and in no danger of being touched. It stands highest at midnight around **7 Cindralis**.
 
 ## The Hand of Gahr
 

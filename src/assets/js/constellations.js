@@ -345,10 +345,15 @@
       id: 'hand',
       name: 'The Hand',
       article: '/articles/the-hand/',
-      /* A hand reaching up with the fingers spread: wrist low, knuckles on
-         s004 (the brightest here), three digits rising and a thumb thrown
-         west. Sixteen stars sit in this sign and eight are used, which keeps the
-         fingers distinct instead of crowding them.
+      /* Lifted out of the belt on 2026-10-18 and set in the far north.
+         It keeps its right ascension, so it keeps its sign and its season;
+         only its height changed.
+
+         A hand reaching up with the fingers spread: wrist east and low on
+         s049, the palm running west and the knuckles on s103, three digits
+         rising north. Everything above declination +50 is circumpolar at
+         this latitude, so most of the Hand never sets now -- it turns
+         overhead all year instead of rising and setting with its sign.
 
          A caution for whoever writes this up, because I got it wrong once.
          This sign's story has Marduk casting his spear to pin the Hand of
@@ -362,12 +367,10 @@
          them, found 53 degrees, and offered it as evidence against the myth —
          which was measuring the distance between two things that were never
          claimed to touch. */
-      stars: ['s110', 's086', 's004', 's140', 's041', 's025', 's092', 's057'],
+      stars: ['s049', 's147', 's103', 's173', 's174', 's175'],
       lines: [
-        ['s110', 's086'], ['s086', 's004'],
-        ['s004', 's140'], ['s140', 's041'],
-        ['s004', 's092'], ['s092', 's057'],
-        ['s086', 's025']
+        ['s049', 's147'], ['s147', 's103'],
+        ['s103', 's173'], ['s103', 's174'], ['s103', 's175']
       ],
       blurb: 'A hand open and reaching, knuckles on the brightest star in the ' +
              'sign and the thumb thrown west. Named for the Hand of Gahr.'
@@ -402,15 +405,23 @@
       id: 'dreamer',
       name: 'The Dreamer',
       article: '/articles/the-dreamer/',
-      /* Reclining, head east and feet west, with one arm fallen away south.
-         That dropped arm is a thirty-nine degree reach and it is the whole
-         figure: without it this is a line of stars, and with it somebody is
-         asleep. */
-      stars: ['s095', 's026', 's076', 's119', 's098', 's014'],
+      /* Lifted out of the belt on 2026-10-18 and set low in the south,
+         declination -26 to -43, keeping its right ascension and so its sign
+         and season.
+
+         The height is the article's point rather than a convenience. This
+         figure is a memorial to the drowned of the Shattered Strand, and it
+         now lies along the southern horizon, out over the water, never
+         climbing more than about twenty degrees and often less.
+
+         Reclining still: head west and high on s128, the body sloping down
+         and east to the feet, and one arm fallen twelve degrees away
+         beneath. Without that arm this is a line of stars; with it, somebody
+         is asleep. */
+      stars: ['s128', 's181', 's101', 's141', 's182', 's183'],
       lines: [
-        ['s095', 's026'], ['s026', 's076'],
-        ['s026', 's119'], ['s119', 's098'],
-        ['s026', 's014']
+        ['s128', 's181'], ['s181', 's101'], ['s101', 's141'], ['s141', 's182'],
+        ['s181', 's183']
       ],
       blurb: 'A sleeper lying with the head east and one arm fallen away ' +
              'beneath. The sign of Nodd, named after the Shattered Strand.'
@@ -423,10 +434,20 @@
       /* One unbroken line through all six usable stars in the sign, and the
          only figure here that needed no choosing: the stars already lie in an
          S. Head high in the north, body doubling back twice, tail south. */
-      stars: ['s010', 's069', 's037', 's055', 's028', 's015'],
+      /* Lifted out of the belt on 2026-10-18 and set in the far north,
+         declination +51 to +69, keeping its right ascension and so its sign
+         and season. A coil wants room to wind and the northern sky had it.
+
+         Tail low in the east on s115, the body climbing west and north,
+         turning back east over the top, and the head brought down and in to
+         s177 -- inside its own curve. The head has to come back inside: an
+         open arch reads as a bridge and scores badly on the mirror test,
+         which is the measure of whether a figure can be told from its own
+         reflection. A coil that closes cannot be. */
+      stars: ['s115', 's084', 's023', 's080', 's176', 's177'],
       lines: [
-        ['s010', 's069'], ['s069', 's037'], ['s037', 's055'],
-        ['s055', 's028'], ['s028', 's015']
+        ['s115', 's084'], ['s084', 's023'], ['s023', 's080'],
+        ['s080', 's176'], ['s176', 's177']
       ],
       blurb: 'A single winding line, head raised in the north and the body ' +
              'doubling back twice to a tail in the south. Medicine, renewal ' +
@@ -437,19 +458,29 @@
       id: 'crown',
       name: 'The Crown',
       article: '/articles/the-crown/',
-      /* Points and valleys, west to east. The sign is the richest unclaimed
-         one -- fourteen catalogue stars -- so this uses only the six that
-         alternate cleanly and leaves the rest as field.
+      /* Redrawn 2026-10-18, and it needed it twice over: it was the weakest
+         shape of the thirteen, thirty-five degrees tall for a crown, and it
+         was down in the belt with everything else.
 
-         It comes out taller than a crown ought to be, thirty-five degrees by
-         fifteen, because the stars here are spread in declination and not in
-         right ascension. Marduk called the Crown the heaviest burden fate
-         could place on a man, so an imposing one is not the worst outcome,
-         but this is the figure most likely to want redrawing. */
-      stars: ['s045', 's144', 's104', 's065', 's134', 's042'],
+         It now stands in the far north and takes in s154, HEAVEN'S LIGHT --
+         the pole star, the one star navigation depends on, which until today
+         belonged to no figure at all. A band of three points, and the
+         tallest of them carries on up to the pole. s090 hangs below as the
+         pendant.
+
+         The consequence is the good part, and it is not a trick of drawing:
+         nothing above declination +50 sets at this latitude, so the band and
+         its apex are up every night of the year. Marduk called the Crown a
+         burden to be accepted with strength and grace or not at all. The
+         figure he named is now the only one that never goes off duty.
+
+         Its mean right ascension is still inside sign 11, so sign and season
+         are unchanged. Heaven's Light barely moves that mean: a star a
+         degree and a half from the pole has almost no right ascension to
+         speak of. */
+      stars: ['s178', 's179', 's180', 's154'],
       lines: [
-        ['s045', 's144'], ['s144', 's104'], ['s104', 's065'],
-        ['s065', 's134'], ['s134', 's042']
+        ['s178', 's179'], ['s179', 's180'], ['s179', 's154']
       ],
       blurb: 'A band of points and valleys running west to east, rising to its ' +
              'highest at the eastern end. The duty of the royal house.'
@@ -459,14 +490,18 @@
       id: 'dancer',
       name: 'The Dancer',
       article: '/articles/the-dancer/',
-      /* Mid-step and deliberately lopsided: one arm flung east to s109, one
-         leg kicked east to s017, the other foot planted southwest. A dancer
-         caught symmetrical is a dancer standing still. */
-      stars: ['s052', 's048', 's022', 's089', 's109', 's061', 's006', 's017'],
+      /* Lifted out of the belt on 2026-10-18 and set in the south,
+         declination -25 to -43, keeping its right ascension and so its sign
+         and season.
+
+         Mid-step and still deliberately lopsided: one hand flung far west to
+         s145, the head and the other hand to the east, one foot planted on
+         s118 and the other kicked away east to s018. A dancer caught
+         symmetrical is a dancer standing still. */
+      stars: ['s145', 's186', 's184', 's185', 's118', 's018'],
       lines: [
-        ['s052', 's048'], ['s052', 's022'],
-        ['s022', 's109'], ['s022', 's089'], ['s089', 's061'],
-        ['s048', 's061'], ['s061', 's006'], ['s061', 's017']
+        ['s145', 's186'], ['s186', 's184'], ['s184', 's185'],
+        ['s186', 's118'], ['s184', 's018']
       ],
       blurb: 'A figure mid-step, one arm flung east and one leg kicked after ' +
              'it. At its height the city keeps the Festival of Folly.'

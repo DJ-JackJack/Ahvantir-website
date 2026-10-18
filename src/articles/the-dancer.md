@@ -7,25 +7,23 @@ date_added: "2026-10-17"
 
 # The Dancer
 
-A figure caught mid-step, one arm flung east and one leg kicked after it, the other foot planted southwest. It is the busiest figure in the sky in the plainest sense: eight stars out of the ten its sign has, which is more of a stretch of heaven used up than anywhere else on the suns' road.
+A figure caught mid-step, one hand flung far west and one leg kicked away east, low across the southern sky. You have to go outside and look south to see it, and you have to do it at the right hour.
 
 It stands for mirth, and for rest, and for the proposition that people who work should be allowed to stop.
 
 ## The figure
 
-Eight stars and eight lines, and deliberately lopsided. One arm goes east and up, one leg kicks east after it, and the planted foot is away to the southwest with nothing balancing it. A dancer drawn symmetrical is a dancer standing still.
+Six stars and five lines, and deliberately lopsided. One hand is flung far to the west, well clear of everything else; the head and the other hand are east of the shoulders; one foot is planted and the other kicked away east, and nothing balances anything. A dancer drawn symmetrical is a dancer standing still.
 
-The brightest star is at that planted foot, magnitude −1.26, sixth in the sky — so the weight of the figure is on the one part of it that is not moving.
+The brightest star is the kicked foot — magnitude −0.89, nineteenth in the sky — so what catches the eye is the part furthest from the ground.
 
-It is the most fully used sign on the road. Ten catalogue stars sit in it and eight of them are in the figure, leaving two as field. Everywhere else in this sky leaves four, five, eight or nine stars loose. Here there is almost nothing left over, which gives the Dancer a density none of the others have: it is hard to look at this stretch and see anything but the figure, because there is hardly anything else there.
+It is a low figure. Everything in it lies between declination −25 and −43, which from Aru'Mas means the whole dancer tops out around twenty-five degrees and the planted foot never gets above seven. For a few hours on the right nights it is clear of the hills and complete; the rest of the time some part of it is in the murk or under the horizon.
 
-It climbs high. The top of it reaches eighty-six degrees from Aru'Mas, near enough overhead that at the right hour you find it by leaning back.
-
-The suns walk through it from **12 Embrathen** to **39 Embrathen**, twenty-eight days, which is the whole of the sign inside a single month.
+**The suns do not pass through it.** They stand in its *sign*, the stretch of road named for it, from **12 Embrathen** to **39 Embrathen** — the whole of the sign inside a single month. The dancer herself is nearly fifty degrees south of them.
 
 ## The Festival of Folly
 
-While the suns stand in the Dancer, the city keeps the **Festival of Folly**.
+While the suns stand in the Dancer's sign, the city keeps the **Festival of Folly**. The figure is low in the south on those nights and not everyone bothers to go and look at it, which nobody has ever suggested is a problem.
 
 The shape of it is simple and the obligation runs one way. Employers are expected to give gifts to the people who work for them, and to say out loud that the work was worth something. Not to give a holiday — the holiday is the frame, not the gift — but to hand over a thing, personally, and acknowledge what was done.
 
@@ -43,13 +41,13 @@ Mirth and respite are the sign's meaning, and the city has read that as an instr
 
 That is a narrow obligation and a well-designed one. It is also the only figure in this sky with a holiday attached that costs somebody money.
 
-## The planted foot
+## How low it sits
 
 It is worth coming back to.
 
-The brightest star in a figure about motion is the foot that is not moving — the one bearing the weight while everything else is thrown outward. Nobody designed that; it is where the star is. But a city that reads the heavens for instruction has not failed to notice it, and the reading that gets repeated is the obvious one: the leaping is the part you see, and it is paid for by something standing still underneath.
+Of the thirteen figures, two never set at all, and this is one of the two that barely rise. The Dancer is a southern figure, down among the haze where the air takes most of the light before it arrives, and seeing her whole wants a clear night, a clear horizon, and the right few hours.
 
-Most people hearing that at the Festival of Folly are standing in the street wearing someone else's gift and are not inclined to argue.
+That has not hurt the festival in the slightest. A holiday about setting the work down does not require anybody to go and verify the sky, and the ones who do go out and look are generally the ones who were going to enjoy themselves anyway.
 
 ---
 

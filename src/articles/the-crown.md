@@ -7,21 +7,27 @@ date_added: "2026-10-17"
 
 # The Crown
 
-A band of points and valleys running west to east along the suns' road, rising to its highest at the eastern end. [[Marduk Sunspear|Marduk]] named it himself, and what he said about it has outlasted his house.
+A band of three points standing in the far north, with the tallest of them carrying on up to the pole star. [[Marduk Sunspear|Marduk]] named it himself, and what he said about it has outlasted his house.
 
-It is the duty of the royal family. It has never been the privilege.
+It is the duty of the royal family. It has never been the privilege, and it is one of only two figures in this sky that never set.
 
 ## The figure
 
-Six stars and five lines, alternating up and down — point, valley, point, valley, point — with the last point the highest of them.
+Four stars and three lines: a band of three points, the middle one tallest, and a fourth line carrying on from that middle point to the pole.
 
-It is taller than a crown has any business being: thirty-five degrees of height against fifteen of width. The stars here are spread in declination rather than along the road, so a band drawn through them stands up rather than lying flat. Marduk called the thing a burden, and a burden drawn larger than the head it sits on is not the worst outcome, but nobody should pretend the proportions were chosen.
+The star at the end of that line is **Heaven's Light** — the pole star, a degree and a half off true north, magnitude −1.14 and tenth brightest in the sky. It is the star every pilot and every caravan master on the archipelago steers by, and its height above the horizon is your latitude. It had belonged to no figure at all until the Crown was drawn around it.
 
-Fourteen stars sit in the sign, the richest stretch of the road not already spoken for, and only six are used — the six that alternate cleanly. The other eight are left as field, which is a decision that could be revisited. Of the figures in this sky, this is the one most likely to want redrawing.
+Everything in the band sits above declination fifty-four. From Aru'Mas that means none of it sets. The three points swing round the pole through the night, dropping to four degrees above the northern horizon at their lowest and climbing to seventy-six at their highest, and Heaven's Light sits almost still at forty degrees while they go round it.
 
-Its brightest star is magnitude −0.06, forty-third in the sky. No star in the Crown is remarkable. It is the only figure of its standing that has to be learned rather than noticed, and that has been pointed out from the pulpit more than once.
+**The suns do not pass through it.** They stand in its *sign*, the stretch of road named for it, from **30 Cindralis** to **11 Embrathen** — a stretch the Crown left behind. The figure is thirty degrees further north than the suns ever reach. It stands highest at midnight around **4 Ossandrel**, though for this figure that matters less than it does for the others, since it is never not there.
 
-The suns walk through it from **30 Cindralis** to **11 Embrathen**, twenty-six days. It stands highest at midnight around **20 Keltharyn**.
+## The one that never goes off duty
+
+Eleven of the thirteen rise and set. This is not one of them. Only the Coiled Serpent keeps it company up there, and nobody has yet attached a story to the Serpent, so the observation has always been made about the Crown.
+
+That is a property of where the stars are and not of anything anyone decided, but it has not gone unremarked, and the remark is always the same. A crown that is never out of the sky is a crown nobody is ever off duty from. The figure is overhead at the hour the court sits and overhead at the hour it does not; it is there in the month of the royal observances and equally there in the months when nobody thinks about the palace at all.
+
+Preachers have made the obvious use of it for four hundred years. So, less often and more quietly, have people with complaints about the palace.
 
 ## What Marduk said
 
