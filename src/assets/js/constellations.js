@@ -344,10 +344,10 @@
     {
       id: 'hand',
       name: 'The Hand',
-      provisional: true,
+      article: '/articles/the-hand/',
       /* A hand reaching up with the fingers spread: wrist low, knuckles on
          s004 (the brightest here), three digits rising and a thumb thrown
-         west. Eleven stars were available and seven are used, which keeps the
+         west. Sixteen stars sit in this sign and eight are used, which keeps the
          fingers distinct instead of crowding them.
 
          A caution for whoever writes this up, because I got it wrong once.

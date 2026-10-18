@@ -241,9 +241,20 @@ FIGS.forEach(f => {
     ok(f.name + ': declares itself provisional', f.provisional === true, 'no article yet');
     ok(f.name + ': does not point at an article it has not got', !f.article);
   } else {
-    ok(f.name + ': carries its chain of names oldest first', names.length >= 2,
-       names.map(n => n.name).join(' -> '));
+    /* A finished figure needs an article. It does NOT need a name chain.
+       This check used to demand two names of anything not provisional, which
+       encoded the premise Krys overturned on 2026-10-17: that a chain is
+       always there to be had. Most are not. Some figures were taken from the
+       spirit myth directly and never moved; for others the Drorn'Duur reading
+       was buried with the Drorn'Duur, on purpose, by a city that wanted a
+       different founding story. One name is a finished figure.
+
+       The shape of a chain is still guarded above, for the figures that have
+       one. What is not guarded, and must not be, is its existence. */
     ok(f.name + ': points at an article', /^\/articles\/[a-z0-9-]+\/$/.test(f.article), f.article);
+    ok(f.name + ': any names it does carry are a real chain',
+       names.length === 0 || names.length >= 2,
+       names.length ? names.map(n => n.name).join(' -> ') : 'one name, which is finished');
   }
 });
 
