@@ -24,16 +24,35 @@
  * itself as unfinished. Names may be present or not; what must never happen is
  * a name invented here to fill a gap, because the names belong to Krys.
  *
- * ON DRIFT. The Spear changes name at every layer and the other two do not, and
- * that is the system rather than an inconsistency. Krys ruled it on 2026-10-11:
- * where the myth behind a figure is common ground, the name holds; where some-
- * body had a reason to claim the figure, it moves. Marduk's astrologers renamed
- * a warrior because a four-hundred-day-old government needed a heaven that
- * agreed with it. Nobody gains by renaming the Green Mother.
+ * ON DRIFT. Where the myth behind a figure is common ground the name holds;
+ * where somebody had a reason to claim the figure, it moves. Krys ruled that on
+ * 2026-10-11. Marduk's astrologers renamed a warrior because a four-hundred-
+ * day-old government needed a heaven that agreed with it. Nobody gains by
+ * renaming the Green Mother.
  *
- * So a figure's name chain is evidence. Three different names means the figure
- * was contested and the sky recorded it. One name repeated means every tradition
- * inherited the same story and had no quarrel with it.
+ * ON WHAT IS MISSING, which is most of it. Krys ruled on 2026-10-17 that full
+ * chains "wouldn't, and arguably couldn't be that clean. Some are simply taken
+ * from the original spirit myth directly, and the ones that weren't went
+ * through a culture that was essentially driven nearly to extinction and
+ * systematically removed from records."
+ *
+ * So read a `names` array for what it is and not for what it lacks:
+ *
+ *   THREE NAMES is rare and means the figure was contested AND the middle
+ *   reading happened to survive. The Spear is the one that has it.
+ *
+ *   ONE NAME REPEATED means the story was common ground. These were ruled
+ *   individually; the Mother is the Mother in all three mouths because Krys
+ *   said so, not because the field was filled in three times.
+ *
+ *   NO ARRAY AT ALL is the ordinary state of this sky and is NOT a to-do. The
+ *   Drorn'Duur layer was obliterated before anyone wrote it down -- their own
+ *   article says their legacy "was buried in silence" -- and what the hidden
+ *   remnant carries comes in fragments. A figure with one name is finished.
+ *
+ * The mistake that comment used to invite, and which I made for six days, is
+ * reading an absent name as a silence to be filled and asking Krys to fill it.
+ * There is nothing to fill. The gap is the history.
  */
 (function () {
   'use strict';
@@ -295,12 +314,14 @@
      * in the sign -- nothing was moved to flatter a shape -- except the Sword,
      * which had nothing to build from and is noted in stars-bright.js.
      *
-     * NO NAME CHAINS. The Spirit and Drorn'Duur readings of these are not
-     * known, and inventing them is precisely what this file must not do. Each
-     * carries the one name Krys gave and nothing else until he rules on what
-     * the older traditions called them -- which is a real question, because
-     * the Crown and the Sword are both plainly Aru'Mas claims on a sky that
-     * was being read long before the city existed.
+     * ONE NAME EACH, AND THAT IS THE FINISHED STATE. These carry the single
+     * name Krys gave and will not be growing chains. Some are the spirit myth
+     * taken over directly; for the rest the Drorn'Duur reading is gone with
+     * the Drorn'Duur. See ON WHAT IS MISSING at the top of this file.
+     *
+     * The Crown and the Sword are still plainly Aru'Mas claims on a sky older
+     * than the city, which is worth knowing when they are written up. It is an
+     * observation about what the names say. It is not a missing field.
      */
     {
       id: 'hand',
