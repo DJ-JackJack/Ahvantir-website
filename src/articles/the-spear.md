@@ -22,7 +22,11 @@ This makes Ahvantir's sky unusual. In most places the older names for the stars 
 
 The [[Drorn'Duur]] inherited the figure, as they inherited most of their sky, from the spirits they had spent centuries in pact with. They called it **the Warrior**. The shift is slight — a weapon becomes the one who carries it — and that slightness is the point. Stone-priests who worshipped with open flame under the stars were not inventing a sky; they were learning one that was already in use and putting it in their own mouths.
 
-That is not how most of the figures went, and this one is unusual for having a middle name at all. Most never moved: the spirits named them, the [[Drorn'Duur]] took the names whole, Aru'Mas took them again, and the Mother is the Mother in all three mouths. Where a name did change, the Drorn'Duur step is usually simply gone — their surface culture was obliterated before anyone had thought to record it, and what the hidden remnant still carries comes down in fragments, in chants and encoded mosaics. Three names, one to a tradition, is not the pattern here. It is a survival.
+That is not how most of the figures went, and this one is unusual for having a middle name at all. Most never moved: the spirits named them, the [[Drorn'Duur]] took the names whole, Aru'Mas took them again, and the Mother is the Mother in all three mouths.
+
+Where a name did change, the middle reading is hard to come by, and not by accident. A city whose founding it prefers to tell as a landing and a pact has no use for a history that opens with what was done to the people already living here, and Aru'Mas buried the Drorn'Duur accordingly. The burial was thorough. It was not perfect. A handful of scholars, historians and spirit-binders have kept what they could of that story from vanishing, and go on asking after the rest, and go on finding their inquiries discouraged by institutions with reasons to keep the founding story intact.
+
+So a figure with three names is not a thing that happened to survive. It is a thing somebody kept.
 
 ## The Spear
 

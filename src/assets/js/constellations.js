@@ -30,29 +30,45 @@
  * day-old government needed a heaven that agreed with it. Nobody gains by
  * renaming the Green Mother.
  *
- * ON WHAT IS MISSING, which is most of it. Krys ruled on 2026-10-17 that full
- * chains "wouldn't, and arguably couldn't be that clean. Some are simply taken
- * from the original spirit myth directly, and the ones that weren't went
+ * ON WHAT IS MISSING, AND WHY SOME OF IT IS NOT. Krys ruled on 2026-10-17 that
+ * full chains "wouldn't, and arguably couldn't be that clean. Some are simply
+ * taken from the original spirit myth directly, and the ones that weren't went
  * through a culture that was essentially driven nearly to extinction and
  * systematically removed from records."
  *
+ * He ruled twice, because the first version of this comment turned that into
+ * an absolute and the truth is not one: "Much of the Drorn'Durrs culture was
+ * buried, and purposefully so, the early leadership of Aru'Mas didn't want
+ * their new homelands history to begin with the bloody, and near complete,
+ * genocide of the lands former people. But no one can perfectly erase the
+ * past, and Ahvantir is a land of inquisitive and exploratory people and some
+ * kept pieces of the Drorn'Durrs story from vanishing."
+ *
+ * Two deliberate acts, then, not one accident. A city buried a history it did
+ * not want to open with, and people went on keeping pieces of it anyway, at
+ * some cost -- their own article has scholars, historians and spirit-binders
+ * who still find their inquiries "discouraged by institutions with reasons to
+ * keep the founding story intact."
+ *
  * So read a `names` array for what it is and not for what it lacks:
  *
- *   THREE NAMES is rare and means the figure was contested AND the middle
- *   reading happened to survive. The Spear is the one that has it.
+ *   THREE NAMES is uncommon, and is somebody's doing rather than luck. It
+ *   means the figure was contested AND that the middle reading was kept by
+ *   someone who meant to keep it. The Spear is the one that has it.
  *
  *   ONE NAME REPEATED means the story was common ground. These were ruled
  *   individually; the Mother is the Mother in all three mouths because Krys
  *   said so, not because the field was filled in three times.
  *
- *   NO ARRAY AT ALL is the ordinary state of this sky and is NOT a to-do. The
- *   Drorn'Duur layer was obliterated before anyone wrote it down -- their own
- *   article says their legacy "was buried in silence" -- and what the hidden
- *   remnant carries comes in fragments. A figure with one name is finished.
+ *   NO ARRAY AT ALL is the ordinary state of this sky and is NOT a to-do. A
+ *   figure with one name is finished. It is not, however, a closed door: if a
+ *   Drorn'Duur reading for one of these ever turns up it will arrive the way
+ *   they do -- somebody kept it -- and not as a blank being filled in.
  *
- * The mistake that comment used to invite, and which I made for six days, is
- * reading an absent name as a silence to be filled and asking Krys to fill it.
- * There is nothing to fill. The gap is the history.
+ * The mistake this comment used to invite, and which I made for six days, is
+ * reading an absent name as a silence waiting on Krys. It is not. But nor is
+ * it proof of nothing having been there, and swinging to THAT was the second
+ * mistake, made and corrected inside an hour on 2026-10-17.
  */
 (function () {
   'use strict';
@@ -315,9 +331,11 @@
      * which had nothing to build from and is noted in stars-bright.js.
      *
      * ONE NAME EACH, AND THAT IS THE FINISHED STATE. These carry the single
-     * name Krys gave and will not be growing chains. Some are the spirit myth
-     * taken over directly; for the rest the Drorn'Duur reading is gone with
-     * the Drorn'Duur. See ON WHAT IS MISSING at the top of this file.
+     * name Krys gave and are not waiting on chains. Some are the spirit myth
+     * taken over directly; for the rest the Drorn'Duur reading was buried with
+     * the Drorn'Duur, deliberately, by a city that preferred a different
+     * founding story. Buried is not the same as gone -- see ON WHAT IS
+     * MISSING at the top of this file -- but it is not ours to dig up.
      *
      * The Crown and the Sword are still plainly Aru'Mas claims on a sky older
      * than the city, which is worth knowing when they are written up. It is an
