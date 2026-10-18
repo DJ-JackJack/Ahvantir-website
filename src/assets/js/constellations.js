@@ -376,7 +376,7 @@
     {
       id: 'lady',
       name: 'The Lady',
-      provisional: true,
+      article: '/articles/the-lady/',
       /* Narrow at the head and spreading to a hem, with the veil swept to one
          side only -- which is what keeps her from reading the same mirrored.
          s002 is the Ladies Gaze and sits at the top, because a figure nobody
@@ -401,7 +401,7 @@
     {
       id: 'dreamer',
       name: 'The Dreamer',
-      provisional: true,
+      article: '/articles/the-dreamer/',
       /* Reclining, head east and feet west, with one arm fallen away south.
          That dropped arm is a thirty-nine degree reach and it is the whole
          figure: without it this is a line of stars, and with it somebody is
@@ -436,9 +436,9 @@
     {
       id: 'crown',
       name: 'The Crown',
-      provisional: true,
+      article: '/articles/the-crown/',
       /* Points and valleys, west to east. The sign is the richest unclaimed
-         one -- thirteen usable stars -- so this uses only the six that
+         one -- fourteen catalogue stars -- so this uses only the six that
          alternate cleanly and leaves the rest as field.
 
          It comes out taller than a crown ought to be, thirty-five degrees by
@@ -458,7 +458,7 @@
     {
       id: 'dancer',
       name: 'The Dancer',
-      provisional: true,
+      article: '/articles/the-dancer/',
       /* Mid-step and deliberately lopsided: one arm flung east to s109, one
          leg kicked east to s017, the other foot planted southwest. A dancer
          caught symmetrical is a dancer standing still. */
@@ -475,7 +475,7 @@
     {
       id: 'sword',
       name: 'The Sword',
-      provisional: true,
+      article: '/articles/the-sword/',
       /* Laid down, not raised. Krys's reading is the weapons set aside between
          spirits and humans, so the blade lies flat across the sign: point west
          on s001 -- Piercers Point, the brightest star in the sky -- and the
