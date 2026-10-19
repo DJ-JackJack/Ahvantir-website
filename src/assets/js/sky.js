@@ -77,6 +77,11 @@
     Keltas:  [214, 214, 224]
   };
 
+  /* How far through the current day the animation has got, 0 to 1.
+     Non-zero only while playing at day speed, and never saved: it is a
+     position inside a day, not a thing anyone chose. */
+  var dayFrac = 0;
+
   var cssv = function (n) {
     return getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   };
@@ -132,6 +137,11 @@
   }
 
   // The whole sky for one moment. Y in MC, doy 1..386, h in hours 0..24.
+  // The sky at this instant, the fraction of a day included. Everything
+  // that needs "now" comes through here, so the picture, the pointer
+  // readout and the search cannot end up looking at different moments.
+  function skyNow() { return skyAt(st.Y, st.doy + dayFrac, st.h); }
+
   function skyAt(Y, doy, h) {
     var D = M.absDay(Y, doy);
     var t = D + h / 24;
@@ -1055,7 +1065,7 @@
   function render() {
     if (!W) return;
     setupProj();
-    var sky = skyAt(st.Y, st.doy, st.h);
+    var sky = skyNow();
     var L = skyLight(sky);
     var S = sky.bodies[0], N = sky.bodies[1];
     ctx.clearRect(0, 0, W, H);
@@ -1538,7 +1548,7 @@
       say('Moved to ' + M.fmtLong(st.Y, st.doy) + '.');
       return;
     }
-    var sky = skyAt(st.Y, st.doy, st.h), v = null;
+    var sky = skyNow(), v = null;
     if (hit.kind === 'body') {
       var b = sky.bodies[hit.i];
       aimAt(b.alt, b.az);
@@ -1569,7 +1579,7 @@
     if (st.view === 'dome' && q.alt < -1) return '';
     var txt = Math.round(q.alt) + '\u00b0 ' + compass(q.az);
     if (q.alt > -1) {
-      var sky = skyAt(st.Y, st.doy, st.h);
+      var sky = skyNow();
       var eq = horToEq(aaToHor(q.alt, q.az), sky.lst);
       var k = O.signOf(O.raOf(eq)), fg = FIG_BY_SIGN[k];
       txt += ' \u00b7 sign ' + k + (fg ? ', ' + fg.name : '');
@@ -1727,14 +1737,25 @@
 
   /* ---------- play ---------- */
 
-  var lastT = 0, acc = 0, raf = 0;
+  var lastT = 0, raf = 0;
   function tick(t) {
     if (!st.playing) return;
     var dt = lastT ? Math.min(0.1, (t - lastT) / 1000) : 0;
     lastT = t;
     if (st.speed === 'day') {
-      acc += dt;
-      if (acc >= 1) { acc = 0; setDate(st.Y, st.doy + 1); }
+      /* A day a second, spread across the second instead of spent all at
+         once. setDate fires only on the rollover: it rebuilds the day table,
+         the light band and the ephemeris and writes to storage, about
+         eighteen milliseconds against ten for an ordinary frame, and has no
+         business running sixty times a second. Between rollovers the fraction
+         carries the motion and render() draws every frame of it.
+
+         The remainder is subtracted rather than zeroed. Zeroing discarded
+         whatever the frame overshot by, which made every day a little longer
+         than a second -- an error nobody sees and every clock drifts from. */
+      dayFrac += dt;
+      while (dayFrac >= 1) { dayFrac -= 1; setDate(st.Y, st.doy + 1); }
+      render();
     } else {
       st.h += dt * (+st.speed) / 60;
       if (st.h >= 24) { st.h -= 24; setDate(st.Y, st.doy + 1); } else render();
@@ -1745,12 +1766,20 @@
     st.playing = on;
     $('sky-play').textContent = on ? 'Pause' : 'Play';
     $('sky-play').setAttribute('aria-pressed', String(on));
-    if (on) { lastT = 0; acc = 0; raf = requestAnimationFrame(tick); }
-    else { if (raf) cancelAnimationFrame(raf); raf = 0; save(); }
+    if (on) { lastT = 0; dayFrac = 0; raf = requestAnimationFrame(tick); }
+    else {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      // Land on the whole day: a paused sky should match the date beside it.
+      dayFrac = 0; render(); save();
+    }
   }
   function togglePlay() { setPlaying(!st.playing); }
   $('sky-play').onclick = togglePlay;
-  $('sky-speed').addEventListener('change', function (e) { st.speed = e.target.value; });
+  $('sky-speed').addEventListener('change', function (e) {
+    st.speed = e.target.value;
+    dayFrac = 0;
+  });
 
   // requestAnimationFrame does not fire in a hidden tab. Without this the loop
   // is simply suspended and resumes by jumping the whole time the reader was
