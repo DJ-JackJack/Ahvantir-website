@@ -83,6 +83,21 @@ jobs:
             exit 1
           }
 
+      # The converter is tested against a sample string in
+      # scripts/test-sync-callouts.py. This reads what it actually produced.
+      # On 2026-10-17 the sample test passed all day while two DM rulings sat
+      # live on ahvantir.world, so a green converter test is not evidence that
+      # the output is clean. Runs before the commit: a leak found here is a
+      # leak that was never published.
+      - name: Check no DM material reached the articles
+        shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"
+        run: |
+          & python scripts/test-publish-guard.py
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "::error::DM-facing text reached src/articles. Nothing has been committed. Fix the vault text, or teach obsidian-to-md.py to strip the phrase, then re-run the sync."
+            exit 1
+          }
+
       - name: Commit articles and write sync log
         if: github.event.inputs.dry_run != 'true'
         shell: powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive -Command "& '{0}'"

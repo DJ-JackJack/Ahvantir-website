@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The one gate on this workflow. Nothing else here runs a test, so a
+      # push straight to main went to the public site unchecked.
+      - name: Check no DM material reached the articles
+        run: python3 scripts/test-publish-guard.py
+
       - name: Build site
         run: npx @11ty/eleventy
 

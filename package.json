@@ -1,7 +1,7 @@
 {
   "name": "ahvantir-website",
   "version": "1.0.0",
-  "description": "The Ahvantir lore encyclopedia \u2014 a living reference for the Aru'Mas campaign setting",
+  "description": "The Ahvantir lore encyclopedia — a living reference for the Aru'Mas campaign setting",
   "private": true,
   "scripts": {
     "build": "eleventy",
@@ -9,7 +9,7 @@
     "start": "eleventy --serve",
     "dev": "eleventy --serve --incremental",
     "sync": "python3 scripts/obsidian-to-md.py",
-    "test": "npm run test:coords && npm run test:callouts && npm run test:contrast && npm run test:layering && npm run test:marducian && npm run test:orbits",
+    "test": "npm run test:coords && npm run test:callouts && npm run test:publish && npm run test:contrast && npm run test:layering && npm run test:marducian && npm run test:orbits",
     "test:coords": "node scripts/test-map-coords.js",
     "test:callouts": "python3 scripts/test-sync-callouts.py",
     "test:contrast": "node scripts/test-contrast.js",
@@ -19,7 +19,8 @@
     "test:links": "node scripts/test-links.js",
     "test:built": "npm run build && npm run test:backlinks && npm run test:a11y && npm run test:links",
     "test:marducian": "node scripts/test-marducian.js",
-    "test:orbits": "node scripts/test-orbits.js"
+    "test:orbits": "node scripts/test-orbits.js",
+    "test:publish": "python3 scripts/test-publish-guard.py"
   },
   "devDependencies": {
     "@11ty/eleventy": "2.0.1",
