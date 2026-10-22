@@ -8,6 +8,14 @@ name: Sync Health Check
 # Runs on a GitHub-hosted runner, so the monitor keeps working even if the
 # self-hosted runner (FENRIS-FOUNDRY) is offline — which is exactly the
 # situation it needs to catch.
+#
+# It reports four distinct problems, because they have four different fixes:
+# the API would not answer; the workflow is gone; the workflow runs but every
+# recent run failed; the last success is older than the threshold. Until
+# 2026-10-22 it reported all four as the second, and emailed that the sync was
+# dead when the truth was one bad API read. That was its only false alarm in
+# 116 runs — the seven before it were a real sync bug — so the job is trusted
+# and should stay that way.
 
 on:
   schedule:
@@ -29,12 +37,53 @@ jobs:
         run: |
           set -euo pipefail
 
-          last=$(gh run list --repo "$GITHUB_REPOSITORY" \
-                   --workflow "Obsidian Sync" --status success \
-                   --limit 1 --json createdAt --jq '.[0].createdAt // empty')
+          # Ask for the workflow's runs by FILENAME. The API takes the file as
+          # the workflow id, so there is no display-name lookup to go wrong.
+          # 30 runs is over half a year of a weekly sync.
+          API="repos/$GITHUB_REPOSITORY/actions/workflows/obsidian-sync.yml/runs?per_page=30"
+
+          # Retry before believing a bad answer. On 2026-10-22 a single read
+          # came back empty with exit 0 while a healthy run from three days
+          # earlier sat right there, and this job emailed that the sync was
+          # dead. One empty read is not evidence of anything.
+          # gh's own --jq, not the jq binary: gh is already required here, and
+          # this way the script runs anywhere gh does, including a Windows
+          # dev box where jq is not on PATH. One call, three values, tab
+          # separated; the last is empty when no run succeeded.
+          QUERY='"\(.total_count)\t\(.workflow_runs | length)\t\([.workflow_runs[] | select(.conclusion == "success")][0].created_at // "")"'
+
+          summary=""
+          for attempt in 1 2 3; do
+            if summary=$(gh api "$API" --jq "$QUERY" 2>/dev/null) && [ -n "$summary" ]; then
+              break
+            fi
+            summary=""
+            echo "Attempt ${attempt}: could not read the run history."
+            [ "$attempt" -lt 3 ] && sleep 10
+          done
+
+          if [ -z "$summary" ]; then
+            # Separate "the API would not answer" from "the workflow is gone",
+            # because the fix is different and only one of them is urgent.
+            if gh api "repos/$GITHUB_REPOSITORY/actions/workflows" \
+                 --jq '.workflows[].path' 2>/dev/null \
+                 | grep -q 'obsidian-sync.yml'; then
+              echo "::error::Could not read the Obsidian Sync run history after three attempts, though the workflow is still registered. This says NOTHING about whether the sync is healthy — the GitHub API would not answer. Check githubstatus.com; if the API is fine, check the actions:read permission on this workflow."
+            else
+              echo "::error::The Obsidian Sync workflow is no longer registered at .github/workflows/obsidian-sync.yml. It was renamed, moved or deleted, and the lore sync is not running at all."
+            fi
+            exit 1
+          fi
+
+          IFS=$'\t' read -r total fetched last <<< "$summary"
+
+          if [ "$total" -eq 0 ]; then
+            echo "::error::The Obsidian Sync workflow is registered but has never run. Check its schedule block and whether Actions is enabled for this repository."
+            exit 1
+          fi
 
           if [ -z "$last" ]; then
-            echo "::error::No successful 'Obsidian Sync' run found. The weekly lore sync has never succeeded recently, or the workflow was renamed/removed."
+            echo "::error::None of the last ${fetched} Obsidian Sync runs succeeded. The sync is FAILING, not merely late — open the most recent run and read its log. The self-hosted runner is FENRIS-FOUNDRY."
             exit 1
           fi
 
