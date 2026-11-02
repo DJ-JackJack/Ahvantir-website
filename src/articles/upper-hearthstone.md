@@ -25,6 +25,7 @@ Residents organise frequent events — harvest festivals, artisan showcases, and
 
 ## Key Sites
 
+- **[[The Aloysius Don'Raffian Atripho Arcanomechanical Clock Tower|The Sentry]]** — The city's central clock tower, and the district's most visible possession. Eight faces readable across most of Aru'Mas; its chime is heard only here.
 - **The Hearth Square** — A bustling plaza for celebrations, markets, and public meetings.
 - **Stonemason's Guildhall** — Where skilled labourers coordinate work and apprenticeships.
 - **The Hearthforge** — A sub-district where artisans and craftspeople live and work. The Hearthforge Foundry (a communal forge) is its centrepiece.

@@ -57,6 +57,14 @@ Two days each year fall outside the Turn entirely. Civic life pauses on both, an
 
 These were once the equinox observances, **Equinara** and **Umbrivale**, named for the days they marked. The calendar has drifted since. The two days keep their fixed places in the year, but no longer fall on the equinoxes, and now carry names fitted to where they actually land.
 
+## The Day
+
+A day is divided into **twenty-four hours**.
+
+Reading the hour off the sky is not straightforward here. With two suns above it, every object in open sunlight casts two shadows at different angles — see [[Solara and Nystara]] — so a sundial offers two readings that disagree, and shadow-reckoning is a specialist's skill rather than a glance out of a window. Aru'Mas consequently relies on built timekeeping, of which it has several mechanisms.
+
+The central one is [[The Aloysius Don'Raffian Atripho Arcanomechanical Clock Tower|the Sentry]], the arcanomechanical clock tower in [[Upper Hearthstone]], whose eight faces are backlit by radiant crystals and readable across most of the city by day or night. Where the Sentry can be seen, two strangers can agree on an hour without a word between them. Where it cannot, they cannot.
+
 ## The Moons
 
 The calendar's solar structure provides the backbone for agricultural cycles, legal contracts and administrative planning. Its lunar dimension carries equal weight in spiritual and magical practice, and ritualists, farmers and mages alike layer the lunar rhythms over the solar calendar for guidance in planting, divination and spellwork.
