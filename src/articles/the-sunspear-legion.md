@@ -61,7 +61,7 @@ There are two objects in Aru'Mas called a "sunspear."
 
 The first is a relic: Marduk Sunspear's actual spear, held in the Citadel of Solara and displayed in the Magister of Defense's quarters as the Legion's founding symbol. On the [[Day of Unity]], it is carried through the streets in ceremonial procession by the sitting Magister of Defense — a tradition that dates to the early post-founding period and has never been formally interrupted. The relic is the Legion's aquila: its sacred object, its identity made physical.
 
-The second is a weapon: an enchanted spear carried by Ironshield soldiers, warded to glow with the light of Solara and capable of dispelling dark energies. These weapons are produced by Legion armorers, blessed by chaplains of the [[Order of Valor]], and issued to qualifying soldiers as part of their formal kit. Every Ironshield who completes training carries one.
+The second is a weapon: an enchanted spear carried by Ironshield soldiers, warded to glow with the light of Solara and capable of dispelling dark energies. These weapons are produced by Legion armorers, blessed by chaplains of the [[Order of Valor]], and issued to qualifying soldiers as part of their formal kit. Every Ironshield on patrol strength carries one. The division's heavy phalanxes carry maul and tower shield instead — a distinction most citizens never have cause to notice, since the spear is the one they see.
 
 The convergence is not accidental. The Legion's institutional identity was deliberately constructed around Marduk's name and image in the same years when the official founding narrative was being assembled from politically useful pieces of the truth. The Legion became one of the mechanisms through which that narrative was sustained: soldiers bearing Marduk's name, performing his memory in ceremony, trained in his values. They do not typically interrogate his history.
 
@@ -265,7 +265,7 @@ What is less certain is what he intends to do with that knowledge. He is not a m
 - [[The Church of the Threefold Path]] — joint confirmor of Magister of Defense appointments; Legion doctrine intertwined with Threefold Path values
 - [[House Der'Tagan]] — most militarily entangled of the noble houses; deepest blood ties to Legion ranks
 - [[Merchants Guild]] — joint confirmor of Magister of Defense appointments; economic influence on Legion priorities
-- [[Citadel of Solara]] — Legion headquarters; location of the Spear Academy and Marduk's relic
+- [[Citadel of Solara]] — the Legion's seat in Stonegate; location of the Spear Academy and Marduk's relic
 - [[Skywardens]] — elite aerial division
 - [[Ironshields]] — core infantry division
 - [[Nightcloaks]] — intelligence and covert operations division
