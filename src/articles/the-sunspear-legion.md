@@ -14,7 +14,7 @@ timeline_year: 0
 |---|---|
 | Type | Military |
 | Leader | [[Feldmarch Derrivus Calcinius]] (*Magister of Defense*) |
-| Headquarters | [[Citadel of Solara]], Stonegate |
+| Headquarters | [[Citadel of Solara]], Stonegate (seat); the Sunspear Bastion, [[Heartspire]] (operational command) |
 | Status | Active |
 | Founded | Year 0 MC (formally); wartime precursor from -13 MC |
 | Allegiance | The Crown of Aru'Mas; the ruling council |
@@ -27,7 +27,7 @@ The Sunspear Legion is the standing military of [[Aru'Mas]] — its city guard, 
 
 The Legion is widely respected. It is also, in ways few people have the context to recognize, a monument to selective memory.
 
-It is the oldest continuous institution in the city. It predates the [[Ilderas Dynasty]] by an unknown span of generations. Those structures are inherited artifacts from the Landing War. They have been maintained. They have not been questioned.
+It is the oldest continuous institution in the city, formally instituted at Year 0 MC and older than the [[Ilderas Dynasty]] by more than three centuries. Its oath, its rank titles, and the procession of its founder's spear are inherited artifacts from the Landing War. They have been maintained. They have not been questioned.
 
 ---
 
@@ -88,17 +88,25 @@ Supporting the Magister of Defense is the **Council of Spears**: senior officers
 
 Beneath the Magister of Defense and Council are **Garrison Commanders**: district-level officers responsible for maintaining order and managing Legion presence in their assigned area of Aru'Mas. Each major district has at least one; busier districts like [[Stonegate]] and [[Luminous Reach]] run full garrison staffs.
 
+### The Royal Commission
+
+Command of the Legion is not held by one person. The Magister of Defense holds institutional command — appointments, garrison assignments, the Council of Spears, and the Legion's standing duties inside the walls. Field command of expeditions beyond them belongs to the Crown.
+
+That commission currently sits with [[Heir Apparent|Crown Prince Kaelen Ilderas]], who has led Legion forces in the border campaigns against rogue spirits and bandit factions, commanded at the **Battle of Varyss Ridge** that secured the northern trade routes, and drives the **Expansion Initiative** — the push to establish fortified outposts deeper into Ahvantir. Soldiers who have campaigned under him are loyal to him personally, which is a different thing from being loyal to an office he does not hold.
+
+No one has yet had to resolve what happens when the two commands want different things. Kaelen's Expansion Initiative carries a documented risk of disrupting the Old Pacts, and operations beyond the walls are precisely where the Runeguard keeps encountering obligations it cannot source. The [[The Church of the Threefold Path|Church of the Threefold Path]] — which holds a confirmation veto over every Magister of Defense — is also Kaelen's most persistent opponent on exactly that question. The institutional chain and the royal commission have never yet been pointed in opposite directions. Nothing in the arrangement prevents it.
+
 ### Ranks Within Divisions
 
 Within each division, rank progresses through four recognized tiers:
 
-**Spearlord** — Division commander or senior unit officer. Equivalent to a captain. Spearlords sit on the Council of Spears as divisional representatives.
+**Spearlord** — Division commander or senior unit officer. Equivalent to a captain. Spearlords sit on the Council of Spears as divisional representatives. Several divisions use their own title for the office rather than the Legion's — the Ironshields' Shieldmaster, the Runeguard's Runelord, the Skywardens' Captain. The rank is the same. The usage is divisional pride, and in four centuries the Legion has never bothered to standardise it.
 
 **Ironwarden** — Veteran soldier with demonstrated command capacity. Responsible for training junior members and managing small-unit operations. The backbone of institutional knowledge in any division.
 
 **Sunspear** — Full member of the Legion. This is the rank most citizens picture when they imagine a Legion soldier. The title is the Legion's primary identifier; soldiers at this rank are addressed as Sunspear regardless of which division they serve in.
 
-**Initiate** — A recruit in the active training period, enrolled in the Spear Academy. Initiates are not yet full members and do not carry the sunspear weapon until training is complete.
+**Initiate** — A recruit in the active training period, enrolled in the Spear Academy. Initiates are not yet full members and do not carry their division's issued arms until training is complete.
 
 The use of "Sunspear" as both an institutional name and a military rank is deliberate. Every fully trained soldier in the Legion bears Marduk's name as a personal title. Whether that is tribute or burden depends on who you ask — and, more to the point, what they know.
 
@@ -112,13 +120,15 @@ The Skywardens are the most visible and celebrated division in the Legion — th
 
 The division's training is among the most demanding in the Legion: aerial combat, joint tactics with ground forces, arcane communication with mounts, and the complex work of maintaining a bond with a creature that can kill you. Candidates must pass the **Sky Trials** — tests that include fighting from moving mounts, engaging targets mid-air, and surviving high-altitude conditions under stress. Fewer than one in three who begin the Trials finish them. Skywardens who wash out are returned to the general pool and often serve respectably in the Ironshields.
 
-The Skywardens also perform aerial displays during major festivals — not frivolous ceremony, but public demonstrations of what the city can field. Tens of thousands watch from the rooftops. [[House Der'Tagan]]'s Captain Yelra Der'Tagan currently leads the Skywarden division in [[Luminous Reach]], one of the more senior Skywarden postings in Aru'Mas.
+The Skywardens also perform aerial displays during major festivals — not frivolous ceremony, but public demonstrations of what the city can field. Tens of thousands watch from the rooftops. [[House Der'Tagan]]'s Captain Yelra Der'Tagan commands the Skywarden wing based in [[Luminous Reach]], one of the more senior Skywarden postings in Aru'Mas.
 
 ### The Ironshields
 
 The Ironshields are the Legion's core infantry: the soldiers that patrol streets, manage gates, staff checkpoints, and respond to civil disturbances. They are the Legion most citizens interact with daily, which makes them simultaneously the institution's public face and its most politically complicated element.
 
 The Ironshields carry warded shields designed to resist both physical and minor magical attacks, and the signature sunspear weapons — enchanted to glow with Solara's light and capable of dispelling certain dark energies. Their training emphasizes anti-magic tactics alongside conventional combat, reflecting the reality that Aru'Mas is a multiversal hub where magical disturbances are routine. A competent Ironshield can hold a district checkpoint for twelve hours and handle everything from a drunken adventurer to a summoned entity, often without escalation.
+
+The division runs in two tiers, and most citizens only ever meet one. The great majority are the patrol strength described above: warded shield, sunspear, a district and a checkpoint. The **phalanxes** are the other tier — twenty to thirty soldiers under a Phalanx Captain, in runesteel plate behind tower shields as tall as the soldiers carrying them, armed with mauls and warhammers runed for impact and shattering, drilled until a shield wall moves as a single object. Within a phalanx, Bastions of five to ten specialise in siege-breaking, shield reinforcement or magical suppression. Phalanxes do not walk beats. They hold the Citadel of Solara, the Sunspear Bastion, the Council Chambers and the Runeguard Citadel, man the battlements in a siege, and go first through a breach. The division's head, the **Shieldmaster** — currently **Shieldmaster Garren Vex** — came up through them, as Shieldmasters do.
 
 The Ironshields are the enforcement arm of a city with enormous wealth inequality, and they know which side of that they work on. In [[The Spillway|the Spillway]], the sight of an Ironshield uniform tends to inspire wariness rather than comfort — a fact long-serving soldiers understand and rarely discuss.
 
@@ -134,6 +144,10 @@ The Nightcloaks' relationship to the rest of the Legion is deliberately ambiguou
 
 The Runeguard are the Legion's arcane division: battlemages, warded warriors, and counter-spell specialists deployed against magical threats too complex or dangerous for conventional forces. They handle rogue spellcasters, unstable portals, summoned entities, and the ongoing challenge of operating in a city where the boundary between planes is not always firm.
 
+They are also the division that operates least like one, and the work requires it. Arcane enforcement means regulating a community the rest of the Legion never touches: licensing spellcasting and enchanted goods, issuing the access tokens for the [[Tetherjumps|Tetherjump]] network, overseeing the rituals that renew the Old Pacts alongside the [[Order of Harmony]], and granting the arcane writs that even Legion mages and senior Skywardens must hold to work. None of that can run on garrison lines or wait on a Council vote. So the Runeguard command themselves. The **Runelord** — currently **Runelord Eleindra Yvael** — holds the division from the **Runeguard Citadel** in the [[Heartspire]] rather than from the Citadel of Solara, with Cohorts of ten to twenty under a Cohort Captain posted to the Heartspire, the Citadel and the [[Spiritsway Passage]] instead of to district garrisons.
+
+Outside the Legion the distinction is largely lost. Most of Aru'Mas describes the Runeguard as a separate body, and in every practical sense it is — a division answerable to its own Runelord can move on a planar breach before anyone authorises it. It can also decline to explain itself.
+
 Working in close coordination with the [[Order of Wisdom]], the Runeguard maintain the largest systematic catalogue of magical threat signatures in the city's history. This catalogue includes entries the Runeguard themselves cannot fully explain — phenomena from the [[Fend and the Fendfolk|Fend]] whose underlying logic traces to agreements the Runeguard have found but cannot source. Some of these phenomena appear to follow patterns of obligation and reciprocity that don't match any known spirit pact from the post-founding period. Members who press this question find their inquiries quietly discouraged.
 
 Their standard equipment includes runic staves, warded armor enchanted to resist magical attack, and spellbreakers — small talismans capable of disrupting hostile magic in close proximity. Several Runeguard Spearlords have published papers through the [[Arrandak Academy]] under pseudonyms.
@@ -141,6 +155,10 @@ Their standard equipment includes runic staves, warded armor enchanted to resist
 ### The Vanguard of Valor
 
 The Vanguard of Valor are the Legion's shock troops — the heaviest, most offensively oriented division, deployed when decisive force is needed and when subtlety has already failed. They lead charges in major battles, hold the line during sieges, and are the first division called when an external threat reaches the outer walls.
+
+They are also the royal family's personal guard, which is the half of their remit the city notices least and the [[Ilderas Dynasty|Ilderas]] notice most. Vanguards stand in the palace, at official events, and on every public appearance the monarch and his heirs make; senior members accompany the king into negotiations where security is the point, and are trusted as advisors and confidants rather than furniture. The division is the first line of defense in a crisis and the last line of protection for the monarchy, and it does not treat those as separate duties.
+
+That places the Legion's heaviest division in two chains at once — the Magister of Defense for its operational life, the Crown for the bodies it stands beside. Which chain holds in a crisis has never been put to a Vanguard officer, and the Legion has not written down an answer.
 
 Vanguard armor bears the emblem of Nystara — the second of Nyhexus's twin suns, associated with resolve and the refusal to yield. Where the Ironshields carry weapons that glow with Solara's light, the Vanguard bear Nystara's mark: a deliberate duality running across the Legion's two most visible divisions, the light of one sun for peacekeeping, the emblem of the other for war. Their training is brutal by design — only soldiers already proven in another division are eligible for consideration, and they must pass the **Trials of Radiance**, a series of combat and endurance evaluations designed to simulate extreme crisis scenarios. Vanguards carry great weapons: halberds, mauls, two-handed swords. They are not built for finesse.
 
@@ -188,7 +206,7 @@ None of this requires bad people. That's the point. The ceremony does it. The oa
 
 ## The Noble House Compact
 
-All six original noble houses descend from companions of [[Marduk Sunspear]] — people present during the Landing War who survived it. Every founding noble house therefore has its own institutional memory of the conflict that created the Legion. How they relate to the Legion reflects what their ancestors were.
+Aru'Mas has seven noble houses. Six are original — [[House Athram|Athram]], [[House Atripho|Atripho]], [[House Chromewell|Chromewell]], [[House Dale|Dale]], [[House Der'Tagan|Der'Tagan]] and [[House Ninetti|Ninetti]] — and all six descend from companions of [[Marduk Sunspear]], people present during the Landing War who survived it. The seventh, [[House Cryxis|Cryxis]], was raised later and by a different route. Every founding house therefore carries its own institutional memory of the conflict that created the Legion, and how each relates to the Legion reflects what their ancestors were.
 
 **[[House Der'Tagan]]** is the most directly military. Formed from the high-orc warriors in Marduk's company, their blood runs through Legion ranks at every level — Ironshields, Vanguard of Valor, and the Skywarden rotation in Luminous Reach. The Der'Tagan compound doubles informally as a Legion facility. The relationship is deep enough that the line between house and Legion sometimes blurs.
 
@@ -197,6 +215,10 @@ All six original noble houses descend from companions of [[Marduk Sunspear]] —
 **[[House Atripho]]** has historically supplied the Nightcloaks with both intelligence contacts and personnel — though this is not formally acknowledged. The Atriphan tradition of operating from behind curtains maps comfortably onto what the Nightcloaks do.
 
 **[[House Athram]]** provides the institutional record. Their scribes maintain the Legion's official archive and serve as officiants at major Legion ceremonies. They know what's in the Academy's institutional history curriculum and are precisely the house least likely to question it.
+
+**[[House Dale]]** has the most awkward relationship with the Legion of any founding house, and the awkwardness is ancestral. They descend from the scouts, foragers and boundary-keepers of the founding generation — the people who mapped the ground and watched the edges — and they have never really left that role. Their ties run through the Adventurers Guild Association rather than the Spear Academy, and their influence over law enforcement is strongest exactly where the Legion's is weakest: [[The Spillway|the Spillway]] and the districts the Ironshields patrol without being welcome. Dale-funded community defense is, in several neighbourhoods, what the Legion is not. Nobody involved calls it competition. It functions as competition.
+
+**[[House Ninetti]]** supplies neither soldiers nor intelligence, and has more leverage over the Legion than either. Their holdings underpin several merchant guilds, which puts them behind the [[Merchants Guild|Merchants' Guild]]'s half of the confirmation vote on every Magister of Defense. They also sponsor the city's public festivals — and the Legion's ceremonial presence at those festivals is, by the institution's own reckoning, its most direct communication with the population. The house that pays for the procession has a quiet say in what the city sees when the Legion marches.
 
 **[[House Cryxis]]** — raised to nobility through sacrifice at the Shattered Strand rather than descent from Marduk's companions — has a different relationship with the Legion than the founding houses. Their engagement is primarily through the Vanguard of Valor, whose mission of decisive force aligns with their pragmatic approach to civic defense.
 
@@ -210,7 +232,7 @@ All six original noble houses descend from companions of [[Marduk Sunspear]] —
 
 **Dawn of Solara Displays** — During the Dawn of Solara festival, the Skywardens perform aerial demonstrations above the city — military demonstration, civic celebration, and recruitment advertisement in that order of priority, though the official framing inverts it.
 
-**Garrison Remembrance** — Within each district garrison, the death of a serving member is marked by a brief ceremony in which their sunspear weapon is displayed for one day before being melted down and incorporated into a new weapon. The new weapon is issued to the next Initiate who completes training from that garrison. The tradition predates complete documentation; its origin is attributed variously to the Landing War years and to an early Magister of Defense whose name is not preserved.
+**Garrison Remembrance** — Within each district garrison, the death of a serving member is marked by a brief ceremony in which their issued arms are displayed for one day before being melted down and incorporated into a new weapon. The new weapon goes to the next soldier posted to that garrison from the Spear Academy. The tradition predates complete documentation; its origin is attributed variously to the Landing War years and to an early Magister of Defense whose name is not preserved.
 
 ---
 
@@ -222,7 +244,7 @@ This stability is both its strength and its problem. The Legion's structures wer
 
 Prince [[Warrior Prince|Jorran Ilderas]] (18) currently trains with the city guard in Stonegate, an arrangement that pleases [[House Der'Tagan]] considerably and makes the political dynamics between the royal family and the noble house visible in miniature. Whether Jorran intends to eventually lead the Legion's defense apparatus is a matter of active speculation in the Council.
 
-The current Magister of Defense is **[[Feldmarch Derrivus Calcinius]]**. He was born in [[Ragmarket]]. He ran with a street gang called the **Iron Boots** in his early years. He came to the Legion's attention through an incident that has since become something between a legend and a recruitment story: when a faction known as **[[All Are One]]** mentally influenced and drugged a platoon of Iron Boots members into attacking the city's southern gate, [[Feldmarch Derrivus Calcinius|Calcinius]] held that gate alone against his former brothers until Legion reinforcements arrived. He did not look away from what he was doing. He did not leave the post.
+The current Magister of Defense is **[[Feldmarch Derrivus Calcinius]]**. He was born in [[Ragmarket]]. He came up through the **[[Iron Boots]]** — not a street gang but [[Ragmarket]]'s closest thing to law enforcement, a heavily armed paramilitary with a rank ladder, an endurance initiation, a code of discipline, and standing contracts from the city's own authorities. He had already served in something that looked like an army before he ever saw the Spear Academy. He came to the Legion's attention through an incident that has since become something between a legend and a recruitment story: when a faction known as **[[All Are One]]** mentally influenced and drugged a platoon of Iron Boots into attacking the city's southern gate, [[Feldmarch Derrivus Calcinius|Calcinius]] held that gate alone against his former brothers until Legion reinforcements arrived. He was not choosing between a gang and an institution. He was choosing between two bodies that both kept order, and he knew exactly what he was giving up. He did not look away from what he was doing. He did not leave the post.
 
 His appointment by [[Voren Ilderas|King Voren Ilderas]] — confirmed by the Merchants' Guild and the Church, bypassing the more obvious candidates from established military families — was a deliberate signal, though what exactly it was meant to signal depends on who you ask. [[House Der'Tagan]], whose blood runs deepest in the Legion's ranks, received it with the studied graciousness of people who know how to lose gracefully. Whether that graciousness holds as [[Feldmarch Derrivus Calcinius|Calcinius]] settles into the role is a matter of ongoing calibration between the house and the man.
 

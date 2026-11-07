@@ -56,7 +56,7 @@ The official history presents Marduk’s acceptance of the Mountain Wall’s res
 
 ### Death
 
-Marduk died in battle against a rampaging spirit in the early post-founding period. The specifics are vague in the historical record — whether this reflects genuine ambiguity or deliberate suppression is unknown. His elder son Darod Sunspear assumed leadership. The Sunspear line continued for an unspecified period before the [[Ilderas Dynasty]] rose to power.
+Marduk died in battle against a rampaging spirit in the early post-founding period. The specifics are vague in the historical record — whether this reflects genuine ambiguity or deliberate suppression is unknown. His elder son Darod Sunspear assumed leadership. The Sunspear line held the throne for more than three centuries after him, ending with Dammadan Sunspear’s death during Asgoraviel’s siege (~330–339 MC) and the rise of the [[Ilderas Dynasty]] — a transition documented in [[The Fall of the Sunspear Line]].
 
 ---
 

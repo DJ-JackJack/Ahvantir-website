@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Runeguard
 
-The Runeguard are the arcane defenders and enforcers of [[Aru'Mas]] , charged with maintaining the city's magical security, upholding the Old Pacts, and overseeing the use of arcane magic within the city’s borders. As both warriors and mages, the Runeguard combine martial prowess with runic magic, making them one of the most versatile and respected units within the city’s defense forces. They are tasked with both internal security and external operations, often acting as mediators between the spiritual and mortal realms.
+The Runeguard are the arcane defenders and enforcers of [[Aru'Mas]] , charged with maintaining the city's magical security, upholding the Old Pacts, and overseeing the use of arcane magic within the city’s borders. They are formally the arcane division of [[The Sunspear Legion]], though almost nothing about how they work resembles the other four. Authority over the city’s arcane community requires them to operate outside the Legion’s garrison structure and its chain of approvals, and they answer to their own **Runelord** rather than through the Council of Spears. Most of Aru’Mas treats them as a separate institution and is not entirely wrong to. As both warriors and mages, the Runeguard combine martial prowess with runic magic, making them one of the most versatile and respected units within the city’s defense forces. They are tasked with both internal security and external operations, often acting as mediators between the spiritual and mortal realms.
 
 ## Role and Purpose
 
@@ -26,7 +26,7 @@ The Runeguard play multiple critical roles in the defense and administration of 
 ## 3. Arcane Defense and Combat
 
 - The Runeguard are the primary arcane combat specialists in Aru'Mas , deployed to counter magical threats ranging from rogue wizards to spiritual entities. They are often called upon to handle magical breaches, rogue summoners, and dangerous spellcasters who pose a threat to the city.
-- During major conflicts, the Runeguard act as the arcane artillery of the [[The Sunspear Legion]] , capable of launching devastating runic attacks from a distance while protecting allied forces with powerful wards.
+- During major conflicts, the Runeguard act as the Legion’s arcane artillery, capable of launching devastating runic attacks from a distance while protecting allied forces with powerful wards.
 
 ## Runeguard Gear and Equipment
 

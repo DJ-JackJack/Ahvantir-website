@@ -7,7 +7,7 @@ date_added: "2026-06-06"
 
 # Ironshields
 
-The Ironshields are the elite heavy infantry of the [[The Sunspear Legion]] , tasked with defending the fortified heart of Aru’Mas and its critical infrastructure. These warriors serve as the unbreakable bulwark of the city’s defenses, renowned for their ability to withstand direct assaults, secure key positions, and hold the line even in the face of overwhelming odds. As the embodiment of the Legion’s values of strength, discipline, and unyielding resolve, the Ironshields are one of the most respected units within the military forces of Aru’Mas.
+The Ironshields are the largest division of [[The Sunspear Legion]] and the one the city sees most, and they run in two tiers. The **patrol strength** is the Legion most citizens meet daily — warded shield and sunspear, posted to a district, working checkpoints, gates and civil disturbances. The **phalanxes** are the elite heavy infantry, tasked with defending the fortified heart of Aru’Mas and its critical infrastructure. These warriors serve as the unbreakable bulwark of the city’s defenses, renowned for their ability to withstand direct assaults, secure key positions, and hold the line even in the face of overwhelming odds. As the embodiment of the Legion’s values of strength, discipline, and unyielding resolve, the Ironshields are one of the most respected units within the military forces of Aru’Mas. Except where stated otherwise, everything below describes the phalanx tier.
 
 ## Role and Purpose
 
