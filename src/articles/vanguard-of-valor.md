@@ -36,7 +36,7 @@ The Vanguard of Valor are distinguished by their exquisite armor, weapons, and o
 
 ## 1. Valorplate Armor
 
-- Members of the Vanguard wear Valorplate Armor, a suit of enchanted plate armor made from blessed runesteel, an alloy known for its durability and resistance to both physical and magical attacks. Each suit is custom-fitted to its wearer and adorned with symbols of royal authority, often marked with the Ilderas crest.
+- Members of the Vanguard wear Valorplate Armor, a suit of enchanted plate armor made from blessed runesteel, an alloy known for its durability and resistance to both physical and magical attacks. Each suit is custom-fitted to its wearer and adorned with symbols of royal authority, often marked with the Ilderas crest. Every suit also bears the emblem of Nystara, second of the twin suns and the sun of resolve — the divisional mark that distinguishes a Vanguard at a glance from an [[Ironshields|Ironshield]], whose weapons carry Solara's light instead.
 - The armor is enchanted with runes that enhance the wearer’s strength, speed, and endurance, making them faster and more resilient in battle. It also provides protection against magical attacks, with built-in wards that absorb arcane energy and deflect curses or hexes.
 - In addition to its combat functionality, the Valorplate is designed to be a symbol of authority, projecting an aura of confidence and power that reinforces the Vanguard’s role as royal protectors.
 
