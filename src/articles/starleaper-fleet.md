@@ -13,7 +13,7 @@ The Starleaper Fleet is one of the most prestigious and enigmatic facets of Aru�
 
 ## 1. Recruitment of Heroes
 
-The most public-facing role of the Starleaper Fleet is to seek out potential adventurers, scholars, and heroes from across the multiverse and invite them to Aru’Mas. The captains and crew of these vessels are charismatic representatives of the city, spreading tales of Aru’Mas’s opportunities for glory, fortune, and adventure. Their visits often inspire wonder and curiosity, drawing the bold and ambitious to follow them back to the southeastern island of Ahvantir.
+The most public-facing role of the Starleaper Fleet is to seek out potential adventurers, scholars, and heroes from across the multiverse and invite them to Aru’Mas. The captains and crew of these vessels are charismatic representatives of the city, spreading tales of Aru’Mas’s opportunities for glory, fortune, and adventure. Their visits often inspire wonder and curiosity, drawing the bold and ambitious to follow them back to Fyrsteheim, the southeastern island of Ahvantir.
 
 In doing so, the Fleet not only reinforces the city’s reputation as a beacon for adventurers but also ensures a steady influx of talent to tackle the challenges of Ahvantir and beyond.
 

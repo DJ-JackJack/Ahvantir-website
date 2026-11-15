@@ -18,6 +18,8 @@ Everything mortals know of Nyhexus is filtered through one lens: the Ahvantir Ar
 
 This means that Nyhexus-as-a-planet is, for practical scholarly purposes, understood through what is known of the Archipelago. The two should not be conflated — the world is larger than the Archipelago, and what lies beyond it is unknown — but all surviving lore is the lore of Ahvantir.
 
+Only one island in the Archipelago carries a name in common use: **Fyrsteheim**, the southeastern island, where [[Aru'Mas]] stands. [[Marduk Sunspear]] named it on arrival, and no earlier name for it survives in the city's records. The [[Mountain Wall]] closes the inner islands off entirely; nothing behind it is charted or named in any mortal document, which is less a failure of cartography than a term of the [[First Pact]].
+
 ## The Land and Its Spirits
 
 The most cosmologically distinctive feature of Nyhexus is not the city of Aru'Mas or the civilizations it has sheltered, but the land itself — specifically, the Ahvantir Archipelago.

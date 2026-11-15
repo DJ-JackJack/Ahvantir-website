@@ -36,6 +36,8 @@ They did not merely coexist with Ahvantir's spirits. They were woven into its sp
 
 When [[Marduk Sunspear]] and his fleet arrived on the southeastern shore, weary and desperate after forty-nine years in the Astral Sea, the Drorn'Duur met them with open arms. They offered food, shelter, and guidance through the complexities of spirit diplomacy, asking for nothing in return but peace.
 
+Marduk named the island **Fyrsteheim**. It is the name the city has used ever since — in its charters, its histories, its common speech — and the only one for the island that appears in any surviving record. The Drorn'Duur had lived there two and a half centuries before his fleet came over the horizon. What they called it is not written down anywhere the city kept.
+
 ---
 
 ## The Arrival and the Betrayal (-16 to -13 MC)
@@ -60,7 +62,7 @@ The Landing War had begun.
 
 *Thirteen years of conflict.*
 
-The Landing War was not a simple confrontation between settlers and spirits. It was a thirteen-year conflict between Marduk's settler coalition and an alliance of native spirits and Drorn'Duur survivors, fought across the southeastern island and into the Fend. The settler forces held together through a combination of [[Adobban Demoranza|Adobban Demoranza's]] divine magic — which gave mortal fighters a chance against opponents that functioned like forces of nature — and the widespread use of resurrection magic that prevented their numbers from declining despite significant casualties.
+The Landing War was not a simple confrontation between settlers and spirits. It was a thirteen-year conflict between Marduk's settler coalition and an alliance of native spirits and Drorn'Duur survivors, fought across Fyrsteheim and into the Fend. The settler forces held together through a combination of [[Adobban Demoranza|Adobban Demoranza's]] divine magic — which gave mortal fighters a chance against opponents that functioned like forces of nature — and the widespread use of resurrection magic that prevented their numbers from declining despite significant casualties.
 
 Marduk's stated objective, never recorded in the official histories, was expansion beyond the [[Mountain Wall]] — the ring of impassable mountains and barrier reefs that encircles the archipelago's inner islands. Access to the interior was the thing he had fought toward for thirteen years and could not let go of. The war's moral complexity on the settler side was compounded by this drive: settlers fighting for survival in a conflict their leader's actions had caused, for a homeland that their leader also wanted to treat as a staging ground for further expansion.
 

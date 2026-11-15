@@ -8,7 +8,7 @@ timeline_year: 0
 
 # Founding of [[Aru'Mas]]
 
-Situated on the southeastern island of the archipelago of Ahvantir, Aru’Mas serves as the gateway to these mystical lands, with its harbor facing the open sea. The city’s founding story is woven from acts of courage, diplomacy, and a profound respect for Ahvantir’s powerful spiritual forces. [[Marduk Sunspear]], a famed warrior and explorer, led the first wave of settlers, establishing the framework for a city that would thrive in harmony with the spirits. It was his companion, [[Adobban Demoranza]], an elven cleric with a renewed faith, who laid the spiritual foundations of Aru’Mas by creating [[The Church of the Threefold Path|the Church of the Threefold Path]] after a life-changing vision on Ahvantir.
+Situated on Fyrsteheim, the southeastern island of the archipelago of Ahvantir, Aru’Mas serves as the gateway to these mystical lands, with its harbor facing the open sea. The city’s founding story is woven from acts of courage, diplomacy, and a profound respect for Ahvantir’s powerful spiritual forces. [[Marduk Sunspear]], a famed warrior and explorer, led the first wave of settlers, establishing the framework for a city that would thrive in harmony with the spirits. It was his companion, [[Adobban Demoranza]], an elven cleric with a renewed faith, who laid the spiritual foundations of Aru’Mas by creating [[The Church of the Threefold Path|the Church of the Threefold Path]] after a life-changing vision on Ahvantir.
 
 ## Historical Background and the Journey of [[Marduk Sunspear]]
 
@@ -22,7 +22,7 @@ Central to Aru'Mas’s founding is the Old Pact, a binding agreement forged thro
 
 ## Key Elements of the Old Pact
 
-- Boundaries of Settlement: The pact defined Aru’Mas’s boundaries on the southeastern island, preventing expansion beyond specific borders. These boundaries are enforced by spiritual wards, preserving the deeper islands of Ahvantir for the spirits. This boundary reinforces Aru’Mas’s role as a gateway, while protecting Ahvantir’s untouched interior.
+- Boundaries of Settlement: The pact defined Aru’Mas’s boundaries on Fyrsteheim, preventing expansion beyond specific borders. These boundaries are enforced by spiritual wards, preserving the deeper islands of Ahvantir for the spirits. This boundary reinforces Aru’Mas’s role as a gateway, while protecting Ahvantir’s untouched interior.
 - Restrictions on Foreign Entry: In accordance with the Old Pact, only those permitted by the city’s Council may enter Ahvantir through the [[Spiritsway Passage]]. This measure safeguards the archipelago, ensuring only respectful and worthy individuals can pass, thereby preventing intrusions that might disturb the spirits.
 - Penalties for Breach—The Blood Debt: The Old Pact established the Blood Debt, a system of consequences for those who break the pact’s terms. Minor breaches may bring misfortune to individuals, while major offenses risk the city’s safety. This Blood Debt is upheld by the spirits, reminding the people of Aru’Mas of the importance of their promises.
 - Spiritual Guardianship: The pact entrusted certain spirits, including Yan Bo Tog, with overseeing Aru’Mas’s adherence to its terms. These guardians monitor the city’s actions and protect it from breaching the pact, using omens or warnings to correct imbalances.
